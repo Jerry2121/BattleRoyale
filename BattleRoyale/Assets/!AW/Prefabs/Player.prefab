@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4434738055358704}
   - component: {fileID: 33200926710850656}
   - component: {fileID: 23540556649870700}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4633581735073198}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,15 +53,17 @@ GameObject:
   - component: {fileID: 4800036615670664}
   - component: {fileID: 135212296827418172}
   - component: {fileID: 54015151523186522}
-  - component: {fileID: 114220239145788432}
   - component: {fileID: 114058563100952288}
+  - component: {fileID: 114220239145788432}
+  - component: {fileID: 114637508568074558}
   - component: {fileID: 114373945748241560}
+  - component: {fileID: 153619004607417980}
   - component: {fileID: 114351947472660616}
   - component: {fileID: 114342574062981906}
   - component: {fileID: 114292400422521118}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +78,7 @@ GameObject:
   - component: {fileID: 4176195892231488}
   - component: {fileID: 20300667992484702}
   - component: {fileID: 81096081954405560}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +96,7 @@ GameObject:
   - component: {fileID: 33311833042391812}
   - component: {fileID: 23813596054263520}
   - component: {fileID: 65929358174535272}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4073802616304716}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +129,7 @@ GameObject:
   - component: {fileID: 33207851708819656}
   - component: {fileID: 23566067310598434}
   - component: {fileID: 65010226548305290}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +407,7 @@ Rigidbody:
   m_GameObject: {fileID: 1586728422693558}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 4
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -455,7 +457,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lookSensitivity: 3
+  lookSensitivity: 15
+  thrusterForce: 1200
+  jointMode: 1
+  jointSpring: 15
+  jointMaxForce: 40
 --- !u!114 &114220239145788432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 20300667992484702}
+  cameraRotationLimit: 85
 --- !u!114 &114292400422521118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,6 +563,27 @@ MonoBehaviour:
   - {fileID: 114058563100952288}
   - {fileID: 20300667992484702}
   - {fileID: 81096081954405560}
+  - {fileID: 114637508568074558}
+  remoteLayerName: RemotePlayer
+--- !u!114 &114637508568074558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586728422693558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3d45e9df3fb874a85a3ff84bf1c441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+    name: Pistol
+    damage: 10
+    range: 100
+  cam: {fileID: 20300667992484702}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!135 &135212296827418172
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -568,3 +596,97 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!153 &153619004607417980
+ConfigurableJoint:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586728422693558}
+  m_ConnectedBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_SecondaryAxis: {x: 0, y: 1, z: 0}
+  m_XMotion: 2
+  m_YMotion: 2
+  m_ZMotion: 2
+  m_AngularXMotion: 2
+  m_AngularYMotion: 2
+  m_AngularZMotion: 2
+  m_LinearLimitSpring:
+    spring: 0
+    damper: 0
+  m_LinearLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularXLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_HighAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularYZLimitSpring:
+    spring: 0
+    damper: 0
+  m_AngularYLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularZLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_TargetPosition: {x: 0, y: 0, z: 0}
+  m_TargetVelocity: {x: 0, y: 0, z: 0}
+  m_XDrive:
+    serializedVersion: 3
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+  m_YDrive:
+    serializedVersion: 3
+    positionSpring: 20
+    positionDamper: 0
+    maximumForce: 40
+  m_ZDrive:
+    serializedVersion: 3
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+  m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
+  m_RotationDriveMode: 0
+  m_AngularXDrive:
+    serializedVersion: 3
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+  m_AngularYZDrive:
+    serializedVersion: 3
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+  m_SlerpDrive:
+    serializedVersion: 3
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+  m_ProjectionMode: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_ConfiguredInWorldSpace: 0
+  m_SwapBodies: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
