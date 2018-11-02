@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class PlayerShoot : NetworkBehaviour {
 
+    private const string PLAYER_TAG = "Player";
+
     public PlayerWeapon weapon;
 
     [SerializeField]
@@ -30,6 +32,7 @@ public class PlayerShoot : NetworkBehaviour {
         }
 	}
 
+    [Client] //called on the local client
     void Shoot()
     {
         RaycastHit hit;
@@ -37,8 +40,18 @@ public class PlayerShoot : NetworkBehaviour {
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask))
         {
             //We hit something
-            Debug.Log("We hit " + hit.collider.name);
+            if(hit.collider.tag == PLAYER_TAG)
+            {
+                CmdPlayerShot(hit.collider.name);
+            }
         }
 
     }
+
+    [Command] //called on the server
+    void CmdPlayerShot(string _ID)
+    {
+        Debug.Log(_ID + " has been shot");
+    }
+
 }
