@@ -28,7 +28,14 @@ public class PlayerSetup : NetworkBehaviour {
                 sceneCamera.gameObject.SetActive(false);
             }
         }
+        RegisterPlayer();
 	}
+
+    void RegisterPlayer()
+    {
+        string ID = "Player " + GetComponent<NetworkIdentity>().netId;
+        transform.name = ID;
+    }
 
     void AssignRemoteLayer()
     {

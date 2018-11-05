@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:BattleRoyale/Assets/Standard Assets/Prototyping.meta
 guid: 005566fd2c363d74c9209eb3d02069a5
+=======
+guid: 20a568206ffbb0847b684065bb0b493d
+>>>>>>> 5de45a35e845ab159136cd4f979896b95ed5364e:BattleRoyale/Assets/Standard Assets/Prototyping.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
