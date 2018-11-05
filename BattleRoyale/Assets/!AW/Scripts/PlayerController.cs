@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerMotor))]
 [RequireComponent(typeof(ConfigurableJoint))]
 public class PlayerController : MonoBehaviour {
@@ -21,13 +22,16 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float jointMaxForce = 40;
 
+    //component caching
     private PlayerMotor motor;
     private ConfigurableJoint joint;
+    private Animator animator;
 
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
         joint = GetComponent<ConfigurableJoint>();
+        animator = GetComponent<Animator>();
 
         SetJointSettings(jointSpring);
     }
@@ -35,14 +39,17 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         //Calculate movement velocity as 3D vector
-        float _xMove = Input.GetAxisRaw("Horizontal");
-        float _zMove = Input.GetAxisRaw("Vertical");
+        float _xMove = Input.GetAxis("Horizontal");
+        float _zMove = Input.GetAxis("Vertical");
 
         Vector3 _moveHorizontal = transform.right * _xMove;
         Vector3 _moveVertical = transform.forward * _zMove;
 
         //Final movement vector
-        Vector3 _velocity = (_moveHorizontal + _moveVertical).normalized * speed;
+        Vector3 _velocity = (_moveHorizontal + _moveVertical) * speed;
+
+        //Animate Movement
+        animator.SetFloat("ForwardVelocity", _zMove);
 
         //Apply movement
         motor.Move(_velocity);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(Player))]
 public class PlayerSetup : NetworkBehaviour {
 
     //components to disable on non-local players
@@ -28,13 +29,19 @@ public class PlayerSetup : NetworkBehaviour {
                 sceneCamera.gameObject.SetActive(false);
             }
         }
-        RegisterPlayer();
+
+        GetComponent<Player>().Setup();
+
 	}
 
-    void RegisterPlayer()
+    public override void OnStartClient()
     {
-        string ID = "Player " + GetComponent<NetworkIdentity>().netId;
-        transform.name = ID;
+        base.OnStartClient();
+
+        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Player player = GetComponent<Player>();
+
+        GameManager.RegisterPlayer(netID, player);
     }
 
     void AssignRemoteLayer()
@@ -56,6 +63,9 @@ public class PlayerSetup : NetworkBehaviour {
         {
             sceneCamera.gameObject.SetActive(true);
         }
+
+        GameManager.UnregisterPlayer(transform.name);
+
     }
 
     // Update is called once per frame
