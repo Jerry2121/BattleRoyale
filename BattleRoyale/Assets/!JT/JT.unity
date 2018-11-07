@@ -8527,12 +8527,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51d9819aab7caa4abce1e30e3a43cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSpawn1: {fileID: 100000, guid: 3eb169fb1f6b2e343b6d69790e692db4, type: 3}
-  ItemSpawn2: {fileID: 100000, guid: d5085b45bd6efa148b42ea3dc7ba9a0e, type: 3}
-  ItemSpawn3: {fileID: 100000, guid: bf7443ef7118025448b46f1fbf52268e, type: 3}
-  ItemSpawn4: {fileID: 100000, guid: ce743c2438a425142b98835a209545c1, type: 3}
-  ItemSpawn5: {fileID: 100000, guid: bfb6dbd5072b781449a8580e4a1ddd7d, type: 3}
-  ItemSpawn6: {fileID: 100000, guid: 0ccd3d9887ba97343a1a4a7a959e6c52, type: 3}
+  ItemSpawn1: {fileID: 1712029237304932, guid: eec1043988e994b02bcff37595587a1f, type: 2}
+  ItemSpawn2: {fileID: 1712029237304932, guid: eec1043988e994b02bcff37595587a1f, type: 2}
+  ItemSpawn3: {fileID: 1712029237304932, guid: eec1043988e994b02bcff37595587a1f, type: 2}
+  ItemSpawn4: {fileID: 1712029237304932, guid: eec1043988e994b02bcff37595587a1f, type: 2}
+  ItemSpawn5: {fileID: 1712029237304932, guid: eec1043988e994b02bcff37595587a1f, type: 2}
+  ItemSpawn6: {fileID: 1712029237304932, guid: eec1043988e994b02bcff37595587a1f, type: 2}
 --- !u!4 &1135366411
 Transform:
   m_ObjectHideFlags: 0
@@ -10196,7 +10196,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1305739197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.495, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1931968857}
