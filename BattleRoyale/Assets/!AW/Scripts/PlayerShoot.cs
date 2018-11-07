@@ -51,9 +51,45 @@ public class PlayerShoot : NetworkBehaviour {
         }
 	}
 
+    //called on server when a player shoots
+    [Command]
+    void CmdOnShoot()
+    {
+        RpcDoShootEffect();
+    }
+
+    //called on all clients when we need to display a shoot effect
+    [ClientRpc]
+    void RpcDoShootEffect()
+    {
+        weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+    }
+
+    //called when we hit somerhing
+    [Command]
+    void CmdOnHit(Vector3 _pos, Vector3 _normal)
+    {
+        RpcDoHitEffect(_pos, _normal);
+    }
+
+    //called on all clients to spawn in a hit effect
+    [ClientRpc]
+    void RpcDoHitEffect(Vector3 _pos, Vector3 _normal)
+    {
+        GameObject hitEffect = SimplePool.Spawn(weaponManager.GetCurrentGraphics().impactEffectPrefab, _pos, Quaternion.LookRotation(_normal));
+        //Utility.DespawnAfterSeconds(hitEffect, 2f);
+        //SimplePool.Despawn(hitEffect);
+        StartCoroutine(Utility.DespawnAfterSeconds(hitEffect, 2f));
+    }
+
     [Client] //called on the local client
     void Shoot()
     {
+        if (isLocalPlayer == false)
+            return;
+        //we are shooting call on shoot method on server
+        CmdOnShoot();
+
         RaycastHit hit;
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, mask))
@@ -63,6 +99,9 @@ public class PlayerShoot : NetworkBehaviour {
             {
                 CmdPlayerShot(hit.collider.name, currentWeapon.damage);
             }
+            //we hit something, call OnHit method on server
+            CmdOnHit(hit.point, hit.normal);
+
         }
 
     }

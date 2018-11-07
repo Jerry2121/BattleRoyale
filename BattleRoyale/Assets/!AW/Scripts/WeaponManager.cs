@@ -39,7 +39,7 @@ public class WeaponManager : NetworkBehaviour {
 
         if (isLocalPlayer)
         {
-            weaponIns.layer = LayerMask.NameToLayer(weaponLayerName);
+            Utility.SetLayerRecursively(weaponIns, LayerMask.NameToLayer(weaponLayerName));
         }
 
     }
@@ -49,7 +49,7 @@ public class WeaponManager : NetworkBehaviour {
         return currentWeapon;
     }
 
-    public WeaponGraphics GetWeaponGraphics()
+    public WeaponGraphics GetCurrentGraphics()
     {
         return currentGraphics;
     }

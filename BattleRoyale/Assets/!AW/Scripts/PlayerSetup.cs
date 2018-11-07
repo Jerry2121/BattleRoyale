@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerSetup : NetworkBehaviour {
 
     //components to disable on non-local players
@@ -42,6 +43,15 @@ public class PlayerSetup : NetworkBehaviour {
             //Create player UI
             playerUIInstance = Instantiate(playerUIPrefab);
             playerUIInstance.name = playerUIPrefab.name;
+
+            //Canfigure playerUI
+            PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+            if(ui == null)
+            {
+                Debug.LogError("PlayerSetup -- Start: No PlayerUI on PlayerUI prefab");
+                return;
+            }
+            ui.SetPlayerController(GetComponent<PlayerController>());
         }
 
         GetComponent<Player>().Setup();
