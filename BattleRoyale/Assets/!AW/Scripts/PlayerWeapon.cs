@@ -9,4 +9,10 @@ public class PlayerWeapon {
     public int damage = 10;
     public float range = 100f;
 
+    public float fireRate = 0; //If 0 it is a single-fire weapon, e.g. press key for every shot insteat of holding down
+
+    public GameObject graphics;
+
+
+
 }
