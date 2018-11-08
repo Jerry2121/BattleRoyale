@@ -292,7 +292,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586728422693558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.167031, y: 1, z: 2.8362718}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4176195892231488}
@@ -354,7 +354,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 196919
+    m_Bits: 1245495
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -628,6 +628,11 @@ MonoBehaviour:
   speed: 5
   lookSensitivity: 15
   thrusterForce: 1200
+  thrusterFuelBurnSpeed: 1
+  thrusterFuelRegenSpeed: 0.3
+  environmentMask:
+    serializedVersion: 2
+    m_Bits: 1048576
   jointSpring: 15
   jointMaxForce: 40
 --- !u!114 &114108586730124228
@@ -646,6 +651,13 @@ MonoBehaviour:
   - {fileID: 114058563100952288}
   - {fileID: 114637508568074558}
   - {fileID: 114220239145788432}
+  disableGameObjectsOnDeath:
+  - {fileID: 1980176510306008}
+  - {fileID: 1587420116695816}
+  spawnEffect: {fileID: 1073996166676940, guid: aecb2141d78055043a4531e1b1f0e92b,
+    type: 2}
+  deathEffect: {fileID: 1039685886307084, guid: 8a75ae6715645114fa74e9d77d1ab828,
+    type: 2}
 --- !u!114 &114220239145788432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -773,6 +785,7 @@ MonoBehaviour:
   playerGraphics: {fileID: 1980176510306008}
   playerUIPrefab: {fileID: 1461730711786616, guid: cc28819ccb383de48a7d79c9d6560e55,
     type: 2}
+  playerUIInstance: {fileID: 0}
 --- !u!114 &114514191172641164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,7 +819,7 @@ MonoBehaviour:
   cam: {fileID: 20300667992484702}
   mask:
     serializedVersion: 2
-    m_Bits: 131383
+    m_Bits: 1179959
 --- !u!114 &114734256745034574
 MonoBehaviour:
   m_ObjectHideFlags: 1
