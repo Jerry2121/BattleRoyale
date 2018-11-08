@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
 
     public float thrusterFuelAmount {get; protected set;}
 
+    [SerializeField]
+    private LayerMask environmentMask;
+
     [Header("Spring settings")]
     [SerializeField]
     private float jointSpring = 20;
@@ -43,6 +46,18 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        //Set target position for spring
+        //This will allow it to float over non ground objects
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, 100f, environmentMask))
+        {
+            joint.targetPosition = new Vector3(0f, -hit.point.y, 0f);
+        }
+        else
+        {
+            joint.targetPosition = new Vector3(0f, 0f, 0f);
+        }
+
         //Calculate movement velocity as 3D vector
         float _xMove = Input.GetAxis("Horizontal");
         float _zMove = Input.GetAxis("Vertical");
@@ -80,8 +95,12 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Jump") && thrusterFuelAmount > 0f)
         {
             thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
-            thrusterForceVector = Vector3.up * thrusterForce;
-            SetJointSettings(0f);
+
+            if (thrusterFuelAmount >= 0.01)
+            {
+                thrusterForceVector = Vector3.up * thrusterForce;
+                SetJointSettings(0f);
+            }
         }
         else
         {
