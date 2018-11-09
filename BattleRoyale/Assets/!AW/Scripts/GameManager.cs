@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour {
 
     public MatchSettings matchSettings;
 
+    [SerializeField]
+    GameObject sceneCamera;
+
     private void Awake()
     {
         if(instance != null)
@@ -16,6 +19,17 @@ public class GameManager : MonoBehaviour {
             return;
         }
         instance = this;
+    }
+
+    public void SetSceneCameraActiveState(bool isActive)
+    {
+        if(sceneCamera == null)
+        {
+            Debug.LogError("GameManager -- SetSceneCameraActiveState: The sceneCamera is null!");
+            return;
+        }
+
+        sceneCamera.SetActive(isActive);
     }
 
     #region Player Tracking

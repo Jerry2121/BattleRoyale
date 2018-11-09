@@ -20,11 +20,6 @@ public class Utility {
 
     }
 
-    public static void ADespawnAfterSeconds(GameObject _obj, float _time)
-    {
-
-    }
-
     //Will take in a time and and object spawned from a Pool, and despawn it after the given time
     //Similar to Destroy(obj, 2f), but for the Pool
     public static IEnumerator DespawnAfterSeconds(GameObject _obj, float _time)
