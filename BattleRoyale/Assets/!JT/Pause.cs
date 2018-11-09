@@ -29,12 +29,16 @@ public class Pause : MonoBehaviour {
             InventoryButtonSelected.SetActive(false);
             OptionsButtonSelected.SetActive(false);
             DisconnectButtonSelected.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && paused)
         {
             paused = false;
             HUD.SetActive(true);
             PausedCanvas.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 	}
     public void Resume()
@@ -42,9 +46,13 @@ public class Pause : MonoBehaviour {
         paused = false;
         HUD.SetActive(true);
         PausedCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void InventoryButton()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(true);
         OptionsButtonSelected.SetActive(false);
@@ -52,6 +60,8 @@ public class Pause : MonoBehaviour {
     }
     public void OptionsButton()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(false);
         OptionsButtonSelected.SetActive(true);
@@ -59,6 +69,8 @@ public class Pause : MonoBehaviour {
     }
     public void DisconnectButton()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(false);
         OptionsButtonSelected.SetActive(false);
@@ -66,10 +78,14 @@ public class Pause : MonoBehaviour {
     }
     public void YesOption()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
     public void NoOption()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Resume();
     }
 }
