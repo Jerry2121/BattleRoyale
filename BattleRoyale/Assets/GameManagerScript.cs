@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour {
     [Header("Items To Spawn (Prefabs)")]
+    public bool DisableItemSpawning;
     public GameObject ItemSpawn1;
     public GameObject ItemSpawn2;
     public GameObject ItemSpawn3;

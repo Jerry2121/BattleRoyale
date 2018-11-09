@@ -15,32 +15,32 @@ public class ItemSpawner : MonoBehaviour {
         if (canspawnItem)
         {
             d1 = Random.Range(0, 7);
-            if (d1 == 1)
+            if (d1 == 1 && GameObject.Find("GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false)
             {
                 Instantiate(GameObject.Find("GameManager").GetComponent<GameManagerScript>().ItemSpawn1, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 canspawnItem = false;
             }
-            if (d1 == 2)
+            if (d1 == 2 && GameObject.Find("GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false)
             {
                 Instantiate(GameObject.Find("GameManager").GetComponent<GameManagerScript>().ItemSpawn2, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 canspawnItem = false;
             }
-            if (d1 == 3)
+            if (d1 == 3 && GameObject.Find("GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false)
             {
                 Instantiate(GameObject.Find("GameManager").GetComponent<GameManagerScript>().ItemSpawn3, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 canspawnItem = false;
             }
-            if (d1 == 4)
+            if (d1 == 4 && GameObject.Find("GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false)
             {
                 Instantiate(GameObject.Find("GameManager").GetComponent<GameManagerScript>().ItemSpawn4, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 canspawnItem = false;
             }
-            if (d1 == 5)
+            if (d1 == 5 && GameObject.Find("GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false)
             {
                 Instantiate(GameObject.Find("GameManager").GetComponent<GameManagerScript>().ItemSpawn5, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 canspawnItem = false;
             }
-            if (d1 == 6)
+            if (d1 == 6 && GameObject.Find("GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false)
             {
                 Instantiate(GameObject.Find("GameManager").GetComponent<GameManagerScript>().ItemSpawn6, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 canspawnItem = false;
