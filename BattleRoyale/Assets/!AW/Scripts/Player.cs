@@ -109,8 +109,8 @@ public class Player : NetworkBehaviour {
             return;
 
         currentHealth -= _damage;
-
-        Debug.Log(transform.name + " now has " + currentHealth + " health");
+        if (Debug.isDebugBuild)
+            Debug.Log(transform.name + " now has " + currentHealth + " health");
         if(currentHealth <= 0)
         {
             Die();
@@ -146,7 +146,8 @@ public class Player : NetworkBehaviour {
             GetComponent<PlayerSetup>().playerUIInstance.SetActive(false);
         }
 
-        Debug.Log(transform.name + " is dead");
+        if (Debug.isDebugBuild)
+            Debug.Log(transform.name + " is dead");
 
         StartCoroutine(Respawn());
     }
@@ -163,7 +164,8 @@ public class Player : NetworkBehaviour {
 
         SetupPlayer();
 
-        Debug.Log(transform.name + " respawned");
+        if (Debug.isDebugBuild)
+            Debug.Log(transform.name + " respawned");
     }
 
 }

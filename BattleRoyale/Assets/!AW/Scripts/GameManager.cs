@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour {
     {
         if(instance != null)
         {
-            Debug.LogWarning("GameManager -- Awake: There is more than one GameManager in the scene. Only one will be set to GameManager.Instance.");
+            if (Debug.isDebugBuild)
+                Debug.LogWarning("GameManager -- Awake: There is more than one GameManager in the scene. Only one will be set to GameManager.Instance.");
             return;
         }
         instance = this;
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour {
     {
         if(sceneCamera == null)
         {
-            Debug.LogError("GameManager -- SetSceneCameraActiveState: The sceneCamera is null!");
+            if(Debug.isDebugBuild)
+                Debug.LogError("GameManager -- SetSceneCameraActiveState: The sceneCamera is null!");
             return;
         }
 

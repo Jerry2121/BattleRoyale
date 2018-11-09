@@ -20,7 +20,8 @@ public class PlayerShoot : NetworkBehaviour {
 	void Start () {
 		if(cam == null)
         {
-            Debug.LogError("PlayerShoot -- Start: No camera referenced");
+            if (Debug.isDebugBuild)
+                Debug.LogError("PlayerShoot -- Start: No camera referenced");
             this.enabled = false;
         }
 
@@ -109,7 +110,8 @@ public class PlayerShoot : NetworkBehaviour {
     [Command] //called on the server
     void CmdPlayerShot(string _playerID, int _damage)
     {
-        Debug.Log(_playerID + " has been shot");
+        if (Debug.isDebugBuild)
+            Debug.Log(_playerID + " has been shot");
 
         Player player = GameManager.GetPlayer(_playerID);
 
