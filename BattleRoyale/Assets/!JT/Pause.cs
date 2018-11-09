@@ -13,15 +13,18 @@ public class Pause : MonoBehaviour {
     public GameObject InventoryButtonSelected;
     public GameObject OptionsButtonSelected;
     public GameObject DisconnectButtonSelected;
+    Rigidbody Player;
+    public GameObject Player2;
 	// Use this for initialization
 	void Start () {
-		
+        Player = Player2.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape) && !paused)
         {
+            Player.constraints = RigidbodyConstraints.FreezePosition;
             paused = true;
             PausedCanvas.SetActive(true);
             HUD.SetActive(false);
@@ -34,6 +37,10 @@ public class Pause : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && paused)
         {
+            Player.constraints = RigidbodyConstraints.None;
+            Player.constraints = RigidbodyConstraints.FreezeRotationX;
+            Player.constraints = RigidbodyConstraints.FreezeRotationY;
+            Player.constraints = RigidbodyConstraints.FreezeRotationZ;
             paused = false;
             HUD.SetActive(true);
             PausedCanvas.SetActive(false);
@@ -43,6 +50,10 @@ public class Pause : MonoBehaviour {
 	}
     public void Resume()
     {
+        Player.constraints = RigidbodyConstraints.None;
+        Player.constraints = RigidbodyConstraints.FreezeRotationX;
+        Player.constraints = RigidbodyConstraints.FreezeRotationY;
+        Player.constraints = RigidbodyConstraints.FreezeRotationZ;
         paused = false;
         HUD.SetActive(true);
         PausedCanvas.SetActive(false);
@@ -51,6 +62,7 @@ public class Pause : MonoBehaviour {
     }
     public void InventoryButton()
     {
+        Player.constraints = RigidbodyConstraints.FreezePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         ResumeButtonSelected.SetActive(false);
@@ -60,6 +72,7 @@ public class Pause : MonoBehaviour {
     }
     public void OptionsButton()
     {
+        Player.constraints = RigidbodyConstraints.FreezePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         ResumeButtonSelected.SetActive(false);
@@ -69,6 +82,7 @@ public class Pause : MonoBehaviour {
     }
     public void DisconnectButton()
     {
+        Player.constraints = RigidbodyConstraints.FreezePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         ResumeButtonSelected.SetActive(false);
@@ -78,12 +92,14 @@ public class Pause : MonoBehaviour {
     }
     public void YesOption()
     {
+        Player.constraints = RigidbodyConstraints.FreezePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
     public void NoOption()
     {
+        Player.constraints = RigidbodyConstraints.FreezePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Resume();
