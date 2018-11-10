@@ -11,11 +11,14 @@ public class HostGame : MonoBehaviour {
     private string roomName;
 
     private NetworkManager networkManager;
+    private NetworkDiscovery networkDiscovery;
 
 	// Use this for initialization
 	void Start () {
         networkManager = NetworkManager.singleton;
-        if(networkManager.matchMaker == null)
+        networkDiscovery = GetComponent<NetworkDiscovery>();
+        networkDiscovery.Initialize();
+        if (networkManager.matchMaker == null)
         {
             networkManager.StartMatchMaker();
         }
@@ -43,4 +46,14 @@ public class HostGame : MonoBehaviour {
         }
     }
 
+    public void CreateLANGameAsHost()
+    {
+        networkManager.StartHost();
+        networkDiscovery.StartAsServer();
+    }
+    public void CreateLANGameAsServer()
+    {
+        networkManager.StartServer();
+        networkDiscovery.StartAsServer();
+    }
 }
