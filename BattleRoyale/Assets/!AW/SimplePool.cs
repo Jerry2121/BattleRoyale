@@ -79,7 +79,7 @@ public static class SimplePool {
 			if(inactive.Count==0) {
 				// We don't have an object in our pool, so we
 				// instantiate a whole new object.
-				obj = (GameObject)GameObject.Instantiate(prefab, pos, rot);
+				obj = GameObject.Instantiate(prefab, pos, rot);
 				obj.name = prefab.name + " ("+(nextId++)+")";
 
 				// Add a PoolMember component so we know what pool
@@ -102,7 +102,8 @@ public static class SimplePool {
 					return Spawn(pos, rot);
 				}
 			}
-            obj.transform.parent = parent.transform;
+            if (parent != null)
+                obj.transform.parent = parent.transform;
 			obj.transform.position = pos;
 			obj.transform.rotation = rot;
 			obj.SetActive(true);

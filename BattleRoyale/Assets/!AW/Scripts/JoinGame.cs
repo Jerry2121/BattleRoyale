@@ -19,13 +19,10 @@ public class JoinGame : MonoBehaviour {
     List<GameObject> roomList = new List<GameObject>();
 
     private NetworkManager networkManager;
-    //[SerializeField]
-    //private NetworkDiscovery networkDiscovery;
 
 	// Use this for initialization
 	void Start () {
         networkManager = NetworkManager.singleton;
-        //networkDiscovery.Initialize();
         if (networkManager.matchMaker == null)
         {
             networkManager.StartMatchMaker();
@@ -45,7 +42,7 @@ public class JoinGame : MonoBehaviour {
     {
         statusText.text = "";
 
-        if (_matches == null)
+        if (_success == false || _matches == null)
         {
             statusText.text = "Couldn't get room list";
             return;
@@ -93,16 +90,5 @@ public class JoinGame : MonoBehaviour {
         roomList.Clear();
         statusText.text = "Joining";
     }
-
-    /*public void JoinLANGame()
-    {
-        networkDiscovery.StartAsClient();
-    }/*
-
-    /*public override void OnReceivedBroadcast(string fromAddress, string data)
-    {
-        networkManager.networkAddress = fromAddress;
-        networkManager.StartClient();
-    }*/
 
 }

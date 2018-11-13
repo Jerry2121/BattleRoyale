@@ -860,7 +860,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1191920233}
+      - m_Target: {fileID: 1383188137}
         m_MethodName: CreateRoom
         m_Mode: 1
         m_Arguments:
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1707956854}
+      - m_Target: {fileID: 1383188137}
         m_MethodName: CreateLANGameAsHost
         m_Mode: 1
         m_Arguments:
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1707956854}
+      - m_Target: {fileID: 1383188137}
         m_MethodName: JoinLANGame
         m_Mode: 1
         m_Arguments:
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1707956854}
+      - m_Target: {fileID: 1383188137}
         m_MethodName: CreateLANGameAsServer
         m_Mode: 1
         m_Arguments:
@@ -2668,6 +2668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383188136}
   - component: {fileID: 1383188135}
+  - component: {fileID: 1383188137}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -2703,6 +2704,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1383188137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383188134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e12248ec16e464ab011a128d0a3d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1400381296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,12 +2902,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1674189640}
   m_CullTransparentMesh: 0
---- !u!114 &1707956854 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114796615982619856, guid: 3ad23221d7600b94bb826db71b7e165d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1811345543}
-  m_Script: {fileID: 11500000, guid: e4372b0ff41f42445b735e85df023d82, type: 3}
 --- !u!1 &1725104668
 GameObject:
   m_ObjectHideFlags: 0

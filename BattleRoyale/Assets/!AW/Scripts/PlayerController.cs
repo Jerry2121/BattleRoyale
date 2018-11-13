@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+
+        if (PauseMenu.isOn)
+            return;
+
         //Set target position for spring
         //This will allow it to float over non ground objects
         RaycastHit hit;

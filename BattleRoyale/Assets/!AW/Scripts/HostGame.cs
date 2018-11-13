@@ -11,13 +11,10 @@ public class HostGame : MonoBehaviour {
     private string roomName;
 
     private NetworkManager networkManager;
-    //[SerializeField]
-    //private NetworkDiscovery networkDiscovery;
 
 	// Use this for initialization
 	void Start () {
         networkManager = NetworkManager.singleton;
-        //networkDiscovery.Initialize();
         if (networkManager.matchMaker == null)
         {
             networkManager.StartMatchMaker();
@@ -45,15 +42,4 @@ public class HostGame : MonoBehaviour {
             networkManager.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         }
     }
-
-    /*public void CreateLANGameAsHost()
-    {
-        networkManager.StartHost();
-        networkDiscovery.StartAsServer();
-    }
-    public void CreateLANGameAsServer()
-    {
-        networkManager.StartServer();
-        networkDiscovery.StartAsServer();
-    }*/
 }

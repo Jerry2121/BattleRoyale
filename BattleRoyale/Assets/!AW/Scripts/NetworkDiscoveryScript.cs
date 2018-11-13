@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class NetworkDiscoveryScript : NetworkDiscovery {
 
+    public static bool isInLAN;
+
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
 
@@ -24,18 +26,23 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
         networkManager.networkAddress = fromAddress;
         //Keep it from trying to start and make a new player multipule times
         if (networkManager.IsClientConnected() == false)
+        {
             networkManager.StartClient();
+            isInLAN = true;
+        }
     }
 
     public void CreateLANGameAsHost()
     {
         networkManager.StartHost();
         StartAsServer();
+        isInLAN = true;
     }
     public void CreateLANGameAsServer()
     {
         networkManager.StartServer();
         StartAsServer();
+        isInLAN = true;
     }
 
 }
