@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Utility {
 
+    /// <summary>
+    /// Will set all children of an object to a specified layer, along with the children's children.
+    /// </summary>
+    /// <param name="_obj"></param>
+    /// <param name="_newLayer"></param>
 	public static void SetLayerRecursively(GameObject _obj, int _newLayer)
     {
         if (_obj == null)
@@ -20,8 +25,13 @@ public class Utility {
 
     }
 
-    //Will take in a time and and object spawned from a Pool, and despawn it after the given time
-    //Similar to Destroy(obj, 2f), but for the Pool
+    /// <summary>
+    ///Will take in an object spawned from a Pool and a time, and despawn it after the given time
+    ///Similar to Destroy(obj, 2f), but for the Pool
+    /// </summary>
+    /// <param name="_obj"></param>
+    /// <param name="_time"></param>
+    /// <returns></returns>
     public static IEnumerator DespawnAfterSeconds(GameObject _obj, float _time)
     {
         yield return new WaitForSeconds(_time);

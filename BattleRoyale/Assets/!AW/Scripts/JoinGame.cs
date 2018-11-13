@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
 
-public class JoinGame : NetworkDiscovery {
+public class JoinGame : MonoBehaviour {
 
     [SerializeField]
     private Text statusText;
@@ -19,13 +19,13 @@ public class JoinGame : NetworkDiscovery {
     List<GameObject> roomList = new List<GameObject>();
 
     private NetworkManager networkManager;
-    private NetworkDiscovery networkDiscovery;
+    //[SerializeField]
+    //private NetworkDiscovery networkDiscovery;
 
 	// Use this for initialization
 	void Start () {
         networkManager = NetworkManager.singleton;
-        networkDiscovery = GameObject.Find("_NetworkManager").GetComponent<NetworkDiscovery>();
-        networkDiscovery.Initialize();
+        //networkDiscovery.Initialize();
         if (networkManager.matchMaker == null)
         {
             networkManager.StartMatchMaker();
@@ -94,15 +94,15 @@ public class JoinGame : NetworkDiscovery {
         statusText.text = "Joining";
     }
 
-    public void JoinLANGame()
+    /*public void JoinLANGame()
     {
         networkDiscovery.StartAsClient();
-    }
+    }/*
 
-    public override void OnReceivedBroadcast(string fromAddress, string data)
+    /*public override void OnReceivedBroadcast(string fromAddress, string data)
     {
         networkManager.networkAddress = fromAddress;
         networkManager.StartClient();
-    }
+    }*/
 
 }
