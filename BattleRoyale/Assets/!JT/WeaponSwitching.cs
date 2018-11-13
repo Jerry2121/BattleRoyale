@@ -6,12 +6,34 @@ public class WeaponSwitching : MonoBehaviour {
     private int selectedSlot;
     public GameObject Slot1Outline;
     public GameObject Slot2Outline;
+    public GameObject WeaponCanvas;
+    private float showtimer;
+    private bool ShowUI;
+    public float WeaponUIDisappearTime;
     private void Start()
     {
         selectedSlot = 1;
+        showtimer = 0;
     }
     private void Update()
     {
+        showtimer -= Time.deltaTime;
+        if (!ShowUI)
+        {
+            WeaponCanvas.SetActive(false);
+        }
+        if (showtimer <= 0)
+        {
+            showtimer = 0;
+        }
+        if (showtimer == 0)
+        {
+            ShowUI = false;
+        }
+        if (ShowUI)
+        {
+            WeaponCanvas.SetActive(true);
+        }
         if (selectedSlot == 1)
         {
             Slot1Outline.SetActive(true);
@@ -32,18 +54,26 @@ public class WeaponSwitching : MonoBehaviour {
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.V))
         {
+            ShowUI = true;
+            showtimer = WeaponUIDisappearTime;
             selectedSlot++;
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
+            ShowUI = true;
+            showtimer = WeaponUIDisappearTime;
             selectedSlot--;
         }
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
+            ShowUI = true;
+            showtimer = WeaponUIDisappearTime;
             selectedSlot = 1;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
+            ShowUI = true;
+            showtimer = WeaponUIDisappearTime;
             selectedSlot = 2;
         }
     }
