@@ -43,6 +43,23 @@ public class Pause : MonoBehaviour
         {
             Resume();
         }
+        if (Input.GetKeyDown(KeyCode.Tab) && !paused)
+        {
+            paused = true;
+            Player.constraints = RigidbodyConstraints.FreezeAll;
+            PausedCanvas.SetActive(true);
+            HUD.SetActive(false);
+            ResumeButtonSelected.SetActive(false);
+            InventoryButtonSelected.SetActive(true);
+            OptionsButtonSelected.SetActive(false);
+            DisconnectButtonSelected.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Tab) && paused)
+        {
+            Resume();
+        }
     }
     public void Resume()
     {

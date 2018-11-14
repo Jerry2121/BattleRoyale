@@ -10,6 +10,7 @@ public class WeaponSwitching : MonoBehaviour {
     private float showtimer;
     private bool ShowUI;
     public float WeaponUIDisappearTime;
+    public Animator animator;
     private void Start()
     {
         selectedSlot = 1;
@@ -28,7 +29,9 @@ public class WeaponSwitching : MonoBehaviour {
         }
         if (showtimer == 0)
         {
-            ShowUI = false;
+            animator.ResetTrigger("Appear");
+            animator.SetTrigger("Disappear");
+            //ShowUI = false;
         }
         if (ShowUI)
         {
@@ -54,24 +57,32 @@ public class WeaponSwitching : MonoBehaviour {
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.V))
         {
+            animator.ResetTrigger("Disappear");
+            animator.SetTrigger("Appear");
             ShowUI = true;
             showtimer = WeaponUIDisappearTime;
             selectedSlot++;
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
+            animator.ResetTrigger("Disappear");
+            animator.SetTrigger("Appear");
             ShowUI = true;
             showtimer = WeaponUIDisappearTime;
             selectedSlot--;
         }
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
+            animator.ResetTrigger("Disappear");
+            animator.SetTrigger("Appear");
             ShowUI = true;
             showtimer = WeaponUIDisappearTime;
             selectedSlot = 1;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
+            animator.ResetTrigger("Disappear");
+            animator.SetTrigger("Appear");
             ShowUI = true;
             showtimer = WeaponUIDisappearTime;
             selectedSlot = 2;
