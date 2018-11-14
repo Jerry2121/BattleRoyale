@@ -11,6 +11,9 @@ public class Player : NetworkBehaviour {
 
     [SyncVar] //When this is changed on the server, the sever will push it to all clients
     private int currentHealth;
+    [SyncVar]
+    public string username = "Loading...";
+
     [SerializeField]
     Behaviour[] disableOnDeath;
 

@@ -21,6 +21,9 @@ public class UserStats : MonoBehaviour {
 
     void OnReceivedData(string _data)
     {
+        if (killCount == null || deathCount == null)
+            return;
+
         killCount.text = "Kills: " + Utility.DataToIntValue(_data, UserAccountManager.KillCountDataSymbol);
         deathCount.text = "Deaths: " + Utility.DataToIntValue(_data, UserAccountManager.DeathCountDataSymbol);
     }
