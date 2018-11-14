@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 114058563100952288}
   - component: {fileID: 114220239145788432}
   - component: {fileID: 114637508568074558}
+  - component: {fileID: 114176612750664552}
   - component: {fileID: 114359718289555516}
   - component: {fileID: 153619004607417980}
   - component: {fileID: 114351947472660616}
@@ -658,6 +659,19 @@ MonoBehaviour:
     type: 2}
   deathEffect: {fileID: 1039685886307084, guid: 8a75ae6715645114fa74e9d77d1ab828,
     type: 2}
+  kills: 0
+  deaths: 0
+--- !u!114 &114176612750664552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586728422693558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172e153c3dfc71f408d1bd6ba35bcd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114220239145788432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -780,6 +794,7 @@ MonoBehaviour:
   - {fileID: 81096081954405560}
   - {fileID: 95605772186998212}
   - {fileID: 20325547738294802}
+  - {fileID: 114176612750664552}
   remoteLayerName: RemotePlayer
   dontDrawLayerName: DontDraw
   playerGraphics: {fileID: 1980176510306008}
@@ -864,7 +879,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 8.167031, y: 1, z: 2.8362718}
+  m_ConnectedAnchor: {x: 0, y: 1, z: 0}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2

@@ -87,7 +87,7 @@ public class LoginMenu : MonoBehaviour {
     }
     IEnumerator RegisterUser(string _username, string _password)
     {
-        IEnumerator e = DCF.RegisterUser(_username, _password, "Hello World"); // << Send request to register a new user, providing submitted username and password. It also provides an initial value for the data string on the account, which is "Hello World".
+        IEnumerator e = DCF.RegisterUser(_username, _password, UserAccountManager.KillCountDataSymbol+"0/"+UserAccountManager.DeathCountDataSymbol+"0/"); // << Send request to register a new user, providing submitted username and password. It also provides an initial value for the data string on the account, which is "Hello World".
         while (e.MoveNext())
         {
             yield return e.Current;

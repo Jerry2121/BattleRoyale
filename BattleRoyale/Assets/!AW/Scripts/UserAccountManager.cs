@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DatabaseControl;
+using UnityEngine.SceneManagement;
 
 public class UserAccountManager : MonoBehaviour {
 
@@ -11,10 +12,15 @@ public class UserAccountManager : MonoBehaviour {
     public static string PlayerUsername { get; protected set; }
     private static string PlayerPassword = "";
 
-    public static string LoggedInData { get; protected set; }
-
     public static bool IsLoggedIn { get; protected set; }
 
+    public string loggedInSceneName = "AWLobbyScene";
+    public string logInMenuSceneName = "Login";
+
+    public static string KillCountDataSymbol = "[KILLS]";
+    public static string DeathCountDataSymbol = "[DEATHS]";
+
+    public delegate void OnDataReceivedCallback(string _data);
 
     // Use this for initialization
     void Awake () {
@@ -39,6 +45,11 @@ public class UserAccountManager : MonoBehaviour {
         PlayerUsername = "";
         PlayerPassword = "";
         IsLoggedIn = false;
+
+        if (Debug.isDebugBuild)
+            Debug.Log("User " + PlayerUsername + " has logged out");
+
+        SceneManager.LoadScene(logInMenuSceneName);
     }
 
     public void LogIn(string _username, string _password)
@@ -47,9 +58,14 @@ public class UserAccountManager : MonoBehaviour {
         PlayerPassword = _password;
 
         IsLoggedIn = true;
+
+        if (Debug.isDebugBuild)
+            Debug.Log("User " + PlayerUsername + " has logged in");
+
+        SceneManager.LoadScene(loggedInSceneName);
     }
 
-    IEnumerator GetData()
+    IEnumerator GetData(OnDataReceivedCallback _onDataReceivedCallback)
     {
         IEnumerator e = DCF.GetUserData(PlayerUsername, PlayerPassword); // << Send request to get the player's data string. Provides the username and password
         while (e.MoveNext())
@@ -70,7 +86,8 @@ public class UserAccountManager : MonoBehaviour {
         else
         {
             //The player's data was retrieved. Goes back to loggedIn UI and displays the retrieved data in the InputField
-            LoggedInData = response;
+            if(_onDataReceivedCallback != null)
+                _onDataReceivedCallback.Invoke(response);
         }
     }
     IEnumerator SetData(string data)
@@ -98,19 +115,19 @@ public class UserAccountManager : MonoBehaviour {
         }
     }
 
-    public void SendData(string data)
+    public void SendData(string _data)
     {
         if (IsLoggedIn)
         {
             //Called when the player hits 'Set Data' to change the data string on their account. Switches UI to 'Loading...' and starts coroutine to set the players data string on the server
-            StartCoroutine(SetData(data));
+            StartCoroutine(SetData(_data));
         }
     }
-    public void RetrieveData()
+    public void RetrieveData(OnDataReceivedCallback _onDataReceivedCallback)
     {
         if(IsLoggedIn){
             //Called when the player hits 'Get Data' to retrieve the data string on their account. Switches UI to 'Loading...' and starts coroutine to get the players data string from the server
-            StartCoroutine(GetData());
+            StartCoroutine(GetData(_onDataReceivedCallback));
         }
     }
 

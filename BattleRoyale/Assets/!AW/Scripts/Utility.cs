@@ -38,4 +38,29 @@ public class Utility {
         SimplePool.Despawn(_obj);
     }
 
+    /// <summary>
+    /// Will take the given data string and give you the value wanted, e.g. [KILLS] will return the kill count
+    /// </summary>
+    /// <param name="_data"></param>
+    /// <param name="_valueWanted"></param>
+    /// <returns></returns>
+    public static int DataToIntValue(string _data, string _valueWanted)
+    {
+        string[] values = _data.Split('/');
+        foreach(string value in values)
+        {
+            if (value.StartsWith(_valueWanted))
+            {
+                return int.Parse(value.Substring(_valueWanted.Length));
+            }
+        }
+        Debug.LogError("Utility -- DataToIntValue: " + _valueWanted + " not found in " + _data);
+        return 0;
+    }
+
+    public static string ValuesToData (int kills, int deaths)
+    {
+        return UserAccountManager.KillCountDataSymbol + kills + "/" + UserAccountManager.DeathCountDataSymbol + deaths + "/";
+    }
+
 }

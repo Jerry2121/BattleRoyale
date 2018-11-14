@@ -28,6 +28,9 @@ public class Player : NetworkBehaviour {
     [SerializeField]
     private GameObject deathEffect;
 
+    public int kills;
+    public int deaths;
+
     private bool firstSetup = true;
 
     public void SetupPlayer()
@@ -71,7 +74,7 @@ public class Player : NetworkBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                RpcTakeDamage(10009);
+                RpcTakeDamage(10009, "Aaron");
             }
         }
     }
@@ -103,7 +106,7 @@ public class Player : NetworkBehaviour {
     }
 
     [ClientRpc] //Called on all clients from the server
-    public void RpcTakeDamage(int _damage)
+    public void RpcTakeDamage(int _damage, string _sourceID)
     {
         if (isDead)
             return;
@@ -113,13 +116,20 @@ public class Player : NetworkBehaviour {
             Debug.Log(transform.name + " now has " + currentHealth + " health");
         if(currentHealth <= 0)
         {
-            Die();
+            Die(_sourceID);
         }
     }
 
-    private void Die()
+    private void Die(string _sourceID)
     {
         isDead = true;
+
+        Player sourcePlayer = GameManager.GetPlayer(_sourceID);
+        if (sourcePlayer != null)
+        {
+            sourcePlayer.kills++;
+        }
+        deaths++;
 
         //disable components
         for (int i = 0; i < disableOnDeath.Length; i++)
