@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
         if(instance != null)
         {
             if (Debug.isDebugBuild)
-                Debug.LogWarning("GameManager -- Awake: There is more than one GameManager in the scene. Only one will be set to GameManager.Instance.");
+                Debug.LogWarning("GameManager -- Awake: There is more than one GameManager in the scene. Only one will be set to GameManager.instance.");
             return;
         }
         instance = this;
