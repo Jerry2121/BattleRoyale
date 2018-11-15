@@ -209,6 +209,48 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &702785164
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693253704547614, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bbf3ffe6c6614b6468c1ca15620c5a2b, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1175629950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942,
@@ -225,12 +267,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3559807fccc93478442437cc806eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
   PausedCanvas: {fileID: 0}
   HUD: {fileID: 0}
   ResumeButtonSelected: {fileID: 0}
   InventoryButtonSelected: {fileID: 0}
   OptionsButtonSelected: {fileID: 0}
   DisconnectButtonSelected: {fileID: 0}
+  Camera: {fileID: 0}
   Player2: {fileID: 0}
 --- !u!4 &1175629955 stripped
 Transform:
