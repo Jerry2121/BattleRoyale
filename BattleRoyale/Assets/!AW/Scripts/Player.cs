@@ -185,4 +185,9 @@ public class Player : NetworkBehaviour {
             Debug.Log(transform.name + " respawned");
     }
 
+    public float GetHealthPercentage()
+    {
+        return (float)currentHealth / maxHealth;
+    }
+
 }

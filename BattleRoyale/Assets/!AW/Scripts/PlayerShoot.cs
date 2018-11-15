@@ -97,8 +97,9 @@ public class PlayerShoot : NetworkBehaviour {
     [Client] //called on the local client
     void Shoot()
     {
-        if (isLocalPlayer == false && weaponManager.isReloading == false)
+        if (isLocalPlayer == false || weaponManager.isReloading == true)
             return;
+
 
         if(currentWeapon.currentAmmo <= 0)
         {
@@ -126,6 +127,12 @@ public class PlayerShoot : NetworkBehaviour {
             //we hit something, call OnHit method on server
             CmdOnHit(hit.point, hit.normal);
 
+        }
+
+        if (currentWeapon.currentAmmo <= 0)
+        {
+            weaponManager.Reload();
+            return;
         }
 
     }

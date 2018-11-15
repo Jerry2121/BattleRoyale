@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
 
@@ -8,11 +9,19 @@ public class PlayerUI : MonoBehaviour {
     RectTransform thrusterFuelFill;
 
     [SerializeField]
+    RectTransform healthBarFill;
+
+    [SerializeField]
+    Text ammoText;
+
+    [SerializeField]
     private GameObject pauseMenu;
     [SerializeField]
     GameObject scoreboard;
 
+    private Player player;
     private PlayerController controller;
+    private WeaponManager weaponManager;
 
     void Start()
     {
@@ -22,6 +31,8 @@ public class PlayerUI : MonoBehaviour {
     void Update()
     {
         SetFuelAmount(controller.thrusterFuelAmount);
+        SetHealthAmount(player.GetHealthPercentage());
+        SetAmmoAmount(weaponManager.GetCurrentWeapon().currentAmmo);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -43,9 +54,21 @@ public class PlayerUI : MonoBehaviour {
         thrusterFuelFill.localScale = new Vector3(1f, _amount, 1f);
     }
 
-    public void SetPlayerController(PlayerController _controller)
+    void SetHealthAmount(float _amount)
     {
-        controller = _controller;
+        healthBarFill.localScale = new Vector3(1f, _amount, 1f);
+    }
+
+    void SetAmmoAmount(int _amount)
+    {
+        ammoText.text = _amount.ToString();
+    }
+
+    public void SetPlayer(Player _player)
+    {
+        player = _player;
+        controller = player.GetComponent<PlayerController>();
+        weaponManager = player.GetComponent<WeaponManager>();
     }
 
     public void TogglePauseMenu()
