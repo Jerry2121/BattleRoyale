@@ -11,8 +11,17 @@ public class PlayerWeapon {
 
     public float fireRate = 0; //If 0 it is a single-fire weapon, e.g. press key for every shot insteat of holding down
 
+    public float reloadTime = 1f;
+
+    public int maxAmmo = 20;
+    [HideInInspector]
+    public int currentAmmo;
+
     public GameObject graphics;
 
-
+    public PlayerWeapon()
+    {
+        currentAmmo = maxAmmo;
+    }
 
 }

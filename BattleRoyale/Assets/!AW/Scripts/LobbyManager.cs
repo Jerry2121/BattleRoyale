@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour {
 
@@ -24,19 +25,21 @@ public class LobbyManager : MonoBehaviour {
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
     private HostGame hostGameScript;
+    string lobbySceneName;
 
     // Use this for initialization
     void Start () {
-
+        lobbySceneName = SceneManager.GetActiveScene().name;
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
         networkDiscoveryScript.Initialize();
         if (networkDiscoveryScript.isClient)
             networkDiscoveryScript.StopBroadcast();
-        NetworkDiscoveryScript.isInLAN = false;
-        networkDiscoveryScript.statusText = statusLANText;
+
+        NetworkDiscoveryScript.IsInLAN = false;
+        networkDiscoveryScript.lobbyManager = this;
+
         statusLANText.text = "";
-        networkDiscoveryScript.createStatusText = createLANStatusText;
         createLANStatusText.text = "";
         hostGameScript = networkManager.GetComponent<HostGame>();
 
@@ -86,6 +89,56 @@ public class LobbyManager : MonoBehaviour {
     public void CreateRoom()
     {
         hostGameScript.CreateRoom();
+    }
+
+    public IEnumerator WaitForJoinLAN()
+    {
+        int countdown = 10;
+        while (countdown > 0)
+        {
+            if (statusLANText != null)
+                statusLANText.text = "Joining Local Game... (" + countdown + ")";
+            yield return new WaitForSeconds(1f);
+            countdown--;
+        }
+
+        //if we have changed scenes
+        if (SceneManager.GetActiveScene().name != lobbySceneName)
+            yield break;
+
+        //We failed to connect
+        if (statusLANText != null)
+            statusLANText.text = "Failed to connect to a local game";
+        networkDiscoveryScript.StopBroadcast();
+        yield return new WaitForSeconds(1f);
+        statusLANText.text = "";
+        NetworkDiscoveryScript.IsInLAN = false;
+        networkDiscoveryScript.Initialize();
+    }
+
+    public IEnumerator WaitForCreateLAN()
+    {
+        int countdown = 5;
+        while (countdown > 0)
+        {
+            if (createLANStatusText != null)
+                createLANStatusText.text = "Creating Local Game...";
+            yield return new WaitForSeconds(1f);
+            countdown--;
+        }
+
+        //if we have changed scenes
+        if (SceneManager.GetActiveScene().name != lobbySceneName)
+            yield break;
+        
+        //We failed to create a game, likely because a local game is already running on the network
+        if (createLANStatusText != null)
+            createLANStatusText.text = "Failed to create a local game. Make sure there are no other local games running on the network";
+        networkDiscoveryScript.StopBroadcast();
+        yield return new WaitForSeconds(1f);
+        NetworkDiscoveryScript.IsInLAN = false;
+        networkDiscoveryScript.Initialize();
+
     }
 
 }

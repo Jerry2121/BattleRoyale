@@ -115,8 +115,10 @@ public class Player : NetworkBehaviour {
             return;
 
         currentHealth -= _damage;
+
         if (Debug.isDebugBuild)
-            Debug.Log(transform.name + " now has " + currentHealth + " health");
+            Debug.Log(transform.name + " took damage");
+
         if(currentHealth <= 0)
         {
             Die(_sourceID);
@@ -131,7 +133,9 @@ public class Player : NetworkBehaviour {
         if (sourcePlayer != null)
         {
             sourcePlayer.kills++;
+            GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
         }
+
         deaths++;
 
         //disable components
