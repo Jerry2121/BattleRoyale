@@ -35,6 +35,14 @@ public class PlayerShoot : NetworkBehaviour {
         if (PauseMenu.isOn)
             return;
 
+        if (currentWeapon.currentAmmo < currentWeapon.maxAmmo)
+        {
+            if (Input.GetButtonDown("Reload") && weaponManager.isReloading == false)
+            {
+                weaponManager.Reload();
+                return;
+            }
+        }
         if (currentWeapon.fireRate <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -89,8 +97,20 @@ public class PlayerShoot : NetworkBehaviour {
     [Client] //called on the local client
     void Shoot()
     {
-        if (isLocalPlayer == false)
+        if (isLocalPlayer == false && weaponManager.isReloading == false)
             return;
+
+        if(currentWeapon.currentAmmo <= 0)
+        {
+            weaponManager.Reload();
+            return;
+        }
+
+        currentWeapon.currentAmmo--;
+
+        if (Debug.isDebugBuild)
+            Debug.Log("Remaining Ammo: " + currentWeapon.currentAmmo);
+
         //we are shooting call on shoot method on server
         CmdOnShoot();
 

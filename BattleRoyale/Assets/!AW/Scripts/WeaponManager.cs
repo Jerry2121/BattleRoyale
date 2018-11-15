@@ -15,6 +15,9 @@ public class WeaponManager : NetworkBehaviour {
     private PlayerWeapon currentWeapon;
     private WeaponGraphics currentGraphics;
 
+    [HideInInspector]
+    public bool isReloading = false;
+
 	// Use this for initialization
 	void Start () {
         EquipWeapon(primaryWeapon);
@@ -52,6 +55,46 @@ public class WeaponManager : NetworkBehaviour {
     public WeaponGraphics GetCurrentGraphics()
     {
         return currentGraphics;
+    }
+
+    public void Reload()
+    {
+        if(isReloading)
+            return;
+
+        if (Debug.isDebugBuild)
+            Debug.Log("Reloading");
+
+        StartCoroutine(Reload_Coroutine());
+    }
+
+    IEnumerator Reload_Coroutine()
+    {
+        isReloading = true;
+
+        CmdOnReload();
+
+        yield return new WaitForSeconds(currentWeapon.reloadTime);
+
+        currentWeapon.currentAmmo = currentWeapon.maxAmmo;
+
+        isReloading = false;
+    }
+
+    [Command]
+    void CmdOnReload()
+    {
+        RpcOnReload();
+    }
+
+    [ClientRpc]
+    void RpcOnReload()
+    {
+        Animator anim = currentGraphics.GetComponent<Animator>();
+        if(anim != null)
+        {
+            anim.SetTrigger("Reload");
+        }
     }
 
 }

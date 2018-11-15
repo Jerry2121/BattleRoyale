@@ -24,10 +24,10 @@ public class PauseMenu : MonoBehaviour {
 
     public void LeaveRoom()
     {
-        if (NetworkDiscoveryScript.isInLAN)
+        if (NetworkDiscoveryScript.IsInLAN)
         {
             networkManager.StopHost();
-            NetworkDiscoveryScript.isInLAN = false;
+            NetworkDiscoveryScript.IsInLAN = false;
             networkDiscoveryScript.StopBroadcast();
         }
         else
