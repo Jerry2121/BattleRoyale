@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Pause : MonoBehaviour
 {
@@ -26,12 +27,19 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (paused)
+        {
+            GetComponent<RigidbodyFirstPersonController>().enabled = false;
+        }
+        else
+        {
+            GetComponent<RigidbodyFirstPersonController>().enabled = true;
+        }
         if (Input.GetKeyDown(KeyCode.Escape) && !paused)
         {
             paused = true;
-            Player.constraints = RigidbodyConstraints.FreezeAll;
             PausedCanvas.SetActive(true);
-            HUD.SetActive(false);
+            //HUD.SetActive(false);
             ResumeButtonSelected.SetActive(true);
             InventoryButtonSelected.SetActive(false);
             OptionsButtonSelected.SetActive(false);
@@ -46,9 +54,8 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && !paused)
         {
             paused = true;
-            Player.constraints = RigidbodyConstraints.FreezeAll;
             PausedCanvas.SetActive(true);
-            HUD.SetActive(false);
+            //HUD.SetActive(false);
             ResumeButtonSelected.SetActive(false);
             InventoryButtonSelected.SetActive(true);
             OptionsButtonSelected.SetActive(false);
@@ -63,16 +70,14 @@ public class Pause : MonoBehaviour
     }
     public void Resume()
     {
-        Player.constraints = RigidbodyConstraints.None;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         paused = false;
-        HUD.SetActive(true);
+        //HUD.SetActive(true);
         PausedCanvas.SetActive(false);
     }
     public void InventoryButton()
     {
-       // Player.constraints = RigidbodyConstraints.FreezeAll;
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(true);
         OptionsButtonSelected.SetActive(false);
@@ -80,7 +85,6 @@ public class Pause : MonoBehaviour
     }
     public void OptionsButton()
     {
-        //Player.constraints = RigidbodyConstraints.FreezeAll;
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(false);
         OptionsButtonSelected.SetActive(true);
@@ -88,7 +92,6 @@ public class Pause : MonoBehaviour
     }
     public void DisconnectButton()
     {
-        //Player.constraints = RigidbodyConstraints.FreezeAll;
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(false);
         OptionsButtonSelected.SetActive(false);
@@ -96,12 +99,10 @@ public class Pause : MonoBehaviour
     }
     public void YesOption()
     {
-        //Player.constraints = RigidbodyConstraints.FreezeAll;
         SceneManager.LoadScene("MainMenu");
     }
     public void NoOption()
     {
-       // Player.constraints = RigidbodyConstraints.FreezeAll;
         Resume();
     }
 }

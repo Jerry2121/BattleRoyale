@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/!AW/Login.unity
     guid: bbd4368c31738864280d0e46cc493cb0
-  - enabled: 1
+  - enabled: 0
     path: Assets/!AW/AWLobbyScene.unity
     guid: f9f85ab7ef337304bb5c6f77f23486d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/!AW/AW.unity
     guid: 36b50187f4aa96c4f86a082967c3d5a7
+  - enabled: 1
+    path: Assets/!JT/JT2.unity
+    guid: 73dbc5561d027ef4e98a5b83f29b8553
   m_configObjects: {}
