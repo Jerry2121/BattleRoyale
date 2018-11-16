@@ -6,5 +6,6 @@ public class WeaponGraphics : MonoBehaviour {
 
     public ParticleSystem muzzleFlash;
     public GameObject impactEffectPrefab;
+    public Vector3 rotationOffset;
 
 }

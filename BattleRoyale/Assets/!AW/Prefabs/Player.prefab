@@ -877,6 +877,15 @@ MonoBehaviour:
     maxAmmo: 20
     currentAmmo: 20
     graphics: {fileID: 1992311776032100, guid: 07a9d9904899752458d2cd69cbcf2e4f, type: 2}
+  secondaryWeapon:
+    name: Heavy
+    damage: 20
+    range: 200
+    fireRate: 5
+    reloadTime: 2
+    maxAmmo: 30
+    currentAmmo: 20
+    graphics: {fileID: 1322901883332826, guid: 3b71c32e188b21640b7e60bd0aa153c6, type: 2}
   weaponHolder: {fileID: 4324371300155142}
   isReloading: 0
 --- !u!114 &114373945748241560

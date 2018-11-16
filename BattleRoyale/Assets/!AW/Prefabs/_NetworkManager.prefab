@@ -173,3 +173,4 @@ MonoBehaviour:
   m_ShowGUI: 0
   m_OffsetX: 0
   m_OffsetY: 0
+  lobbyManager: {fileID: 0}
