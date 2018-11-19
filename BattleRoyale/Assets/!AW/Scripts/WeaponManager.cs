@@ -114,6 +114,8 @@ public class WeaponManager : NetworkBehaviour {
         else if (currentWeapon == secondaryWeapon)
             currentWeaponNum = 2;
 
+        _weapon.currentAmmo = _weapon.maxAmmo;
+
         if(_weaponNum == 1)
         {
             primaryWeapon = _weapon;

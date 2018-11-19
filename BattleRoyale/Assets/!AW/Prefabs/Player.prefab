@@ -1048,12 +1048,12 @@ MonoBehaviour:
   testWeapon:
     name: Pistol
     damage: 10
-    range: 100
+    range: 50
     fireRate: 0
     reloadTime: 1
-    maxAmmo: 20
+    maxAmmo: 15
     currentAmmo: 20
-    graphics: {fileID: 0}
+    graphics: {fileID: 1942707229471652, guid: a8ba0a4259469564f97a9cd9b029a744, type: 2}
 --- !u!114 &114892417422947866
 MonoBehaviour:
   m_ObjectHideFlags: 1
