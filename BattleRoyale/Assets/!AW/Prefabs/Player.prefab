@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 114734256745034574}
   - component: {fileID: 95605772186998212}
   - component: {fileID: 114514191172641164}
+  - component: {fileID: 114857333097141056}
   m_Layer: 16
   m_Name: Player
   m_TagString: Player
@@ -1033,6 +1034,26 @@ MonoBehaviour:
   m_Layer: 0
   m_Material: {fileID: 0}
   m_EnableCollisions: 1
+--- !u!114 &114857333097141056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586728422693558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8845b96db97f446976d990996f448a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testWeapon:
+    name: Pistol
+    damage: 10
+    range: 100
+    fireRate: 0
+    reloadTime: 1
+    maxAmmo: 20
+    currentAmmo: 20
+    graphics: {fileID: 0}
 --- !u!114 &114892417422947866
 MonoBehaviour:
   m_ObjectHideFlags: 1

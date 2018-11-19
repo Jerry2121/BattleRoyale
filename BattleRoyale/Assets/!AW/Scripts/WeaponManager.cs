@@ -23,7 +23,7 @@ public class WeaponManager : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SwitchWeaponLocal(primaryWeapon, 1);
+        SwitchWeaponLocal(primaryWeapon);
 	}
 
     // Update is called once per frame
@@ -32,15 +32,38 @@ public class WeaponManager : NetworkBehaviour {
         if (isLocalPlayer)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                SwitchWeaponLocal(primaryWeapon, 1);
+                SwitchWeaponLocal(primaryWeapon);
             else if (Input.GetKeyDown(KeyCode.Alpha2))
-                SwitchWeaponLocal(secondaryWeapon, 2);
+                SwitchWeaponLocal(secondaryWeapon);
         }
 
 	}
 
-    void SwitchWeaponLocal(PlayerWeapon _weapon, int _weaponNum)
+    /// <summary>
+    /// Switches the current weapon of the local player
+    /// </summary>
+    /// <param name="_weapon"></param>
+    void SwitchWeaponLocal(PlayerWeapon _weapon)
     {
+        if (isLocalPlayer == false)
+        {
+            if (Debug.isDebugBuild)
+                Debug.LogError("WeaponManager -- SwitchWeaponLocal: This script is being called on a player that is not the local player! This should only be called on the local client, call SwitchWeaponRemote for remote clients.");
+            return;
+        }
+
+        int weaponNum = 0;
+        if (_weapon == primaryWeapon)
+            weaponNum = 1;
+        else if (_weapon == secondaryWeapon)
+            weaponNum = 2;
+        else
+        {
+            if (Debug.isDebugBuild)
+                Debug.LogError("WeaponManager -- SwitchWeaponLocal: The passed in weapon was not equal to any of the equipped weapons! If you meant to equip a new weapon, use EquipWeapon instead");
+            return;
+        }
+
         if (currentWeaponGameObject != null)
         {
             Destroy(currentWeaponGameObject);
@@ -54,20 +77,17 @@ public class WeaponManager : NetworkBehaviour {
         weaponIns.transform.SetParent(weaponHolder);
         currentWeaponGameObject = weaponIns;
         currentGraphics = weaponIns.GetComponent<WeaponGraphics>();
-        if(currentGraphics == null)
+        if (currentGraphics == null)
         {
-            Debug.LogError("WeaponManager -- SwitchWeaponLocal: There is no WeaponGraphics on the " + weaponIns.name +" weapon object!");
+            Debug.LogError("WeaponManager -- SwitchWeaponLocal: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!");
         }
         else
         {
             weaponHolder.localRotation = Quaternion.Euler(currentGraphics.rotationOffset);
         }
 
-        if (isLocalPlayer)
-        {
-            CmdOnWeaponChanged(_weaponNum);
-            Utility.SetLayerRecursively(weaponIns, LayerMask.NameToLayer(weaponLayerName));
-        }
+        CmdOnWeaponChanged(weaponNum);
+        Utility.SetLayerRecursively(weaponIns, LayerMask.NameToLayer(weaponLayerName));
     }
 
     public PlayerWeapon GetCurrentWeapon()
@@ -79,7 +99,12 @@ public class WeaponManager : NetworkBehaviour {
     {
         return currentGraphics;
     }
-
+    
+    /// <summary>
+    /// Equips the passed in weapon, replacing the weapon corresponding to the weaponNum with the passed in weapon, e.g. EquipWeapon(weapon, 1) would replace the primary weapon(which is weapon 1) 
+    /// </summary>
+    /// <param name="_weapon"></param>
+    /// <param name="_weaponNum"></param>
     public void EquipWeapon(PlayerWeapon _weapon, int _weaponNum)
     {
         int currentWeaponNum = 0;
@@ -92,10 +117,14 @@ public class WeaponManager : NetworkBehaviour {
         if(_weaponNum == 1)
         {
             primaryWeapon = _weapon;
+            if (currentWeaponNum == 1)
+                SwitchWeaponLocal(primaryWeapon);
         }
         if(_weaponNum == 2)
         {
             secondaryWeapon = _weapon;
+            if (currentWeaponNum == 2)
+                SwitchWeaponLocal(secondaryWeapon);
         }
         else
         {
