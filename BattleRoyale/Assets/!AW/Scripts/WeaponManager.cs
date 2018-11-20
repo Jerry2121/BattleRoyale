@@ -72,6 +72,10 @@ public class WeaponManager : NetworkBehaviour {
 
         currentWeapon = _weapon;
         currentWeapon.currentAmmo = _weapon.currentAmmo;
+        if(currentWeapon.currentAmmo <= 0)
+        {
+            Reload();
+        }
 
         GameObject weaponIns = Instantiate(_weapon.graphics, weaponHolder.position, weaponHolder.rotation);
         weaponIns.transform.SetParent(weaponHolder);
@@ -138,7 +142,7 @@ public class WeaponManager : NetworkBehaviour {
 
 
     }
-
+    
     public void Reload()
     {
         if(isReloading)
@@ -156,7 +160,15 @@ public class WeaponManager : NetworkBehaviour {
 
         CmdOnReload();
 
+        PlayerWeapon reloadingWeapon = currentWeapon;
         yield return new WaitForSeconds(currentWeapon.reloadTime);
+
+        //if we have switched weapons, don't reload
+        if(currentWeapon != reloadingWeapon)
+        {
+            isReloading = false;
+            yield break;
+        }
 
         currentWeapon.currentAmmo = currentWeapon.maxAmmo;
 
@@ -196,7 +208,9 @@ public class WeaponManager : NetworkBehaviour {
     {
         //If we are the local player, we should have already handled weapon switching
         if (isLocalPlayer)
+        {
             return;
+        }
 
         PlayerWeapon weapon = null;
         if (_weaponNum == 1)
