@@ -18,7 +18,10 @@ public class MiniMapFollow : MonoBehaviour
         origParent = transform.parent;
         PlayerParent = player.transform;
 	}
-	
+	void Update()
+    {
+        MiniMapHeight = player.transform.position.y + 150;
+    }
 	// Update is called once per frame
 	void LateUpdate ()
 	{
