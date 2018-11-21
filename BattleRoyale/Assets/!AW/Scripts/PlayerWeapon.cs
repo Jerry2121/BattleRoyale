@@ -18,6 +18,7 @@ public class PlayerWeapon {
     public int currentAmmo;
 
     public GameObject graphics;
+    public Sprite sprite;
 
     public PlayerWeapon()
     {

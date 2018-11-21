@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class WeaponSwitching : MonoBehaviour {
-    private int selectedSlot;
-    public GameObject Slot1Outline;
-    public GameObject Slot2Outline;
+public class WeaponSwitchingUI : MonoBehaviour {
+
+    public int selectedSlot;
     public GameObject WeaponCanvas;
     private float showtimer;
     private bool ShowUI;
     public float WeaponUIDisappearTime;
     public Animator animator;
+
+    [Header("Slot1")]
+    public GameObject Slot1Outline;
+    public TextMeshProUGUI weaponName1;
+    public Image weaponIcon1;
+
+    [Header("Slot2")]
+    public GameObject Slot2Outline;
+    public TextMeshProUGUI weaponName2;
+    public Image weaponIcon2;
+
     private void Start()
     {
         selectedSlot = 1;
@@ -97,6 +109,20 @@ public class WeaponSwitching : MonoBehaviour {
             ShowUI = true;
             showtimer = WeaponUIDisappearTime;
             selectedSlot = 2;
+        }
+    }
+
+    public void ChangeWeaponInSlot(PlayerWeapon _weapon)
+    {
+        if(selectedSlot == 1)
+        {
+            weaponIcon1.sprite = _weapon.sprite;
+            weaponName1.text = _weapon.name;
+        }
+        else if(selectedSlot == 2)
+        {
+            weaponName2.text = _weapon.name;
+            weaponIcon2.sprite = _weapon.sprite;
         }
     }
 

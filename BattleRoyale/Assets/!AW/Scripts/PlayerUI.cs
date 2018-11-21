@@ -18,14 +18,20 @@ public class PlayerUI : MonoBehaviour {
     private GameObject pauseMenu;
     [SerializeField]
     GameObject scoreboard;
+    [SerializeField]
+    Compass compass;
+    [SerializeField]
+    MiniMapFollow miniMapFollow;
 
-    private Player player;
+    public Player player { get; protected set; }
     private PlayerController controller;
     private WeaponManager weaponManager;
 
     void Start()
     {
         PauseMenu.isOn = false;
+        compass.Player = player.transform;
+        miniMapFollow.player = player.gameObject;
     }
 
     void Update()
@@ -38,13 +44,18 @@ public class PlayerUI : MonoBehaviour {
         {
             TogglePauseMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
+        else if (Input.GetKeyDown(KeyCode.Tab))
         {
             scoreboard.SetActive(true);
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
             scoreboard.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            TogglePauseMenu();
+            pauseMenu.GetComponent<PauseMenu>().ShowInventory();
         }
 
     }

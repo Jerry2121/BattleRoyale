@@ -77,7 +77,7 @@ public class Player : NetworkBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                RpcTakeDamage(10009, "Aaron");
+                RpcTakeDamage(20, "Aaron");
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniMapFollow : MonoBehaviour
 {
-	private GameObject player;
+	public GameObject player;
     public bool RotateWithPlayer;
     public float MiniMapHeight;
     private Transform origParent;
@@ -13,7 +13,7 @@ public class MiniMapFollow : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//player = GameObject.FindGameObjectWithTag ("Player");
         transform.position = new Vector3(player.transform.position.x, MiniMapHeight, player.transform.position.z);
         origParent = transform.parent;
         PlayerParent = player.transform;

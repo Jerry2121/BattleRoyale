@@ -14,6 +14,7 @@ public class WeaponManager : NetworkBehaviour {
     [SerializeField]
     Transform weaponHolder;
 
+    public WeaponSwitchingUI weaponSwitchingUI;
     private PlayerWeapon currentWeapon;
     GameObject currentWeaponGameObject;
     private WeaponGraphics currentGraphics;
@@ -23,8 +24,10 @@ public class WeaponManager : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameObject pui = GetComponent<PlayerSetup>().playerUIInstance;
+        weaponSwitchingUI = pui.GetComponent<WeaponSwitchingUI>();
         SwitchWeaponLocal(primaryWeapon);
-	}
+    }
 
     // Update is called once per frame
     void Update()
@@ -63,6 +66,8 @@ public class WeaponManager : NetworkBehaviour {
                 Debug.LogError("WeaponManager -- SwitchWeaponLocal: The passed in weapon was not equal to any of the equipped weapons! If you meant to equip a new weapon, use EquipWeapon instead");
             return;
         }
+
+        weaponSwitchingUI.selectedSlot = weaponNum;
 
         if (currentWeaponGameObject != null)
         {
@@ -126,7 +131,7 @@ public class WeaponManager : NetworkBehaviour {
             if (currentWeaponNum == 1)
                 SwitchWeaponLocal(primaryWeapon);
         }
-        if(_weaponNum == 2)
+        else if(_weaponNum == 2)
         {
             secondaryWeapon = _weapon;
             if (currentWeaponNum == 2)
@@ -139,7 +144,8 @@ public class WeaponManager : NetworkBehaviour {
             return;
         }
 
-
+        weaponSwitchingUI.selectedSlot = currentWeaponNum;
+        weaponSwitchingUI.ChangeWeaponInSlot(_weapon);
 
     }
     
