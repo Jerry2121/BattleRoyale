@@ -11,7 +11,8 @@ public class TestWeaponEquip : NetworkBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.L) && isLocalPlayer)
         {
-            GetComponent<WeaponManager>().EquipWeapon(testWeapon, 1);
+            WeaponManager weaponManager = GetComponent<WeaponManager>();
+            weaponManager.EquipWeapon(testWeapon, weaponManager.selectedWeapon);
         }
 	}
 }

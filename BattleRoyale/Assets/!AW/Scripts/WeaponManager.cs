@@ -18,6 +18,7 @@ public class WeaponManager : NetworkBehaviour {
     private PlayerWeapon currentWeapon;
     GameObject currentWeaponGameObject;
     private WeaponGraphics currentGraphics;
+    public int selectedWeapon = 0;
 
     [HideInInspector]
     public bool isReloading = false;
@@ -68,6 +69,7 @@ public class WeaponManager : NetworkBehaviour {
         }
 
         weaponSwitchingUI.selectedSlot = weaponNum;
+        selectedWeapon = weaponNum;
 
         if (currentWeaponGameObject != null)
         {
