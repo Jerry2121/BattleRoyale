@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using DatabaseControl; // << Remember to add this reference to your scripts which use DatabaseControl
+using TMPro;
 
 public class LoginMenu : MonoBehaviour {
 
@@ -13,17 +14,15 @@ public class LoginMenu : MonoBehaviour {
     public GameObject loadingParent;
 
     //These are all the InputFields which we need in order to get the entered usernames, passwords, etc
-    public InputField Login_UsernameField;
-    public InputField Login_PasswordField;
-    public InputField Register_UsernameField;
-    public InputField Register_PasswordField;
-    public InputField Register_ConfirmPasswordField;
+    public TMP_InputField Login_UsernameField;
+    public TMP_InputField Login_PasswordField;
+    public TMP_InputField Register_UsernameField;
+    public TMP_InputField Register_PasswordField;
+    public TMP_InputField Register_ConfirmPasswordField;
 
     //These are the UI Texts which display errors
-    public Text Login_ErrorText;
-    public Text Register_ErrorText;
-
-
+    public TextMeshProUGUI Login_ErrorText;
+    public TextMeshProUGUI Register_ErrorText;
 
     //Called at the very start of the game
     void Awake()

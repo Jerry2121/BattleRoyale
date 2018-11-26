@@ -32,6 +32,7 @@ public class PlayerUI : MonoBehaviour {
         PauseMenu.isOn = false;
         compass.Player = player.transform;
         miniMapFollow.player = player.gameObject;
+        GetComponent<WeaponSwitchingUI>().weaponManager = player.GetComponent<WeaponManager>();
     }
 
     void Update()

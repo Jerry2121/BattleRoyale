@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dbe70b9071fd740aa23b3c7a382178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSize: 30
+  roomSize: 20
 --- !u!114 &114725753732208818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_BroadcastSubVersion: 1
   m_BroadcastInterval: 1000
   m_UseNetworkManager: 1
-  m_BroadcastData: HELLO
+  m_BroadcastData: NetworkManager:localhost:7777
   m_ShowGUI: 0
   m_OffsetX: 0
   m_OffsetY: 0

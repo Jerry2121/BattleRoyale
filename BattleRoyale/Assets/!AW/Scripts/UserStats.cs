@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UserStats : MonoBehaviour {
 
-    public Text killCount;
-    public Text deathCount;
+    public TextMeshProUGUI killCount;
+    public TextMeshProUGUI deathCount;
 
 	// Use this for initialization
 	void Start () {

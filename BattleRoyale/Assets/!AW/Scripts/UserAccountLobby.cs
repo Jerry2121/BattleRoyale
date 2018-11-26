@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UserAccountLobby : MonoBehaviour {
 
-    public Text usernameText;
+    public TextMeshProUGUI usernameText;
 
 	// Use this for initialization
 	void Start () {

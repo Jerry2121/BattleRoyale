@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
+using TMPro;
 
 public class JoinGame : MonoBehaviour {
 
     [SerializeField]
-    private Text statusText;
+    private TextMeshProUGUI statusText;
 
     [SerializeField]
     private GameObject roomListItemPrefab;

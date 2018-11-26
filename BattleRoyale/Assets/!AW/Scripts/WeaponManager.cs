@@ -47,7 +47,7 @@ public class WeaponManager : NetworkBehaviour {
     /// Switches the current weapon of the local player
     /// </summary>
     /// <param name="_weapon"></param>
-    void SwitchWeaponLocal(PlayerWeapon _weapon)
+    public void SwitchWeaponLocal(PlayerWeapon _weapon)
     {
         if (isLocalPlayer == false)
         {
@@ -252,6 +252,15 @@ public class WeaponManager : NetworkBehaviour {
         {
             weaponHolder.localRotation = Quaternion.Euler(currentGraphics.rotationOffset);
         }
+    }
+
+    public PlayerWeapon GetWeaponFromInt(int _weaponNum)
+    {
+        if(_weaponNum == 1)
+            return primaryWeapon;
+        if (_weaponNum == 2)
+            return secondaryWeapon;
+        else return null;
     }
 
 }

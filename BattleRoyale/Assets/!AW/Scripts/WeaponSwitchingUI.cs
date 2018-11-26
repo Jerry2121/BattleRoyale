@@ -23,6 +23,8 @@ public class WeaponSwitchingUI : MonoBehaviour {
     public TextMeshProUGUI weaponName2;
     public Image weaponIcon2;
 
+    public WeaponManager weaponManager;
+
     private void Start()
     {
         selectedSlot = 1;
@@ -110,6 +112,12 @@ public class WeaponSwitchingUI : MonoBehaviour {
             showtimer = WeaponUIDisappearTime;
             selectedSlot = 2;
         }
+
+        PlayerWeapon selectedWeapon = weaponManager.GetWeaponFromInt(selectedSlot);
+
+        if (selectedWeapon != null)
+            weaponManager.SwitchWeaponLocal(selectedWeapon);
+
     }
 
     public void ChangeWeaponInSlot(PlayerWeapon _weapon)

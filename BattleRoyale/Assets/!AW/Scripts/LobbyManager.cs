@@ -5,11 +5,17 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LobbyManager : MonoBehaviour {
 
     [SerializeField]
     bool LANOnly = false;
+
+    [SerializeField]
+    GameObject LobbyUICanvas;
+    [SerializeField]
+    GameObject MainMainMenuCanvas;
 
     [SerializeField]
     GameObject OnlineUI;
@@ -18,9 +24,9 @@ public class LobbyManager : MonoBehaviour {
     [SerializeField]
     GameObject OnlineButton;
     [SerializeField]
-    Text statusLANText;
+    TextMeshProUGUI statusLANText;
     [SerializeField]
-    Text createLANStatusText;
+    TextMeshProUGUI createLANStatusText;
 
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
@@ -29,6 +35,8 @@ public class LobbyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        LobbyUICanvas.SetActive(false);
+        MainMainMenuCanvas.SetActive(true);
         lobbySceneName = SceneManager.GetActiveScene().name;
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
@@ -43,7 +51,7 @@ public class LobbyManager : MonoBehaviour {
         createLANStatusText.text = "";
         hostGameScript = networkManager.GetComponent<HostGame>();
 
-        if (LANOnly)
+        /*if (LANOnly)
         {
             OnlineUI.SetActive(false);
             LANUI.SetActive(true);
@@ -52,8 +60,20 @@ public class LobbyManager : MonoBehaviour {
         else {
             OnlineUI.SetActive(true);
             LANUI.SetActive(false);
-        }
+        }*/
 	}
+
+
+    public void GoToLobby()
+    {
+        MainMainMenuCanvas.SetActive(false);
+        LobbyUICanvas.SetActive(true);
+    }
+    public void GoToMainMenu()
+    {
+        MainMainMenuCanvas.SetActive(true);
+        LobbyUICanvas.SetActive(false);
+    }
 
     public void ChangeToLAN()
     {
