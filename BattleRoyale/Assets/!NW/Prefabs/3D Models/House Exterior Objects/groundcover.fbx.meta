@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b5d02fc08a5bb2a4e9433ec817fab4c4
+guid: acc61ac0c0c7bfb468bc49ba00689836
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,13 +8,13 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Roof_Cap
+    4300000: groundcover
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: 114fd477ddfb45747b22564fb6740d0f, type: 2}
+    second: {fileID: 2100000, guid: d410c3d45ae5c8145b70050566ee2b11, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
