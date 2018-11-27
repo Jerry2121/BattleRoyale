@@ -14,7 +14,7 @@ public class UserAccountManager : MonoBehaviour {
 
     public static bool IsLoggedIn { get; protected set; }
 
-    public string loggedInSceneName = "AWLobbyScene";
+    public string loggedInSceneName = "MainMenu";
     public string logInMenuSceneName = "LoginScene";
 
     public static string KillCountDataSymbol = "[KILLS]";

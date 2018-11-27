@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     private PlayerMotor motor;
     private ConfigurableJoint joint;
     private Animator animator;
+    WeaponManager weaponManager;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         SetJointSettings(jointSpring);
+        weaponManager = GetComponent<WeaponManager>();
     }
 
     void Update()
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            joint.targetPosition = new Vector3(0f, 0f, 0f);
+            joint.targetPosition = new Vector3(0f, 100f, 0f);
         }
 
         //Calculate movement velocity as 3D vector
@@ -99,6 +101,14 @@ public class PlayerController : MonoBehaviour {
 
         //Apply camera rotation
         motor.RotateCamera(_cameraRotationX);
+
+        //if in start period, and you have no weapon, dont run out of fuel
+        if (GameManager.instance.inStartPeriod)
+        {
+            if(weaponManager.primaryWeapon == null && weaponManager.secondaryWeapon == null)
+                thrusterFuelAmount = 1f;
+        }
+
 
         //Calculate thruster force
         Vector3 thrusterForceVector = Vector3.zero;

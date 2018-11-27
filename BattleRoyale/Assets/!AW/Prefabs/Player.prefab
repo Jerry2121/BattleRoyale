@@ -820,6 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  Zone: {fileID: 1745734279703356, guid: b5028c1136bae1b44a4781bfef76aaa5, type: 2}
   username: Loading...
   disableOnDeath:
   - {fileID: 114058563100952288}
@@ -942,27 +943,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponLayerName: Weapon
-  primaryWeapon:
-    name: Automatic
-    damage: 5
-    range: 100
-    fireRate: 10
-    reloadTime: 1
-    maxAmmo: 20
-    currentAmmo: 20
-    graphics: {fileID: 1992311776032100, guid: 07a9d9904899752458d2cd69cbcf2e4f, type: 2}
-    sprite: {fileID: 21300000, guid: 91ed3693c19653943b95d72f8f778812, type: 3}
-  secondaryWeapon:
-    name: Heavy
-    damage: 20
-    range: 200
-    fireRate: 5
-    reloadTime: 2
-    maxAmmo: 30
-    currentAmmo: 20
-    graphics: {fileID: 1322901883332826, guid: 3b71c32e188b21640b7e60bd0aa153c6, type: 2}
-    sprite: {fileID: 21300000, guid: 8480de0448ee588459c5da29fd196fb0, type: 3}
   weaponHolder: {fileID: 4324371300155142}
+  weaponSwitchingUI: {fileID: 0}
+  selectedWeapon: 0
   isReloading: 0
 --- !u!114 &114373945748241560
 MonoBehaviour:

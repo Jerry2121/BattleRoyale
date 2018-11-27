@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
 
     public MatchSettings matchSettings;
 
+    public bool inStartPeriod = true;
+    public float timer = 0f;
+
     [SerializeField]
     GameObject sceneCamera;
 
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         instance = this;
+        StartTimer();
     }
 
     public void SetSceneCameraActiveState(bool isActive)
@@ -36,6 +40,25 @@ public class GameManager : MonoBehaviour {
         }
 
         sceneCamera.SetActive(isActive);
+    }
+
+    private void Update()
+    {
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            inStartPeriod = true;
+        }
+        else
+        {
+            inStartPeriod = false;
+            timer = 0f;
+        }
+    }
+
+    void StartTimer()
+    {
+        timer = matchSettings.startTime;
     }
 
     #region Player Tracking
@@ -58,7 +81,9 @@ public class GameManager : MonoBehaviour {
 
     public static Player GetPlayer(string _playerID)
     {
-        return players[_playerID];
+        if (players.ContainsKey(_playerID))
+            return players[_playerID];
+        else return null;
     }
 
     public static Player[] GetAllPlayers()

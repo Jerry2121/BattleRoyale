@@ -8,9 +8,9 @@ public class WeaponManager : NetworkBehaviour {
     [SerializeField]
     string weaponLayerName = "Weapon";
     [SerializeField]
-    PlayerWeapon primaryWeapon;
+    public PlayerWeapon primaryWeapon { get; protected set; }
     [SerializeField]
-    PlayerWeapon secondaryWeapon;
+    public PlayerWeapon secondaryWeapon { get; protected set; }
     [SerializeField]
     Transform weaponHolder;
 
@@ -25,6 +25,8 @@ public class WeaponManager : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        primaryWeapon = secondaryWeapon = null;
+
         GameObject pui = GetComponent<PlayerSetup>().playerUIInstance;
         weaponSwitchingUI = pui.GetComponent<WeaponSwitchingUI>();
         SwitchWeaponLocal(primaryWeapon);
@@ -70,6 +72,13 @@ public class WeaponManager : NetworkBehaviour {
 
         weaponSwitchingUI.selectedSlot = weaponNum;
         selectedWeapon = weaponNum;
+
+        if (_weapon == null)
+        {
+            currentWeapon = null;
+            Destroy(currentWeaponGameObject);
+            return;
+        }
 
         if (currentWeaponGameObject != null)
         {

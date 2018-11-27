@@ -22,6 +22,8 @@ public class PlayerUI : MonoBehaviour {
     Compass compass;
     [SerializeField]
     MiniMapFollow miniMapFollow;
+    [SerializeField]
+    GameObject outsideOfZoneImage;
 
     public Player player { get; protected set; }
     private PlayerController controller;
@@ -33,13 +35,17 @@ public class PlayerUI : MonoBehaviour {
         compass.Player = player.transform;
         miniMapFollow.player = player.gameObject;
         GetComponent<WeaponSwitchingUI>().weaponManager = player.GetComponent<WeaponManager>();
+        player.outsideOfZoneImage = outsideOfZoneImage;
     }
 
     void Update()
     {
         SetFuelAmount(controller.thrusterFuelAmount);
         SetHealthAmount(player.GetHealthPercentage());
-        SetAmmoAmount(weaponManager.GetCurrentWeapon().currentAmmo);
+        if(weaponManager.GetCurrentWeapon() != null)
+            SetAmmoAmount(weaponManager.GetCurrentWeapon().currentAmmo);
+        else
+            SetAmmoAmount(0);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

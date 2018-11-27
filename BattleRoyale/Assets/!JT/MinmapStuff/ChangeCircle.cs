@@ -13,11 +13,8 @@ public class ChangeCircle : MonoBehaviour
 	public float YRadius;
 	public GameObject ZoneWall;
 	public bool Shrinking;
-    public GameObject Player;
     public bool OutsideOfCircle;
     public GameObject OutsideZoneImage;
-    public bool X;
-    public bool Y;
 
 	#region Private Members
 	private WorldCircle circle;

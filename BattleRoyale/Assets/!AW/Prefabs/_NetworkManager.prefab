@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114006812753383892}
   - component: {fileID: 114796615982619856}
   - component: {fileID: 114275933389818622}
-  - component: {fileID: 114921128789129452}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -95,7 +94,7 @@ MonoBehaviour:
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: AWLobbyScene
+  m_OfflineScene: MainMenu
   m_OnlineScene: AW
   m_SpawnPrefabs: []
   m_CustomConfig: 0
@@ -152,7 +151,7 @@ MonoBehaviour:
   matchName: default
   matchSize: 4
   isNetworkActive: 0
-  matchMaker: {fileID: 114921128789129452}
+  matchMaker: {fileID: 0}
 --- !u!114 &114796615982619856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,14 +174,3 @@ MonoBehaviour:
   m_OffsetX: 0
   m_OffsetY: 0
   lobbyManager: {fileID: 0}
---- !u!114 &114921128789129452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1422587437927002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 

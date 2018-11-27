@@ -9,10 +9,12 @@ public class Player : NetworkBehaviour {
     [SerializeField]
     private int maxHealth = 100;
 
-    [SyncVar] //When this is changed on the server, the sever will push it to all clients
+    [SyncVar] //When this is changed on the server, the server will push it to all clients
     private int currentHealth;
     [SyncVar]
     public string username = "Loading...";
+
+    public GameObject outsideOfZoneImage;
 
     [SerializeField]
     Behaviour[] disableOnDeath;
@@ -35,6 +37,8 @@ public class Player : NetworkBehaviour {
     public int deaths;
 
     private bool firstSetup = true;
+    bool inBounds;
+    float zoneDamageTimer = 1f;
 
     public void SetupPlayer()
     {
@@ -77,9 +81,24 @@ public class Player : NetworkBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                RpcTakeDamage(20, "Aaron");
+                RpcTakeDamage(20, "Dev");
             }
         }
+        if(transform.position.y <= -50)
+        {
+            RpcTakeDamage(9999, "Dev");
+        }
+        if (inBounds == false)
+        {
+            zoneDamageTimer -= Time.deltaTime;
+            if (zoneDamageTimer <= 0f)
+            {
+                RpcTakeDamage(5, "Dev");
+                zoneDamageTimer = 1f;
+            }
+        }
+        else
+            zoneDamageTimer = 1f;
     }
 
     public void SetDefaults()
@@ -172,7 +191,8 @@ public class Player : NetworkBehaviour {
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTime);
-        
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
@@ -188,6 +208,23 @@ public class Player : NetworkBehaviour {
     public float GetHealthPercentage()
     {
         return (float)currentHealth / maxHealth;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "ZoneWall")
+        {
+            inBounds = false;
+            outsideOfZoneImage.SetActive(true);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "ZoneWall")
+        {
+            inBounds = true;
+            outsideOfZoneImage.SetActive(false);
+        }
     }
 
 }

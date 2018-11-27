@@ -34,6 +34,8 @@ public class PlayerShoot : NetworkBehaviour {
 
         if (PauseMenu.isOn)
             return;
+        if (currentWeapon == null)
+            return;
 
         if (currentWeapon.currentAmmo < currentWeapon.maxAmmo)
         {
@@ -108,9 +110,7 @@ public class PlayerShoot : NetworkBehaviour {
         }
 
         currentWeapon.currentAmmo--;
-
-        if (Debug.isDebugBuild)
-            Debug.Log("Remaining Ammo: " + currentWeapon.currentAmmo);
+        
 
         //we are shooting call on shoot method on server
         CmdOnShoot();
