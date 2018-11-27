@@ -13,6 +13,11 @@ public class ChangeCircle : MonoBehaviour
 	public float YRadius;
 	public GameObject ZoneWall;
 	public bool Shrinking;
+    public GameObject Player;
+    public bool OutsideOfCircle;
+    public GameObject OutsideZoneImage;
+    public bool X;
+    public bool Y;
 
 	#region Private Members
 	private WorldCircle circle;
@@ -44,6 +49,14 @@ public class ChangeCircle : MonoBehaviour
         if (XRadius <= 23.50501f)
         {
             Shrinking = false;
+        }
+        if (OutsideOfCircle)
+        {
+            OutsideZoneImage.SetActive(true);
+        }
+        else
+        {
+            OutsideZoneImage.SetActive(false);
         }
 	}
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ItemSpawner
   - ZoneWall
+  - OutsideZone
   layers:
   - Default
   - TransparentFX
