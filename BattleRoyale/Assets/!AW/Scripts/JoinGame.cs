@@ -9,7 +9,7 @@ using TMPro;
 public class JoinGame : MonoBehaviour {
 
     [SerializeField]
-    private TextMeshProUGUI statusText;
+    private TextMeshProUGUI onlineStatusText;
 
     [SerializeField]
     private GameObject roomListItemPrefab;
@@ -40,16 +40,16 @@ public class JoinGame : MonoBehaviour {
             networkManager.StartMatchMaker();
 
         networkManager.matchMaker.ListMatches(0, 20, "", false, 0, 0, OnMatchList);
-        statusText.text = "Loading...";
+        onlineStatusText.text = "Loading...";
     }
 
     public void OnMatchList(bool _success, string _extendedInfo, List<MatchInfoSnapshot> _matches)
     {
-        statusText.text = "";
+        onlineStatusText.text = "";
 
         if (_success == false || _matches == null)
         {
-            statusText.text = "Couldn't get room list";
+            onlineStatusText.text = "Couldn't get room list";
             return;
         }
 
@@ -72,7 +72,7 @@ public class JoinGame : MonoBehaviour {
 
         if(roomList.Count == 0)
         {
-            statusText.text = "No rooms at the moment";
+            onlineStatusText.text = "No rooms at the moment";
         }
 
     }
@@ -102,13 +102,13 @@ public class JoinGame : MonoBehaviour {
         int countdown = 10;
         while (countdown > 0)
         {
-            statusText.text = "Joining... (" + countdown + ")";
+            onlineStatusText.text = "Joining... (" + countdown + ")";
             yield return new WaitForSeconds(1f);
             countdown--;
         }
 
         //We failed to connect
-        statusText.text = "Failed to connect";
+        onlineStatusText.text = "Failed to connect";
         yield return new WaitForSeconds(1f);
 
         MatchInfo matchInfo = networkManager.matchInfo;
