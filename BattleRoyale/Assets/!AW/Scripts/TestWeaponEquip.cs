@@ -13,6 +13,23 @@ public class TestWeaponEquip : NetworkBehaviour {
         {
             WeaponManager weaponManager = GetComponent<WeaponManager>();
             weaponManager.EquipWeaponLocal(testWeapon, weaponManager.selectedWeapon);
+            CmdOnTestWeaponEquip();
         }
 	}
+
+    [Command]
+    void CmdOnTestWeaponEquip()
+    {
+        RpcOnTestWeaponEquip();
+    }
+
+    [ClientRpc]
+    void RpcOnTestWeaponEquip()
+    {
+        if(isLocalPlayer == false)
+        {
+            WeaponManager weaponManager = GetComponent<WeaponManager>();
+            weaponManager.EquipWeaponLocal(testWeapon, weaponManager.selectedWeapon);
+        }
+    }
 }

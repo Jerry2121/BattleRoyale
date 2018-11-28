@@ -52,11 +52,17 @@ public class PlayerController : MonoBehaviour {
         if (PauseMenu.isOn)
         {
             if (Cursor.lockState != CursorLockMode.None)
+            {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
             return;
         }
         if (Cursor.lockState != CursorLockMode.Locked)
+        {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         //Set target position for spring
         //This will allow it to float over non ground objects

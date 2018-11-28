@@ -4634,7 +4634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a3e8aebf538bb469ec21fe84508b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LANOnly: 0
+  LANOnly: 1
   LobbyUICanvas: {fileID: 1773603941}
   MainMainMenuCanvas: {fileID: 138569493}
   OnlineUI: {fileID: 1895048096}
