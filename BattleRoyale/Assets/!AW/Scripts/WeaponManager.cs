@@ -27,8 +27,14 @@ public class WeaponManager : NetworkBehaviour {
 	void Start () {
         primaryWeapon = secondaryWeapon = null;
 
-        GameObject pui = GetComponent<PlayerSetup>().playerUIInstance;
-        weaponSwitchingUI = pui.GetComponent<WeaponSwitchingUI>();
+        if (isLocalPlayer == false)
+            return;
+
+        if (GetComponent<PlayerSetup>().playerUIInstance != null) //This will be null on player other than the Local Player
+        {
+            GameObject pui = GetComponent<PlayerSetup>().playerUIInstance;
+            weaponSwitchingUI = pui.GetComponent<WeaponSwitchingUI>();
+        }
         SwitchWeaponLocal(primaryWeapon);
     }
 
@@ -49,6 +55,7 @@ public class WeaponManager : NetworkBehaviour {
     /// Switches the current weapon of the local player
     /// </summary>
     /// <param name="_weapon"></param>
+    [Client]
     public void SwitchWeaponLocal(PlayerWeapon _weapon)
     {
         if (isLocalPlayer == false)
@@ -69,8 +76,8 @@ public class WeaponManager : NetworkBehaviour {
                 Debug.LogError("WeaponManager -- SwitchWeaponLocal: The passed in weapon was not equal to any of the equipped weapons! If you meant to equip a new weapon, use EquipWeapon instead");
             return;
         }
-
-        weaponSwitchingUI.selectedSlot = weaponNum;
+        if(weaponSwitchingUI != null)
+           weaponSwitchingUI.selectedSlot = weaponNum;
         selectedWeapon = weaponNum;
 
         if (_weapon == null)
@@ -121,12 +128,19 @@ public class WeaponManager : NetworkBehaviour {
     }
     
     /// <summary>
-    /// Equips the passed in weapon, replacing the weapon corresponding to the weaponNum with the passed in weapon, e.g. EquipWeapon(weapon, 1) would replace the primary weapon(which is weapon 1) 
+    /// Equips the passed in weapon, replacing the weapon corresponding to the weaponNum with the passed in weapon, e.g. EquipWeaponLocal(weapon, 1) would replace the primary weapon(which is weapon 1) 
     /// </summary>
     /// <param name="_weapon"></param>
     /// <param name="_weaponNum"></param>
-    public void EquipWeapon(PlayerWeapon _weapon, int _weaponNum)
+    public void EquipWeaponLocal(PlayerWeapon _weapon, int _weaponNum)
     {
+        /*if(isLocalPlayer == false)
+        {
+            if(Debug.isDebugBuild)
+                Debug.LogError("WeaponManager -- EquipWeaponLocal: This script is being called on a player that is not the local player! This should only be called on the local client, call EquipWeaponRemote for remote clients.");
+            return;
+        }*/
+
         int currentWeaponNum = 0;
 
         if (currentWeapon == primaryWeapon)
@@ -155,8 +169,13 @@ public class WeaponManager : NetworkBehaviour {
             return;
         }
 
-        weaponSwitchingUI.selectedSlot = currentWeaponNum;
-        weaponSwitchingUI.ChangeWeaponInSlot(_weapon);
+        if (weaponSwitchingUI != null)
+        {
+            weaponSwitchingUI.selectedSlot = currentWeaponNum;
+            weaponSwitchingUI.ChangeWeaponInSlot(_weapon);
+        }
+
+        //CmdOnEquipWeapon(_weapon, _weaponNum);
 
     }
     
@@ -218,7 +237,6 @@ public class WeaponManager : NetworkBehaviour {
     void RpcOnWeaponChanged(int _weaponNum)
     {
         SwitchWeaponRemote(_weaponNum);
-
     }
 
     void SwitchWeaponRemote(int _weaponNum)
@@ -247,6 +265,9 @@ public class WeaponManager : NetworkBehaviour {
             currentWeaponGameObject = null;
         }
 
+        if (weapon == null)
+            return;
+
         currentWeapon = weapon;
 
         GameObject weaponIns = Instantiate(weapon.graphics, weaponHolder.position, weaponHolder.rotation);
@@ -262,6 +283,54 @@ public class WeaponManager : NetworkBehaviour {
             weaponHolder.localRotation = Quaternion.Euler(currentGraphics.rotationOffset);
         }
     }
+
+    /*[Command]
+    void CmdOnEquipWeapon(PlayerWeapon _weapon, int _weaponNum)
+    {
+        RpcOnEquipWeapon(_weapon, _weaponNum);
+    }
+
+    [ClientRpc]
+    void RpcOnEquipWeapon(PlayerWeapon _weapon, int _weaponNum)
+    {
+        EquipWeaponRemote(_weapon, _weaponNum);
+    }
+
+    public void EquipWeaponRemote(PlayerWeapon _weapon, int _weaponNum)
+    {
+        if (isLocalPlayer)
+        {
+            return;
+        }
+
+        int currentWeaponNum = 0;
+
+        if (currentWeapon == primaryWeapon)
+            currentWeaponNum = 1;
+        else if (currentWeapon == secondaryWeapon)
+            currentWeaponNum = 2;
+
+        _weapon.currentAmmo = _weapon.maxAmmo;
+
+        if (_weaponNum == 1)
+        {
+            primaryWeapon = _weapon;
+            if (currentWeaponNum == 1)
+                SwitchWeaponRemote(_weaponNum);
+        }
+        else if (_weaponNum == 2)
+        {
+            secondaryWeapon = _weapon;
+            if (currentWeaponNum == 2)
+                SwitchWeaponRemote(_weaponNum);
+        }
+        else
+        {
+            if (Debug.isDebugBuild)
+                Debug.LogError("WeaponManager -- EquipWeapon: There is no weapon corresponding to the number " + _weaponNum);
+            return;
+        }
+    }*/
 
     public PlayerWeapon GetWeaponFromInt(int _weaponNum)
     {

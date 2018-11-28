@@ -820,8 +820,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  Zone: {fileID: 1745734279703356, guid: b5028c1136bae1b44a4781bfef76aaa5, type: 2}
   username: Loading...
+  outsideOfZoneImage: {fileID: 0}
   disableOnDeath:
   - {fileID: 114058563100952288}
   - {fileID: 114637508568074558}
@@ -969,6 +969,7 @@ MonoBehaviour:
   remoteLayerName: RemotePlayer
   dontDrawLayerName: DontDraw
   playerGraphics: {fileID: 1980176510306008}
+  playerMiniMapGraphic: {fileID: 1520803343201644}
   playerUIPrefab: {fileID: 1314417243172160, guid: 054cea5c915fe5a439f1b6a5cd68a826,
     type: 2}
   playerUIInstance: {fileID: 0}

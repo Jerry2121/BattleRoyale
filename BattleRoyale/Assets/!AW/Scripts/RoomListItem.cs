@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
+using TMPro;
 
 public class RoomListItem : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class RoomListItem : MonoBehaviour {
     private JoinRoomDelegate joinRoomCallback;
 
     [SerializeField]
-    private Text roomNameText;
+    private TextMeshProUGUI roomNameText;
 
     private MatchInfoSnapshot match;
 

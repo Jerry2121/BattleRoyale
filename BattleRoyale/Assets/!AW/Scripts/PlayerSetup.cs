@@ -17,6 +17,8 @@ public class PlayerSetup : NetworkBehaviour {
     [SerializeField]
     GameObject playerGraphics;
     [SerializeField]
+    GameObject playerMiniMapGraphic;
+    [SerializeField]
     GameObject playerUIPrefab;
     [HideInInspector]
     public GameObject playerUIInstance;
@@ -27,6 +29,7 @@ public class PlayerSetup : NetworkBehaviour {
         if (!isLocalPlayer)
         {
             DisableComponents();
+            playerMiniMapGraphic.SetActive(false);
             AssignRemoteLayer();
         }
         else
@@ -38,7 +41,7 @@ public class PlayerSetup : NetworkBehaviour {
             playerUIInstance = Instantiate(playerUIPrefab);
             playerUIInstance.name = playerUIPrefab.name;
 
-            //Canfigure playerUI
+            //Configure playerUI
             PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
             if(ui == null)
             {

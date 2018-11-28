@@ -12,7 +12,7 @@ public class TestWeaponEquip : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.L) && isLocalPlayer)
         {
             WeaponManager weaponManager = GetComponent<WeaponManager>();
-            weaponManager.EquipWeapon(testWeapon, weaponManager.selectedWeapon);
+            weaponManager.EquipWeaponLocal(testWeapon, weaponManager.selectedWeapon);
         }
 	}
 }

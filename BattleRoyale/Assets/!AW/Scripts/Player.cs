@@ -81,19 +81,19 @@ public class Player : NetworkBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                RpcTakeDamage(20, "Dev");
+                CmdTakeDamage(20, "Dev");
             }
         }
         if(transform.position.y <= -50)
         {
-            RpcTakeDamage(9999, "Dev");
+            CmdTakeDamage(9999, "Dev");
         }
         if (inBounds == false)
         {
             zoneDamageTimer -= Time.deltaTime;
             if (zoneDamageTimer <= 0f)
             {
-                RpcTakeDamage(5, "Dev");
+                CmdTakeDamage(5, "Dev");
                 zoneDamageTimer = 1f;
             }
         }
@@ -125,6 +125,12 @@ public class Player : NetworkBehaviour {
         //create spawn effect
         GameObject gfxInstance = Instantiate(spawnEffect, transform.position, Quaternion.identity);
         Destroy(gfxInstance, 3f);
+    }
+
+    [Command]
+    void CmdTakeDamage(int _damage, string _sourceID) //only call on player, other scripts like shoot have their own Command to call RpcTakeDamage
+    {
+        RpcTakeDamage(_damage, _sourceID);
     }
 
     [ClientRpc] //Called on all clients from the server
@@ -215,7 +221,8 @@ public class Player : NetworkBehaviour {
         if (other.gameObject.tag == "ZoneWall")
         {
             inBounds = false;
-            outsideOfZoneImage.SetActive(true);
+            if(outsideOfZoneImage != null)
+                outsideOfZoneImage.SetActive(true);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -223,7 +230,8 @@ public class Player : NetworkBehaviour {
         if (other.gameObject.tag == "ZoneWall")
         {
             inBounds = true;
-            outsideOfZoneImage.SetActive(false);
+            if (outsideOfZoneImage != null)
+                outsideOfZoneImage.SetActive(false);
         }
     }
 
