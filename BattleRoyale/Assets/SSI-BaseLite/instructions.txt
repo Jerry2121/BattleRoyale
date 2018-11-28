@@ -1,0 +1,32 @@
+Welcome to Surr's Simple Inventory LITE! This will help you get started with making your own unique inventories for games.
+The sample scene provided should give you a good indicator on what to do, but if you still don't know, there will be a video series over on my Youtube channel: https://www.youtube.com/channel/UCesiaNX8UuhVjYWF_gjiQ8w
+Here's written tutorials for the various features in the demo package:
+
+Setting up the demo scene:
+To start, ensure that CrossPlatformInput has been imported into the Standard Assets as well as the Characters standard asset for the demo scene to work
+NOTE: The InventoryMenuScript may need modifications if you are not using the RigidbodyFPSController as it works by disabling the only script in the controller, you may wish to modify this should it contain more than 1 script for example.
+
+Adjusting the inputs:
+To change the keys used in the inventory system, select the Inventory object if you wish to change the Inventory and Use buttons
+
+Creating items:
+Add an object to your scene, add a collider and rigidbody to it.
+Then add the itemScript to it.
+Adjust the values in the item script to what you want (also, make sure the item is in the "Item" layer so that the it can be registered by the raycasting)
+You will also need to make sure the "Item" layer is in the layerMask parameter in the InventoryScript component in the object named "Inventory"
+Create a texture for the item and assign it to the Item Texture variable in the script. (this is the picture used in the inventory) Also, make sure the resolution of the picture matches the size of the item (ie a 3x2 item should have a resolution along the lines of 600x400)
+
+
+Equipable items:
+To create an equipable item, just set the equipable variable to True in the script. This will send a message called "Equip" to the MainCamera object with the item's itemScript as the parameter, you can use this to create your equipable items (pre-made items, such as guns or melee weapons, will be in future expansions)
+
+Multiple inventory grids:
+To add multiple inventory grids, simply duplicate the grid and add it to the Bags list in the MainCamera's inventoryAttache script. The code will automatically configure it for you.
+
+If you want to create your inventory systems from scratch, there will be video tutorials on how to do that, but I would advise to use the player prefab in the example scene (or at least the camera component in that)
+
+If you have any improvements to suggest, questions to ask, other aspects you need help with that I haven't listed or bugs to report, feel free to e-mail me at leif.unity3dbusiness@gmail.com
+
+You can buy the full version of this package at https://assetstore.unity.com/packages/tools/gui/surr-s-simple-inventory-112015
+
+Join the SSI discord! https://discord.gg/cjZxsH5
