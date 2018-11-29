@@ -19,7 +19,7 @@ public class Killfeed : MonoBehaviour {
             Debug.Log(_source + " killed " + _player);
 
         GameObject go  = Instantiate(killFeedItemPrefab, this.transform);
-        go.transform.SetAsFirstSibling();
+        //go.transform.SetAsFirstSibling(); //Will put it at the top of the list
         go.GetComponent<KillfeedItem>().SetUp(_player, _source);
 
         Destroy(go, 4f);

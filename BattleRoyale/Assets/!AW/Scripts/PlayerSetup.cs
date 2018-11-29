@@ -15,6 +15,8 @@ public class PlayerSetup : NetworkBehaviour {
     [SerializeField]
     string dontDrawLayerName = "DontDraw";
     [SerializeField]
+    string remoteMinimapLayerName = "MiniMapRemote";
+    [SerializeField]
     GameObject playerGraphics;
     [SerializeField]
     GameObject playerMiniMapGraphic;
@@ -29,7 +31,8 @@ public class PlayerSetup : NetworkBehaviour {
         if (!isLocalPlayer)
         {
             DisableComponents();
-            playerMiniMapGraphic.SetActive(false);
+            playerMiniMapGraphic.layer = LayerMask.NameToLayer(remoteMinimapLayerName);
+            playerMiniMapGraphic.transform.localScale = new Vector3(2f,2f,2f);
             AssignRemoteLayer();
         }
         else
@@ -77,6 +80,9 @@ public class PlayerSetup : NetworkBehaviour {
 
         string netID = GetComponent<NetworkIdentity>().netId.ToString();
         Player player = GetComponent<Player>();
+
+        if (Debug.isDebugBuild)
+            Debug.Log("PlayerSetup -- OnStartClient");
 
         GameManager.RegisterPlayer(netID, player);
     }

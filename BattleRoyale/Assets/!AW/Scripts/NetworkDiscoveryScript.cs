@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class NetworkDiscoveryScript : NetworkDiscovery {
 
     public static bool IsInLAN;
+    public static bool IsServerOnly;
 
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
@@ -17,6 +18,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
 	// Use this for initialization
 	void Start () {
         networkManager = GetComponent<NetworkManager>();
+        IsServerOnly = false;
         Initialize();
     }
 
@@ -50,6 +52,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
         networkManager.StartServer();
         StartAsServer();
         IsInLAN = true;
+        IsServerOnly = true;
         StartCoroutine(lobbyManager.WaitForCreateLAN());
     }
 

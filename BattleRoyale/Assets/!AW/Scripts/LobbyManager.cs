@@ -35,6 +35,8 @@ public class LobbyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         LobbyUICanvas.SetActive(false);
         MainMainMenuCanvas.SetActive(true);
         lobbySceneName = SceneManager.GetActiveScene().name;

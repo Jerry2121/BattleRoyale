@@ -52,8 +52,11 @@ public class OptionsMenuNew : MonoBehaviour {
 	private float sliderValueSmoothing = 0.0f;
 
 	public void  Start (){
-		// check difficulty
-		if(PlayerPrefs.GetInt("NormalDifficulty") == 1){
+        //Turn vSync on
+        QualitySettings.vSyncCount = 1;
+
+        // check difficulty
+        if (PlayerPrefs.GetInt("NormalDifficulty") == 1){
 			//difficultynormaltext.GetComponent<Text>().text = "NORMAL";
 			difficultynormaltextLINE.gameObject.SetActive(true);
 			difficultyhardcoretextLINE.gameObject.SetActive(false);
