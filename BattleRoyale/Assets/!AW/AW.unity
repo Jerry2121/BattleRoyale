@@ -613,7 +613,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 77b63cc7328d88545afd4b74180ee8c0, type: 2}
+  - {fileID: 2100000, guid: e7ac96b0e4503a24fb5e90e3ebf0a739, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2485,16 +2485,6 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114470801058840112, guid: 054cea5c915fe5a439f1b6a5cd68a826,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114470801058840112, guid: 054cea5c915fe5a439f1b6a5cd68a826,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114504169865886616, guid: 054cea5c915fe5a439f1b6a5cd68a826,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -2521,6 +2511,16 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114334959060690814, guid: 054cea5c915fe5a439f1b6a5cd68a826,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470801058840112, guid: 054cea5c915fe5a439f1b6a5cd68a826,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470801058840112, guid: 054cea5c915fe5a439f1b6a5cd68a826,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -2774,8 +2774,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -115.3, y: -479}
-  m_SizeDelta: {x: 230.55, y: 219.1}
+  m_AnchoredPosition: {x: -113.2, y: -510.7}
+  m_SizeDelta: {x: 226.4, y: 155.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1389065703
 MonoBehaviour:
