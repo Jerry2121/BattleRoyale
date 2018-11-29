@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 114351947472660616}
   - component: {fileID: 114342574062981906}
   - component: {fileID: 114292400422521118}
-  - component: {fileID: 114734256745034574}
   - component: {fileID: 95605772186998212}
   - component: {fileID: 114514191172641164}
   - component: {fileID: 114857333097141056}
@@ -945,7 +944,7 @@ MonoBehaviour:
   weaponLayerName: Weapon
   weaponHolder: {fileID: 4324371300155142}
   weaponSwitchingUI: {fileID: 0}
-  selectedWeapon: 0
+  selectedWeapon: 1
   isReloading: 0
 --- !u!114 &114373945748241560
 MonoBehaviour:
@@ -1071,28 +1070,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1179959
---- !u!114 &114734256745034574
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1586728422693558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 247442469, guid: f7b54ff4a43d4fcf81b4538b678e0bcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SurfaceParent: {fileID: 0}
-  m_FreezeUpdates: 0
-  m_VolumeType: 1
-  m_SphereRadius: 2
-  m_HalfBoxExtents: {x: 4, y: 4, z: 4}
-  m_LodType: 1
-  m_NumUpdatesBeforeRemoval: 10
-  m_SecondsBetweenUpdates: 2.5
-  m_Layer: 0
-  m_Material: {fileID: 0}
-  m_EnableCollisions: 1
 --- !u!114 &114857333097141056
 MonoBehaviour:
   m_ObjectHideFlags: 1

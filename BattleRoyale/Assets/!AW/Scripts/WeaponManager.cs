@@ -18,7 +18,7 @@ public class WeaponManager : NetworkBehaviour {
     private PlayerWeapon currentWeapon;
     GameObject currentWeaponGameObject;
     private WeaponGraphics currentGraphics;
-    public int selectedWeapon = 0;
+    public int selectedWeapon = 1;
 
     [HideInInspector]
     public bool isReloading = false;
@@ -272,6 +272,7 @@ public class WeaponManager : NetworkBehaviour {
 
         GameObject weaponIns = Instantiate(weapon.graphics, weaponHolder.position, weaponHolder.rotation);
         weaponIns.transform.SetParent(weaponHolder);
+        Utility.SetLayerRecursively(weaponIns, LayerMask.NameToLayer("RemotePlayer"));
         currentWeaponGameObject = weaponIns;
         currentGraphics = weaponIns.GetComponent<WeaponGraphics>();
         if (currentGraphics == null)
