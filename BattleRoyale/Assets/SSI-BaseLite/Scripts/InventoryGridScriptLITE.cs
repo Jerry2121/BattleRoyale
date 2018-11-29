@@ -32,12 +32,15 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		slots = new bool[width * height];
 		freeSpaces = width * height;
 		grid = transform.Find ("gridimage").GetComponent<Image>();
-		grid.rectTransform.sizeDelta = new Vector2 (50 * width, 50 * height);
-		grid.rectTransform.anchoredPosition = new Vector2 (25 * width, 0);
+        grid.transform.position = new Vector2(500, -275 * height);
+        grid.rectTransform.sizeDelta = new Vector2 (50 * width, 50 * height);
+        grid.rectTransform.anchoredPosition = new Vector2(25 * width, 0);
 		GetComponent<RectTransform>().sizeDelta = new Vector2 (50 * width, 50 * height);
 		GetComponent<BoxCollider>().size = new Vector3(grid.rectTransform.sizeDelta.x, grid.rectTransform.sizeDelta.y, 0.05f);
 		GetComponent<BoxCollider> ().center = new Vector2 (grid.rectTransform.sizeDelta.x / 2, -(grid.rectTransform.sizeDelta.y / 2));
-	}
+        // transform.position = new Vector2(34, -797);
+        //transform.Translate(new Vector3(34, -797));
+    }
 
 	// Use this for initialization
 	void Update () {
@@ -49,7 +52,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		int topleftslot = 0;
 		RectTransform itemClone = Instantiate (invObjPref);
 		itemClone.GetComponent<itemDragLITE> ().obj = item;
-		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.parent.parent.Find ("Item Panel").gameObject;
+		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.parent.parent.parent.Find ("Item Panel").gameObject;
 		itemClone.SetParent(transform);
 		itemClone.GetComponent<TriggerCheckerLITE> ().img.sprite = item.itemTexture;
 		itemClone.gameObject.SetActive (true);

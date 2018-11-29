@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class InventoryScriptLITE : MonoBehaviour {
 
-	//this manages all of the inventory based interactions (ie equipping guns and picking up items)
+    //this manages all of the inventory based interactions (ie equipping guns and picking up items)
 	public KeyCode inventoryKey = KeyCode.Tab;
 	public KeyCode useKey = KeyCode.E;
 
@@ -75,13 +75,13 @@ public class InventoryScriptLITE : MonoBehaviour {
 				inventoryPanel.anchorMin = new Vector2 (0, 0);
 			} else {
                 inventory = false;
-				inventoryPanel.anchorMax = new Vector2 (1, 0);
-				inventoryPanel.anchorMin = new Vector2 (0, -1);
+                inventoryPanel.anchorMax = new Vector2 (1, 0);
+                inventoryPanel.anchorMin = new Vector2 (0, -1);
 			}
 		}
         
 
-		if (Physics.Raycast (transform.position, fwd, out hit, rayLength, layerMask)) {
+		if (Physics.Raycast (transform.position, fwd, out hit, rayLength, layerMask) && !GetComponentInParent<Pause>().paused) {
 			itemPrompt.SetActive (true);
 			if (hit.transform != lookingAt) {
 				if (lookingAt != null) {
@@ -94,7 +94,9 @@ public class InventoryScriptLITE : MonoBehaviour {
 			if (Input.GetKeyUp (useKey)) {
 				doesFit = false;
 				itemScriptLITE temp = hit.transform.GetComponent<itemScriptLITE> ();
-				//foreach (InventoryGridScript i in bags) {
+                //foreach (InventoryGridScript i in bags) {
+                Debug.Log(bag.name);
+                Debug.Log(temp.name);
 				if (bag.freeSpaces >= temp.width * temp.height) {
 					bag.SendMessage ("GiveItem", temp);
 				} 
