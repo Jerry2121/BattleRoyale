@@ -17,7 +17,7 @@ public class ServerUI : NetworkBehaviour {
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
 
-        if (NetworkDiscoveryScript.IsServerOnly == false)
+        if (NetworkDiscoveryScript.IsServerOnly == false) //We're not running in server-only mode,  so turn off the UI
         {
             gameObject.SetActive(false);
             return;
