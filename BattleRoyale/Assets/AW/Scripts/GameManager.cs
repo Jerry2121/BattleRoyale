@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+
+    public static NetworkManager networkManager;
+    public static NetworkDiscoveryScript networkDiscoveryScript;
 
     public MatchSettings matchSettings;
 
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour {
             return;
         }
         instance = this;
+        networkManager = NetworkManager.singleton;
+        networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
         StartTimer();
     }
 

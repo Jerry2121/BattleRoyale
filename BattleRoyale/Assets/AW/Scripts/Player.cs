@@ -83,6 +83,10 @@ public class Player : NetworkBehaviour {
             {
                 CmdTakeDamage(20, "Dev");
             }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                CmdHeal(20);
+            }
         }
         if(transform.position.y <= -50)
         {
@@ -125,6 +129,22 @@ public class Player : NetworkBehaviour {
         //create spawn effect
         GameObject gfxInstance = Instantiate(spawnEffect, transform.position, Quaternion.identity);
         Destroy(gfxInstance, 3f);
+    }
+
+    [Command]
+    void CmdHeal(int _amount)  //only call on player, other scripts should have their own Command to call RpcHeal
+    {
+        RpcHeal(_amount);
+    }
+
+    [ClientRpc]
+    public void RpcHeal(int _amount)
+    {
+        currentHealth += _amount;
+        if (Debug.isDebugBuild)
+            Debug.Log(transform.name + " healed " + _amount + " health");
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
     }
 
     [Command]
