@@ -24,6 +24,8 @@ public class PlayerUI : MonoBehaviour {
     MiniMapFollow miniMapFollow;
     [SerializeField]
     GameObject outsideOfZoneImage;
+    [SerializeField]
+    InventoryScriptLITE inventoryScriptLITE;
 
     public Player player { get; protected set; }
     private PlayerController controller;
@@ -36,6 +38,7 @@ public class PlayerUI : MonoBehaviour {
         miniMapFollow.player = player.gameObject;
         GetComponent<WeaponSwitchingUI>().weaponManager = player.GetComponent<WeaponManager>();
         player.outsideOfZoneImage = outsideOfZoneImage;
+        inventoryScriptLITE.player = player.transform;
     }
 
     void Update()

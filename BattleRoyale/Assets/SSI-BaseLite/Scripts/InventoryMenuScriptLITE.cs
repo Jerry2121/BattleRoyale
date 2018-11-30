@@ -12,9 +12,9 @@ public class InventoryMenuScriptLITE : MonoBehaviour {
 
 	void Start (){
 		inventoryKey = GetComponent<InventoryScriptLITE> ().inventoryKey;
-		if (playerObj == null) {
+		/*if (playerObj == null) {
 			playerObj = transform.parent.parent; //this is assuming the Inventory object is in the MainCamera object
-		}
+		}*/
 	}
 
 	// Update is called once per frame

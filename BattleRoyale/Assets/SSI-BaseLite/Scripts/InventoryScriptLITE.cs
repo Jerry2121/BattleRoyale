@@ -32,6 +32,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 	public float uiScale = 2.0f; //the scale of the grids, default = 0.5f
 	private float scaleMultiplier; //the scale compared to the default value (ie uiScale of 0.5f will have a multiplier of 1)
 
+    public Transform player;
 	public GameObject itemPrompt;
 
 	void Start(){
@@ -68,7 +69,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 
         // How can I force one canvas to always appear in front of another?
 
-		if (Input.GetKeyDown(inventoryKey)) {
+		/*if (Input.GetKeyDown(inventoryKey)) {
 			if (!inventoryTab.activeInHierarchy) {
                 inventory = true;
 				inventoryPanel.anchorMax = new Vector2 (1, 1);
@@ -78,10 +79,10 @@ public class InventoryScriptLITE : MonoBehaviour {
                 inventoryPanel.anchorMax = new Vector2 (1, 0);
                 inventoryPanel.anchorMin = new Vector2 (0, -1);
 			}
-		}
+		}*/
         
 
-		if (Physics.Raycast (transform.position, fwd, out hit, rayLength, layerMask) && !GetComponentInParent<Pause>().paused) {
+		if (Physics.Raycast (player.position, fwd, out hit, rayLength, layerMask) && !PauseMenu.isOn) {
 			itemPrompt.SetActive (true);
 			if (hit.transform != lookingAt) {
 				if (lookingAt != null) {

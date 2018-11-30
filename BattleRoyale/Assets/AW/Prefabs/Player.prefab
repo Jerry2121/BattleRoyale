@@ -967,6 +967,7 @@ MonoBehaviour:
   - {fileID: 114176612750664552}
   remoteLayerName: RemotePlayer
   dontDrawLayerName: DontDraw
+  remoteMinimapLayerName: MiniMapRemote
   playerGraphics: {fileID: 1980176510306008}
   playerMiniMapGraphic: {fileID: 1520803343201644}
   playerUIPrefab: {fileID: 1314417243172160, guid: 054cea5c915fe5a439f1b6a5cd68a826,
