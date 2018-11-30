@@ -207,13 +207,22 @@ public class OptionsMenuNew : MonoBehaviour {
 	public void  FullScreen (){
 		Screen.fullScreen = !Screen.fullScreen;
 
-		if(Screen.fullScreen == true){
-			fullscreentext.GetComponent<Text>().text = "on";
-		}
-		else if(Screen.fullScreen == false){
-			fullscreentext.GetComponent<Text>().text = "off";
-		}
+        StartCoroutine(FullScreenCoroutine());
 	}
+
+    IEnumerator FullScreenCoroutine()
+    {
+        yield return new WaitForSeconds(.2f);
+
+        if (Screen.fullScreen == true)
+        {
+            fullscreentext.GetComponent<Text>().text = "on";
+        }
+        else if (Screen.fullScreen == false)
+        {
+            fullscreentext.GetComponent<Text>().text = "off";
+        }
+    }
 
 	public void  MusicSlider (){
 		PlayerPrefs.SetFloat("MusicVolume", sliderValue);
