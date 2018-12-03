@@ -28,7 +28,11 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	public bool[] slots;
 	public List<itemDragLITE> items;
 
+    [SerializeField]
+    InventoryScriptLITE inventoryScriptLITE;
+
 	void Start () {
+        player = GetComponentInParent<PlayerUI>().player.transform;
 		slots = new bool[width * height];
 		freeSpaces = width * height;
 		grid = transform.Find ("gridimage").GetComponent<Image>();
@@ -48,11 +52,12 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	
 	// Update is called once per frame
 	void GiveItem (itemScriptLITE item) {
+        Debug.Log("Foo1");
 		bool fits = false;
 		int topleftslot = 0;
 		RectTransform itemClone = Instantiate (invObjPref);
 		itemClone.GetComponent<itemDragLITE> ().obj = item;
-		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.parent.parent.parent.Find ("Item Panel").gameObject;
+		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.parent.parent.Find ("Item Panel").gameObject;
 		itemClone.SetParent(transform);
 		itemClone.GetComponent<TriggerCheckerLITE> ().img.sprite = item.itemTexture;
 		itemClone.gameObject.SetActive (true);
@@ -94,7 +99,8 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 		
 		if (fits == true) {
-			player.SendMessage ("DoesFit");
+            //player.SendMessage ("DoesFit");
+            inventoryScriptLITE.DoesFit();
 			items.Add (itemClone.GetComponent<itemDragLITE>());
 
 			itemClone.anchoredPosition = new Vector2 (topleftslot % width * 50, -Mathf.Floor (topleftslot / width) * 50);

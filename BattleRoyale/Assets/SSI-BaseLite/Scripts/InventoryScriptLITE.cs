@@ -58,8 +58,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 
 	void Update(){
 		RaycastHit hit;
-		Vector3 fwd = transform.TransformDirection (Vector3.forward);
-
+        Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
 
         // add a GameObject inventoryTab variable? And have it ask if active == true? 
 
@@ -69,7 +68,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 
         // How can I force one canvas to always appear in front of another?
 
-		/*if (Input.GetKeyDown(inventoryKey)) {
+        /*if (Input.GetKeyDown(inventoryKey)) {
 			if (!inventoryTab.activeInHierarchy) {
                 inventory = true;
 				inventoryPanel.anchorMax = new Vector2 (1, 1);
@@ -80,9 +79,9 @@ public class InventoryScriptLITE : MonoBehaviour {
                 inventoryPanel.anchorMin = new Vector2 (0, -1);
 			}
 		}*/
-        
 
-		if (Physics.Raycast (player.position, fwd, out hit, rayLength, layerMask) && !PauseMenu.isOn) {
+        if (Physics.Raycast (player.position, fwd, out hit, rayLength, layerMask) && !PauseMenu.isOn) {
+            Debug.Log(hit.collider.gameObject.name);
 			itemPrompt.SetActive (true);
 			if (hit.transform != lookingAt) {
 				if (lookingAt != null) {
@@ -168,7 +167,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 		}
 	}
 
-	void DoesFit(){
+	public void DoesFit(){
 		doesFit = true;
 	}
 }
