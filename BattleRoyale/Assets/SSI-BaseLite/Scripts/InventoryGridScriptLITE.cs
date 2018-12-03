@@ -51,7 +51,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void GiveItem (itemScriptLITE item) {
+	public void GiveItem (itemScriptLITE item) {
         Debug.Log("Foo1");
 		bool fits = false;
 		int topleftslot = 0;

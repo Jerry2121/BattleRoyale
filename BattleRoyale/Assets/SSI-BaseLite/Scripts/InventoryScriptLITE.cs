@@ -42,7 +42,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 		RectTransform parentRect;
 		parentRect = bag.transform.parent.GetComponent<RectTransform> ();
 
-		bag.GetComponent<RectTransform> ().localScale = new Vector3 (uiScale, uiScale, uiScale);
+		/*bag.GetComponent<RectTransform> ().localScale = new Vector3 (uiScale, uiScale, uiScale);
 		if (bag.GetComponent<RectTransform>().rect.height * bag.GetComponent<RectTransform>().localScale.y > parentRect.rect.height) {
 			parentRect.offsetMin = new Vector2 (parentRect.offsetMin.x, 0 - ((bag.height * 25 * scaleMultiplier) - parentRect.rect.height));
 			bag.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
@@ -53,7 +53,7 @@ public class InventoryScriptLITE : MonoBehaviour {
 		if (bag.GetComponent<RectTransform> ().rect.width > parentRect.rect.width) {
 			parentRect.offsetMin = new Vector2 (0 - ((bag.width * 25 * scaleMultiplier) - parentRect.rect.width), parentRect.offsetMin.y);
 		}
-		parentRect.parent.GetComponent<ScrollRect> ().horizontalNormalizedPosition = 0;
+		parentRect.parent.GetComponent<ScrollRect> ().horizontalNormalizedPosition = 0;*/
 	}
 
 	void Update(){
@@ -98,7 +98,7 @@ public class InventoryScriptLITE : MonoBehaviour {
                 Debug.Log(bag.name);
                 Debug.Log(temp.name);
 				if (bag.freeSpaces >= temp.width * temp.height) {
-					bag.SendMessage ("GiveItem", temp);
+                    bag.GiveItem(temp);//bag.SendMessage ("GiveItem", temp);
 				} 
 				if (doesFit == false) {
 					StartCoroutine ("NotEnough");
