@@ -27,7 +27,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 	public bool[] slots;
 	public List<itemDragLITE> items;
-
+    Vector3 offset = new Vector3(-250, 150, 0);
     [SerializeField]
     InventoryScriptLITE inventoryScriptLITE;
 
@@ -36,10 +36,10 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		slots = new bool[width * height];
 		freeSpaces = width * height;
 		grid = transform.Find ("gridimage").GetComponent<Image>();
-        grid.transform.position = new Vector2(500, -275 * height);
+        //grid.transform.position = new Vector2(500, -275 * height);
         grid.rectTransform.sizeDelta = new Vector2 (50 * width, 50 * height);
-        grid.rectTransform.anchoredPosition = new Vector2(25 * width, 0);
-		GetComponent<RectTransform>().sizeDelta = new Vector2 (50 * width, 50 * height);
+        //grid.rectTransform.anchoredPosition = new Vector2(25 * width, 0);
+		//GetComponent<RectTransform>().sizeDelta = new Vector2 (50 * width, 50 * height);
 		GetComponent<BoxCollider>().size = new Vector3(grid.rectTransform.sizeDelta.x, grid.rectTransform.sizeDelta.y, 0.05f);
 		GetComponent<BoxCollider> ().center = new Vector2 (grid.rectTransform.sizeDelta.x / 2, -(grid.rectTransform.sizeDelta.y / 2));
         // transform.position = new Vector2(34, -797);
@@ -52,16 +52,16 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void GiveItem (itemScriptLITE item) {
-        Debug.Log("Foo1");
 		bool fits = false;
 		int topleftslot = 0;
 		RectTransform itemClone = Instantiate (invObjPref);
 		itemClone.GetComponent<itemDragLITE> ().obj = item;
-		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.parent.parent.Find ("Item Panel").gameObject;
-		itemClone.SetParent(transform);
-		itemClone.GetComponent<TriggerCheckerLITE> ().img.sprite = item.itemTexture;
+		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.Find ("Item Panel").gameObject;
+        //itemClone.SetParent(transform);
+        itemClone.SetParent(grid.transform);
+        itemClone.GetComponent<TriggerCheckerLITE> ().img.sprite = item.itemTexture;
 		itemClone.gameObject.SetActive (true);
-		itemClone.localScale = new Vector2 (item.width, item.height);
+		itemClone.localScale = new Vector3 (item.width, item.height, 1);
 		itemClone.localPosition = new Vector3 (0, 0, 0);
 		itemClone.localEulerAngles = new Vector3 (0, 0, 0);
 		itemClone.anchoredPosition = new Vector2 (0, 0);
@@ -112,7 +112,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 				}
 			}
 			item.transform.SetParent(transform);
-			item.gameObject.SetActive (false);
+            item.gameObject.SetActive (false);
 			freeSpaces -= (int)(item.width * item.height);
 		}
 		else {
@@ -120,7 +120,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		}
 	}
 
-	void SortSlots(itemDragLITE pos){
+	public void SortSlots(itemDragLITE pos){
 		float slotsWidth = Mathf.Round(pos.originalScale.x);
 		float slotsHeight = Mathf.Round(pos.originalScale.y);
 		float slotPosWidth = Mathf.Round(pos.originalPos.x / 50);
@@ -129,7 +129,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 			for (int i = 0; i < slotsWidth; i++) {
 				for (int j = 0; j < slotsHeight; j++) {
-					slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = false;
+					slots [(int)(slotPosWidth + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = false;
 				}
 			}
 
@@ -141,11 +141,11 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 			for (int i = 0; i < slotsWidth2; i++) {
 				for (int j = 0; j < slotsHeight2; j++) {
 
-					if (slots [(int)slotPosWidth2 + i + (j * width) + (int)(slotPosHeight2 * width)] == true) {
+					if (slots [(int)(slotPosWidth2 + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight2 + (offset.y / 50)) * width)] == true) {
 						fits = false;
 						for (int x = 0; x < slotsWidth; x++) {
 							for (int y = 0; y < slotsHeight; y++) {
-								slots [(int)slotPosWidth + x + (y * width) + (int)(slotPosHeight * width)] = true;
+								slots [(int)(slotPosWidth + (offset.x / 50)) + x + (y * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = true;
 							}
 						}
 						pos.SendMessage ("ReturnToNormal");
@@ -157,7 +157,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 			if (fits) {
 				for (int i = 0; i < slotsWidth2; i++) {
 					for (int j = 0; j < slotsHeight2; j++) {
-						slots [(int)slotPosWidth2 + i + (j * width) + (int)(slotPosHeight2 * width)] = true;
+						slots [(int)(slotPosWidth2 + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight2 + (offset.y / 50)) * width)] = true;
 					}
 				}
 			}
@@ -166,7 +166,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		}
 	}
 
-	void TransferItemAway(itemDragLITE pos){
+	public void TransferItemAway(itemDragLITE pos){
 		float slotPosWidth = Mathf.Round(pos.originalPos.x / 50);
 		float slotPosHeight = -Mathf.Round(pos.originalPos.y / 50);
 		float slotsWidth = Mathf.Round(pos.originalScale.x);
@@ -179,7 +179,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		}
 	}
 
-	void TransferItemTo(itemDragLITE pos){
+	public void TransferItemTo(itemDragLITE pos){
 		float slotPosWidth = Mathf.Round(pos.rect.anchoredPosition.x / 50);
 		float slotPosHeight = -Mathf.Round(pos.rect.anchoredPosition.y / 50);
 		float slotsWidth = Mathf.Round(pos.rect.localScale.x);
@@ -187,12 +187,13 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		items.Add (pos.GetComponent<itemDragLITE>());
 		for (int i = 0; i < slotsWidth; i++) {
 			for (int j = 0; j < slotsHeight; j++) {
-				slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = true;
+				slots [(int)(slotPosWidth + (offset.x/50)) + i + (j * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = true;
+                Debug.Log("190");
 			}
 		}
 	}
 
-	void RemoveItem(itemDragLITE pos){
+	public void RemoveItem(itemDragLITE pos){
 		items.Remove (pos.GetComponent<itemDragLITE> ());
 
 		float slotsWidth = pos.obj.width;
@@ -211,18 +212,18 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 		for (int i = 0; i < slotsWidth; i++) {
 			for (int j = 0; j < slotsHeight; j++) {
-				slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = false;
+				slots [(int)(slotPosWidth + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = false;
 			}
 		}
 		freeSpaces += (int)(pos.obj.width * pos.obj.height);
 		Destroy (pos.gameObject);
 	}
 
-	void DestroyItem(itemDragLITE pos){
+	public void DestroyItem(itemDragLITE pos){
 		
 	}
 
-	void RemoveAllItems(){
+	public void RemoveAllItems(){
 		foreach (itemDragLITE item in items) {
 			if (item.obj.equipable) {
 				GameObject.FindGameObjectWithTag ("MainCamera").SendMessage ("RemoveItem", item.GetComponent<itemDragLITE>());
