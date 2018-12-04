@@ -17,9 +17,11 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField]
     GameObject Disconnect;
     [SerializeField]
-    RectTransform inventoryPanel;
 
-    Vector3 panelHiddenPosition = new Vector3(0, -9999, 0);
+    public RectTransform inventoryPanel;
+
+    public Vector3 panelHiddenPosition = new Vector3(0, -9999, 0);
+
 
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
@@ -39,6 +41,7 @@ public class PauseMenu : MonoBehaviour {
             inventoryPanel.position = panelHiddenPosition;
             inventoryPanel.anchorMax = new Vector2(1, 0);
             inventoryPanel.anchorMin = new Vector2(0, -1);
+
         }
     }
 
@@ -51,6 +54,7 @@ public class PauseMenu : MonoBehaviour {
         inventoryPanel.position = panelHiddenPosition;
         inventoryPanel.anchorMax = new Vector2(1, 0);
         inventoryPanel.anchorMin = new Vector2(0, -1);
+
     }
 
     public void ShowInventory()

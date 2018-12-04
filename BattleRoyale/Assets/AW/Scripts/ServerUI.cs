@@ -22,6 +22,7 @@ public class ServerUI : NetworkBehaviour {
             gameObject.SetActive(false);
             return;
         }
+        GameManager.instance.SetSceneCameraActiveState(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

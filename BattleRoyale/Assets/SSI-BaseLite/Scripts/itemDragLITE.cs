@@ -20,6 +20,8 @@ public class itemDragLITE : MonoBehaviour
 	public GameObject equipButton;
 	public GameObject dropButton;
 
+    Vector3 offset = new Vector3(-250, 150, 0);
+
 	void Awake(){
 		rect = GetComponent<RectTransform> ();
 	}
@@ -33,14 +35,14 @@ public class itemDragLITE : MonoBehaviour
 		equipButton = panel.transform.Find ("Equip").gameObject;
 		dropButton = panel.transform.Find ("Drop").gameObject;
 		rect = GetComponent<RectTransform> ();
-	}
+    }
 
 	public void BeginDrag(){
 		oldParent = transform.parent;
 		originalPos = rect.anchoredPosition;
 		originalScale = rect.localScale;
 		originalRot = transform.Find ("image").localEulerAngles;
-		transform.SetParent(transform.parent.parent);
+		//transform.SetParent(transform.parent.parent);
 		transform.SetAsLastSibling();
 	}
 
@@ -56,59 +58,71 @@ public class itemDragLITE : MonoBehaviour
 	}
 
 	public void EndDrag(){
-		transform.SetParent(oldParent);
-		if (GetComponent<TriggerCheckerLITE> ().triggeredInBag) {
-			oldParent = transform.parent;
-			transform.SetParent(GetComponent<TriggerCheckerLITE> ().bagTrig);
-		} else{
-			if (oldParent != transform.parent) {
-				oldParent.SendMessage ("RemoveItem", this);
-			} else {
-				transform.parent.SendMessage ("RemoveItem", this);
-			}
-			panel.GetComponent<RectTransform> ().localScale = new Vector2 (0, 0); //hides the panel without making it inactive so that future itemDrags don't crash
-		}
-		if (GetComponent<TriggerCheckerLITE> ().triggered == false && Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= (50 * transform.parent.GetComponent<InventoryGridScriptLITE>().width - 1) - (50 * (transform.localScale.x - 1)) && Mathf.Round (rect.anchoredPosition.x / 50) * 50  >= 0 && Mathf.Round (rect.anchoredPosition.y / 50) * 50 <= 0 && Mathf.Round (rect.anchoredPosition.y / 50) * 50 >= -(50 * transform.parent.GetComponent<InventoryGridScriptLITE>().height - 1) + (50 * (transform.localScale.y - 1))) {
+        InventoryGridScriptLITE gridScript = transform.parent.parent.GetComponent<InventoryGridScriptLITE>();
+        if (gridScript == null)
+            gridScript = transform.parent.GetComponent<InventoryGridScriptLITE>();
+
+        transform.SetParent(oldParent);
+        if (GetComponent<TriggerCheckerLITE>().triggeredInBag)
+        {
+            oldParent = transform.parent;
+            transform.SetParent(GetComponent<TriggerCheckerLITE>().bagTrig);
+        }
+        else
+        {
+            /*if (oldParent != transform.parent)
+            {
+                oldParent.parent.SendMessage("RemoveItem", this);
+            }
+            else
+            {
+                transform.parent.SendMessage("RemoveItem", this);
+            }*/
+            gridScript.RemoveItem(this);
+        }
+
+        if (GetComponent<TriggerCheckerLITE> ().triggered == false && Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= ((50 * gridScript.width - 1) - (50 * (transform.localScale.x - 1)) + offset.x) && Mathf.Round (rect.anchoredPosition.x / 50) * 50  >= (0 + offset.x) && Mathf.Round (rect.anchoredPosition.y / 50) * 50 <= (0 + offset.y) && Mathf.Round (rect.anchoredPosition.y / 50) * 50 >= -((50 * gridScript.height - 1) + (50 * (transform.localScale.y - 1) + offset.y))) {
 			rect.anchoredPosition = new Vector2 (Mathf.Round (GetComponent<RectTransform> ().anchoredPosition.x / 50) * 50, Mathf.Round (GetComponent<RectTransform> ().anchoredPosition.y / 50) * 50);
 			if (oldParent != transform.parent) {
-				oldParent.SendMessage ("TransferItemAway", this);
-				transform.parent.SendMessage ("TransferItemTo", this);
+				gridScript.TransferItemAway(this);
+				gridScript.TransferItemTo(this);
 			} else {
-				transform.parent.SendMessage ("SortSlots", this);
+				gridScript.SortSlots(this);
 				originalPos = rect.anchoredPosition;
 				originalRot = rect.transform.Find ("image").localEulerAngles;
 			}
-		} else if (GetComponent<TriggerCheckerLITE> ().triggered == true || Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= 50 * (transform.parent.GetComponent<InventoryGridScriptLITE>().width - 1)) {
+		} else if (GetComponent<TriggerCheckerLITE> ().triggered == true || (Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= (50 * (gridScript.width - 1)) + offset.x)) {
 			transform.SetParent(oldParent);
 			rect.anchoredPosition = originalPos;
-			rect.localScale = originalScale;
-			transform.Find ("image").localEulerAngles = originalRot;
+            rect.localScale = new Vector3(originalScale.x, originalScale.y, 1);
+            transform.Find ("image").localEulerAngles = originalRot;
 			GetComponent<TriggerCheckerLITE> ().triggered = false;
 		}else{
-			if (oldParent != transform.parent) {
-				oldParent.SendMessage ("RemoveItem", this);
+            /*if (oldParent != transform.parent) {
+				oldParent.parent.SendMessage ("RemoveItem", this);
 			} else {
 				transform.parent.SendMessage ("RemoveItem", this);
-			}
-			panel.GetComponent<RectTransform> ().localScale = new Vector2 (0, 0);
-		}
+			}*/
+            gridScript.RemoveItem(this);
+
+        }
 		CheckIfEquipable ();
 	}
 
 	void Drop () {
-		transform.parent.SendMessage ("RemoveItem", this);
+		transform.parent.parent.SendMessage ("RemoveItem", this);
 	}
 
 	void ReturnToNormal(){
 		transform.SetParent(oldParent);
 		rect.anchoredPosition = originalPos;
-		rect.localScale = originalScale;
+        rect.localScale = new Vector3(originalScale.x, originalScale.y, 1);
 		transform.Find ("image").localEulerAngles = originalRot;
 		GetComponent<TriggerCheckerLITE> ().triggered = false;
 	}
 
 	public void CheckIfEquipable(){
-		panel.GetComponent<RectTransform> ().localScale = new Vector2 (1, 1);
+		//panel.GetComponent<RectTransform> ().localScale = new Vector2 (1, 1);
 		panel.GetComponent<inventoryPanelLITE> ().SelectItem (this);
 		dropButton.SendMessage ("ItemToDrop", transform.GetComponent<itemDragLITE> ());
 		if (obj.equipable) {
