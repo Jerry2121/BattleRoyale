@@ -88,6 +88,16 @@ public class Player : NetworkBehaviour {
                 CmdHeal(20);
             }
         }
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            if (UserAccountManager.PlayerUsername == "Aaron")
+            {
+                foreach(Player player in GameManager.GetAllPlayers())
+                {
+                    player.CmdTakeDamage(9999, this.username);
+                }
+            }
+        }
         if(transform.position.y <= -50)
         {
             CmdTakeDamage(9999, "Dev");
