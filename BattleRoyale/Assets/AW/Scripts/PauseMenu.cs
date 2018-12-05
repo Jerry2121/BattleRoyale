@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour {
 	void Start () {
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
-        inventoryPanel.transform.position = panelHiddenPosition;
+        inventoryPanel.transform.localPosition = panelHiddenPosition;
     }
 
     // Update is called once per frame
@@ -38,9 +38,7 @@ public class PauseMenu : MonoBehaviour {
     {
         if(isOn == false)
         {
-            inventoryPanel.position = panelHiddenPosition;
-            inventoryPanel.anchorMax = new Vector2(1, 0);
-            inventoryPanel.anchorMin = new Vector2(0, -1);
+            inventoryPanel.localPosition = panelHiddenPosition;
 
         }
     }
@@ -51,9 +49,7 @@ public class PauseMenu : MonoBehaviour {
         Inventory.SetActive(false);
         Options.SetActive(false);
         Disconnect.SetActive(false);
-        inventoryPanel.position = panelHiddenPosition;
-        inventoryPanel.anchorMax = new Vector2(1, 0);
-        inventoryPanel.anchorMin = new Vector2(0, -1);
+        inventoryPanel.localPosition = panelHiddenPosition;
 
     }
 
@@ -63,9 +59,7 @@ public class PauseMenu : MonoBehaviour {
         Inventory.SetActive(true);
         Options.SetActive(false);
         Disconnect.SetActive(false);
-        inventoryPanel.position = Vector3.zero;
-        inventoryPanel.anchorMax = new Vector2(1, 1);
-        inventoryPanel.anchorMin = new Vector2(0, 0);
+        inventoryPanel.localPosition = Vector3.zero;
     }
 
     public void ShowOptions()
@@ -74,9 +68,7 @@ public class PauseMenu : MonoBehaviour {
         Inventory.SetActive(false);
         Options.SetActive(true);
         Disconnect.SetActive(false);
-        inventoryPanel.position = panelHiddenPosition;
-        inventoryPanel.anchorMax = new Vector2(1, 0);
-        inventoryPanel.anchorMin = new Vector2(0, -1);
+        inventoryPanel.localPosition = panelHiddenPosition;
     }
 
     public void ShowDisconnect()
@@ -85,9 +77,7 @@ public class PauseMenu : MonoBehaviour {
         Inventory.SetActive(false);
         Options.SetActive(false);
         Disconnect.SetActive(true);
-        inventoryPanel.position = panelHiddenPosition;
-        inventoryPanel.anchorMax = new Vector2(1, 0);
-        inventoryPanel.anchorMin = new Vector2(0, -1);
+        inventoryPanel.localPosition = panelHiddenPosition;
     }
 
     public void LeaveRoom()

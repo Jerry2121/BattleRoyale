@@ -27,7 +27,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 	public bool[] slots;
 	public List<itemDragLITE> items;
-    Vector3 offset = new Vector3(-250, 150, 0);
+    Vector3 offset = new Vector3(0, 0, 0);
     [SerializeField]
     InventoryScriptLITE inventoryScriptLITE;
 
@@ -41,7 +41,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
         //grid.rectTransform.anchoredPosition = new Vector2(25 * width, 0);
 		//GetComponent<RectTransform>().sizeDelta = new Vector2 (50 * width, 50 * height);
 		GetComponent<BoxCollider>().size = new Vector3(grid.rectTransform.sizeDelta.x, grid.rectTransform.sizeDelta.y, 0.05f);
-		GetComponent<BoxCollider> ().center = new Vector2 (grid.rectTransform.sizeDelta.x / 2, -(grid.rectTransform.sizeDelta.y / 2));
+		GetComponent<BoxCollider> ().center = new Vector2 (grid.rectTransform.sizeDelta.x / 2, -(grid.rectTransform.sizeDelta.y / 2)) + new Vector2(-250, 150);
         // transform.position = new Vector2(34, -797);
         //transform.Translate(new Vector3(34, -797));
     }
@@ -62,6 +62,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
         itemClone.GetComponent<TriggerCheckerLITE> ().img.sprite = item.itemTexture;
 		itemClone.gameObject.SetActive (true);
 		itemClone.localScale = new Vector3 (item.width, item.height, 1);
+        itemClone.anchorMax = itemClone.anchorMin = new Vector2(0, 1);
 		itemClone.localPosition = new Vector3 (0, 0, 0);
 		itemClone.localEulerAngles = new Vector3 (0, 0, 0);
 		itemClone.anchoredPosition = new Vector2 (0, 0);
@@ -101,8 +102,8 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		if (fits == true) {
             //player.SendMessage ("DoesFit");
             inventoryScriptLITE.DoesFit();
-			items.Add (itemClone.GetComponent<itemDragLITE>());
 
+			items.Add (itemClone.GetComponent<itemDragLITE>());
 			itemClone.anchoredPosition = new Vector2 (topleftslot % width * 50, -Mathf.Floor (topleftslot / width) * 50);
 			itemClone.GetComponent<itemDragLITE> ().originalPos = itemClone.anchoredPosition;
 			itemClone.GetComponent<itemDragLITE> ().originalScale = itemClone.localScale;

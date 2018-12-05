@@ -20,7 +20,7 @@ public class itemDragLITE : MonoBehaviour
 	public GameObject equipButton;
 	public GameObject dropButton;
 
-    Vector3 offset = new Vector3(-250, 150, 0);
+    Vector3 offset = new Vector3(0, 0, 0);
 
 	void Awake(){
 		rect = GetComponent<RectTransform> ();
@@ -42,7 +42,7 @@ public class itemDragLITE : MonoBehaviour
 		originalPos = rect.anchoredPosition;
 		originalScale = rect.localScale;
 		originalRot = transform.Find ("image").localEulerAngles;
-		//transform.SetParent(transform.parent.parent);
+		transform.SetParent(transform.parent.parent);
 		transform.SetAsLastSibling();
 	}
 
@@ -81,7 +81,7 @@ public class itemDragLITE : MonoBehaviour
             gridScript.RemoveItem(this);
         }
 
-        if (GetComponent<TriggerCheckerLITE> ().triggered == false && Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= ((50 * gridScript.width - 1) - (50 * (transform.localScale.x - 1)) + offset.x) && Mathf.Round (rect.anchoredPosition.x / 50) * 50  >= (0 + offset.x) && Mathf.Round (rect.anchoredPosition.y / 50) * 50 <= (0 + offset.y) && Mathf.Round (rect.anchoredPosition.y / 50) * 50 >= -((50 * gridScript.height - 1) + (50 * (transform.localScale.y - 1) + offset.y))) {
+        if (GetComponent<TriggerCheckerLITE> ().triggered == false && Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= (50 * gridScript.width - 1) - (50 * (transform.localScale.x - 1)) && Mathf.Round (rect.anchoredPosition.x / 50) * 50  >= 0 && Mathf.Round (rect.anchoredPosition.y / 50) * 50 <= 0 && Mathf.Round (rect.anchoredPosition.y / 50) * 50 >= -(50 * gridScript.height - 1) + (50 * (transform.localScale.y - 1))) {
 			rect.anchoredPosition = new Vector2 (Mathf.Round (GetComponent<RectTransform> ().anchoredPosition.x / 50) * 50, Mathf.Round (GetComponent<RectTransform> ().anchoredPosition.y / 50) * 50);
 			if (oldParent != transform.parent) {
 				gridScript.TransferItemAway(this);
