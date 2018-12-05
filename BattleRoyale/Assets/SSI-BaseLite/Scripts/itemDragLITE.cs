@@ -20,8 +20,6 @@ public class itemDragLITE : MonoBehaviour
 	public GameObject equipButton;
 	public GameObject dropButton;
 
-    Vector3 offset = new Vector3(0, 0, 0);
-
 	void Awake(){
 		rect = GetComponent<RectTransform> ();
 	}
@@ -46,9 +44,9 @@ public class itemDragLITE : MonoBehaviour
 		transform.SetAsLastSibling();
 	}
 
-	public void OnDrag(UnityEngine.EventSystems	.BaseEventData eventData)
+	public void OnDrag(BaseEventData eventData)
 	{
-		var pointerData = eventData as UnityEngine.EventSystems.PointerEventData;
+		var pointerData = eventData as PointerEventData;
 		pointerData.useDragThreshold = true;
 
 		var currentPosition = rect.anchoredPosition;
@@ -86,12 +84,13 @@ public class itemDragLITE : MonoBehaviour
 			if (oldParent != transform.parent) {
 				gridScript.TransferItemAway(this);
 				gridScript.TransferItemTo(this);
-			} else {
+                transform.SetParent(oldParent);
+            } else {
 				gridScript.SortSlots(this);
 				originalPos = rect.anchoredPosition;
 				originalRot = rect.transform.Find ("image").localEulerAngles;
 			}
-		} else if (GetComponent<TriggerCheckerLITE> ().triggered == true || (Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= (50 * (gridScript.width - 1)) + offset.x)) {
+		} else if (GetComponent<TriggerCheckerLITE> ().triggered == true || Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= (50 * (gridScript.width - 1))) {
 			transform.SetParent(oldParent);
 			rect.anchoredPosition = originalPos;
             rect.localScale = new Vector3(originalScale.x, originalScale.y, 1);

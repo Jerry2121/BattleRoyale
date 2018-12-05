@@ -27,7 +27,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 	public bool[] slots;
 	public List<itemDragLITE> items;
-    Vector3 offset = new Vector3(0, 0, 0);
+
     [SerializeField]
     InventoryScriptLITE inventoryScriptLITE;
 
@@ -52,7 +52,9 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void GiveItem (itemScriptLITE item) {
-		bool fits = false;
+        Debug.Log("GiveItem");
+
+        bool fits = false;
 		int topleftslot = 0;
 		RectTransform itemClone = Instantiate (invObjPref);
 		itemClone.GetComponent<itemDragLITE> ().obj = item;
@@ -130,7 +132,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 			for (int i = 0; i < slotsWidth; i++) {
 				for (int j = 0; j < slotsHeight; j++) {
-					slots [(int)(slotPosWidth + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = false;
+					slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = false;
 				}
 			}
 
@@ -142,11 +144,11 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 			for (int i = 0; i < slotsWidth2; i++) {
 				for (int j = 0; j < slotsHeight2; j++) {
 
-					if (slots [(int)(slotPosWidth2 + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight2 + (offset.y / 50)) * width)] == true) {
+					if (slots [(int)slotPosWidth2 + i + (j * width) + (int)(slotPosHeight2 * width)] == true) {
 						fits = false;
 						for (int x = 0; x < slotsWidth; x++) {
 							for (int y = 0; y < slotsHeight; y++) {
-								slots [(int)(slotPosWidth + (offset.x / 50)) + x + (y * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = true;
+								slots [(int)slotPosWidth + x + (y * width) + (int)(slotPosHeight * width)] = true;
 							}
 						}
 						pos.SendMessage ("ReturnToNormal");
@@ -158,7 +160,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 			if (fits) {
 				for (int i = 0; i < slotsWidth2; i++) {
 					for (int j = 0; j < slotsHeight2; j++) {
-						slots [(int)(slotPosWidth2 + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight2 + (offset.y / 50)) * width)] = true;
+						slots [(int)slotPosWidth2 + i + (j * width) + (int)(slotPosHeight2 * width)] = true;
 					}
 				}
 			}
@@ -168,7 +170,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	}
 
 	public void TransferItemAway(itemDragLITE pos){
-		float slotPosWidth = Mathf.Round(pos.originalPos.x / 50);
+        float slotPosWidth = Mathf.Round(pos.originalPos.x / 50);
 		float slotPosHeight = -Mathf.Round(pos.originalPos.y / 50);
 		float slotsWidth = Mathf.Round(pos.originalScale.x);
 		float slotsHeight = Mathf.Round(pos.originalScale.y);
@@ -181,21 +183,20 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 	}
 
 	public void TransferItemTo(itemDragLITE pos){
-		float slotPosWidth = Mathf.Round(pos.rect.anchoredPosition.x / 50);
+        float slotPosWidth = Mathf.Round(pos.rect.anchoredPosition.x / 50);
 		float slotPosHeight = -Mathf.Round(pos.rect.anchoredPosition.y / 50);
 		float slotsWidth = Mathf.Round(pos.rect.localScale.x);
 		float slotsHeight = Mathf.Round(pos.rect.localScale.y);
 		items.Add (pos.GetComponent<itemDragLITE>());
 		for (int i = 0; i < slotsWidth; i++) {
 			for (int j = 0; j < slotsHeight; j++) {
-				slots [(int)(slotPosWidth + (offset.x/50)) + i + (j * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = true;
-                Debug.Log("190");
+				slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = true;
 			}
 		}
 	}
 
 	public void RemoveItem(itemDragLITE pos){
-		items.Remove (pos.GetComponent<itemDragLITE> ());
+        items.Remove (pos.GetComponent<itemDragLITE> ());
 
 		float slotsWidth = pos.obj.width;
 		float slotsHeight = pos.obj.height;
@@ -213,7 +214,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 
 		for (int i = 0; i < slotsWidth; i++) {
 			for (int j = 0; j < slotsHeight; j++) {
-				slots [(int)(slotPosWidth + (offset.x / 50)) + i + (j * width) + (int)((slotPosHeight + (offset.y / 50)) * width)] = false;
+				slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = false;
 			}
 		}
 		freeSpaces += (int)(pos.obj.width * pos.obj.height);
