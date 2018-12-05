@@ -14,7 +14,9 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     public string username = "Loading...";
 
+    [HideInInspector]
     public GameObject outsideOfZoneImage;
+    
 
     [SerializeField]
     Behaviour[] disableOnDeath;
@@ -32,6 +34,11 @@ public class Player : NetworkBehaviour {
     private GameObject spawnEffect;
     [SerializeField]
     private GameObject deathEffect;
+
+    public float rayLength = 2;
+
+    [SerializeField]
+    LayerMask mask;
 
     public int kills;
     public int deaths;
@@ -77,6 +84,21 @@ public class Player : NetworkBehaviour {
     {
         if (!isLocalPlayer)
             return;
+        
+        RaycastHit hit;
+        Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
+
+        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, mask) && !PauseMenu.isOn)
+        {
+            Debug.Log("Player -- Update: Hit a weapon item");
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Pressed E");
+                WeaponManager weaponManager = GetComponent<WeaponManager>();
+                hit.transform.GetComponent<WeaponItem>().EquipWeapon(weaponManager, transform.name);
+            }
+        }
+
         if (Debug.isDebugBuild)
         {
             if (Input.GetKeyDown(KeyCode.K))
@@ -92,13 +114,13 @@ public class Player : NetworkBehaviour {
         {
             if (UserAccountManager.PlayerUsername == "Aaron")
             {
-                foreach(Player player in GameManager.GetAllPlayers())
+                foreach (Player player in GameManager.GetAllPlayers())
                 {
                     player.CmdTakeDamage(9999, this.username);
                 }
             }
         }
-        if(transform.position.y <= -50)
+        if (transform.position.y <= -50)
         {
             CmdTakeDamage(9999, "Dev");
         }
@@ -113,6 +135,7 @@ public class Player : NetworkBehaviour {
         }
         else
             zoneDamageTimer = 1f;
+
     }
 
     public void SetDefaults()

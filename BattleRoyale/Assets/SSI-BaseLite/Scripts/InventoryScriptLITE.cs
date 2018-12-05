@@ -94,6 +94,10 @@ public class InventoryScriptLITE : MonoBehaviour {
 			if (Input.GetKeyUp (useKey)) {
 				doesFit = false;
 				itemScriptLITE temp = hit.transform.GetComponent<itemScriptLITE> ();
+
+                if (temp == null)
+                    return;
+
                 //foreach (InventoryGridScript i in bags) {
                 Debug.Log(bag.name);
                 Debug.Log(temp.name);

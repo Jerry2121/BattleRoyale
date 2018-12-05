@@ -55,6 +55,7 @@ public class PlayerUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
+            pauseMenu.GetComponent<PauseMenu>().ShowResume();
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {

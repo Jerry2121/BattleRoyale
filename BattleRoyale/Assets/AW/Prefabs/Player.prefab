@@ -832,6 +832,10 @@ MonoBehaviour:
     type: 2}
   deathEffect: {fileID: 1039685886307084, guid: 8a75ae6715645114fa74e9d77d1ab828,
     type: 2}
+  rayLength: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 16777216
   kills: 0
   deaths: 0
 --- !u!114 &114176612750664552
