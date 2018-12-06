@@ -4,8 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-Assets/AJT/JT2/LightingData.asset
-Assets/AJT/JT2/LightingData.asset.meta
+BattleRoyale/Assets/AJT/JT2/LightingData.asset
+BattleRoyale/Assets/AJT/JT2/LightingData.asset.meta
 
 # Visual Studio cache directory
 .vs/
