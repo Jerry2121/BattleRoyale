@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class OptionsMenuNew : MonoBehaviour {
 
-	// toggle buttons
+    // toggle buttons
+    public GameObject MusicPlayer;
 	public GameObject fullscreentext;
 	public GameObject shadowofftext;
 	public GameObject shadowofftextLINE;
@@ -199,6 +200,7 @@ public class OptionsMenuNew : MonoBehaviour {
 	public void  Update (){
 		sliderValue = musicSlider.GetComponent<Slider>().value;
 		sliderValueSFX = sfxSlider.GetComponent<Slider>().value;
+        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
 		sliderValueXSensitivity = sensitivityXSlider.GetComponent<Slider>().value;
 		sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
 		sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
@@ -225,11 +227,11 @@ public class OptionsMenuNew : MonoBehaviour {
     }
 
 	public void  MusicSlider (){
-		PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+        AudioListener.volume = sliderValue;
 	}
 
 	public void  SFXSlider (){
-		PlayerPrefs.SetFloat("SFXVolume", sliderValueSFX);
+        MusicPlayer.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFXVolume");
 	}
 
 	public void  SensitivityXSlider (){
