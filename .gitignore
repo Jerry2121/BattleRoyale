@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/AJT/JT2/LightingData.asset
 
 # Visual Studio cache directory
 .vs/
