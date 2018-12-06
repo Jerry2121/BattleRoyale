@@ -96,7 +96,9 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 1
   m_OfflineScene: MainMenu
   m_OnlineScene: AW
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1471881964070742, guid: 4bd41cdf6f9c09e49b6a936b0eb2b4c6, type: 2}
+  - {fileID: 1424222808341810, guid: 8165472cbc9098040bca00a43584c653, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:

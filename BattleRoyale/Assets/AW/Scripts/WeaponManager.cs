@@ -115,6 +115,7 @@ public class WeaponManager : NetworkBehaviour {
 
         CmdOnWeaponChanged(weaponNum);
         Utility.SetLayerRecursively(weaponIns, LayerMask.NameToLayer(weaponLayerName));
+        return;
     }
 
     public PlayerWeapon GetCurrentWeapon()
@@ -132,7 +133,7 @@ public class WeaponManager : NetworkBehaviour {
     /// </summary>
     /// <param name="_weapon"></param>
     /// <param name="_weaponNum"></param>
-    public void EquipWeaponLocal(PlayerWeapon _weapon, int _weaponNum)
+    public void EquipWeapon(PlayerWeapon _weapon, int _weaponNum)
     {
         /*if(isLocalPlayer == false)
         {
@@ -153,13 +154,13 @@ public class WeaponManager : NetworkBehaviour {
         if(_weaponNum == 1)
         {
             primaryWeapon = _weapon;
-            if (currentWeaponNum == 1)
+            if (currentWeaponNum == 1 && isLocalPlayer)
                 SwitchWeaponLocal(primaryWeapon);
         }
         else if(_weaponNum == 2)
         {
             secondaryWeapon = _weapon;
-            if (currentWeaponNum == 2)
+            if (currentWeaponNum == 2 && isLocalPlayer)
                 SwitchWeaponLocal(secondaryWeapon);
         }
         else

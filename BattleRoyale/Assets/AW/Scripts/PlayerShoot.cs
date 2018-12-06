@@ -76,6 +76,11 @@ public class PlayerShoot : NetworkBehaviour {
     [ClientRpc]
     void RpcDoShootEffect()
     {
+        if(weaponManager.GetCurrentGraphics() == null)
+        {
+            Debug.LogError("PlayerShoot -- RpcDoShootEffect: CurrentGraphics is null!");
+            return;
+        }
         weaponManager.GetCurrentGraphics().muzzleFlash.Play();
     }
 

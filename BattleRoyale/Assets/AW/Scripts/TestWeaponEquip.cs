@@ -12,7 +12,7 @@ public class TestWeaponEquip : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.L) && isLocalPlayer)
         {
             WeaponManager weaponManager = GetComponent<WeaponManager>();
-            weaponManager.EquipWeaponLocal(testWeapon, weaponManager.selectedWeapon);
+            weaponManager.EquipWeapon(testWeapon, weaponManager.selectedWeapon);
             CmdOnTestWeaponEquip();
         }
 	}
@@ -29,7 +29,7 @@ public class TestWeaponEquip : NetworkBehaviour {
         if(isLocalPlayer == false)
         {
             WeaponManager weaponManager = GetComponent<WeaponManager>();
-            weaponManager.EquipWeaponLocal(testWeapon, weaponManager.selectedWeapon);
+            weaponManager.EquipWeapon(testWeapon, weaponManager.selectedWeapon);
         }
     }
 }

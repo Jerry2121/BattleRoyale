@@ -6,39 +6,35 @@ using UnityEngine.Networking;
 public class WeaponItem : NetworkBehaviour {
 
     public PlayerWeapon weapon;
+    NetworkIdentity networkIdentity;
 
 	// Use this for initialization
 	void Start () {
+        networkIdentity = GetComponent<NetworkIdentity>();
+        
         GameObject gfx = Instantiate(weapon.graphics, this.transform, false);
-	}
+        this.transform.localRotation = Quaternion.Euler(weapon.graphics.GetComponent<WeaponGraphics>().rotationOffset);
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public void EquipWeapon(WeaponManager _weaponManager, string _playerID)
+    public void EquipWeapon(Player _player, string _playerID)
     {
         Debug.Log("WeaponItem -- EquipWeapon");
 
-        //WeaponManager weaponManager = GetComponent<WeaponManager>();
-        //weaponManager.EquipWeaponLocal(weapon, weaponManager.selectedWeapon);
-        CmdOnWeaponEquip(_playerID);
+        //Commands can only be called on player objects, so call on the player
+        _player.CmdEquipWeaponFromItem(netId);
     }
-
-    [Command]
-    void CmdOnWeaponEquip(string _playerID)
+    
+    public void OnWeaponEquip(string _playerID)
     {
-        RpcOnWeaponEquip(_playerID);
-    }
-
-    [ClientRpc]
-    void RpcOnWeaponEquip(string _playerID)
-    {
-        Debug.Log("WeaponItem -- RpcEquipWeapon");
+        Debug.Log("WeaponItem -- OnWeaponEquip");
         Player player = GameManager.GetPlayer(_playerID);
         WeaponManager weaponManager = player.gameObject.GetComponent<WeaponManager>();
-        weaponManager.EquipWeaponLocal(weapon, weaponManager.selectedWeapon);
+        weaponManager.EquipWeapon(weapon, weaponManager.selectedWeapon);
         Destroy(this.gameObject);
     }
 

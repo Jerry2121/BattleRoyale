@@ -110,5 +110,17 @@ public class GameManager : MonoBehaviour {
         GUILayout.EndVertical();
         GUILayout.EndArea();
     }*/
+    public static Player GetLocalPlayer()
+    {
+        foreach(Player player in players.Values)
+        {
+            if (player.isLocalPlayer)
+            {
+                return player;
+            }
+        }
+        return null;
+    }
+
     #endregion
 }

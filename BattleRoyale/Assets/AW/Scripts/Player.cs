@@ -94,8 +94,8 @@ public class Player : NetworkBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Pressed E");
-                WeaponManager weaponManager = GetComponent<WeaponManager>();
-                hit.transform.GetComponent<WeaponItem>().EquipWeapon(weaponManager, transform.name);
+                //hit.transform.GetComponent<WeaponItem>().OnWeaponEquip(transform.name);
+                CmdEquipWeaponFromItem(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
             }
         }
 
@@ -136,6 +136,18 @@ public class Player : NetworkBehaviour {
         else
             zoneDamageTimer = 1f;
 
+    }
+
+    [Command]
+    public void CmdEquipWeaponFromItem(NetworkInstanceId _netID)
+    {
+        RpcEquipWeaponFromItem(_netID);
+    }
+    [ClientRpc]
+    void RpcEquipWeaponFromItem(NetworkInstanceId _netID)
+    {
+        GameObject itemGO = ClientScene.FindLocalObject(_netID);
+        itemGO.GetComponent<WeaponItem>().OnWeaponEquip(transform.name);
     }
 
     public void SetDefaults()

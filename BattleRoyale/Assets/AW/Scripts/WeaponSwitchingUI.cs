@@ -113,6 +113,7 @@ public class WeaponSwitchingUI : MonoBehaviour {
             selectedSlot = 2;
         }
 
+        weaponManager.selectedWeapon = selectedSlot;
         PlayerWeapon selectedWeapon = weaponManager.GetWeaponFromInt(selectedSlot);
 
         if (selectedWeapon != null)
@@ -122,12 +123,12 @@ public class WeaponSwitchingUI : MonoBehaviour {
 
     public void ChangeWeaponInSlot(PlayerWeapon _weapon)
     {
-        if(selectedSlot == 1)
+        if(weaponManager.selectedWeapon == 1)
         {
             weaponIcon1.sprite = _weapon.sprite;
             weaponName1.text = _weapon.name;
         }
-        else if(selectedSlot == 2)
+        else if(weaponManager.selectedWeapon == 2)
         {
             weaponName2.text = _weapon.name;
             weaponIcon2.sprite = _weapon.sprite;
