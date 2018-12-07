@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0aa93265a8861e14b8e7af1c658fedac
+guid: 19f40c4afbdb9614892021bfc91ef2ad
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,8 +8,13 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: stairs_collider
-  externalObjects: {}
+    4300000: wall_room_separation
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 07a044896a4e2ae4c876dcd5231a9da8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

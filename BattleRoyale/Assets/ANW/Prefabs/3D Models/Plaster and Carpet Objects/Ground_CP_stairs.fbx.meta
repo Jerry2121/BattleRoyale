@@ -1,15 +1,64 @@
 fileFormatVersion: 2
-guid: 0aa93265a8861e14b8e7af1c658fedac
+guid: 9e67a8cec7d93b04595ffd7348697e11
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: ground-carpet-and-ceiling-plaster
+    100002: //RootNode
+    100004: ground_CP_stairs
+    100006: stairs_basic
+    100008: stairs_collider
+    100010: wall_one_sided
+    100012: wall_one_sided_door
+    100014: wall_one_sided_window
+    100016: wall_one_sided_window_left
+    100018: wall_one_sided_window_right
+    400000: ground-carpet-and-ceiling-plaster
+    400002: //RootNode
+    400004: ground_CP_stairs
+    400006: stairs_basic
+    400008: stairs_collider
+    400010: wall_one_sided
+    400012: wall_one_sided_door
+    400014: wall_one_sided_window
+    400016: wall_one_sided_window_left
+    400018: wall_one_sided_window_right
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
+    2300000: ground-carpet-and-ceiling-plaster
+    2300002: ground_CP_stairs
+    2300004: stairs_basic
+    2300006: stairs_collider
+    2300008: wall_one_sided
+    2300010: wall_one_sided_door
+    2300012: wall_one_sided_window
+    2300014: wall_one_sided_window_left
+    2300016: wall_one_sided_window_right
+    2300018: //RootNode
+    3300000: ground-carpet-and-ceiling-plaster
+    3300002: ground_CP_stairs
+    3300004: stairs_basic
+    3300006: stairs_collider
+    3300008: wall_one_sided
+    3300010: wall_one_sided_door
+    3300012: wall_one_sided_window
+    3300014: wall_one_sided_window_left
+    3300016: wall_one_sided_window_right
+    3300018: //RootNode
     4300000: stairs_collider
-  externalObjects: {}
+    4300002: ground_CP_stairs
+    4300004: wall_one_sided_window_left
+    4300006: wall_one_sided_window_right
+    4300008: stairs_basic
+    4300010: wall_one_sided
+    4300012: wall_one_sided_door
+    4300014: wall_one_sided_window
+    4300016: ground-carpet-and-ceiling-plaster
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: f5cf3efa8526eae42bb6c06d07ddfc52, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

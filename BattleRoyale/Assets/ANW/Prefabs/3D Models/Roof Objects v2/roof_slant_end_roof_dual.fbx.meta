@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae405896abc918545b229f075a3843e0
+guid: 6bbda5496f2454b448ce43dbb36314e6
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Roof_Slant
+    4300000: Roof_Slant_endroof_dual
   externalObjects:
   - first:
       type: UnityEngine:Material

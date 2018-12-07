@@ -1,15 +1,40 @@
 fileFormatVersion: 2
-guid: 0aa93265a8861e14b8e7af1c658fedac
+guid: 01084c0bd1d753242bf8e8e8ca600bee
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: HouseExteriorEndPort
+    100004: HouseExteriorEndSlant
+    100006: Roof_Slant_endroof_right
+    100008: RoofSlant
     400000: //RootNode
+    400002: HouseExteriorEndPort
+    400004: HouseExteriorEndSlant
+    400006: Roof_Slant_endroof_right
+    400008: RoofSlant
     2100000: No Name
     2300000: //RootNode
+    2300002: HouseExteriorEndPort
+    2300004: HouseExteriorEndSlant
+    2300006: Roof_Slant_endroof_right
+    2300008: RoofSlant
     3300000: //RootNode
-    4300000: stairs_collider
-  externalObjects: {}
+    3300002: HouseExteriorEndPort
+    3300004: HouseExteriorEndSlant
+    3300006: Roof_Slant_endroof_right
+    3300008: RoofSlant
+    4300000: Roof_Slant
+    4300002: RoofSlant
+    4300004: HouseExteriorEndPort
+    4300006: HouseExteriorEndSlant
+    4300008: Roof_Slant_endroof_right
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c9425e27d3df3c14f985ff616713f5d7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

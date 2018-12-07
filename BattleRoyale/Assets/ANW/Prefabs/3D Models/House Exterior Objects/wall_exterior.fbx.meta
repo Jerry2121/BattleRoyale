@@ -4,11 +4,55 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: groundcover
+    100004: groundcover_corner
+    100006: pillar_one_sided
+    100008: wall_half_one_sided
+    100010: wall_one_sided
+    100012: wall_one_sided_door
+    100014: wall_one_sided_window
+    100016: wall_one_sided_window_left
+    100018: wall_one_sided_window_right
     400000: //RootNode
+    400002: groundcover
+    400004: groundcover_corner
+    400006: pillar_one_sided
+    400008: wall_half_one_sided
+    400010: wall_one_sided
+    400012: wall_one_sided_door
+    400014: wall_one_sided_window
+    400016: wall_one_sided_window_left
+    400018: wall_one_sided_window_right
     2100000: No Name
     2300000: //RootNode
+    2300002: groundcover
+    2300004: groundcover_corner
+    2300006: pillar_one_sided
+    2300008: wall_half_one_sided
+    2300010: wall_one_sided
+    2300012: wall_one_sided_door
+    2300014: wall_one_sided_window
+    2300016: wall_one_sided_window_left
+    2300018: wall_one_sided_window_right
     3300000: //RootNode
+    3300002: groundcover
+    3300004: groundcover_corner
+    3300006: pillar_one_sided
+    3300008: wall_half_one_sided
+    3300010: wall_one_sided
+    3300012: wall_one_sided_door
+    3300014: wall_one_sided_window
+    3300016: wall_one_sided_window_left
+    3300018: wall_one_sided_window_right
     4300000: wall_one_sided
+    4300002: wall_half_one_sided
+    4300004: groundcover_corner
+    4300006: groundcover
+    4300008: wall_one_sided_window
+    4300010: wall_one_sided_window_right
+    4300012: pillar_one_sided
+    4300014: wall_one_sided_door
+    4300016: wall_one_sided_window_left
   externalObjects:
   - first:
       type: UnityEngine:Material
