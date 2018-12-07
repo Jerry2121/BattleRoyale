@@ -62,7 +62,7 @@ public class UserAccountManager : MonoBehaviour {
         if (Debug.isDebugBuild)
             Debug.Log("User " + PlayerUsername + " has logged in");
 
-        SceneManager.LoadScene(loggedInSceneName);
+        GameObject.Find("LevelChanger").GetComponent<LevelChanger>().FadeToLevel(1);
     }
 
     IEnumerator GetData(OnDataReceivedCallback _onDataReceivedCallback)
