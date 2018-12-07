@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class TestWeaponSpawn : NetworkBehaviour {
+public class ItemSpawn : NetworkBehaviour {
+
+    public GameObject itemPrefab;
 
     NetworkManager networkManager;
     NetworkDiscoveryScript networkDiscoveryScript;
-    public GameObject weaponItem;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
+
+        //Only Instantiate objects on the server, then tell the server to spawn it on all clients
         if (networkDiscoveryScript.isServer)
         {
-            Utility.InstantiateOverNetwork(weaponItem, this.transform.position, Quaternion.identity);
+            Utility.InstantiateOverNetwork(itemPrefab, this.transform.position, Quaternion.identity);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    }
 }

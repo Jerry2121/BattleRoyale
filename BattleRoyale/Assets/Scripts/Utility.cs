@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Utility {
 
@@ -61,6 +62,13 @@ public class Utility {
     public static string ValuesToData (int kills, int deaths)
     {
         return UserAccountManager.KillCountDataSymbol + kills + "/" + UserAccountManager.DeathCountDataSymbol + deaths + "/";
+    }
+
+    public static void InstantiateOverNetwork(GameObject _obj, Vector3 _position, Quaternion _rotation)
+    {
+        GameObject GO = Object.Instantiate(_obj, _position, _rotation);
+        if(NetworkManager.singleton != null)
+            NetworkServer.Spawn(GO);
     }
 
 }
