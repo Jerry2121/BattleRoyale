@@ -26,7 +26,7 @@ public class WeaponItem : NetworkBehaviour {
         Debug.Log("WeaponItem -- EquipWeapon");
 
         //Commands can only be called on player objects, so call on the player
-        _player.CmdEquipWeaponFromItem(netId);
+        _player.itemInteractions.CmdEquipWeaponFromItem(netId);
     }
     
     public void OnWeaponEquip(string _playerID)

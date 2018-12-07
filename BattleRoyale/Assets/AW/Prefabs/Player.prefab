@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 114220239145788432}
   - component: {fileID: 114637508568074558}
   - component: {fileID: 114176612750664552}
+  - component: {fileID: 114248574998089730}
   - component: {fileID: 114359718289555516}
   - component: {fileID: 153619004607417980}
   - component: {fileID: 114351947472660616}
@@ -824,6 +825,7 @@ MonoBehaviour:
   - {fileID: 114058563100952288}
   - {fileID: 114637508568074558}
   - {fileID: 114220239145788432}
+  - {fileID: 114248574998089730}
   disableGameObjectsOnDeath:
   - {fileID: 1980176510306008}
   - {fileID: 1587420116695816}
@@ -835,6 +837,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 16777216
+  itemInteractions: {fileID: 114248574998089730}
   kills: 0
   deaths: 0
 --- !u!114 &114176612750664552
@@ -861,6 +864,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 20300667992484702}
   cameraRotationLimit: 85
+--- !u!114 &114248574998089730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586728422693558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ab1ef447a7098449a0ece9a0e328ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114292400422521118
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEditor;
 
-public class InventoryScriptLITE : MonoBehaviour {
+public class InventoryScriptLITE : NetworkBehaviour {
 
     //this manages all of the inventory based interactions (ie equipping guns and picking up items)
 	public KeyCode inventoryKey = KeyCode.Tab;
@@ -103,6 +104,7 @@ public class InventoryScriptLITE : MonoBehaviour {
                 Debug.Log(temp.name);
 				if (bag.freeSpaces >= temp.width * temp.height) {
                     bag.GiveItem(temp);//bag.SendMessage ("GiveItem", temp);
+                    player.GetComponent<Player>().itemInteractions.CmdTakeItem(temp.GetComponent<NetworkIdentity>().netId);
 				} 
 				if (doesFit == false) {
 					StartCoroutine ("NotEnough");

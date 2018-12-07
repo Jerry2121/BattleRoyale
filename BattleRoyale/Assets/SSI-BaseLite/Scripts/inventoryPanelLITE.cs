@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class inventoryPanelLITE : MonoBehaviour {
 
@@ -10,12 +11,12 @@ public class inventoryPanelLITE : MonoBehaviour {
 	[TextArea(3, 10)]
 	public string itemDescription;
 	public Image img;
-	public Text itemName;
-	public Text itemDesc;
+	public TextMeshProUGUI itemName;
+	public TextMeshProUGUI itemDesc;
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<RectTransform> ().localScale = new Vector2 (0, 0);
+		//GetComponent<RectTransform> ().localScale = new Vector2 (0, 0);
 	}
 
 	public void SelectItem(itemDragLITE item){

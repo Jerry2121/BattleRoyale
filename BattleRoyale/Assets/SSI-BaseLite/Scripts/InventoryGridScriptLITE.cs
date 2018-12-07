@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class InventoryGridScriptLITE : MonoBehaviour {
+public class InventoryGridScriptLITE : NetworkBehaviour {
 
 	public Transform player;
 
@@ -209,7 +210,7 @@ public class InventoryGridScriptLITE : MonoBehaviour {
 		pos.transform.eulerAngles = new Vector3 (0, 0, 0);
 		pos.obj.GetComponent<Rigidbody>().velocity = player.TransformDirection(Vector3.forward * 2);
 		pos.obj.transform.SetParent(null);
-
+        GameManager.GetLocalPlayer().itemInteractions.CmdDropItem(pos.obj.GetComponent<NetworkIdentity>().netId, pos.obj.transform.position);
 
 
 		for (int i = 0; i < slotsWidth; i++) {

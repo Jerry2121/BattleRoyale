@@ -40,6 +40,8 @@ public class Player : NetworkBehaviour {
     [SerializeField]
     LayerMask mask;
 
+    public PlayerItemInteractions itemInteractions;
+
     public int kills;
     public int deaths;
 
@@ -95,7 +97,7 @@ public class Player : NetworkBehaviour {
             {
                 Debug.Log("Pressed E");
                 //hit.transform.GetComponent<WeaponItem>().OnWeaponEquip(transform.name);
-                CmdEquipWeaponFromItem(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
+                itemInteractions.CmdEquipWeaponFromItem(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
             }
         }
 
@@ -136,18 +138,6 @@ public class Player : NetworkBehaviour {
         else
             zoneDamageTimer = 1f;
 
-    }
-
-    [Command]
-    public void CmdEquipWeaponFromItem(NetworkInstanceId _netID)
-    {
-        RpcEquipWeaponFromItem(_netID);
-    }
-    [ClientRpc]
-    void RpcEquipWeaponFromItem(NetworkInstanceId _netID)
-    {
-        GameObject itemGO = ClientScene.FindLocalObject(_netID);
-        itemGO.GetComponent<WeaponItem>().OnWeaponEquip(transform.name);
     }
 
     public void SetDefaults()
