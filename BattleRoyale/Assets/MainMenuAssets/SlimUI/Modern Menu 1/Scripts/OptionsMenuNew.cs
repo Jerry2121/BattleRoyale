@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class OptionsMenuNew : MonoBehaviour {
 
     // toggle buttons
+   [Header("Buttons and Audio Sources")]
     public GameObject MusicPlayer;
 	public GameObject fullscreentext;
 	public GameObject shadowofftext;
@@ -40,6 +41,7 @@ public class OptionsMenuNew : MonoBehaviour {
 	public GameObject aa8xtextLINE;
 
 	// sliders
+    [Header("Sliders")]
 	public GameObject musicSlider;
 	public GameObject sfxSlider;
 	public GameObject sensitivityXSlider;
@@ -74,8 +76,10 @@ public class OptionsMenuNew : MonoBehaviour {
 
 		// check slider values
 		musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+        MusicSlider();
 		sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
-		sensitivityXSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("XSensitivity");
+        SFXSlider();
+        sensitivityXSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("XSensitivity");
 		sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 		mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
@@ -198,13 +202,15 @@ public class OptionsMenuNew : MonoBehaviour {
 	}
 
 	public void  Update (){
-		sliderValue = musicSlider.GetComponent<Slider>().value;
-		sliderValueSFX = sfxSlider.GetComponent<Slider>().value;
-        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
+		//sliderValue = musicSlider.GetComponent<Slider>().value;
+		//sliderValueSFX = sfxSlider.GetComponent<Slider>().value;
+        //PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
 		sliderValueXSensitivity = sensitivityXSlider.GetComponent<Slider>().value;
 		sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
 		sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
-	}
+        musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+        sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
+    }
 
 	public void  FullScreen (){
 		Screen.fullScreen = !Screen.fullScreen;
@@ -227,10 +233,12 @@ public class OptionsMenuNew : MonoBehaviour {
     }
 
 	public void  MusicSlider (){
-        AudioListener.volume = sliderValue;
+        PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
+        AudioListener.volume = PlayerPrefs.GetFloat("MusicVolume");
 	}
 
 	public void  SFXSlider (){
+        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
         MusicPlayer.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFXVolume");
 	}
 
