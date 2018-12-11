@@ -42,6 +42,9 @@ public class Player : NetworkBehaviour {
 
     public PlayerItemInteractions itemInteractions;
 
+    [SerializeField]
+    GameObject SpectCameraPrefab;
+
     public int kills;
     public int deaths;
 
@@ -255,7 +258,7 @@ public class Player : NetworkBehaviour {
             StartCoroutine(Respawn());
         else
         {
-            //?
+            StartCoroutine(CreateSpectatorCam());
         }
     }
 
@@ -274,6 +277,12 @@ public class Player : NetworkBehaviour {
 
         if (Debug.isDebugBuild)
             Debug.Log(transform.name + " respawned");
+    }
+
+    IEnumerator CreateSpectatorCam()
+    {
+        yield return new WaitForSeconds(1f);
+        Instantiate(SpectCameraPrefab, transform.position, transform.rotation);
     }
 
     public float GetHealthPercentage()

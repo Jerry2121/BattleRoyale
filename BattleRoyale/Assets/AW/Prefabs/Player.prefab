@@ -838,6 +838,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16777216
   itemInteractions: {fileID: 114248574998089730}
+  SpectCameraPrefab: {fileID: 1970254996055792, guid: 1ac97498edcd93646a5a91e23f34c6b4,
+    type: 2}
   kills: 0
   deaths: 0
 --- !u!114 &114176612750664552

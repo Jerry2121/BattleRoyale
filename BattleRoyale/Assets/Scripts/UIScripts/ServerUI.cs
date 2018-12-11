@@ -11,6 +11,10 @@ public class ServerUI : NetworkBehaviour {
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
 
+    [SerializeField]
+    GameObject spectCamPrefab;
+    GameObject spectCam;
+
     // Use this for initialization
     void Start() {
 
@@ -29,9 +33,16 @@ public class ServerUI : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (NetworkDiscoveryScript.IsServerOnly == false)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             serverScoreboard.SetActive(!serverScoreboard.activeSelf);
+        }
+        else if (Input.GetKeyDown(KeyCode.F1))
+        {
+            ToggleSpectatorCam();
         }
 	}
 
@@ -41,6 +52,29 @@ public class ServerUI : NetworkBehaviour {
         NetworkDiscoveryScript.IsInLAN = false;
         NetworkDiscoveryScript.IsServerOnly = false;
         networkDiscoveryScript.StopBroadcast();
+    }
+
+    void ToggleSpectatorCam()
+    {
+        if (spectCam == null)
+        {
+            spectCam = Instantiate(spectCamPrefab, Vector3.zero, Quaternion.identity);
+            GameManager.instance.SetSceneCameraActiveState(false);
+            return;
+        }
+
+        if (spectCam.activeSelf == false)
+        {
+            spectCam.SetActive(true);
+            GameManager.instance.SetSceneCameraActiveState(false);
+        }
+        else
+        {
+            spectCam.SetActive(false);
+            GameManager.instance.SetSceneCameraActiveState(true);
+        }
+
+
     }
 
 }

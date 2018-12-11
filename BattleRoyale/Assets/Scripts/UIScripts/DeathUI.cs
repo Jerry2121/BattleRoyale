@@ -7,6 +7,7 @@ using UnityEngine.Networking.Match;
 public class DeathUI : MonoBehaviour {
 
     public GameObject deathUIMap;
+    public GameObject deathScoreboard;
 
     // Use this for initialization
     void Start () {
@@ -19,8 +20,11 @@ public class DeathUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ToggleScoreboard();
+        }
+    }
 
     public void LeaveRoom()
     {
@@ -38,10 +42,15 @@ public class DeathUI : MonoBehaviour {
         }
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }*/
+
+    void ToggleScoreboard()
+    {
+        deathScoreboard.SetActive(!deathScoreboard.activeSelf);
     }
 
 }
