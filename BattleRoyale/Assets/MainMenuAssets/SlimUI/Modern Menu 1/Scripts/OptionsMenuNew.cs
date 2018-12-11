@@ -14,31 +14,15 @@ public class OptionsMenuNew : MonoBehaviour {
 	public GameObject shadowlowtextLINE;
 	public GameObject shadowhightext;
 	public GameObject shadowhightextLINE;
-	public GameObject showhudtext;
-	public GameObject tooltipstext;
-	public GameObject difficultynormaltext;
-	public GameObject difficultynormaltextLINE;
-	public GameObject difficultyhardcoretext;
-	public GameObject difficultyhardcoretextLINE;
-	public GameObject cameraeffectstext;
-	public GameObject invertmousetext;
 	public GameObject vsynctext;
-	public GameObject motionblurtext;
-	public GameObject ambientocclusiontext;
-	public GameObject texturelowtext;
+    public GameObject texturelowtext;
 	public GameObject texturelowtextLINE;
 	public GameObject texturemedtext;
 	public GameObject texturemedtextLINE;
 	public GameObject texturehightext;
 	public GameObject texturehightextLINE;
-	public GameObject aaofftext;
-	public GameObject aaofftextLINE;
-	public GameObject aa2xtext;
-	public GameObject aa2xtextLINE;
-	public GameObject aa4xtext;
-	public GameObject aa4xtextLINE;
-	public GameObject aa8xtext;
-	public GameObject aa8xtextLINE;
+    public Dropdown QualityDropDown;
+
 
 	// sliders
     [Header("Sliders")]
@@ -55,25 +39,6 @@ public class OptionsMenuNew : MonoBehaviour {
 	private float sliderValueSmoothing = 0.0f;
 
 	public void  Start (){
-        //Turn vSync on
-        QualitySettings.vSyncCount = 1;
-
-        // check difficulty
-        if (PlayerPrefs.GetInt("NormalDifficulty") == 1){
-			//difficultynormaltext.GetComponent<Text>().text = "NORMAL";
-			difficultynormaltextLINE.gameObject.SetActive(true);
-			difficultyhardcoretextLINE.gameObject.SetActive(false);
-			//difficultyhardcoretext.GetComponent<Text>().text = "hardcore";
-		}
-		else
-		{
-			//difficultynormaltext.GetComponent<Text>().text = "normal";
-			//difficultyhardcoretext.GetComponent<Text>().text = "HARDCORE";
-			difficultyhardcoretextLINE.gameObject.SetActive(true);
-			difficultynormaltextLINE.gameObject.SetActive(false);
-
-		}
-
 		// check slider values
 		musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
         MusicSlider();
@@ -91,24 +56,8 @@ public class OptionsMenuNew : MonoBehaviour {
 			fullscreentext.GetComponent<Text>().text = "off";
 		}
 
-		// check hud value
-		if(PlayerPrefs.GetInt("ShowHUD")==0){
-			showhudtext.GetComponent<Text>().text = "off";
-		}
-		else{
-			showhudtext.GetComponent<Text>().text = "on";
-		}
-
-		// check tool tip value
-		if(PlayerPrefs.GetInt("ToolTips")==0){
-			tooltipstext.GetComponent<Text>().text = "off";
-		}
-		else{
-			tooltipstext.GetComponent<Text>().text = "on";
-		}
-
-		// check shadow distance/enabled
-		if(PlayerPrefs.GetInt("Shadows") == 0){
+        // check shadow distance/enabled
+        if (PlayerPrefs.GetInt("Shadows") == 0){
 			QualitySettings.shadowCascades = 0;
 			QualitySettings.shadowDistance = 0;
 			shadowofftext.GetComponent<Text>().text = "OFF";
@@ -147,32 +96,9 @@ public class OptionsMenuNew : MonoBehaviour {
 			vsynctext.GetComponent<Text>().text = "on";
 		}
 
-		// check mouse inverse
-		if(PlayerPrefs.GetInt("Inverted")==0){
-			invertmousetext.GetComponent<Text>().text = "off";
-		}
-		else if(PlayerPrefs.GetInt("Inverted")==1){
-			invertmousetext.GetComponent<Text>().text = "on";
-		}
 
-		// check motion blur
-		if(PlayerPrefs.GetInt("MotionBlur")==0){
-			motionblurtext.GetComponent<Text>().text = "off";
-		}
-		else if(PlayerPrefs.GetInt("MotionBlur")==1){
-			motionblurtext.GetComponent<Text>().text = "on";
-		}
-
-		// check ambient occlusion
-		if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
-			ambientocclusiontext.GetComponent<Text>().text = "off";
-		}
-		else if(PlayerPrefs.GetInt("AmbientOcclusion")==1){
-			ambientocclusiontext.GetComponent<Text>().text = "on";
-		}
-
-		// check texture quality
-		if(PlayerPrefs.GetInt("Textures") == 0){
+        // check texture quality
+        if (PlayerPrefs.GetInt("Textures") == 0){
 			QualitySettings.masterTextureLimit = 2;
 			texturelowtext.GetComponent<Text>().text = "LOW";
 			texturemedtext.GetComponent<Text>().text = "med";
@@ -202,14 +128,35 @@ public class OptionsMenuNew : MonoBehaviour {
 	}
 
 	public void  Update (){
-		//sliderValue = musicSlider.GetComponent<Slider>().value;
-		//sliderValueSFX = sfxSlider.GetComponent<Slider>().value;
-        //PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
 		sliderValueXSensitivity = sensitivityXSlider.GetComponent<Slider>().value;
 		sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
 		sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
         musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
         sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
+        if (QualityDropDown.value == 0)
+        {
+            QualitySettings.SetQualityLevel(0);
+        }
+        if (QualityDropDown.value == 1)
+        {
+            QualitySettings.SetQualityLevel(1);
+        }
+        if (QualityDropDown.value == 2)
+        {
+            QualitySettings.SetQualityLevel(2);
+        }
+        if (QualityDropDown.value == 3)
+        {
+            QualitySettings.SetQualityLevel(3);
+        }
+        if (QualityDropDown.value == 4)
+        {
+            QualitySettings.SetQualityLevel(4);
+        }
+        if (QualityDropDown.value == 5)
+        {
+            QualitySettings.SetQualityLevel(5);
+        }
     }
 
 	public void  FullScreen (){
@@ -254,50 +201,8 @@ public class OptionsMenuNew : MonoBehaviour {
 		PlayerPrefs.SetFloat("MouseSmoothing", sliderValueSmoothing);
 		Debug.Log(PlayerPrefs.GetFloat("MouseSmoothing"));
 	}
-
-	// the playerprefs variable that is checked to enable hud while in game
-	public void  ShowHUD (){
-		if(PlayerPrefs.GetInt("ShowHUD")==0){
-			PlayerPrefs.SetInt("ShowHUD",1);
-			showhudtext.GetComponent<Text>().text = "on";
-		}
-		else if(PlayerPrefs.GetInt("ShowHUD")==1){
-			PlayerPrefs.SetInt("ShowHUD",0);
-			showhudtext.GetComponent<Text>().text = "off";
-		}
-	}
-
-	// show tool tips like: 'How to Play' control pop ups
-	public void  ToolTips (){
-		if(PlayerPrefs.GetInt("ToolTips")==0){
-			PlayerPrefs.SetInt("ToolTips",1);
-			tooltipstext.GetComponent<Text>().text = "on";
-		}
-		else if(PlayerPrefs.GetInt("ToolTips")==1){
-			PlayerPrefs.SetInt("ToolTips",0);
-			tooltipstext.GetComponent<Text>().text = "off";
-		}
-	}
-
-	public void  NormalDifficulty (){
-		//difficultynormaltext.GetComponent<Text>().text = "NORMAL";
-		//difficultyhardcoretext.GetComponent<Text>().text = "hardcore";
-		difficultyhardcoretextLINE.gameObject.SetActive(false);
-		difficultynormaltextLINE.gameObject.SetActive(true);
-		PlayerPrefs.SetInt("NormalDifficulty",1);
-		PlayerPrefs.SetInt("HardCoreDifficulty",0);
-	}
-
-	public void  HardcoreDifficulty (){
-		//difficultynormaltext.GetComponent<Text>().text = "normal";
-		//difficultyhardcoretext.GetComponent<Text>().text = "HARDCORE";
-		difficultyhardcoretextLINE.gameObject.SetActive(true);
-		difficultynormaltextLINE.gameObject.SetActive(false);
-		PlayerPrefs.SetInt("NormalDifficulty",0);
-		PlayerPrefs.SetInt("HardCoreDifficulty",1);
-	}
-
-	public void  ShadowsOff (){
+    
+    public void  ShadowsOff (){
 		PlayerPrefs.SetInt("Shadows",0);
 		QualitySettings.shadowCascades = 0;
 		QualitySettings.shadowDistance = 0;
@@ -344,51 +249,7 @@ public class OptionsMenuNew : MonoBehaviour {
 		}
 	}
 
-	public void  InvertMouse (){
-		if(PlayerPrefs.GetInt("Inverted")==0){
-			PlayerPrefs.SetInt("Inverted",1);
-			invertmousetext.GetComponent<Text>().text = "on";
-		}
-		else if(PlayerPrefs.GetInt("Inverted")==1){
-			PlayerPrefs.SetInt("Inverted",0);
-			invertmousetext.GetComponent<Text>().text = "off";
-		}
-	}
-
-	public void  MotionBlur (){
-		if(PlayerPrefs.GetInt("MotionBlur")==0){
-			PlayerPrefs.SetInt("MotionBlur",1);
-			motionblurtext.GetComponent<Text>().text = "on";
-		}
-		else if(PlayerPrefs.GetInt("MotionBlur")==1){
-			PlayerPrefs.SetInt("MotionBlur",0);
-			motionblurtext.GetComponent<Text>().text = "off";
-		}
-	}
-
-	public void  AmbientOcclusion (){
-		if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
-			PlayerPrefs.SetInt("AmbientOcclusion",1);
-			ambientocclusiontext.GetComponent<Text>().text = "on";
-		}
-		else if(PlayerPrefs.GetInt("AmbientOcclusion")==1){
-			PlayerPrefs.SetInt("AmbientOcclusion",0);
-			ambientocclusiontext.GetComponent<Text>().text = "off";
-		}
-	}
-
-	public void  CameraEffects (){
-		if(PlayerPrefs.GetInt("CameraEffects")==0){
-			PlayerPrefs.SetInt("CameraEffects",1);
-			cameraeffectstext.GetComponent<Text>().text = "on";
-		}
-		else if(PlayerPrefs.GetInt("CameraEffects")==1){
-			PlayerPrefs.SetInt("CameraEffects",0);
-			cameraeffectstext.GetComponent<Text>().text = "off";
-		}
-	}
-
-	public void  TexturesLow (){
+    public void  TexturesLow (){
 		PlayerPrefs.SetInt("Textures",0);
 		QualitySettings.masterTextureLimit = 2;
 		texturelowtext.GetComponent<Text>().text = "LOW";
@@ -420,4 +281,213 @@ public class OptionsMenuNew : MonoBehaviour {
 		texturemedtextLINE.gameObject.SetActive(false);
 		texturehightextLINE.gameObject.SetActive(true);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //UNUSED LINES OF CODE FOR QUALITY ENSURANCE
+
+
+    /*
+        public GameObject showhudtext;
+        public GameObject tooltipstext;
+        public GameObject difficultynormaltext;
+        public GameObject difficultynormaltextLINE;
+        public GameObject difficultyhardcoretext;
+        public GameObject difficultyhardcoretextLINE;
+        public GameObject cameraeffectstext;
+        public GameObject invertmousetext;
+        public GameObject motionblurtext;
+        public GameObject ambientocclusiontext;
+        public GameObject aaofftext;
+        public GameObject aaofftextLINE;
+        public GameObject aa2xtext;
+        public GameObject aa2xtextLINE;
+        public GameObject aa4xtext;
+        public GameObject aa4xtextLINE;
+        public GameObject aa8xtext;
+        public GameObject aa8xtextLINE;
+    */
+
+    //Line 64 - 78
+    /* 
+         // check difficulty
+         if (PlayerPrefs.GetInt("NormalDifficulty") == 1){
+             //difficultynormaltext.GetComponent<Text>().text = "NORMAL";
+             difficultynormaltextLINE.gameObject.SetActive(true);
+             difficultyhardcoretextLINE.gameObject.SetActive(false);
+             //difficultyhardcoretext.GetComponent<Text>().text = "hardcore";
+         }
+         else
+         {
+             //difficultynormaltext.GetComponent<Text>().text = "normal";
+             //difficultyhardcoretext.GetComponent<Text>().text = "HARDCORE";
+             difficultyhardcoretextLINE.gameObject.SetActive(true);
+             difficultynormaltextLINE.gameObject.SetActive(false);
+
+         }
+     */
+
+    //Line 97 - 112
+    /*
+        // check hud value
+        if(PlayerPrefs.GetInt("ShowHUD")==0){
+            showhudtext.GetComponent<Text>().text = "off";
+        }
+        else{
+            showhudtext.GetComponent<Text>().text = "on";
+        }
+
+        // check tool tip value
+        if(PlayerPrefs.GetInt("ToolTips")==0){
+            tooltipstext.GetComponent<Text>().text = "off";
+        }
+        else{
+            tooltipstext.GetComponent<Text>().text = "on";
+        }
+    */
+
+    //Line 153- 176
+    /*
+        // check mouse inverse
+        if(PlayerPrefs.GetInt("Inverted")==0){
+            invertmousetext.GetComponent<Text>().text = "off";
+        }
+        else if(PlayerPrefs.GetInt("Inverted")==1){
+            invertmousetext.GetComponent<Text>().text = "on";
+        }
+
+        // check motion blur
+        if(PlayerPrefs.GetInt("MotionBlur")==0){
+            motionblurtext.GetComponent<Text>().text = "off";
+        }
+        else if(PlayerPrefs.GetInt("MotionBlur")==1){
+            motionblurtext.GetComponent<Text>().text = "on";
+        }
+
+        // check ambient occlusion
+        if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
+            ambientocclusiontext.GetComponent<Text>().text = "off";
+        }
+        else if(PlayerPrefs.GetInt("AmbientOcclusion")==1){
+            ambientocclusiontext.GetComponent<Text>().text = "on";
+        }
+    */
+
+    // Line 261-303
+    /*
+        // the playerprefs variable that is checked to enable hud while in game
+	    public void  ShowHUD (){
+		    if(PlayerPrefs.GetInt("ShowHUD")==0){
+			    PlayerPrefs.SetInt("ShowHUD",1);
+			    showhudtext.GetComponent<Text>().text = "on";
+		    }
+		    else if(PlayerPrefs.GetInt("ShowHUD")==1){
+			    PlayerPrefs.SetInt("ShowHUD",0);
+			    showhudtext.GetComponent<Text>().text = "off";
+		    }
+	    }
+
+	    // show tool tips like: 'How to Play' control pop ups
+	    public void  ToolTips (){
+		    if(PlayerPrefs.GetInt("ToolTips")==0){
+			    PlayerPrefs.SetInt("ToolTips",1);
+			    tooltipstext.GetComponent<Text>().text = "on";
+		    }
+		    else if(PlayerPrefs.GetInt("ToolTips")==1){
+			    PlayerPrefs.SetInt("ToolTips",0);
+			    tooltipstext.GetComponent<Text>().text = "off";
+		    }
+	    }
+
+	    public void  NormalDifficulty (){
+		    //difficultynormaltext.GetComponent<Text>().text = "NORMAL";
+		    //difficultyhardcoretext.GetComponent<Text>().text = "hardcore";
+		    difficultyhardcoretextLINE.gameObject.SetActive(false);
+		    difficultynormaltextLINE.gameObject.SetActive(true);
+		    PlayerPrefs.SetInt("NormalDifficulty",1);
+		    PlayerPrefs.SetInt("HardCoreDifficulty",0);
+	    }
+
+	    public void  HardcoreDifficulty (){
+		    //difficultynormaltext.GetComponent<Text>().text = "normal";
+		    //difficultyhardcoretext.GetComponent<Text>().text = "HARDCORE";
+		    difficultyhardcoretextLINE.gameObject.SetActive(true);
+		    difficultynormaltextLINE.gameObject.SetActive(false);
+		    PlayerPrefs.SetInt("NormalDifficulty",0);
+		    PlayerPrefs.SetInt("HardCoreDifficulty",1);
+	    }
+    */
+
+    //line 351-394
+    /*
+	    public void  InvertMouse (){
+		    if(PlayerPrefs.GetInt("Inverted")==0){
+			    PlayerPrefs.SetInt("Inverted",1);
+			    invertmousetext.GetComponent<Text>().text = "on";
+		    }
+		    else if(PlayerPrefs.GetInt("Inverted")==1){
+			    PlayerPrefs.SetInt("Inverted",0);
+			    invertmousetext.GetComponent<Text>().text = "off";
+		    }
+	    }
+
+	    public void  MotionBlur (){
+		    if(PlayerPrefs.GetInt("MotionBlur")==0){
+			    PlayerPrefs.SetInt("MotionBlur",1);
+			    motionblurtext.GetComponent<Text>().text = "on";
+		    }
+		    else if(PlayerPrefs.GetInt("MotionBlur")==1){
+			    PlayerPrefs.SetInt("MotionBlur",0);
+			    motionblurtext.GetComponent<Text>().text = "off";
+		    }
+	    }
+
+	    public void  AmbientOcclusion (){
+		    if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
+			    PlayerPrefs.SetInt("AmbientOcclusion",1);
+			    ambientocclusiontext.GetComponent<Text>().text = "on";
+		    }
+		    else if(PlayerPrefs.GetInt("AmbientOcclusion")==1){
+			    PlayerPrefs.SetInt("AmbientOcclusion",0);
+			    ambientocclusiontext.GetComponent<Text>().text = "off";
+		    }
+	    }
+
+	    public void  CameraEffects (){
+		    if(PlayerPrefs.GetInt("CameraEffects")==0){
+			    PlayerPrefs.SetInt("CameraEffects",1);
+			    cameraeffectstext.GetComponent<Text>().text = "on";
+		    }
+		    else if(PlayerPrefs.GetInt("CameraEffects")==1){
+			    PlayerPrefs.SetInt("CameraEffects",0);
+			    cameraeffectstext.GetComponent<Text>().text = "off";
+		    }
+	    }
+    */
 }

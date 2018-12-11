@@ -49,7 +49,7 @@ public class UserAccountManager : MonoBehaviour {
         if (Debug.isDebugBuild)
             Debug.Log("User " + PlayerUsername + " has logged out");
 
-        SceneManager.LoadScene(logInMenuSceneName);
+        GameObject.Find("LevelChanger").GetComponent<LevelChanger>().FadeToLevel(0);
     }
 
     public void LogIn(string _username, string _password)

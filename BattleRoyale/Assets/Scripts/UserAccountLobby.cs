@@ -27,7 +27,7 @@ public class UserAccountLobby : MonoBehaviour {
         if (UserAccountManager.IsLoggedIn)
             UserAccountManager.instance.LogOut();
         else
-            SceneManager.LoadScene(0);
+            GameObject.Find("LevelChanger").GetComponent<LevelChanger>().FadeToLevel(0);
     }
 
 }
