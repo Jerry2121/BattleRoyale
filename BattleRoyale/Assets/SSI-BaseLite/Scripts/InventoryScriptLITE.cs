@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 public class InventoryScriptLITE : NetworkBehaviour {
 
     //this manages all of the inventory based interactions (ie equipping guns and picking up items)
 	public KeyCode inventoryKey = KeyCode.Tab;
 	public KeyCode useKey = KeyCode.E;
+    public KeyCode healKey = KeyCode.Q;
 
 	public float rayLength = 2;
 	private Transform lookingAt;
@@ -35,6 +37,8 @@ public class InventoryScriptLITE : NetworkBehaviour {
 
     public Transform player;
 	public GameObject itemPrompt;
+    public TextMeshProUGUI healingItemsAmountText;
+    int healingItemsAmount;
 
 	void Start(){
 		scaleMultiplier = uiScale / 0.5f;
@@ -58,6 +62,22 @@ public class InventoryScriptLITE : NetworkBehaviour {
 	}
 
 	void Update(){
+
+        if (Input.GetKeyDown(healKey))
+        {
+            for (int i = 0; i < bag.items.Count; i++)
+            {
+                if(bag.items[i].obj.itemType == "Healing" && player.GetComponent<Player>().GetHealthPercentage() < 1.0f)
+                {
+                    player.GetComponent<Player>().CmdHeal(20);
+                    healingItemsAmount--;
+                    healingItemsAmountText.text = "(" + healingItemsAmount + ")";
+                    bag.DestroyItem(bag.items[i]);
+                    break;
+                }
+            }
+        }
+
 		RaycastHit hit;
         Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
 
@@ -105,6 +125,11 @@ public class InventoryScriptLITE : NetworkBehaviour {
 				if (bag.freeSpaces >= temp.width * temp.height) {
                     bag.GiveItem(temp);//bag.SendMessage ("GiveItem", temp);
                     player.GetComponent<Player>().itemInteractions.CmdTakeItem(temp.GetComponent<NetworkIdentity>().netId);
+                    if (temp.itemType == "Healing")
+                    {
+                        healingItemsAmount++;
+                        healingItemsAmountText.text = "(" + healingItemsAmount + ")";
+                    }
 				} 
 				if (doesFit == false) {
 					StartCoroutine ("NotEnough");

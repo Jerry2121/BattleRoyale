@@ -18,6 +18,9 @@ public class DropItemScriptLITE : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void Drop () {
+        if (item == null)
+            return;
+
 		item.originalPos = item.rect.anchoredPosition;
 		//GameObject.FindGameObjectWithTag ("MainCamera").SendMessage ("RemoveItem", item.GetComponent<itemDragLITE>()); //in case you're making equipable items
 		grid.SendMessage ("RemoveItem", item);

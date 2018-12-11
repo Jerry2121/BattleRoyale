@@ -167,7 +167,7 @@ public class Player : NetworkBehaviour {
     }
 
     [Command]
-    void CmdHeal(int _amount)  //only call on player, other scripts should have their own Command to call RpcHeal
+    public void CmdHeal(int _amount)
     {
         RpcHeal(_amount);
     }
@@ -246,7 +246,17 @@ public class Player : NetworkBehaviour {
         if (Debug.isDebugBuild)
             Debug.Log(transform.name + " is dead");
 
-        StartCoroutine(Respawn());
+        if(GameManager.instance == null)
+        {
+            Debug.LogError("Player -- Die: There is no instance of the GameManager!");
+            return;
+        }
+        if(GameManager.instance.matchSettings.canRespawn)
+            StartCoroutine(Respawn());
+        else
+        {
+            //?
+        }
     }
 
     IEnumerator Respawn()

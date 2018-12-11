@@ -175,7 +175,7 @@ public class InventoryGridScriptLITE : NetworkBehaviour {
 		float slotPosHeight = -Mathf.Round(pos.originalPos.y / 50);
 		float slotsWidth = Mathf.Round(pos.originalScale.x);
 		float slotsHeight = Mathf.Round(pos.originalScale.y);
-		items.Remove (pos.GetComponent<itemDragLITE>());
+		items.Remove (pos);
 		for (int i = 0; i < slotsWidth; i++) {
 			for (int j = 0; j < slotsHeight; j++) {
 				slots [(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = false;
@@ -223,7 +223,23 @@ public class InventoryGridScriptLITE : NetworkBehaviour {
 	}
 
 	public void DestroyItem(itemDragLITE pos){
-		
+        items.Remove(pos);
+
+        float slotsWidth = pos.obj.width;
+        float slotsHeight = pos.obj.height;
+        float slotPosWidth = Mathf.Round(pos.originalPos.x / 50);
+        float slotPosHeight = -Mathf.Round(pos.originalPos.y / 50);
+
+        for (int i = 0; i < slotsWidth; i++)
+        {
+            for (int j = 0; j < slotsHeight; j++)
+            {
+                slots[(int)slotPosWidth + i + (j * width) + (int)(slotPosHeight * width)] = false;
+            }
+        }
+        freeSpaces += (int)(pos.obj.width * pos.obj.height);
+
+        Destroy(pos.gameObject);
 	}
 
 	public void RemoveAllItems(){
