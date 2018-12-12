@@ -743,8 +743,8 @@ MonoBehaviour:
   isEquiped: 0
   itemDescription: 
   img: {fileID: 1939339219}
-  itemName: {fileID: 58673172}
-  itemDesc: {fileID: 1519871209}
+  itemName: {fileID: 0}
+  itemDesc: {fileID: 0}
 --- !u!114 &116408493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4932,6 +4932,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1314417243172160, guid: 054cea5c915fe5a439f1b6a5cd68a826, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 054cea5c915fe5a439f1b6a5cd68a826, type: 2}
   m_IsPrefabAsset: 0
@@ -6396,6 +6400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryKey: 9
   useKey: 101
+  healKey: 113
   rayLength: 5
   layerMask:
     serializedVersion: 2
@@ -6408,6 +6413,7 @@ MonoBehaviour:
   uiScale: 0.5
   player: {fileID: 0}
   itemPrompt: {fileID: 612612585}
+  healingItemsAmountText: {fileID: 0}
 --- !u!4 &1145145971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4593243137350940, guid: 47777e31c58ed0b489c8631a48296821,
@@ -7189,7 +7195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1384252037
