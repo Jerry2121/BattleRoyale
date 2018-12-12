@@ -34,7 +34,8 @@ public class LobbyManager : MonoBehaviour {
     string lobbySceneName;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         LobbyUICanvas.SetActive(false);
@@ -53,17 +54,13 @@ public class LobbyManager : MonoBehaviour {
         createLANStatusText.text = "";
         hostGameScript = networkManager.GetComponent<HostGame>();
 
+        OnlineUI.SetActive(false);
+        LANUI.SetActive(true);
         if (LANOnly)
         {
-            OnlineUI.SetActive(false);
-            LANUI.SetActive(true);
             OnlineButton.SetActive(false);
         }
-        else {
-            OnlineUI.SetActive(true);
-            LANUI.SetActive(false);
-        }
-	}
+    }
 
 
     public void GoToLobby()

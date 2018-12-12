@@ -238,36 +238,12 @@ Prefab:
       propertyPath: m_Name
       value: ZoneWall
       objectReference: {fileID: 0}
-    - target: {fileID: 4975895148499140, guid: b5028c1136bae1b44a4781bfef76aaa5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975895148499140, guid: b5028c1136bae1b44a4781bfef76aaa5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745734279703356, guid: b5028c1136bae1b44a4781bfef76aaa5, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114388700443222724, guid: b5028c1136bae1b44a4781bfef76aaa5,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 1586728422693558, guid: a943793d9ce27514986cce94864ce127,
-        type: 2}
-    - target: {fileID: 114388700443222724, guid: b5028c1136bae1b44a4781bfef76aaa5,
-        type: 2}
-      propertyPath: OutsideZoneImage
-      value: 
-      objectReference: {fileID: 1762403461476378, guid: 054cea5c915fe5a439f1b6a5cd68a826,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5028c1136bae1b44a4781bfef76aaa5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &35485782 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4527329590278568, guid: b5028c1136bae1b44a4781bfef76aaa5,
+  m_CorrespondingSourceObject: {fileID: 4646599509706824, guid: b5028c1136bae1b44a4781bfef76aaa5,
     type: 2}
   m_PrefabInternal: {fileID: 35485781}
 --- !u!1001 &40401467

@@ -93,7 +93,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 1586728422693558, guid: a943793d9ce27514986cce94864ce127,
     type: 2}
   m_AutoCreatePlayer: 1
-  m_PlayerSpawnMethod: 1
+  m_PlayerSpawnMethod: 0
   m_OfflineScene: MainMenu
   m_OnlineScene: AW
   m_SpawnPrefabs:

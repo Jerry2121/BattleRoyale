@@ -32039,7 +32039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a3e8aebf538bb469ec21fe84508b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LANOnly: 1
+  LANOnly: 0
   LobbyUICanvas: {fileID: 1773603941}
   MainMainMenuCanvas: {fileID: 138569493}
   OnlineUI: {fileID: 1895048096}
@@ -32977,7 +32977,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1002803418011606, guid: 94036ffa5aaeba74ab1ec1de11107aa3, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94036ffa5aaeba74ab1ec1de11107aa3, type: 2}
