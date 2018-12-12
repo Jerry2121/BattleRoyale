@@ -13,11 +13,19 @@ public class GameManager : MonoBehaviour {
 
     public MatchSettings matchSettings;
 
+    public int timeBetweenZoneShrinking = 120;
     public bool inStartPeriod = true;
-    public float timer = 0f;
-
+    public float startTimer = 0f;
+    float zoneTimer = 0f;
+    float zoneWaitTimer = 0f;
+    [SerializeField]
+    Transform zoneWallTransform;
     [SerializeField]
     GameObject sceneCamera;
+
+    public bool zoneShrinking;
+    public bool zoneShrunk;
+    bool waitTimerActive;
 
     public delegate void OnPlayerKilledCallback(string player, string source);
     public OnPlayerKilledCallback onPlayerKilledCallback;
@@ -34,6 +42,14 @@ public class GameManager : MonoBehaviour {
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
         StartTimer();
+        zoneShrinking = true;
+        zoneTimer = 0;
+
+        //For choosing a random position to close on
+        /*int x = Random.Range(0, 1);
+        int z = Random.Range(0, 1);
+        zoneWallTransform.position += new Vector3(x, 0f, y);
+        */
     }
 
     public void SetSceneCameraActiveState(bool isActive)
@@ -50,21 +66,58 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if (timer > 0f)
+        if (startTimer > 0f)
         {
-            timer -= Time.deltaTime;
+            startTimer -= Time.deltaTime;
             inStartPeriod = true;
         }
         else
         {
             inStartPeriod = false;
-            timer = 0f;
+            startTimer = 0f;
         }
+
+        if (zoneShrunk)
+            return;
+
+        if(zoneTimer > 0)
+        {
+            zoneShrinking = true;
+            zoneTimer -= Time.deltaTime;
+        }
+        else
+        {
+            zoneTimer = 0f;
+            zoneShrinking = false;
+        }
+        if(zoneShrinking == false)
+        {
+            if(waitTimerActive == false)
+            {
+                zoneWaitTimer = timeBetweenZoneShrinking;
+                waitTimerActive = true;
+            }
+
+            zoneWaitTimer -= Time.deltaTime;
+
+            if(zoneWaitTimer <= 0)
+            {
+                zoneTimer = 60;
+                zoneShrinking = true;
+                waitTimerActive = false;
+            }
+
+        }
+
+
+        //if (zoneShrinking)
+        //    zoneWallTransform.localScale -= new Vector3(0.005f * Time.deltaTime, 0f, 0.005f * Time.deltaTime);
+
     }
 
     void StartTimer()
     {
-        timer = matchSettings.startTime;
+        startTimer = matchSettings.startTime;
     }
 
     #region Player Tracking

@@ -9,32 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1424222808341810}
+  m_RootGameObject: {fileID: 1412712437146986}
   m_IsPrefabAsset: 1
---- !u!1 &1424222808341810
+--- !u!1 &1412712437146986
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4401877589107584}
-  - component: {fileID: 114977937360536536}
-  - component: {fileID: 65303053124821874}
-  - component: {fileID: 114379263018014954}
+  - component: {fileID: 4113032808058600}
+  - component: {fileID: 114346316547477458}
+  - component: {fileID: 65079458052059140}
+  - component: {fileID: 114289028427562648}
   m_Layer: 24
-  m_Name: WeaponItem (1)
+  m_Name: WeaponItemHeavy
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4401877589107584
+--- !u!4 &4113032808058600
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1424222808341810}
+  m_GameObject: {fileID: 1412712437146986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -42,24 +42,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65303053124821874
+--- !u!65 &65079458052059140
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1424222808341810}
+  m_GameObject: {fileID: 1412712437146986}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114379263018014954
+--- !u!114 &114289028427562648
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1424222808341810}
+  m_GameObject: {fileID: 1412712437146986}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
@@ -68,42 +68,42 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 129
-    i1: 101
-    i2: 71
-    i3: 44
-    i4: 188
-    i5: 144
-    i6: 152
-    i7: 4
-    i8: 11
-    i9: 202
-    i10: 0
-    i11: 164
-    i12: 53
-    i13: 132
-    i14: 198
-    i15: 83
+    i0: 64
+    i1: 247
+    i2: 169
+    i3: 95
+    i4: 144
+    i5: 73
+    i6: 147
+    i7: 84
+    i8: 59
+    i9: 161
+    i10: 207
+    i11: 44
+    i12: 95
+    i13: 171
+    i14: 231
+    i15: 123
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114977937360536536
+--- !u!114 &114346316547477458
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1424222808341810}
+  m_GameObject: {fileID: 1412712437146986}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8dab30acd4901d46a1a1bf1c73816e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon:
-    name: Automatic
-    damage: 5
-    range: 100
-    fireRate: 4
-    reloadTime: 1
-    maxAmmo: 20
+    name: Heavy
+    damage: 20
+    range: 200
+    fireRate: 1
+    reloadTime: 2
+    maxAmmo: 15
     currentAmmo: 20
-    graphics: {fileID: 1992311776032100, guid: 07a9d9904899752458d2cd69cbcf2e4f, type: 2}
+    graphics: {fileID: 1322901883332826, guid: 3b71c32e188b21640b7e60bd0aa153c6, type: 2}
     sprite: {fileID: 21300000, guid: 79e5d8fef9ee7564cb735b894d00f7df, type: 3}

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4070916801291232}
   - component: {fileID: 33355843633590830}
   - component: {fileID: 23241025302202398}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4189184991848600}
   - component: {fileID: 33886902508204278}
   - component: {fileID: 23620448498105478}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4192503664667806}
   - component: {fileID: 33517440507841960}
   - component: {fileID: 23598107650287292}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4216594366118220}
   - component: {fileID: 33520324974989430}
   - component: {fileID: 23169352007426848}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4689371523472246}
   - component: {fileID: 33457203521365122}
   - component: {fileID: 23137600943504116}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4111278591368376}
   - component: {fileID: 33560987492797972}
   - component: {fileID: 23852110001032770}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 4617948008049496}
   - component: {fileID: 33568982091379080}
   - component: {fileID: 23434556006036112}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: P_Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 4270950911126578}
   - component: {fileID: 114047036146946570}
   - component: {fileID: 95113093770776230}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}

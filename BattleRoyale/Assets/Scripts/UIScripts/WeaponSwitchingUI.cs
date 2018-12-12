@@ -115,9 +115,8 @@ public class WeaponSwitchingUI : MonoBehaviour {
 
         weaponManager.selectedWeapon = selectedSlot;
         PlayerWeapon selectedWeapon = weaponManager.GetWeaponFromInt(selectedSlot);
-
-        if (selectedWeapon != null)
-            weaponManager.SwitchWeaponLocal(selectedWeapon);
+        
+        weaponManager.SwitchWeaponLocal(selectedWeapon);
 
     }
 

@@ -48,7 +48,6 @@ public class UserAccountManager : MonoBehaviour {
 
         if (Debug.isDebugBuild)
             Debug.Log("User " + PlayerUsername + " has logged out");
-
         GameObject.Find("LevelChanger").GetComponent<LevelChanger>().FadeToLevel(0);
     }
 

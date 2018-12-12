@@ -37,15 +37,16 @@ public class ChangeCircle : MonoBehaviour
 		{
 			Shrinking = true;
 		}*/
-		if(Shrinking)
+		if(GameManager.instance.zoneShrinking)
 		{
-			XRadius = Mathf.Lerp(XRadius, ShrinkCircle(XRadius)[0], Time.deltaTime * 0.25f);
+			XRadius = Mathf.Lerp(XRadius, ShrinkCircle(XRadius)[0], Time.deltaTime * 0.05f);
 			circle.Draw(Segments, XRadius, XRadius);
 		}
 		ZoneWall.transform.localScale = new Vector3 ((XRadius * 0.01f), 1, (XRadius * 0.01f));
-        if (XRadius <= 23.50501f)
+        if (XRadius <= 0)
         {
-            Shrinking = false;
+            GameManager.instance.zoneShrinking = false;
+            GameManager.instance.zoneShrunk = false;
         }
         if (OutsideOfCircle)
         {
