@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 4251539880230646}
   - component: {fileID: 33431629009279492}
   - component: {fileID: 23081801822858782}
+  - component: {fileID: 65592502073489118}
   m_Layer: 0
   m_Name: Crate_Metal
   m_TagString: Untagged
@@ -187,7 +188,7 @@ GameObject:
   - component: {fileID: 114498249224128182}
   m_Layer: 0
   m_Name: Airdrop
-  m_TagString: Untagged
+  m_TagString: AirDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +395,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1615992600299588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 75.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4683304097221536}
@@ -642,6 +643,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65592502073489118
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578668535455890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 94.439926, y: 94.44, z: 94.44}
+  m_Center: {x: -0.00001335144, y: 62.46, z: 0.7733002}
 --- !u!65 &65809485449645200
 BoxCollider:
   m_ObjectHideFlags: 1
