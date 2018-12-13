@@ -64,11 +64,18 @@ public class Utility {
         return UserAccountManager.KillCountDataSymbol + kills + "/" + UserAccountManager.DeathCountDataSymbol + deaths + "/";
     }
 
-    public static void InstantiateOverNetwork(GameObject _obj, Vector3 _position, Quaternion _rotation)
+    /// <summary>
+    /// Instantiates an object on the server, then tells the NetworkServer to spawn it on all clients
+    /// </summary>
+    /// <param name="_obj"></param>
+    /// <param name="_position"></param>
+    /// <param name="_rotation"></param>
+    public static GameObject InstantiateOverNetwork(GameObject _obj, Vector3 _position, Quaternion _rotation)
     {
         GameObject GO = Object.Instantiate(_obj, _position, _rotation);
         if(NetworkManager.singleton != null)
             NetworkServer.Spawn(GO);
+        return GO;
     }
 
 }

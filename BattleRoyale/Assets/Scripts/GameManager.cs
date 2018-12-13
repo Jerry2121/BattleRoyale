@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
     float zoneTimer = 0f;
     float zoneWaitTimer = 0f;
     [SerializeField]
+    GameObject zoneWallPrefab;
+    [SerializeField]
     Transform zoneWallTransform;
     [SerializeField]
     GameObject sceneCamera;
@@ -119,6 +121,18 @@ public class GameManager : MonoBehaviour {
     {
         startTimer = matchSettings.startTime;
     }
+
+    /*void SpawnZoneWall()
+    {
+        networkManager = NetworkManager.singleton;
+        networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
+
+        if (networkDiscoveryScript.isServer)
+        {
+            GameObject zone_GO = Utility.InstantiateOverNetwork(zoneWallPrefab, transform.position, Quaternion.identity);
+            zoneWallTransform = zone_GO.transform;
+        }
+    }*/
 
     #region Player Tracking
 

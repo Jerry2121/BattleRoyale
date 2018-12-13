@@ -258,7 +258,8 @@ public class Player : NetworkBehaviour {
             StartCoroutine(Respawn());
         else
         {
-            StartCoroutine(CreateSpectatorCam());
+            if(isLocalPlayer)
+                StartCoroutine(CreateSpectatorCam());
         }
     }
 
