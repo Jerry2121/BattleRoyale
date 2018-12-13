@@ -63,14 +63,6 @@ public class WeaponSwitchingUI : MonoBehaviour {
             Slot1Outline.SetActive(false);
             Slot2Outline.SetActive(true);
         }
-        if (selectedSlot < 1)
-        {
-            selectedSlot = 2;
-        }
-        if (selectedSlot > 2)
-        {
-            selectedSlot = 1;
-        }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.V))
         {
             animator.SetBool("Show", true);
@@ -113,6 +105,14 @@ public class WeaponSwitchingUI : MonoBehaviour {
             selectedSlot = 2;
         }
 
+        if (selectedSlot < 1)
+        {
+            selectedSlot = 2;
+        }
+        if (selectedSlot > 2)
+        {
+            selectedSlot = 1;
+        }
         weaponManager.selectedWeapon = selectedSlot;
         PlayerWeapon selectedWeapon = weaponManager.GetWeaponFromInt(selectedSlot);
         
