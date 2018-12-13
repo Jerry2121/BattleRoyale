@@ -10,6 +10,8 @@ TagManager:
   - InventoryGrid
   - ItemPanel
   - InventoryItem
+  - Fire
+  - AirDrop
   layers:
   - Default
   - TransparentFX
