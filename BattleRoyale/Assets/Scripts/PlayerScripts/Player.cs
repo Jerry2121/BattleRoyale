@@ -258,8 +258,17 @@ public class Player : NetworkBehaviour {
             StartCoroutine(Respawn());
         else
         {
-            if(isLocalPlayer)
+            if (isLocalPlayer)
+            {
+                GameManager.UnregisterPlayer(transform.name);
                 StartCoroutine(CreateSpectatorCam());
+                Destroy(this.gameObject, 2f);
+            }
+            else
+            {
+                GameManager.UnregisterPlayer(transform.name);
+                Destroy(this.gameObject);
+            }
         }
     }
 

@@ -18,7 +18,8 @@ public class ItemSpawn : NetworkBehaviour {
         //Only Instantiate objects on the server, then tell the server to spawn it on all clients
         if (networkDiscoveryScript.isServer)
         {
-            Utility.InstantiateOverNetwork(itemPrefab, this.transform.position, Quaternion.identity);
+            if(itemPrefab != null)
+                Utility.InstantiateOverNetwork(itemPrefab, this.transform.position, Quaternion.identity);
         }
 
     }

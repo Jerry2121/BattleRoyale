@@ -80,7 +80,9 @@ MonoBehaviour:
   timeBetweenZoneShrinking: 120
   inStartPeriod: 0
   startTimer: 0
+  zoneWallPrefab: {fileID: 1759811002696946, guid: afd2003d7fc115041bdd0a7f47ab82a3,
+    type: 2}
   zoneWallTransform: {fileID: 0}
   sceneCamera: {fileID: 0}
-  zoneShrinking: 0
+  zoneShrinking: 1
   zoneShrunk: 0
