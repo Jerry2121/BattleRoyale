@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 
     public int timeBetweenZoneShrinking = 120;
     public bool inStartPeriod = true;
-    public float startTimer = 0f;
+    public float gameTimer = 0f;
     float zoneTimer = 0f;
     float zoneWaitTimer = 0f;
     [SerializeField]
@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour {
     Transform zoneWallTransform;
     [SerializeField]
     GameObject sceneCamera;
+    [SerializeField]
+    GameObject airDropPrefab;
+    [SerializeField]
+    Transform[] airDropSpawns;
+
+    float airdroptimer = 20;
 
     public bool zoneShrinking;
     public bool zoneShrunk;
@@ -52,6 +58,7 @@ public class GameManager : MonoBehaviour {
         int z = Random.Range(0, 1);
         zoneWallTransform.position += new Vector3(x, 0f, y);
         */
+        SpawnAirdrop();
     }
 
     public void SetSceneCameraActiveState(bool isActive)
@@ -68,15 +75,15 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if (startTimer > 0f)
+        gameTimer += Time.deltaTime;
+
+        if (gameTimer < 0f)
         {
-            startTimer -= Time.deltaTime;
             inStartPeriod = true;
         }
         else
         {
             inStartPeriod = false;
-            startTimer = 0f;
         }
 
         if (zoneShrunk)
@@ -110,7 +117,7 @@ public class GameManager : MonoBehaviour {
             }
 
         }
-
+        
 
         //if (zoneShrinking)
         //    zoneWallTransform.localScale -= new Vector3(0.005f * Time.deltaTime, 0f, 0.005f * Time.deltaTime);
@@ -119,7 +126,14 @@ public class GameManager : MonoBehaviour {
 
     void StartTimer()
     {
-        startTimer = matchSettings.startTime;
+        gameTimer = -matchSettings.startTime;
+    }
+
+    void SpawnAirdrop()
+    {
+        if(networkDiscoveryScript.isServer)
+            Utility.InstantiateOverNetwork(airDropPrefab, airDropSpawns[Random.Range(0, airDropSpawns.Length)].position, Quaternion.identity);
+        
     }
 
     /*void SpawnZoneWall()

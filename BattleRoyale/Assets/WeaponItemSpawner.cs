@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class WeaponItemSpawner : MonoBehaviour {
-    [Header("Spawner Type")]
-    public bool WeaponSpawner;
-    public bool AmmoSpawner;
     [Header("AmmoSpawners")]
     public GameObject AmmoSpawner1;
     public GameObject AmmoSpawner2;
@@ -38,37 +35,37 @@ public class WeaponItemSpawner : MonoBehaviour {
         if (canspawnItem && networkDiscoveryScript.isServer)
         {
             d1 = Random.Range(0, 7);
-            if (d1 == 1 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && WeaponSpawner && canspawnItem && !ran)
+            if (d1 == 1 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
             {
                 Weapon1 = true;
                 Utility.InstantiateOverNetwork(GameObject.Find("_GameManager").GetComponent<GameManagerScript>().Weapon1, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 2 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && WeaponSpawner && canspawnItem && !ran)
+            if (d1 == 2 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
             {
                 Weapon2 = true;
                 Utility.InstantiateOverNetwork(GameObject.Find("_GameManager").GetComponent<GameManagerScript>().Weapon2, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 3 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && WeaponSpawner && canspawnItem && !ran)
+            if (d1 == 3 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
             {
                 Weapon3 = true;
                 Utility.InstantiateOverNetwork(GameObject.Find("_GameManager").GetComponent<GameManagerScript>().Weapon3, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 4 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && WeaponSpawner && canspawnItem && !ran)
+            if (d1 == 4 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
             {
                 Weapon4 = true;
                 Utility.InstantiateOverNetwork(GameObject.Find("_GameManager").GetComponent<GameManagerScript>().Weapon4, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 5 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && WeaponSpawner && canspawnItem && !ran)
+            if (d1 == 5 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
             {
                 Weapon5 = true;
                 Utility.InstantiateOverNetwork(GameObject.Find("_GameManager").GetComponent<GameManagerScript>().Weapon5, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 6 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && WeaponSpawner && canspawnItem && !ran)
+            if (d1 == 6 && GameObject.Find("_GameManager").GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
             {
                 Weapon6 = true;
                 Utility.InstantiateOverNetwork(GameObject.Find("_GameManager").GetComponent<GameManagerScript>().Weapon6, transform.position, Quaternion.identity);

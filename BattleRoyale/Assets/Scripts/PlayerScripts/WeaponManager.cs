@@ -61,7 +61,7 @@ public class WeaponManager : NetworkBehaviour {
         if (isLocalPlayer == false)
         {
             if (Debug.isDebugBuild)
-                Debug.LogError("WeaponManager -- SwitchWeaponLocal: This script is being called on a player that is not the local player! This should only be called on the local client, call SwitchWeaponRemote for remote clients.");
+                Debug.LogError("WeaponManager -- SwitchWeaponLocal: This script is being called on a player that is not the local player! This should only be called on the local client, call SwitchWeaponRemote for remote clients.", this);
             return;
         }
 
@@ -73,7 +73,7 @@ public class WeaponManager : NetworkBehaviour {
         else
         {
             if (Debug.isDebugBuild)
-                Debug.LogError("WeaponManager -- SwitchWeaponLocal: The passed in weapon was not equal to any of the equipped weapons! If you meant to equip a new weapon, use EquipWeapon instead");
+                Debug.LogError("WeaponManager -- SwitchWeaponLocal: The passed in weapon was not equal to any of the equipped weapons! If you meant to equip a new weapon, use EquipWeapon instead", this);
             return;
         }
         if(weaponSwitchingUI != null)
@@ -106,7 +106,7 @@ public class WeaponManager : NetworkBehaviour {
         currentGraphics = weaponIns.GetComponent<WeaponGraphics>();
         if (currentGraphics == null)
         {
-            Debug.LogError("WeaponManager -- SwitchWeaponLocal: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!");
+            Debug.LogError("WeaponManager -- SwitchWeaponLocal: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!", this);
         }
         else
         {
@@ -138,7 +138,7 @@ public class WeaponManager : NetworkBehaviour {
         /*if(isLocalPlayer == false)
         {
             if(Debug.isDebugBuild)
-                Debug.LogError("WeaponManager -- EquipWeaponLocal: This script is being called on a player that is not the local player! This should only be called on the local client, call EquipWeaponRemote for remote clients.");
+                Debug.LogError("WeaponManager -- EquipWeaponLocal: This script is being called on a player that is not the local player! This should only be called on the local client, call EquipWeaponRemote for remote clients.", this);
             return;
         }*/
 
@@ -166,7 +166,7 @@ public class WeaponManager : NetworkBehaviour {
         else
         {
             if (Debug.isDebugBuild)
-                Debug.LogError("WeaponManager -- EquipWeapon: There is no weapon corresponding to the number " + _weaponNum);
+                Debug.LogError("WeaponManager -- EquipWeapon: There is no weapon corresponding to the number " + _weaponNum, this);
             return;
         }
 
@@ -256,7 +256,7 @@ public class WeaponManager : NetworkBehaviour {
         else
         {
             if (Debug.isDebugBuild)
-                Debug.LogError("WeaponManager -- SwitchWeaponRemote: There is no weapon corresponding to the number " + _weaponNum);
+                Debug.LogError("WeaponManager -- SwitchWeaponRemote: There is no weapon corresponding to the number " + _weaponNum, this);
             return;
         }
 
@@ -278,7 +278,7 @@ public class WeaponManager : NetworkBehaviour {
         currentGraphics = weaponIns.GetComponent<WeaponGraphics>();
         if (currentGraphics == null)
         {
-            Debug.LogError("WeaponManager -- EquipWeaponRemote: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!");
+            Debug.LogError("WeaponManager -- EquipWeaponRemote: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!", this);
         }
         else
         {

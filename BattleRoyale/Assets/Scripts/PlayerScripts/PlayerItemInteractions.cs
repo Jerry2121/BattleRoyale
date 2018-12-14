@@ -57,4 +57,16 @@ public class PlayerItemInteractions : NetworkBehaviour {
         }
     }
 
+    [Command]
+    public void CmdOpenAirDrop(NetworkInstanceId _netID)
+    {
+        //RpcOpenAirDrop(_netID);
+        GameObject Airdrop = NetworkServer.FindLocalObject(_netID);
+        Airdrop.GetComponent<AirDropItemSpawn>().SpawnSupplies();
+    }
+    public void RpcOpenAirDrop(NetworkInstanceId _netID)
+    {
+        GameObject Airdrop = ClientScene.FindLocalObject(_netID);
+    }
+
 }

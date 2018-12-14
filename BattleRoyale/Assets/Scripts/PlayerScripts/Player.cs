@@ -38,7 +38,9 @@ public class Player : NetworkBehaviour {
     public float rayLength = 2;
 
     [SerializeField]
-    LayerMask mask;
+    LayerMask weaponItemMask;
+    [SerializeField]
+    LayerMask airDropMask;
 
     public PlayerItemInteractions itemInteractions;
 
@@ -89,11 +91,11 @@ public class Player : NetworkBehaviour {
     {
         if (!isLocalPlayer)
             return;
-        
+
         RaycastHit hit;
         Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
 
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, mask) && !PauseMenu.isOn)
+        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, weaponItemMask) && !PauseMenu.isOn)
         {
             Debug.Log("Player -- Update: Hit a weapon item");
             if (Input.GetKeyDown(KeyCode.E))
@@ -101,6 +103,16 @@ public class Player : NetworkBehaviour {
                 Debug.Log("Pressed E");
                 //hit.transform.GetComponent<WeaponItem>().OnWeaponEquip(transform.name);
                 itemInteractions.CmdEquipWeaponFromItem(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
+            }
+        }
+        else if (Physics.Raycast(transform.position, fwd, out hit, rayLength, airDropMask) && !PauseMenu.isOn)
+        {
+            Debug.Log("Player -- Update: Hit an airdrop");
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Pressed E");
+                //hit.transform.GetComponent<WeaponItem>().OnWeaponEquip(transform.name);
+                itemInteractions.CmdOpenAirDrop(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
             }
         }
 
