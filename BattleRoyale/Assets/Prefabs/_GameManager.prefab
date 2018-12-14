@@ -79,10 +79,13 @@ MonoBehaviour:
     canRespawn: 0
   timeBetweenZoneShrinking: 120
   inStartPeriod: 0
-  startTimer: 0
+  gameTimer: 0
   zoneWallPrefab: {fileID: 1759811002696946, guid: afd2003d7fc115041bdd0a7f47ab82a3,
     type: 2}
   zoneWallTransform: {fileID: 0}
   sceneCamera: {fileID: 0}
+  airDropPrefab: {fileID: 1615992600299588, guid: 3aa4aa3abe3f43b47bff4c2b120f5a72,
+    type: 2}
+  airDropSpawnPoints: []
   zoneShrinking: 1
   zoneShrunk: 0

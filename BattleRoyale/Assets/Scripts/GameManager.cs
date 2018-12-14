@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     GameObject airDropPrefab;
     [SerializeField]
-    Transform[] airDropSpawns;
+    Transform[] airDropSpawnPoints;
 
     float airdroptimer = 20;
 
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour {
     void SpawnAirdrop()
     {
         if(networkDiscoveryScript.isServer)
-            Utility.InstantiateOverNetwork(airDropPrefab, airDropSpawns[Random.Range(0, airDropSpawns.Length)].position, Quaternion.identity);
+            Utility.InstantiateOverNetwork(airDropPrefab, airDropSpawnPoints[Random.Range(0, airDropSpawnPoints.Length)].position, Quaternion.identity);
         
     }
 

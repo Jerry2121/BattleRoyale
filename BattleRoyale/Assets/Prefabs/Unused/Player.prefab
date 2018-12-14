@@ -400,6 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e91889712873249978e4c766e45144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  ZoneWall: {fileID: 0}
   healthslider: {fileID: 0}
   StaminaSlider: {fileID: 0}
   HealthText: {fileID: 0}
@@ -407,6 +409,7 @@ MonoBehaviour:
   Health: 100
   Stamina: 100
   run: 0
+  OutsideOfCircle: 0
 --- !u!124 &124403317138747810
 Behaviour:
   m_ObjectHideFlags: 1

@@ -53,12 +53,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisableItemSpawning: 1
-  ItemSpawn1: {fileID: 0}
-  ItemSpawn2: {fileID: 0}
-  ItemSpawn3: {fileID: 0}
-  ItemSpawn4: {fileID: 0}
-  ItemSpawn5: {fileID: 0}
-  ItemSpawn6: {fileID: 0}
+  Weapon1: {fileID: 0}
+  Weapon2: {fileID: 0}
+  Weapon3: {fileID: 0}
+  Weapon4: {fileID: 0}
+  Weapon5: {fileID: 0}
+  Weapon6: {fileID: 0}
+  Ammo1: {fileID: 0}
+  Ammo2: {fileID: 0}
+  Ammo3: {fileID: 0}
 --- !u!114 &114633163838755624
 MonoBehaviour:
   m_ObjectHideFlags: 1

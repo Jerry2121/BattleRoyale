@@ -1930,6 +1930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580989b8cc0e4154899959bdde66c4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   RotateWithPlayer: 0
   MiniMapHeight: 146.3
 --- !u!114 &114935403526259398

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750ed42c24c98234883ef358d660ff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomNameText: {fileID: 114718013512081670}
+  roomNameText: {fileID: 0}
 --- !u!114 &114345621087300446
 MonoBehaviour:
   m_ObjectHideFlags: 1
