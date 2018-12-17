@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     Transform[] airDropSpawnPoints;
 
     float airdroptimer = 20;
+    float secondsUntilDrop;
 
     public bool zoneShrinking;
     public bool zoneShrunk;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour {
         int z = Random.Range(0, 1);
         zoneWallTransform.position += new Vector3(x, 0f, y);
         */
-        SpawnAirdrop();
+
     }
 
     public void SetSceneCameraActiveState(bool isActive)
@@ -118,9 +119,17 @@ public class GameManager : MonoBehaviour {
 
         }
         
+        if(gameTimer >= -420)
+        {
+            secondsUntilDrop -= Time.deltaTime;
 
-        //if (zoneShrinking)
-        //    zoneWallTransform.localScale -= new Vector3(0.005f * Time.deltaTime, 0f, 0.005f * Time.deltaTime);
+            if(secondsUntilDrop <= 0)
+            {
+                Debug.Log("Foo");
+                SpawnAirdrop();
+                secondsUntilDrop = Random.Range(5, 36);
+            }
+        }
 
     }
 
@@ -131,22 +140,17 @@ public class GameManager : MonoBehaviour {
 
     void SpawnAirdrop()
     {
-        if(networkDiscoveryScript.isServer)
-            Utility.InstantiateOverNetwork(airDropPrefab, airDropSpawnPoints[Random.Range(0, airDropSpawnPoints.Length)].position, Quaternion.identity);
-        
-    }
-
-    /*void SpawnZoneWall()
-    {
-        networkManager = NetworkManager.singleton;
-        networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
-
+        Debug.Log("Foo2");
         if (networkDiscoveryScript.isServer)
         {
-            GameObject zone_GO = Utility.InstantiateOverNetwork(zoneWallPrefab, transform.position, Quaternion.identity);
-            zoneWallTransform = zone_GO.transform;
+            if(airDropSpawnPoints.Length < 1)
+            {
+                Debug.LogError("GameManager -- SpawnAirdrop: There are no Airdrop Spawnpoints");
+            }
+            Utility.InstantiateOverNetwork(airDropPrefab, airDropSpawnPoints[Random.Range(0, airDropSpawnPoints.Length)].position, Quaternion.identity);
         }
-    }*/
+        
+    }
 
     #region Player Tracking
 
