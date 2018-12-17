@@ -20,6 +20,8 @@ public class PlayerWeapon {
     public GameObject graphics;
     public Sprite sprite;
 
+    public string AmmoType = "defaultAmmo";
+
     public PlayerWeapon()
     {
         currentAmmo = maxAmmo;
