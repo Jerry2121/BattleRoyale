@@ -206,7 +206,7 @@ public class Player : NetworkBehaviour {
     [ClientRpc] //Called on all clients from the server
     public void RpcTakeDamage(int _damage, string _sourceID)
     {
-        if (isDead)
+        if (isDead || GameManager.IsGameOver())
             return;
 
         currentHealth -= _damage;
