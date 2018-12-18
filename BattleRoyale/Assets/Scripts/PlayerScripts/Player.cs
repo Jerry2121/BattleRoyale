@@ -141,7 +141,7 @@ public class Player : NetworkBehaviour {
         {
             CmdTakeDamage(9999, "Dev");
         }
-        if (inBounds == false)
+        if (inBounds == false && GameManager.instance.inStartPeriod == false)
         {
             zoneDamageTimer -= Time.deltaTime;
             if (zoneDamageTimer <= 0f)

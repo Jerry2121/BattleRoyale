@@ -145,7 +145,6 @@ public class GameManager : MonoBehaviour {
 
             if(secondsUntilDrop <= 0)
             {
-                Debug.Log("Foo");
                 SpawnAirdrop();
                 secondsUntilDrop = Random.Range(5, 36);
             }
@@ -160,7 +159,6 @@ public class GameManager : MonoBehaviour {
 
     void SpawnAirdrop()
     {
-        Debug.Log("Foo2");
         if (networkDiscoveryScript.isServer)
         {
             if(airDropSpawnPoints.Length < 1)
