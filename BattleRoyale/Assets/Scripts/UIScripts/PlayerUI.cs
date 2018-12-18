@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerUI : MonoBehaviour {
 
@@ -26,6 +27,12 @@ public class PlayerUI : MonoBehaviour {
     GameObject outsideOfZoneImage;
     [SerializeField]
     InventoryScriptLITE inventoryScriptLITE;
+    [SerializeField]
+    TextMeshProUGUI killsText;
+    [SerializeField]
+    TextMeshProUGUI aliveText;
+    [SerializeField]
+    GameObject winCanvas;
 
     public Player player { get; protected set; }
     private PlayerController controller;
@@ -45,6 +52,9 @@ public class PlayerUI : MonoBehaviour {
 
     void Update()
     {
+        killsText.text = "Kills: " + player.kills;
+        aliveText.text = "Alive: " + GameManager.GetAllPlayers().Length;
+
         SetFuelAmount(controller.thrusterFuelAmount);
         SetHealthAmount(player.GetHealthPercentage());
         if(weaponManager.GetCurrentWeapon() != null)
@@ -78,6 +88,11 @@ public class PlayerUI : MonoBehaviour {
             }
         }
 
+        if (GameManager.IsGameOver())
+        {
+            winCanvas.SetActive(true);
+        }
+
     }
 
     void SetFuelAmount(float _amount)
@@ -109,5 +124,7 @@ public class PlayerUI : MonoBehaviour {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         PauseMenu.isOn = pauseMenu.activeSelf;
     }
+
+
 
 }
