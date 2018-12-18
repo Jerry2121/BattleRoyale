@@ -10185,6 +10185,7 @@ MonoBehaviour:
   inventoryScriptLITE: {fileID: 114729534536118138}
   killsText: {fileID: 114311802638636992}
   aliveText: {fileID: 114084648569560744}
+  winCanvas: {fileID: 1151049084468692}
 --- !u!114 &114342532621063470
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -31,6 +31,8 @@ public class PlayerUI : MonoBehaviour {
     TextMeshProUGUI killsText;
     [SerializeField]
     TextMeshProUGUI aliveText;
+    [SerializeField]
+    GameObject winCanvas;
 
     public Player player { get; protected set; }
     private PlayerController controller;
@@ -84,6 +86,11 @@ public class PlayerUI : MonoBehaviour {
             {
                 pauseMenu.GetComponent<PauseMenu>().ShowInventory();
             }
+        }
+
+        if (GameManager.IsGameOver())
+        {
+            winCanvas.SetActive(true);
         }
 
     }

@@ -152,6 +152,14 @@ public class GameManager : MonoBehaviour {
         
     }
 
+    public static bool IsGameOver()
+    {
+        if (players.Count > 1 || instance.inStartPeriod)
+            return false;
+        else
+            return true;
+    }
+
     #region Player Tracking
 
     private const string PLAYER_ID_PREFIX = "Player ";
