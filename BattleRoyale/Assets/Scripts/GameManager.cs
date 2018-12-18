@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
     public static GameManager instance;
 
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 
     public int timeBetweenZoneShrinking = 120;
     public bool inStartPeriod = true;
+    [SyncVar]
     public float gameTimer = 0f;
     float zoneTimer = 0f;
     float zoneWaitTimer = 0f;
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour {
                 Player[] ply = GetAllPlayers();
                 for (int i = 0; i < ply.Length; i++)
                 {
-                    int chance = Random.Range(0, MapSpawns.Length - 1);
+                    int chance = Random.Range(0, MapSpawns.Length);
                     if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
                     {
                         ply[i].transform.position = MapSpawns[chance].transform.position;
