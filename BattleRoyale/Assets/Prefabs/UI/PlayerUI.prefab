@@ -10183,6 +10183,8 @@ MonoBehaviour:
   miniMapFollow: {fileID: 114639913353316660}
   outsideOfZoneImage: {fileID: 1762403461476378}
   inventoryScriptLITE: {fileID: 114729534536118138}
+  killsText: {fileID: 114311802638636992}
+  aliveText: {fileID: 114084648569560744}
 --- !u!114 &114342532621063470
 MonoBehaviour:
   m_ObjectHideFlags: 1
