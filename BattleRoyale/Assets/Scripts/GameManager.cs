@@ -38,6 +38,7 @@ public class GameManager : NetworkBehaviour {
     public bool zoneShrinking;
     public bool zoneShrunk;
     bool waitTimerActive;
+    bool playersSpawned;
 
     public delegate void OnPlayerKilledCallback(string player, string source);
     public OnPlayerKilledCallback onPlayerKilledCallback;
@@ -88,7 +89,7 @@ public class GameManager : NetworkBehaviour {
         {
             inStartPeriod = false;
         }
-        if (!inStartPeriod)
+        if (!inStartPeriod && !playersSpawned)
         {
             if (networkDiscoveryScript.isServer)
             {
@@ -105,6 +106,7 @@ public class GameManager : NetworkBehaviour {
                     {
                         i--;
                     }
+                    playersSpawned = true;
                 }
             }
         }
