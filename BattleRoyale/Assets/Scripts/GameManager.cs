@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     GameObject airDropPrefab;
     [SerializeField]
     Transform[] airDropSpawnPoints;
+    [SerializeField]
+    Transform[] MapSpawns;
 
     float airdroptimer = 20;
     float secondsUntilDrop;
@@ -77,7 +79,6 @@ public class GameManager : MonoBehaviour {
     private void Update()
     {
         gameTimer += Time.deltaTime;
-
         if (gameTimer < 0f)
         {
             inStartPeriod = true;
@@ -86,7 +87,26 @@ public class GameManager : MonoBehaviour {
         {
             inStartPeriod = false;
         }
-
+        if (!inStartPeriod)
+        {
+            if (networkDiscoveryScript.isServer)
+            {
+                Player[] ply = GetAllPlayers();
+                for (int i = 0; i < ply.Length; i++)
+                {
+                    int chance = Random.Range(0, MapSpawns.Length - 1);
+                    if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
+                    {
+                        ply[i].transform.position = MapSpawns[chance].transform.position;
+                        MapSpawns[chance].GetComponent<MapSpawn>().Occupied = true;
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+            }
+        }
         if (zoneShrunk)
             return;
 
