@@ -74,7 +74,8 @@ MonoBehaviour:
     maxAmmo: 35
     currentAmmo: 20
     graphics: {fileID: 1942707229471652, guid: a8ba0a4259469564f97a9cd9b029a744, type: 2}
-    sprite: {fileID: 21300000, guid: 79e5d8fef9ee7564cb735b894d00f7df, type: 3}
+    sprite: {fileID: 21300000, guid: ccf4f261cb641154680832d28ded5751, type: 3}
+    AmmoType: defaultAmmo
 --- !u!114 &114638588306188362
 MonoBehaviour:
   m_ObjectHideFlags: 1

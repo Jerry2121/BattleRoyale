@@ -106,4 +106,5 @@ MonoBehaviour:
     maxAmmo: 20
     currentAmmo: 20
     graphics: {fileID: 1992311776032100, guid: 07a9d9904899752458d2cd69cbcf2e4f, type: 2}
-    sprite: {fileID: 21300000, guid: 79e5d8fef9ee7564cb735b894d00f7df, type: 3}
+    sprite: {fileID: 21300000, guid: 3a57d54798975b54280f78f9f7f54af9, type: 3}
+    AmmoType: defaultAmmo
