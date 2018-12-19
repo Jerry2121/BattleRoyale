@@ -80,7 +80,9 @@ public class GameManager : NetworkBehaviour {
 
     private void Update()
     {
-        gameTimer += Time.deltaTime;
+        if(networkDiscoveryScript.isServer)
+            gameTimer += Time.deltaTime;
+
         if (gameTimer < 0f)
         {
             inStartPeriod = true;
@@ -99,6 +101,7 @@ public class GameManager : NetworkBehaviour {
                     int chance = Random.Range(0, MapSpawns.Length);
                     if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
                     {
+                        //RpcMovePlayer(ply[i], MapSpawns[chance].transform.position);
                         ply[i].transform.position = MapSpawns[chance].transform.position;
                         MapSpawns[chance].GetComponent<MapSpawn>().Occupied = true;
                     }
@@ -154,6 +157,12 @@ public class GameManager : NetworkBehaviour {
         }
 
     }
+
+    /*[ClientRpc]
+    void RpcMovePlayer(Player _player, Vector3 _position)
+    {
+
+    }*/
 
     void StartTimer()
     {
