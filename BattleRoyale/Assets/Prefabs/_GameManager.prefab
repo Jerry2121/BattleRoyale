@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4356352696299956}
   - component: {fileID: 114885349636366104}
   - component: {fileID: 114582072038991078}
+  - component: {fileID: 114914012948450954}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: Untagged
@@ -87,5 +88,38 @@ MonoBehaviour:
   airDropPrefab: {fileID: 1615992600299588, guid: 3aa4aa3abe3f43b47bff4c2b120f5a72,
     type: 2}
   airDropSpawnPoints: []
+  MapSpawns: []
   zoneShrinking: 1
   zoneShrunk: 0
+--- !u!114 &114914012948450954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130956345023270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 109
+    i1: 163
+    i2: 197
+    i3: 197
+    i4: 223
+    i5: 242
+    i6: 184
+    i7: 212
+    i8: 72
+    i9: 62
+    i10: 144
+    i11: 106
+    i12: 122
+    i13: 40
+    i14: 29
+    i15: 242
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
