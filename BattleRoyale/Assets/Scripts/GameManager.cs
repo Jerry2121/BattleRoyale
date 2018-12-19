@@ -96,12 +96,12 @@ public class GameManager : NetworkBehaviour {
             if (networkDiscoveryScript.isServer)
             {
                 Player[] ply = GetAllPlayers();
-                for (int i = 0; i < ply.Length; i++)
+                for (int i = 0; i < ply.Length - 1; i++)
                 {
                     int chance = Random.Range(0, MapSpawns.Length);
                     if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
                     {
-                        //RpcMovePlayer(ply[i], MapSpawns[chance].transform.position);
+                        RpcMovePlayer(ply[i].GetComponent<NetworkIdentity>().netId, MapSpawns[chance].transform.position.x, MapSpawns[chance].transform.position.y, MapSpawns[chance].transform.position.z);
                         ply[i].transform.position = MapSpawns[chance].transform.position;
                         MapSpawns[chance].GetComponent<MapSpawn>().Occupied = true;
                     }
@@ -158,11 +158,11 @@ public class GameManager : NetworkBehaviour {
 
     }
 
-    /*[ClientRpc]
-    void RpcMovePlayer(Player _player, Vector3 _position)
+    [ClientRpc]
+    void RpcMovePlayer(NetworkInstanceId _id, float x, float y, float z)
     {
-
-    }*/
+        ClientScene.FindLocalObject(_id).transform.position = new Vector3(x, y, z);
+    }
 
     void StartTimer()
     {
