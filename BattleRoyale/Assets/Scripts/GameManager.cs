@@ -96,7 +96,7 @@ public class GameManager : NetworkBehaviour {
             if (networkDiscoveryScript.isServer)
             {
                 Player[] ply = GetAllPlayers();
-                for (int i = 0; i < ply.Length - 1; i++)
+                for (int i = 0; i < ply.Length; i++)
                 {
                     int chance = Random.Range(0, MapSpawns.Length);
                     if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
