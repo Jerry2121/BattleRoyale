@@ -17,7 +17,7 @@ public class GameManager : NetworkBehaviour {
     public bool inStartPeriod = true;
     [SyncVar]
     public float gameTimer = 0f;
-    float zoneTimer = 0f;
+    public float zoneTimer = 0f;
     float zoneWaitTimer = 0f;
     [SerializeField]
     GameObject zoneWallPrefab;

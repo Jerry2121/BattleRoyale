@@ -65,7 +65,7 @@ public class ChangeCircle : NetworkBehaviour
 
 		if(GameManager.instance.zoneShrinking)
 		{
-			XRadius = Mathf.Lerp(XRadius, ShrinkCircle(XRadius)[0], Time.deltaTime * 0.05f);
+			XRadius = Mathf.Lerp(XRadius, ShrinkCircle(XRadius)[0], Time.deltaTime * 0.01f);
 			circle.Draw(Segments, XRadius, XRadius);
 		}
 

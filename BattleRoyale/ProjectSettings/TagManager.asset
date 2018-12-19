@@ -12,6 +12,7 @@ TagManager:
   - InventoryItem
   - Fire
   - AirDrop
+  - _GameManager
   layers:
   - Default
   - TransparentFX

@@ -25,7 +25,7 @@ public class BRS_AirDrop : MonoBehaviour
 
 		if (Physics.Raycast (transform.position, Vector3.down, out objectHit, 1))
 		{
-			if (objectHit.collider.gameObject.name != "FPSController")
+			if (objectHit.collider.gameObject.name == "Terrain")
 			{
 				Landed = true;
 			}
