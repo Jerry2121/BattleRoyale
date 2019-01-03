@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using TMPro;
 
 public class PlayerUI : MonoBehaviour {
@@ -35,6 +36,9 @@ public class PlayerUI : MonoBehaviour {
     GameObject winCanvas;
     [SerializeField]
     TextMeshProUGUI GameStartingText;
+    [SerializeField]
+    TextMeshProUGUI GameStartButtonText;
+    private bool started;
     private float GameStartTimer;
 
     public Player player { get; protected set; }
@@ -43,6 +47,7 @@ public class PlayerUI : MonoBehaviour {
 
     void Start()
     {
+        started = false;
         PauseMenu.isOn = false;
         compass.Player = player.transform;
         miniMapFollow.player = player.gameObject;
@@ -90,6 +95,19 @@ public class PlayerUI : MonoBehaviour {
         if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
         {
             GameStartingText.text = "Not Enough Players. Need 1 More Player.";
+        }
+        if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer)
+        {
+            GameStartButtonText.text = "Press P to start the game";
+        }
+        else if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && started)
+        {
+            GameStartButtonText.text = "";
+        }
+        if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
+        {
+            started = true;
+            GameManager.instance.gameTimer = -5;
         }
         else if (Input.GetKeyDown(KeyCode.I))
         {
