@@ -87,7 +87,7 @@ public class PlayerUI : MonoBehaviour {
         {
             GameStartingText.text = "";
         }
-        if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120)
+        if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
         {
             GameStartingText.text = "Not Enough Players. Need 1 More Player.";
         }

@@ -81,7 +81,7 @@ public class GameManager : NetworkBehaviour {
 
     private void Update()
     {
-        if (networkDiscoveryScript.isServer && GetAllPlayers().Length <= 1)
+        if (networkDiscoveryScript.isServer && GetAllPlayers().Length <= 1 && inStartPeriod)
         {
             gameTimer = -120;
         }
