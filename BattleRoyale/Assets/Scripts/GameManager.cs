@@ -81,8 +81,14 @@ public class GameManager : NetworkBehaviour {
 
     private void Update()
     {
-        if(networkDiscoveryScript.isServer)
+        if (networkDiscoveryScript.isServer && GetAllPlayers().Length <= 1)
+        {
+            gameTimer = -120;
+        }
+        else if (networkDiscoveryScript.isServer && GetAllPlayers().Length > 1)
+        {
             gameTimer += Time.deltaTime;
+        }
 
         if (gameTimer < 0f)
         {

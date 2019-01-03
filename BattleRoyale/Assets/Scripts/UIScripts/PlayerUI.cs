@@ -58,7 +58,7 @@ public class PlayerUI : MonoBehaviour {
     {
         killsText.text = "Kills: " + player.kills;
         aliveText.text = "Alive: " + GameManager.GetAllPlayers().Length;
-        GameStartTimer = GameObject.Find("_GameManager").GetComponent<GameManager>().gameTimer;
+        GameStartTimer = GameManager.instance.gameTimer;
         SetFuelAmount(controller.thrusterFuelAmount);
         SetHealthAmount(player.GetHealthPercentage());
         if(weaponManager.GetCurrentWeapon() != null)
@@ -79,13 +79,17 @@ public class PlayerUI : MonoBehaviour {
         {
             scoreboard.SetActive(false);
         }
-        if(GameStartTimer <= 0)
+        if(GameStartTimer <= 0 && GameManager.GetAllPlayers().Length > 1)
         {
             GameStartingText.text = "Game Starting In: " + Mathf.RoundToInt(GameStartTimer) * -1;
         }
-        else if (GameStartTimer == 0)
+        else if (GameStartTimer >= 0 && GameManager.GetAllPlayers().Length > 1)
         {
             GameStartingText.text = "";
+        }
+        if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120)
+        {
+            GameStartingText.text = "Not Enough Players. Need 1 More Player.";
         }
         else if (Input.GetKeyDown(KeyCode.I))
         {
