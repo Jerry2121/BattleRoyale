@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4743604379981838}
   - component: {fileID: 82289107142058464}
+  - component: {fileID: 114739199720974174}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -135,3 +136,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114739199720974174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712620006233214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e29fc025a9beb458cccd867c909736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

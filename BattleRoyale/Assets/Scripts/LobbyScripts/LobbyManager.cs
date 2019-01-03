@@ -95,10 +95,12 @@ public class LobbyManager : MonoBehaviour {
 
     public void CreateLANGameAsHost()
     {
+        GameObject.Find("MusicPlayer").GetComponent<AudioSource>().volume = 0;
         networkDiscoveryScript.CreateLANGameAsHost();
     }
     public void CreateLANGameAsServer()
     {
+        GameObject.Find("MusicPlayer").GetComponent<AudioSource>().volume = 0;
         networkDiscoveryScript.CreateLANGameAsServer();
     }
     public void SetRoomName(string _name)

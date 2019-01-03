@@ -33,6 +33,9 @@ public class PlayerUI : MonoBehaviour {
     TextMeshProUGUI aliveText;
     [SerializeField]
     GameObject winCanvas;
+    [SerializeField]
+    TextMeshProUGUI GameStartingText;
+    private float GameStartTimer;
 
     public Player player { get; protected set; }
     private PlayerController controller;
@@ -48,13 +51,14 @@ public class PlayerUI : MonoBehaviour {
         inventoryScriptLITE.player = player.transform;
         if (pauseMenu.activeSelf == true)
             TogglePauseMenu();
+        
     }
 
     void Update()
     {
         killsText.text = "Kills: " + player.kills;
         aliveText.text = "Alive: " + GameManager.GetAllPlayers().Length;
-
+        GameStartTimer = GameObject.Find("_GameManager").GetComponent<GameManager>().gameTimer;
         SetFuelAmount(controller.thrusterFuelAmount);
         SetHealthAmount(player.GetHealthPercentage());
         if(weaponManager.GetCurrentWeapon() != null)
@@ -74,6 +78,14 @@ public class PlayerUI : MonoBehaviour {
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
             scoreboard.SetActive(false);
+        }
+        if(GameStartTimer <= 0)
+        {
+            GameStartingText.text = "Game Starting In: " + Mathf.RoundToInt(GameStartTimer) * -1;
+        }
+        else if (GameStartTimer == 0)
+        {
+            GameStartingText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.I))
         {
