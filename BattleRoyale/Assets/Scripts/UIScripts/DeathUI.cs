@@ -14,6 +14,9 @@ public class DeathUI : MonoBehaviour {
         if (NetworkDiscoveryScript.IsServerOnly)
             gameObject.SetActive(false);
 
+        while (GameManager.instance == null)
+            Utility.WaitForEndOfFrame();
+
         if (GameManager.instance.matchSettings.canRespawn)
             deathUIMap.SetActive(false);
 	}
@@ -42,11 +45,11 @@ public class DeathUI : MonoBehaviour {
         }
     }
 
-    /*private void OnEnable()
+    private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }*/
+    }
 
     void ToggleScoreboard()
     {

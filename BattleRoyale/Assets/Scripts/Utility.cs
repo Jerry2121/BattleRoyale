@@ -78,4 +78,9 @@ public class Utility {
         return GO;
     }
 
+    public static IEnumerator WaitForEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+    }
+
 }

@@ -35,6 +35,10 @@ public class WeaponItemSpawner : MonoBehaviour {
         if (canspawnItem && networkDiscoveryScript.isServer && ran == false)
         {
             d1 = Random.Range(0, 7);
+            if(GameManager.instance == null)
+            {
+                Debug.LogError("WeaponItemSpawner -- Update: GameManager instance is Null!");
+            }
             GameObject gameManager = GameManager.instance.gameObject;
 
             if (d1 == 1 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
