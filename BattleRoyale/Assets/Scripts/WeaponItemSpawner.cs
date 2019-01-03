@@ -32,7 +32,7 @@ public class WeaponItemSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (canspawnItem && networkDiscoveryScript.isServer)
+        if (canspawnItem && networkDiscoveryScript.isServer && ran == false)
         {
             d1 = Random.Range(0, 7);
             GameObject gameManager = GameManager.instance.gameObject;

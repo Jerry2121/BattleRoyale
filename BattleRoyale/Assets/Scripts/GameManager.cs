@@ -43,7 +43,7 @@ public class GameManager : NetworkBehaviour {
     public delegate void OnPlayerKilledCallback(string player, string source);
     public OnPlayerKilledCallback onPlayerKilledCallback;
 
-    private void Awake()
+    private void OnEnable()
     {
         if(instance != null)
         {
