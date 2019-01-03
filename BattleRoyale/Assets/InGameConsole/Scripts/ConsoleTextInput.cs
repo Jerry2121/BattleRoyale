@@ -30,6 +30,7 @@ namespace InGameConsole
         {
             if (consoleInputField.text == string.Empty || consoleInputField.text == "`")
             {
+                consoleInputField.text = string.Empty;
                 consoleInputField.ActivateInputField();
                 return;
             }
