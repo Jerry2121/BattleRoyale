@@ -333,7 +333,7 @@ public class Player : NetworkBehaviour {
     {
         if (other.gameObject.tag == "Lobby" && GameManager.instance.inStartPeriod == false)
         {
-           Die("dev");
+           CmdTakeDamage(999999999, "Dev");
         }
     }
 

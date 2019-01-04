@@ -96,7 +96,7 @@ public class PlayerUI : MonoBehaviour {
         {
             GameStartingText.text = "Not Enough Players. Need 1 More Player.";
         }
-        if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started && GameManager.GetAllPlayers().Length >= 1)
+        if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started && GameManager.GetAllPlayers().Length > 1)
         {
             GameStartButtonText.SetActive(true);
         }
