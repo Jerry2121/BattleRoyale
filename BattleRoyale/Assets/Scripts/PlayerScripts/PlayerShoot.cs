@@ -89,6 +89,8 @@ public class PlayerShoot : NetworkBehaviour {
     void CmdOnHit(Vector3 _pos, Vector3 _normal)
     {
         RpcDoHitEffect(_pos, _normal);
+        // play sound?
+        // show hit marker
     }
 
     //called on all clients to spawn in a hit effect
