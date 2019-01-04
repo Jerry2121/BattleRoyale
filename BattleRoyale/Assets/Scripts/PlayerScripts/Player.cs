@@ -329,7 +329,7 @@ public class Player : NetworkBehaviour {
                 outsideOfZoneImage.SetActive(false);
         }
         Utility.WaitForEndOfFrame();
-        if (other.gameObject.tag == "Lobby" && GameObject.Find("PlayerUI").GetComponent<PlayerUI>().started == false)
+        if (other.gameObject.tag == "Lobby" && GameObject.Find("PlayerUI").GetComponent<PlayerUI>().started == true)
         {
             if (isLocalPlayer)
                 CmdTakeDamage(999999999, "Dev");

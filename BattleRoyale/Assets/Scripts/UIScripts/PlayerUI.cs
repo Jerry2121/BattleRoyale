@@ -91,6 +91,7 @@ public class PlayerUI : MonoBehaviour {
         else if (GameStartTimer >= 0 && GameManager.GetAllPlayers().Length > 1)
         {
             GameStartingText.text = "";
+            started = true;
         }
         if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
         {
