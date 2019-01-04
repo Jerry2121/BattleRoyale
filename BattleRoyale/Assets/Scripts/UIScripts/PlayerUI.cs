@@ -37,7 +37,7 @@ public class PlayerUI : MonoBehaviour {
     [SerializeField]
     TextMeshProUGUI GameStartingText;
     [SerializeField]
-    TextMeshProUGUI GameStartButtonText;
+    GameObject GameStartButtonText;
     private bool started;
     private float GameStartTimer;
 
@@ -91,7 +91,6 @@ public class PlayerUI : MonoBehaviour {
         else if (GameStartTimer >= 0 && GameManager.GetAllPlayers().Length > 1)
         {
             GameStartingText.text = "";
-            GameStartButtonText.text = "";
         }
         if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
         {
@@ -99,11 +98,11 @@ public class PlayerUI : MonoBehaviour {
         }
         if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer)
         {
-            GameStartButtonText.text = "Press P to start the game";
+            GameStartButtonText.SetActive(true);
         }
-        else if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && started)
+        else
         {
-            GameStartButtonText.text = "";
+            GameStartButtonText.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {
