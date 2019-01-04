@@ -117,7 +117,11 @@ public class LoginMenu : MonoBehaviour {
             }
         }
     }
-    
+    public void Update(){
+		if(Input.GetKeyDown(KeyCode.Return)){
+			Login_LoginButtonPressed();	
+		}
+	}
 
     //UI Button Pressed Methods
     public void Login_LoginButtonPressed ()
