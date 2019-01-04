@@ -334,8 +334,8 @@ public class Player : NetworkBehaviour {
         if (other.gameObject.tag == "Lobby" && GameManager.instance.inStartPeriod == false)
         {
             Utility.WaitForEndOfFrame();
-            if(isLocalPlayer)
-                CmdTakeDamage(999999999, "Dev");
+           // if(isLocalPlayer)
+                //CmdTakeDamage(999999999, "Dev");
         }
     }
 
