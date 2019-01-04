@@ -328,15 +328,15 @@ public class Player : NetworkBehaviour {
             if (outsideOfZoneImage != null)
                 outsideOfZoneImage.SetActive(false);
         }
+    }
+    private void OnTriggerStay(Collider other)
+    {
         Utility.WaitForEndOfFrame();
         if (other.gameObject.tag == "Lobby" && GameObject.Find("PlayerUI").GetComponent<PlayerUI>().started == true)
         {
             if (isLocalPlayer)
                 CmdTakeDamage(999999999, "Dev");
         }
-    }
-    private void OnTriggerStay(Collider other)
-    {
     }
 
 }
