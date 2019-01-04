@@ -90,7 +90,15 @@ public class PlayerShoot : NetworkBehaviour {
     {
         RpcDoHitEffect(_pos, _normal);
         // play sound?
-        // show hit marker
+
+        //takes a sample of the HitMarker's image color
+        var tempAlpha = GetComponent<damageUI>().hitMarker.color;
+
+        //Sets the samples alpha value to 255
+        tempAlpha.a = 255;
+
+        //Sets the Hitmarkers alpha value to the samples alpha value
+        GetComponent<damageUI>().hitMarker.color = tempAlpha;
     }
 
     //called on all clients to spawn in a hit effect

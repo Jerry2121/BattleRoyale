@@ -205,6 +205,14 @@ public class Player : NetworkBehaviour {
     [ClientRpc] //Called on all clients from the server
     public void RpcTakeDamage(int _damage, string _sourceID)
     {
+        // reCameraTransform = new Vector3 (camera.position.x, camera.position.y, 0);
+        // find player with _sourceID and get their position -> damageSourcePosition = source.position
+        // damageSource = new Vector3 (damageSourcePosition.position.x, damageSourcePosition.position.y, 0);
+        // Vector3 damageDirection = reCameraTransform  - damageSource.position;
+        //float angle = Vector3.Angle(damageDirection, reCameraTransform.forward);
+
+        // GetComponent<damageUI>().FindDamageSourceDirection(angle);        
+
         if (isDead || GameManager.IsGameOver())
             return;
 
@@ -331,10 +339,10 @@ public class Player : NetworkBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        Utility.WaitForEndOfFrame();
-        if (other.gameObject.tag == "Lobby" && GameObject.Find("PlayerUI").GetComponent<PlayerUI>().started == true)
+        if (other.gameObject.tag == "Lobby" && GameManager.instance.inStartPeriod == false)
         {
-            if (isLocalPlayer)
+            Utility.WaitForEndOfFrame();
+            if(isLocalPlayer)
                 CmdTakeDamage(999999999, "Dev");
         }
     }
