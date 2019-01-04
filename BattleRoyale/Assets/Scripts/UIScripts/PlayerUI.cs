@@ -38,7 +38,7 @@ public class PlayerUI : MonoBehaviour {
     TextMeshProUGUI GameStartingText;
     [SerializeField]
     GameObject GameStartButtonText;
-    private bool started;
+    public bool started;
     private float GameStartTimer;
 
     public Player player { get; protected set; }
