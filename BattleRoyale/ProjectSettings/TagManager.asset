@@ -13,6 +13,7 @@ TagManager:
   - Fire
   - AirDrop
   - _GameManager
+  - Lobby
   layers:
   - Default
   - TransparentFX
