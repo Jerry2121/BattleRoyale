@@ -96,7 +96,7 @@ public class PlayerUI : MonoBehaviour {
         {
             GameStartingText.text = "Not Enough Players. Need 1 More Player.";
         }
-        if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer)
+        if (NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {
             GameStartButtonText.SetActive(true);
         }
@@ -107,6 +107,7 @@ public class PlayerUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {
             started = true;
+            GameStartButtonText.SetActive(false);
             GameManager.instance.gameTimer = -5;
         }
         else if (Input.GetKeyDown(KeyCode.I))

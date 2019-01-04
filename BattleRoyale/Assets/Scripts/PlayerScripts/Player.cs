@@ -91,7 +91,8 @@ public class Player : NetworkBehaviour {
     {
         if (!isLocalPlayer)
             return;
-
+        if (GameManager.instance.inStartPeriod == false)
+            Die("dev");
         RaycastHit hit;
         Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
 
