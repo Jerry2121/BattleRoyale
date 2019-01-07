@@ -87,7 +87,7 @@ MonoBehaviour:
   m_NetworkAddress: localhost
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
-  m_ScriptCRCCheck: 0
+  m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
   m_PlayerPrefab: {fileID: 1586728422693558, guid: a943793d9ce27514986cce94864ce127,
