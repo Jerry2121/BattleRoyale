@@ -345,11 +345,15 @@ public class Player : NetworkBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
+        Utility.WaitForEndOfFrame();
         if (other.gameObject.tag == "Lobby" && GameManager.instance.inStartPeriod == false)
         {
-            Utility.WaitForEndOfFrame();
-            if(isLocalPlayer)
+            
+            if (isLocalPlayer)
+            {
+                Debug.Log("Foo");
                 CmdTakeDamage(999999999, "Dev");
+            }
         }
     }
 
