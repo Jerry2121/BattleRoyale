@@ -89,16 +89,7 @@ public class PlayerShoot : NetworkBehaviour {
     void CmdOnHit(Vector3 _pos, Vector3 _normal)
     {
         RpcDoHitEffect(_pos, _normal);
-        // play sound?
-
-        //takes a sample of the HitMarker's image color
-        var tempAlpha = GetComponent<damageUI>().hitMarker.color;
-
-        //Sets the samples alpha value to 255
-        tempAlpha.a = 255;
-
-        //Sets the Hitmarkers alpha value to the samples alpha value
-        GetComponent<damageUI>().hitMarker.color = tempAlpha;
+        
     }
 
     //called on all clients to spawn in a hit effect
@@ -141,6 +132,17 @@ public class PlayerShoot : NetworkBehaviour {
             }
             //we hit something, call OnHit method on server
             CmdOnHit(hit.point, hit.normal);
+
+            // play sound?
+
+            //takes a sample of the HitMarker's image color
+            var tempAlpha = GetComponentInChildren<damageUI>().hitMarker.color;
+
+            //Sets the samples alpha value to 255
+            tempAlpha.a = 255;
+
+            //Sets the Hitmarkers alpha value to the samples alpha value
+            GetComponent<damageUI>().hitMarker.color = tempAlpha;
 
         }
 

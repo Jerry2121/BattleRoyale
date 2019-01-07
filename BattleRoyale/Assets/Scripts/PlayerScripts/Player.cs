@@ -16,7 +16,9 @@ public class Player : NetworkBehaviour {
 
     [HideInInspector]
     public GameObject outsideOfZoneImage;
-    
+
+    [SerializeField]
+    Transform cam2;
 
     [SerializeField]
     Behaviour[] disableOnDeath;
@@ -200,19 +202,23 @@ public class Player : NetworkBehaviour {
     void CmdTakeDamage(int _damage, string _sourceID) //only call on player, other scripts like shoot have their own Command to call RpcTakeDamage
     {
         RpcTakeDamage(_damage, _sourceID);
+
+        // Show damage direction indicators
+        Transform cameraTransformRe = cam2;
+        // reset reCameraTransform's y position to 0
+
+        //find player with _sourceID and get their position
+        Vector3 damageSourcePosition = GameManager.GetPlayer(_sourceID).transform.position;
+        Vector3 damageSourceRe = new Vector3 (damageSourcePosition.x, 0, damageSourcePosition.z);
+        Vector3 damageDirection = cameraTransformRe.position  - damageSourceRe;
+        float angle = Vector3.Angle(damageDirection, cameraTransformRe.forward);
+
+        GetComponentInChildren<damageUI>().FindDamageSourceDirection(angle);
     }
 
     [ClientRpc] //Called on all clients from the server
     public void RpcTakeDamage(int _damage, string _sourceID)
     {
-        // reCameraTransform = new Vector3 (camera.position.x, camera.position.y, 0);
-        // find player with _sourceID and get their position -> damageSourcePosition = source.position
-        // damageSource = new Vector3 (damageSourcePosition.position.x, damageSourcePosition.position.y, 0);
-        // Vector3 damageDirection = reCameraTransform  - damageSource.position;
-        //float angle = Vector3.Angle(damageDirection, reCameraTransform.forward);
-
-        // GetComponent<damageUI>().FindDamageSourceDirection(angle);        
-
         if (isDead || GameManager.IsGameOver())
             return;
 

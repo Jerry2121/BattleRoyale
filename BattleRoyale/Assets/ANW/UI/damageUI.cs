@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class damageUI : MonoBehaviour {
 
+    [SerializeField]
     public Image hitMarker;
+    [SerializeField]
     public Image[] damageIndicator;
+    [SerializeField]
     Color changeAlpha = new Color(0, 0, 0, 255);
 
     private void Start()

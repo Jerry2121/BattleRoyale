@@ -821,6 +821,7 @@ MonoBehaviour:
   maxHealth: 100
   username: Loading...
   outsideOfZoneImage: {fileID: 0}
+  cam2: {fileID: 4176195892231488}
   disableOnDeath:
   - {fileID: 114058563100952288}
   - {fileID: 114637508568074558}
