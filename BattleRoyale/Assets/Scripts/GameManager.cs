@@ -16,7 +16,7 @@ public class GameManager : NetworkBehaviour {
     public int timeBetweenZoneShrinking = 120;
     public bool inStartPeriod = true;
     [SyncVar]
-    public float gameTimer = 0f;
+    public float gameTimer = -5f;
     public float zoneTimer = 0f;
     float zoneWaitTimer = 0f;
     [SerializeField]
@@ -94,7 +94,7 @@ public class GameManager : NetworkBehaviour {
         {
             inStartPeriod = true;
         }
-        else
+        else if (gameTimer > 0f)
         {
             inStartPeriod = false;
         }

@@ -351,7 +351,6 @@ public class Player : NetworkBehaviour {
             
             if (isLocalPlayer)
             {
-                Debug.Log("Foo");
                 CmdTakeDamage(999999999, "Dev");
             }
         }
