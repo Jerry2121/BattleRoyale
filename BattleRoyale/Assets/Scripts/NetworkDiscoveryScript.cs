@@ -42,10 +42,12 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
 
     public void CreateLANGameAsHost()
     {
+        Debug.Log("NetworkDiscovery:CreateLANGameAsHost");
         networkManager.StartHost();
         StartAsServer();
         IsInLAN = true;
         StartCoroutine(lobbyManager.WaitForCreateLAN());
+        Debug.Log("After Coroutine");
     }
     public void CreateLANGameAsServer()
     {

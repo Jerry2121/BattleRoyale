@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// A collection of some useful utility scripts
+/// </summary>
 public class Utility {
 
     /// <summary>
@@ -78,9 +81,23 @@ public class Utility {
         return GO;
     }
 
+    /// <summary>
+    /// Waits for the end of frame before continuing
+    /// </summary>
+    /// <returns></returns>
     public static IEnumerator WaitForEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
+    }
+
+    /// <summary>
+    /// Waits for a specified number of seconds before continuing
+    /// </summary>
+    /// <param name="secondsToWait"></param>
+    /// <returns></returns>
+    public static IEnumerator WaitForSeconds(float secondsToWait)
+    {
+        yield return new WaitForSeconds(secondsToWait);
     }
 
 }

@@ -95,6 +95,7 @@ public class LobbyManager : MonoBehaviour {
 
     public void CreateLANGameAsHost()
     {
+        Debug.Log("Lobby:CreateLANGameAsHost");
         GameObject.Find("MusicPlayer").GetComponent<AudioSource>().volume = 0;
         networkDiscoveryScript.CreateLANGameAsHost();
     }
@@ -139,7 +140,8 @@ public class LobbyManager : MonoBehaviour {
 
     public IEnumerator WaitForCreateLAN()
     {
-        int countdown = 5;
+        Debug.Log("WaitForCreateLAN");
+        int countdown = 10;
         while (countdown > 0)
         {
             if (createLANStatusText != null)
@@ -148,9 +150,11 @@ public class LobbyManager : MonoBehaviour {
             countdown--;
         }
 
+        Debug.Log("WaitForCreateLAN:AfterCount");
         //if we have changed scenes
         if (SceneManager.GetActiveScene().name != lobbySceneName)
             yield break;
+        Debug.Log("WaitForCreateLAN:SceneNotChanged");
         
         //We failed to create a game, likely because a local game is already running on the network
         if (createLANStatusText != null)
