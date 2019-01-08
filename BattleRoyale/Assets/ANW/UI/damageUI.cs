@@ -32,7 +32,7 @@ public class damageUI : MonoBehaviour {
         {
             if (damageIndicator[i].color.a > 0)
             {
-                Debug.Log("Damage indicator " + [i] + " has been displayed!");
+                Debug.Log("Damage indicator " + i + " has been displayed!");
                 damageIndicator[i].color -= new Color(0, 0, 0, Mathf.RoundToInt(255 / (Time.deltaTime / 32)));
             }
         }
