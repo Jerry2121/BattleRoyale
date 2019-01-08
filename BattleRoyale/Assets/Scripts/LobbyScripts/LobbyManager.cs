@@ -54,8 +54,7 @@ public class LobbyManager : MonoBehaviour {
         createLANStatusText.text = "";
         hostGameScript = networkManager.GetComponent<HostGame>();
 
-        OnlineUI.SetActive(false);
-        LANUI.SetActive(true);
+        ChangeToLAN();
         if (LANOnly)
         {
             OnlineButton.SetActive(false);

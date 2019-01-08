@@ -88,15 +88,16 @@ public class JoinGame : MonoBehaviour {
 
     public void JoinRoom(MatchInfoSnapshot _match)
     {
-        if (Debug.isDebugBuild)
-            Debug.Log("Joining " + _match.name);
+        Debug.Log("Joining " + _match.name);
 
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
         StartCoroutine(WaitForJoin());
+        Debug.Log("After Corout");
     }
 
     IEnumerator WaitForJoin()
     {
+        Debug.Log("WaitForEndOfFrame join start");
         roomList.Clear();
 
         int countdown = 10;
@@ -106,6 +107,7 @@ public class JoinGame : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             countdown--;
         }
+        Debug.Log("WaitForEndOfFrame join after count");
 
         //We failed to connect
         onlineStatusText.text = "Failed to connect";
@@ -118,6 +120,7 @@ public class JoinGame : MonoBehaviour {
             networkManager.StopHost();
         }
         RefreshRoomList();
+        Debug.Log("WaitForEndOfFrame join end");
     }
 
 }
