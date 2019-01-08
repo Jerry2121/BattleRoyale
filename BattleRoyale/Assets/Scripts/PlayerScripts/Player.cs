@@ -202,23 +202,15 @@ public class Player : NetworkBehaviour {
     void CmdTakeDamage(int _damage, string _sourceID) //only call on player, other scripts like shoot have their own Command to call RpcTakeDamage
     {
         RpcTakeDamage(_damage, _sourceID);
-
-        // Show damage direction indicators
-        Transform cameraTransformRe = cam2;
-        // reset reCameraTransform's y position to 0
-
-        //find player with _sourceID and get their position
-        Vector3 damageSourcePosition = GameManager.GetPlayer(_sourceID).transform.position;
-        Vector3 damageSourceRe = new Vector3 (damageSourcePosition.x, 0, damageSourcePosition.z);
-        Vector3 damageDirection = cameraTransformRe.position  - damageSourceRe;
-        float angle = Vector3.Angle(damageDirection, cameraTransformRe.forward);
-
-        GameObject.Find("PlayerUI").GetComponent<damageUI>().FindDamageSourceDirection(angle);
     }
 
     [ClientRpc] //Called on all clients from the server
     public void RpcTakeDamage(int _damage, string _sourceID)
     {
+        // Show damage direction indicators
+        Transform cameraTransformRe = cam2;
+        // reset reCameraTransform's y position to 0
+
         //find player with _sourceID and get their position
         Vector3 damageSourcePosition = GameManager.GetPlayer(_sourceID).transform.position;
         Vector3 damageSourceRe = new Vector3(damageSourcePosition.x, 0, damageSourcePosition.z);
