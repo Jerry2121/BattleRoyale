@@ -213,7 +213,7 @@ public class Player : NetworkBehaviour {
         Vector3 damageDirection = cameraTransformRe.position  - damageSourceRe;
         float angle = Vector3.Angle(damageDirection, cameraTransformRe.forward);
 
-        GetComponentInChildren<damageUI>().FindDamageSourceDirection(angle);
+        GameObject.Find("PlayerUI").GetComponent<damageUI>().FindDamageSourceDirection(angle);
     }
 
     [ClientRpc] //Called on all clients from the server

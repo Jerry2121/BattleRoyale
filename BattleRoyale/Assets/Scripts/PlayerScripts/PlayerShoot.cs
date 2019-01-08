@@ -134,15 +134,9 @@ public class PlayerShoot : NetworkBehaviour {
             CmdOnHit(hit.point, hit.normal);
 
             // play sound?
-
-            //takes a sample of the HitMarker's image color
-            var tempAlpha = GetComponentInChildren<damageUI>().hitMarker.color;
-
-            //Sets the samples alpha value to 255
-            tempAlpha.a = 255;
-
+            
             //Sets the Hitmarkers alpha value to the samples alpha value
-            GetComponent<damageUI>().hitMarker.color = tempAlpha;
+            GameObject.Find("PlayerUI").GetComponent<damageUI>().hitMarker.color = new Color(255, 255, 255, 255);
 
         }
 
