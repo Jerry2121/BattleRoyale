@@ -40,7 +40,7 @@ public class damageUI : MonoBehaviour {
 
     public void FindDamageSourceDirection(float angle)
     {
-        if (angle <= 22 && angle >= 0 || angle >= 337 && angle <= 359)
+        if ((angle <= 22 && angle >= 0) || (angle >= 337 && angle <= 359))
         {
             damageIndicator[5].color += new Color(0, 0, 0, 64);
             Debug.Log("Damage from front!");
