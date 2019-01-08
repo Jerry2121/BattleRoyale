@@ -10,13 +10,18 @@ public class damageUI : MonoBehaviour {
     [SerializeField]
     public Image[] damageIndicator;
     [SerializeField]
+    Color alphaSet;
 
     private void Start()
     {
-        hitMarker.color -= new Color(0, 0, 0, 255);
+        alphaSet = hitMarker.color;
+        alphaSet.a = 0;
+        hitMarker.color = alphaSet;
         for (int i = 0; i < damageIndicator.Length; i++)
         {
-            damageIndicator[i].color -= new Color(0, 0, 0, 255);
+            alphaSet = damageIndicator[i].color;
+            alphaSet.a = 0;
+            damageIndicator[i].color = alphaSet;
         }
     }
 
@@ -25,7 +30,9 @@ public class damageUI : MonoBehaviour {
         if (hitMarker.color.a > 0)
         {
             Debug.Log("Hit marker has been displayed!");
-            hitMarker.color -= new Color(0, 0, 0, Mathf.RoundToInt(255 / (Time.deltaTime / 128)));
+            alphaSet = hitMarker.color;
+            alphaSet.a -= Time.deltaTime;
+            hitMarker.color = alphaSet;
         }
 
         for (int i = 0; i < damageIndicator.Length; i++)
@@ -33,7 +40,10 @@ public class damageUI : MonoBehaviour {
             if (damageIndicator[i].color.a > 0)
             {
                 Debug.Log("Damage indicator " + i + " has been displayed!");
-                damageIndicator[i].color -= new Color(0, 0, 0, Mathf.RoundToInt(255 / (Time.deltaTime / 32)));
+                alphaSet = damageIndicator[i].color;
+                alphaSet.a -= Time.deltaTime / 4;
+                damageIndicator[i].color = alphaSet;
+                return;
             }
         }
     }

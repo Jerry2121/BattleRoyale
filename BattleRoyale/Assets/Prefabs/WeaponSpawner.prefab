@@ -22,7 +22,7 @@ GameObject:
   m_Layer: 0
   m_Name: AmmoSpawn (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38,7 +38,7 @@ GameObject:
   m_Layer: 0
   m_Name: WeaponSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53,7 +53,7 @@ GameObject:
   m_Layer: 0
   m_Name: AmmoSpawn (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -76,8 +76,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1461380632238740}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.632202, y: -13.575317, z: 18.512085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4308948578042172}
@@ -109,11 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b04f96586d256846990ef7836d8162e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponSpawner: 1
-  AmmoSpawner: 0
   AmmoSpawner1: {fileID: 1220808229707472}
   AmmoSpawner2: {fileID: 1672696657424248}
-  canspawnItem: 0
+  canspawnItem: 1
   ran: 0
   Weapon1: 0
   Weapon2: 0
