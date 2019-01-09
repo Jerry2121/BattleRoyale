@@ -52,49 +52,65 @@ public class damageUI : MonoBehaviour {
     {
         if ((angle <= 22 && angle >= 0) || (angle >= 337 && angle <= 359))
         {
-            damageIndicator[5].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[5].color;
+            alphaSet.a += 64;
+            damageIndicator[5].color = alphaSet;
             Debug.Log("Damage from front!");
         }
 
         else if (angle <= 67 && angle >= 22)
         {
-           damageIndicator[6].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[6].color;
+            alphaSet.a += 64;
+            damageIndicator[6].color = alphaSet;
             Debug.Log("Damage from front-left!");
         }
 
         else if (angle <= 112 && angle >= 67)
         {
-            damageIndicator[3].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[3].color;
+            alphaSet.a += 64;
+            damageIndicator[3].color = alphaSet;
             Debug.Log("Damage from left!");
         }
 
         else if (angle <= 157 && angle >= 112)
         {
-            damageIndicator[1].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[1].color;
+            alphaSet.a += 64;
+            damageIndicator[1].color = alphaSet;
             Debug.Log("Damage from back-left!");
         }
 
         else if (angle <= 202 && angle >= 157)
         {
-            damageIndicator[0].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[0].color;
+            alphaSet.a += 64;
+            damageIndicator[0].color = alphaSet;
             Debug.Log("Damage from back!");
         }
 
         else if (angle <= 247 && angle >= 202)
         {
-            damageIndicator[2].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[2].color;
+            alphaSet.a += 64;
+            damageIndicator[2].color = alphaSet;
             Debug.Log("Damage from back-right!");
         }
 
         else if (angle <= 292 && angle >= 247)
         {
-            damageIndicator[4].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[4].color;
+            alphaSet.a += 64;
+            damageIndicator[4].color = alphaSet;
             Debug.Log("Damage from right!");
         }
 
         else if (angle <= 337 && angle >= 292)
         {
-            damageIndicator[7].color += new Color(0, 0, 0, 64);
+            alphaSet = damageIndicator[7].color;
+            alphaSet.a += 64;
+            damageIndicator[7].color = alphaSet;
             Debug.Log("Damage from front-right!");
         }
     }
