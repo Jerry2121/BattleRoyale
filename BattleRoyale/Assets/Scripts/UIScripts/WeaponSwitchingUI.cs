@@ -53,16 +53,6 @@ public class WeaponSwitchingUI : MonoBehaviour {
         {
             animator.SetBool("Show", false);
         }
-        if (selectedSlot == 1)
-        {
-            Slot1Outline.SetActive(true);
-            Slot2Outline.SetActive(false);
-        }
-        if (selectedSlot == 2)
-        {
-            Slot1Outline.SetActive(false);
-            Slot2Outline.SetActive(true);
-        }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.V))
         {
             animator.SetBool("Show", true);
@@ -72,6 +62,8 @@ public class WeaponSwitchingUI : MonoBehaviour {
             animator.SetBool("Test", false);
             showtimer = WeaponUIDisappearTime;
             selectedSlot++;
+            Slot1Outline.SetActive(true);
+            Slot2Outline.SetActive(false);
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
@@ -82,6 +74,8 @@ public class WeaponSwitchingUI : MonoBehaviour {
             animator.SetBool("Test", false);
             showtimer = WeaponUIDisappearTime;
             selectedSlot--;
+            Slot1Outline.SetActive(false);
+            Slot2Outline.SetActive(true);
         }
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -93,6 +87,8 @@ public class WeaponSwitchingUI : MonoBehaviour {
             animator.SetBool("Test", false);
             showtimer = WeaponUIDisappearTime;
             selectedSlot = 1;
+            Slot1Outline.SetActive(true);
+            Slot2Outline.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
@@ -103,6 +99,8 @@ public class WeaponSwitchingUI : MonoBehaviour {
             ShowUI = true;
             showtimer = WeaponUIDisappearTime;
             selectedSlot = 2;
+            Slot1Outline.SetActive(false);
+            Slot2Outline.SetActive(true);
         }
 
         if (selectedSlot < 1)
@@ -112,6 +110,16 @@ public class WeaponSwitchingUI : MonoBehaviour {
         if (selectedSlot > 2)
         {
             selectedSlot = 1;
+        }
+        if (selectedSlot == 1)
+        {
+            Slot1Outline.SetActive(true);
+            Slot2Outline.SetActive(false);
+        }
+        else if (selectedSlot == 2)
+        {
+            Slot1Outline.SetActive(false);
+            Slot2Outline.SetActive(true);
         }
         weaponManager.selectedWeapon = selectedSlot;
         PlayerWeapon selectedWeapon = weaponManager.GetWeaponFromInt(selectedSlot);
