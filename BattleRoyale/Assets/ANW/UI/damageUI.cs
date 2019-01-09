@@ -51,39 +51,39 @@ public class damageUI : MonoBehaviour {
 
     public void FindDamageSourceDirection(float angle)
     {
-        if ((angle <= 22 && angle >= 0) || (angle >= 337 && angle <= 359))
+        if (angle <= 22 && angle >= -22)
         {
-            
+
             damageIndicator[5].GetComponent<DamageIndicators>().Show();
-            
+
             Debug.Log("Damage from front!");
         }
 
         else if (angle <= 67 && angle >= 22)
         {
-            
+
             damageIndicator[6].GetComponent<DamageIndicators>().Show();
-            
+
             Debug.Log("Damage from front-left!");
         }
 
         else if (angle <= 112 && angle >= 67)
         {
-            
+
             damageIndicator[3].GetComponent<DamageIndicators>().Show();
-            
+
             Debug.Log("Damage from left!");
         }
 
         else if (angle <= 157 && angle >= 112)
         {
-            
+
             damageIndicator[1].GetComponent<DamageIndicators>().Show();
-            
+
             Debug.Log("Damage from back-left!");
         }
 
-        else if (angle <= 202 && angle >= 157)
+        else if (angle >= 157 || angle <= -157)
         {
             
             damageIndicator[0].GetComponent<DamageIndicators>().Show();
@@ -91,7 +91,7 @@ public class damageUI : MonoBehaviour {
             Debug.Log("Damage from back!");
         }
 
-        else if (angle <= 247 && angle >= 202)
+        else if (angle <= -112 && angle >= -157)
         {
             
             damageIndicator[2].GetComponent<DamageIndicators>().Show();
@@ -99,7 +99,7 @@ public class damageUI : MonoBehaviour {
             Debug.Log("Damage from back-right!");
         }
 
-        else if (angle <= 292 && angle >= 247)
+        else if (angle <= -67 && angle >= -112)
         {
             
             damageIndicator[4].GetComponent<DamageIndicators>().Show();
@@ -107,7 +107,7 @@ public class damageUI : MonoBehaviour {
             Debug.Log("Damage from right!");
         }
 
-        else if (angle <= 337 && angle >= 292)
+        else if (angle <= -22 && angle >= -67)
         {
             
             damageIndicator[7].GetComponent<DamageIndicators>().Show();
