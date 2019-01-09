@@ -43,7 +43,6 @@ public class damageUI : MonoBehaviour {
                 alphaSet = damageIndicator[i].color;
                 alphaSet.a -= Time.deltaTime / 4;
                 damageIndicator[i].color = alphaSet;
-                return;
             }
         }
     }
