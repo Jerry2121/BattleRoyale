@@ -36,6 +36,11 @@ public class ServerUI : NetworkBehaviour {
         if (NetworkDiscoveryScript.IsServerOnly == false)
             return;
 
+        if(Cursor.lockState == CursorLockMode.Locked && spectCam.activeSelf == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             serverScoreboard.SetActive(!serverScoreboard.activeSelf);

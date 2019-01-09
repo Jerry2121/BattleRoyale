@@ -136,7 +136,7 @@ public class PlayerShoot : NetworkBehaviour {
             // play sound?
             
             //Sets the Hitmarkers alpha value to the samples alpha value
-            GameObject.Find("PlayerUI").GetComponent<damageUI>().hitMarker.color = new Color(255, 255, 255, 255);
+            GetComponent<Player>().PlayerUI.GetComponent<damageUI>().hitMarker.color = new Color(255, 255, 255, 255);
 
         }
 

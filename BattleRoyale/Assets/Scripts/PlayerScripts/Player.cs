@@ -48,6 +48,8 @@ public class Player : NetworkBehaviour {
 
     [SerializeField]
     GameObject SpectCameraPrefab;
+    [SerializeField]
+    public GameObject PlayerUI;
 
     public int kills;
     public int deaths;
@@ -62,6 +64,7 @@ public class Player : NetworkBehaviour {
         {
             //Disable the scene camera for the new/respawning player
             GameManager.instance.SetSceneCameraActiveState(false);
+            PlayerUI = GetComponent<PlayerSetup>().playerUIInstance;
             GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
         }
         //Tell they server a player needs to be setup on all clients
@@ -219,7 +222,7 @@ public class Player : NetworkBehaviour {
             Vector3 damageDirection = cameraTransformRe.position - damageSourceRe;
             float angle = Vector3.Angle(damageDirection, cameraTransformRe.forward);
 
-            GameObject.Find("PlayerUI").GetComponent<damageUI>().FindDamageSourceDirection(angle);
+            PlayerUI.GetComponent<damageUI>().FindDamageSourceDirection(angle);
         }
         catch
         {
