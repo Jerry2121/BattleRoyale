@@ -214,14 +214,17 @@ public class Player : NetworkBehaviour {
         {
             // Show damage direction indicators
             Transform cameraTransformRe = cam2;
+            Vector3 camTran = cameraTransformRe.parent.transform.forward;
+            camTran.y = 0;
             // reset reCameraTransform's y position to 0
 
             //find player with _sourceID and get their position
             Vector3 damageSourcePosition = GameManager.GetPlayer(_sourceID).transform.position;
             Vector3 damageSourceRe = new Vector3(damageSourcePosition.x, 0, damageSourcePosition.z);
-            Vector3 damageDirection = cameraTransformRe.position - damageSourceRe;
-            float angle = Vector3.Angle(damageDirection, cameraTransformRe.forward);
-
+            Vector3 damageDirection = camTran - damageSourceRe;
+            Vector3 damageAxis = new Vector3(0, 1, 0);
+            float angle = Vector3.SignedAngle(damageDirection, camTran, damageAxis);
+            Debug.Log("Angle = " + angle);
             PlayerUI.GetComponent<damageUI>().FindDamageSourceDirection(angle);
         }
         catch

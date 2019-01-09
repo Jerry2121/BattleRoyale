@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114436995637615982}
   - component: {fileID: 114604079796466586}
   m_Layer: 11
-  m_Name: 1x1HealingItemTest
+  m_Name: 1x1HealingItemTest 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,22 +129,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 157
-    i1: 151
-    i2: 101
-    i3: 9
-    i4: 209
-    i5: 16
-    i6: 249
-    i7: 84
-    i8: 91
-    i9: 125
-    i10: 137
-    i11: 188
-    i12: 207
-    i13: 254
-    i14: 177
-    i15: 128
+    i0: 231
+    i1: 137
+    i2: 113
+    i3: 79
+    i4: 223
+    i5: 39
+    i6: 146
+    i7: 132
+    i8: 11
+    i9: 191
+    i10: 88
+    i11: 106
+    i12: 150
+    i13: 104
+    i14: 108
+    i15: 168
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114604079796466586
@@ -179,12 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a79413a51d701f43a71e82b36afcc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Medkit
+  itemName: LightAmmo
   itemTexture: {fileID: 21300000, guid: 65253e6f9e4281045b5209de7e0162c4, type: 3}
   width: 1
   height: 1
   obj: {fileID: 0}
   equipable: 0
-  itemDescription: Press Q to heal 20 health
-  itemType: Healing
+  itemDescription: Ammo for light weapons
+  itemType: LightAmmo
   ammoText: {fileID: 0}
