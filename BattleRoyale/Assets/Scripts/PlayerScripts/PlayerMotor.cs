@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotor : MonoBehaviour {
 
-    [SerializeField]
-    private Camera cam;
+    public Camera cam;
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;

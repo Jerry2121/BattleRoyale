@@ -14,6 +14,7 @@ TagManager:
   - AirDrop
   - _GameManager
   - Lobby
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - MiniMap
   - Ground
   - PickupableItems
-  - 
+  - Map
   - 
   - 
   - 

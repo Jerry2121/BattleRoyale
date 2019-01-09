@@ -38,6 +38,8 @@ public class PlayerUI : MonoBehaviour {
     TextMeshProUGUI GameStartingText;
     [SerializeField]
     GameObject GameStartButtonText;
+    [SerializeField]
+    GameObject MapCanvas;
     public bool started;
     private float GameStartTimer;
 
@@ -47,6 +49,7 @@ public class PlayerUI : MonoBehaviour {
 
     void Start()
     {
+        MapCanvas = GameObject.FindGameObjectWithTag("Map");
         started = false;
         PauseMenu.isOn = false;
         compass.Player = player.transform;
@@ -104,6 +107,10 @@ public class PlayerUI : MonoBehaviour {
         else
         {
             GameStartButtonText.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            MapCanvas.transform.GetComponentInChildren<Canvas>().enabled = !MapCanvas.transform.GetComponentInChildren<Canvas>().enabled;
         }
         if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {
