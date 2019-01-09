@@ -39,6 +39,8 @@ public class InventoryScriptLITE : NetworkBehaviour {
 	public GameObject itemPrompt;
     public TextMeshProUGUI healingItemsAmountText;
     int healingItemsAmount;
+    int lightAmmoAmount;
+
 
 	void Start(){
 		scaleMultiplier = uiScale / 0.5f;
@@ -125,15 +127,21 @@ public class InventoryScriptLITE : NetworkBehaviour {
 				if (bag.freeSpaces >= temp.width * temp.height) {
                     bag.GiveItem(temp);//bag.SendMessage ("GiveItem", temp);
                     player.GetComponent<Player>().itemInteractions.CmdTakeItem(temp.GetComponent<NetworkIdentity>().netId);
+
+				} 
+				if (doesFit == false) {
+					StartCoroutine ("NotEnough");
+				}
                     if (temp.itemType == "Healing")
                     {
                         healingItemsAmount++;
                         healingItemsAmountText.text = "(" + healingItemsAmount + ")";
                     }
-				} 
-				if (doesFit == false) {
-					StartCoroutine ("NotEnough");
-				}
+
+                if (temp.itemType == "LightAmmo")
+                    lightAmmoAmount++;
+
+
 				//}
 				//hit.transform.SendMessage ("Interacted", transform, SendMessageOptions.DontRequireReceiver);
 				//hit.transform.SendMessage ("Execute", SendMessageOptions.DontRequireReceiver);
