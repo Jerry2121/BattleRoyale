@@ -40,6 +40,8 @@ public class PlayerUI : MonoBehaviour {
     GameObject GameStartButtonText;
     [SerializeField]
     GameObject MapCanvas;
+    [SerializeField]
+    GameObject HUD;
     public bool started;
     private float GameStartTimer;
 
@@ -111,6 +113,7 @@ public class PlayerUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.M))
         {
             MapCanvas.transform.GetComponentInChildren<Canvas>().enabled = !MapCanvas.transform.GetComponentInChildren<Canvas>().enabled;
+            HUD.SetActive(!HUD.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {

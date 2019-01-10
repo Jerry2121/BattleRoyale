@@ -10531,6 +10531,7 @@ MonoBehaviour:
   GameStartingText: {fileID: 114617564803035728}
   GameStartButtonText: {fileID: 1172706721542622}
   MapCanvas: {fileID: 0}
+  HUD: {fileID: 1548299448981390}
   started: 0
 --- !u!114 &114342532621063470
 MonoBehaviour:
