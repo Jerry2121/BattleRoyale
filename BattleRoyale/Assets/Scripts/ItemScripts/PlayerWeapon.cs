@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum WeaponType { Light, Medium, Heavy}
+
 [System.Serializable]
 public class PlayerWeapon {
 
@@ -13,6 +16,8 @@ public class PlayerWeapon {
 
     public float reloadTime = 1f;
 
+    [Tooltip("What ammo this weapon used")]
+    public WeaponType weaponType = WeaponType.Medium;
     public int maxAmmo = 20;
     [HideInInspector]
     public int currentAmmo;

@@ -60,6 +60,7 @@ public class InventoryGridScriptLITE : NetworkBehaviour {
 		RectTransform itemClone = Instantiate (invObjPref);
 		itemClone.GetComponent<itemDragLITE> ().obj = item;
 		itemClone.GetComponent<itemDragLITE> ().panel = transform.parent.Find ("Item Panel").gameObject;
+        itemClone.GetComponent<itemDragLITE>().amount = item.amount;
         //itemClone.SetParent(transform);
         itemClone.SetParent(grid.transform);
         itemClone.GetComponent<TriggerCheckerLITE> ().img.sprite = item.itemTexture;
@@ -197,6 +198,7 @@ public class InventoryGridScriptLITE : NetworkBehaviour {
 	}
 
 	public void RemoveItem(itemDragLITE pos){
+        Debug.Log("RemoveItem");
         items.Remove (pos.GetComponent<itemDragLITE> ());
 
 		float slotsWidth = pos.obj.width;
@@ -204,14 +206,23 @@ public class InventoryGridScriptLITE : NetworkBehaviour {
 		float slotPosWidth = Mathf.Round(pos.originalPos.x / 50);
 		float slotPosHeight = -Mathf.Round(pos.originalPos.y / 50);
 
+        if (pos.obj.GetComponent<itemScriptLITE>().itemType == "Healing")
+        {
+            inventoryScriptLITE.healingItemsAmount--;
+            inventoryScriptLITE.healingItemsAmountText.text = "(" + inventoryScriptLITE.healingItemsAmount + ")";
+        }
+        else if (pos.obj.GetComponent<itemScriptLITE>().itemType == "LightAmmo")
+        {
+            inventoryScriptLITE.lightAmmoAmount -= pos.obj.GetComponent<itemScriptLITE>().amount;
+        }
 
 		pos.obj.gameObject.SetActive (true);
 		pos.obj.transform.position = player.position;
 		pos.transform.eulerAngles = new Vector3 (0, 0, 0);
 		pos.obj.GetComponent<Rigidbody>().velocity = player.TransformDirection(Vector3.forward * 2);
 		pos.obj.transform.SetParent(null);
+        pos.obj.amount = pos.amount;
         GameManager.GetLocalPlayer().itemInteractions.CmdDropItem(pos.obj.GetComponent<NetworkIdentity>().netId, pos.obj.transform.position);
-
 
 		for (int i = 0; i < slotsWidth; i++) {
 			for (int j = 0; j < slotsHeight; j++) {
@@ -239,6 +250,8 @@ public class InventoryGridScriptLITE : NetworkBehaviour {
         }
         freeSpaces += (int)(pos.obj.width * pos.obj.height);
 
+        if (pos.obj.obj != null)
+            Destroy(pos.obj.obj);
         Destroy(pos.gameObject);
 	}
 

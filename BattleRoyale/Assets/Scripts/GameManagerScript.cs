@@ -6,6 +6,8 @@ public class GameManagerScript : MonoBehaviour {
     [Header("Items To Spawn (Prefabs)")]
     public bool DisableItemSpawning;
     [Header("Weapons")]
+    public GameObject[] weapons;
+
     public GameObject Weapon1;
     public GameObject Weapon2;
     public GameObject Weapon3;
@@ -13,9 +15,9 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject Weapon5;
     public GameObject Weapon6;
     [Header("Ammo")]
-    public GameObject Ammo1;
-    public GameObject Ammo2;
-    public GameObject Ammo3;
+    public GameObject lightAmmo;
+    public GameObject mediumAmmo;
+    public GameObject heavyAmmo;
 
     // Use this for initialization
     void Start () {

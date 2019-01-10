@@ -19,7 +19,8 @@ public class itemDragLITE : MonoBehaviour
 	public itemScriptLITE obj;
 	public GameObject equipButton;
 	public GameObject dropButton;
-
+    public int amount;
+    bool removed = false;
 	void Awake(){
 		rect = GetComponent<RectTransform> ();
 	}
@@ -76,7 +77,11 @@ public class itemDragLITE : MonoBehaviour
             {
                 transform.parent.SendMessage("RemoveItem", this);
             }*/
-            gridScript.RemoveItem(this);
+            if (removed == false)
+            {
+                gridScript.RemoveItem(this);
+                removed = true;
+            }
         }
 
         if (GetComponent<TriggerCheckerLITE> ().triggered == false && Mathf.Round (rect.anchoredPosition.x / 50) * 50 <= (50 * gridScript.width - 1) - (50 * (transform.localScale.x - 1)) && Mathf.Round (rect.anchoredPosition.x / 50) * 50  >= 0 && Mathf.Round (rect.anchoredPosition.y / 50) * 50 <= 0 && Mathf.Round (rect.anchoredPosition.y / 50) * 50 >= -(50 * gridScript.height - 1) + (50 * (transform.localScale.y - 1))) {
@@ -102,7 +107,11 @@ public class itemDragLITE : MonoBehaviour
 			} else {
 				transform.parent.SendMessage ("RemoveItem", this);
 			}*/
-            gridScript.RemoveItem(this);
+            if (removed == false)
+            {
+                gridScript.RemoveItem(this);
+                removed = true;
+            }
 
         }
 		CheckIfEquipable ();

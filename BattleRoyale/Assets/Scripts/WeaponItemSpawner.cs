@@ -17,6 +17,7 @@ public class WeaponItemSpawner : MonoBehaviour {
     public bool Weapon5;
     public bool Weapon6;
     private int d1;
+    private WeaponType weaponType;
 
     NetworkManager networkManager;
     NetworkDiscoveryScript networkDiscoveryScript;
@@ -32,88 +33,125 @@ public class WeaponItemSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (ran)
+            Destroy(this.gameObject, 10f);
+
         if (canspawnItem && networkDiscoveryScript.isServer && ran == false)
         {
-            d1 = Random.Range(0, 7);
-            if(GameManager.instance == null)
+            if (GameManager.instance == null)
             {
                 Debug.LogError("WeaponItemSpawner -- Update: GameManager instance is Null!");
+                return;
             }
-            GameObject gameManager = GameManager.instance.gameObject;
+            GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();
 
-            if (d1 == 1 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
+            if (gameManagerScript.DisableItemSpawning)
+                return;
+
+            d1 = Random.Range(0, gameManagerScript.weapons.Length - 1);
+
+            Utility.InstantiateOverNetwork(gameManagerScript.weapons[d1], transform.position, Quaternion.identity);
+            weaponType = gameManagerScript.weapons[d1].GetComponent<WeaponItem>().weapon.weaponType;
+            ran = true;
+
+            #region OldCode
+            /*if (d1 == 1 && canspawnItem && !ran)
             {
                 Weapon1 = true;
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Weapon1, transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.Weapon1, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 2 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
+            if (d1 == 2 && canspawnItem && !ran)
             {
                 Weapon2 = true;
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Weapon2, transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.Weapon2, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 3 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
+            if (d1 == 3 && canspawnItem && !ran)
             {
                 Weapon3 = true;
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Weapon3, transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.Weapon3, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 4 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
+            if (d1 == 4 && canspawnItem && !ran)
             {
                 Weapon4 = true;
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Weapon4, transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.Weapon4, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 5 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
+            if (d1 == 5 && canspawnItem && !ran)
             {
                 Weapon5 = true;
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Weapon5, transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.Weapon5, transform.position, Quaternion.identity);
                 ran = true;
             }
-            if (d1 == 6 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && canspawnItem && !ran)
+            if (d1 == 6 && canspawnItem && !ran)
             {
                 Weapon6 = true;
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Weapon6, transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.Weapon6, transform.position, Quaternion.identity);
                 ran = true;
             }
+            
             //Ammo
-            if (Weapon1 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && ran)
+
+            if (Weapon1 && ran)
             {
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo1, AmmoSpawner1.transform.position, Quaternion.identity);
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo1, AmmoSpawner2.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
                 canspawnItem = false;
             }
-            if (Weapon2 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && ran)
+            if (Weapon2 && ran)
             {
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo2, AmmoSpawner1.transform.position, Quaternion.identity);
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo2, AmmoSpawner2.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
                 canspawnItem = false;
             }
-            if (Weapon3 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && ran)
+            if (Weapon3 && ran)
             {
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo1, AmmoSpawner1.transform.position, Quaternion.identity);
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo1, AmmoSpawner2.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
                 canspawnItem = false;
             }
-            if (Weapon4 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && ran)
+            if (Weapon4 && ran)
             {
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo3, AmmoSpawner1.transform.position, Quaternion.identity);
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo3, AmmoSpawner2.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.heavyAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.heavyAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
                 canspawnItem = false;
             }
-            if (Weapon5 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && ran)
+            if (Weapon5 && ran)
             {
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo2, AmmoSpawner1.transform.position, Quaternion.identity);
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo2, AmmoSpawner2.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
                 canspawnItem = false;
             }
-            if (Weapon6 && gameManager.GetComponent<GameManagerScript>().DisableItemSpawning == false && ran)
+            if (Weapon6 && ran)
             {
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo1, AmmoSpawner1.transform.position, Quaternion.identity);
-                Utility.InstantiateOverNetwork(gameManager.GetComponent<GameManagerScript>().Ammo1, AmmoSpawner2.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
+                canspawnItem = false;
+            }*/
+            #endregion
+
+
+            if (weaponType == WeaponType.Light)
+            {
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
+                canspawnItem = false;
+            }
+            else if (weaponType == WeaponType.Medium)
+            {
+                Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
+                canspawnItem = false;
+            }
+            else if (weaponType == WeaponType.Heavy)
+            {
+                Utility.InstantiateOverNetwork(gameManagerScript.heavyAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
+                Utility.InstantiateOverNetwork(gameManagerScript.heavyAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
                 canspawnItem = false;
             }
         }
-	}
+    }
 }

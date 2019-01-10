@@ -185,13 +185,41 @@ public class WeaponManager : NetworkBehaviour {
         if(isReloading)
             return;
 
+        InventoryScriptLITE inventoryPanelLITE = GameManager.GetLocalPlayer().PlayerUI.GetComponent<PlayerUI>().invScript;
+        string ammoType;
+        if(currentWeapon.weaponType == WeaponType.Light)
+        {
+            ammoType = "LightAmmo";
+        }
+        else if (currentWeapon.weaponType == WeaponType.Medium)
+        {
+            ammoType = "MediumAmmo";
+        }
+        else if (currentWeapon.weaponType == WeaponType.Heavy)
+        {
+            ammoType = "HeavyAmmo";
+        }
+        else
+        {
+            Debug.LogError("WeaponType not found");
+            return;
+        }
+
+        int ammoRecieved = inventoryPanelLITE.GetAmmo(ammoType, (currentWeapon.maxAmmo - currentWeapon.currentAmmo));
+
+        if(ammoRecieved <= 0)
+        {
+            Debug.Log("No ammo found of type " + ammoType);
+            return;
+        }
+
         if (Debug.isDebugBuild)
             Debug.Log("Reloading");
 
-        StartCoroutine(Reload_Coroutine());
+        StartCoroutine(Reload_Coroutine(ammoRecieved));
     }
 
-    IEnumerator Reload_Coroutine()
+    IEnumerator Reload_Coroutine(int _ammoRecieved)
     {
         isReloading = true;
 
@@ -207,7 +235,7 @@ public class WeaponManager : NetworkBehaviour {
             yield break;
         }
 
-        currentWeapon.currentAmmo = currentWeapon.maxAmmo;
+        currentWeapon.currentAmmo += _ammoRecieved;
 
         isReloading = false;
     }

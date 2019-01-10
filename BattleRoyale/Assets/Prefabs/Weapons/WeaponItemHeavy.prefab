@@ -103,6 +103,7 @@ MonoBehaviour:
     range: 200
     fireRate: 1
     reloadTime: 2
+    weaponType: 2
     maxAmmo: 15
     currentAmmo: 20
     graphics: {fileID: 1322901883332826, guid: 3b71c32e188b21640b7e60bd0aa153c6, type: 2}

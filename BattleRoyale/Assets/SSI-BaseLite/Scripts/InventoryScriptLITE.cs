@@ -38,11 +38,13 @@ public class InventoryScriptLITE : NetworkBehaviour {
     public Transform player;
 	public GameObject itemPrompt;
     public TextMeshProUGUI healingItemsAmountText;
-    int healingItemsAmount;
-    int lightAmmoAmount;
+    public int healingItemsAmount;
+    public int lightAmmoAmount;
+    public int mediumAmmoAmount;
+    public int heavyAmmoAmount;
 
 
-	void Start(){
+    void Start(){
 		scaleMultiplier = uiScale / 0.5f;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -114,9 +116,10 @@ public class InventoryScriptLITE : NetworkBehaviour {
 				hit.transform.SendMessage ("LookAt", SendMessageOptions.DontRequireReceiver);
 				lookingAt = hit.transform;
 			}
-			if (Input.GetKeyUp (useKey)) {
-				doesFit = false;
-				itemScriptLITE temp = hit.transform.GetComponent<itemScriptLITE> ();
+            if (Input.GetKeyUp(useKey))
+            {
+                doesFit = false;
+                itemScriptLITE temp = hit.transform.GetComponent<itemScriptLITE>();
 
                 if (temp == null)
                     return;
@@ -124,28 +127,47 @@ public class InventoryScriptLITE : NetworkBehaviour {
                 //foreach (InventoryGridScript i in bags) {
                 Debug.Log(bag.name);
                 Debug.Log(temp.name);
-				if (bag.freeSpaces >= temp.width * temp.height) {
+                if (bag.freeSpaces >= temp.width * temp.height)
+                {
                     bag.GiveItem(temp);//bag.SendMessage ("GiveItem", temp);
                     player.GetComponent<Player>().itemInteractions.CmdTakeItem(temp.GetComponent<NetworkIdentity>().netId);
 
-				} 
-				if (doesFit == false) {
-					StartCoroutine ("NotEnough");
-				}
-                    if (temp.itemType == "Healing")
-                    {
+                }
+                if (doesFit == false)
+                {
+                    StartCoroutine("NotEnough");
+                }
+
+                if (temp.itemType == "Healing")
+                {
+                    if (temp.amount > 1)
+                        healingItemsAmount += temp.amount;
+                    else
                         healingItemsAmount++;
-                        healingItemsAmountText.text = "(" + healingItemsAmount + ")";
-                    }
+                    healingItemsAmountText.text = "(" + healingItemsAmount + ")";
+                }
 
                 if (temp.itemType == "LightAmmo")
-                    lightAmmoAmount++;
+                    if (temp.amount > 1)
+                        lightAmmoAmount += temp.amount;
+                    else
+                        lightAmmoAmount++;
+                else if (temp.itemType == "MediumAmmo")
+                    if (temp.amount > 1)
+                        mediumAmmoAmount += temp.amount;
+                    else
+                        mediumAmmoAmount++;
+                else if (temp.itemType == "HeavyAmmo")
+                    if (temp.amount > 1)
+                        heavyAmmoAmount += temp.amount;
+                    else
+                        heavyAmmoAmount++;
 
 
-				//}
-				//hit.transform.SendMessage ("Interacted", transform, SendMessageOptions.DontRequireReceiver);
-				//hit.transform.SendMessage ("Execute", SendMessageOptions.DontRequireReceiver);
-			}
+                //}
+                //hit.transform.SendMessage ("Interacted", transform, SendMessageOptions.DontRequireReceiver);
+                //hit.transform.SendMessage ("Execute", SendMessageOptions.DontRequireReceiver);
+            }
 			if (Input.GetKey (useKey)) {
 				timer += Time.deltaTime;
 				if (timer >= 0.4) {
@@ -209,4 +231,92 @@ public class InventoryScriptLITE : NetworkBehaviour {
 	public void DoesFit(){
 		doesFit = true;
 	}
+
+    public int GetAmmo(string _ammoType, int _amountNeeded)
+    {
+        int amountNeeded = _amountNeeded;
+        int amountReceived = 0;
+        for (int i = 0; i < bag.items.Count; i++)
+        {
+            if (bag.items[i].obj.itemType == _ammoType)
+            {
+                
+                if (_ammoType == "LightAmmo")
+                {
+                    if (lightAmmoAmount == 0)
+                        return amountReceived;
+
+                    if(bag.items[i].amount >= amountNeeded)
+                    {
+                        bag.items[i].amount -= amountNeeded;
+                        lightAmmoAmount -= amountNeeded;
+                        amountReceived += amountNeeded;
+                    }
+                    else
+                    {
+                        amountReceived += bag.items[i].amount;
+                        lightAmmoAmount -= bag.items[i].amount;
+                        bag.items[i].amount = 0;
+                        amountNeeded -= amountReceived;
+                    }
+                }
+
+                else if (_ammoType == "MediumAmmo")
+                {
+                    if (mediumAmmoAmount == 0)
+                        return amountReceived;
+
+                    if (bag.items[i].amount >= amountNeeded)
+                    {
+                        bag.items[i].amount -= amountNeeded;
+                        mediumAmmoAmount -= amountNeeded;
+                        amountReceived += amountNeeded;
+                    }
+                    else
+                    {
+                        amountReceived += bag.items[i].amount;
+                        mediumAmmoAmount -= bag.items[i].amount;
+                        bag.items[i].amount = 0;
+                        amountNeeded -= amountReceived;
+                    }
+                }
+            
+
+                else if (_ammoType == "HeavyAmmo")
+                {
+                    if (heavyAmmoAmount == 0)
+                        return amountReceived;
+
+                    if (bag.items[i].amount >= amountNeeded)
+                    {
+                        bag.items[i].amount -= amountNeeded;
+                        heavyAmmoAmount -= amountNeeded;
+                        amountReceived += amountNeeded;
+                    }
+                    else
+                    {
+                        amountReceived += bag.items[i].amount;
+                        heavyAmmoAmount -= bag.items[i].amount;
+                        bag.items[i].amount = 0;
+                        amountNeeded -= amountReceived;
+                    }
+                }
+
+                if (bag.items[i].amount <= 0)
+                {
+                    bag.DestroyItem(bag.items[i]);
+                }
+
+                if (amountReceived == _amountNeeded)
+                {
+                    return amountReceived;
+                }
+
+            }
+        }
+
+        return amountReceived;
+
+    }
+
 }

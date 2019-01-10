@@ -14,7 +14,7 @@ public class itemScriptLITE : MonoBehaviour {
 	public string itemDescription;
 	[Tooltip("Gun/Melee/Deployable/Other")]
 	public string itemType;
-	public Text ammoText;
+	public int amount;
 
 	void Awake(){
 		obj = gameObject;

@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114436995637615982}
   - component: {fileID: 114604079796466586}
   m_Layer: 11
-  m_Name: 1x1HealingItemTest 1
+  m_Name: 1x1HeavyAmmoItem 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,8 +40,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172274389392578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09992048, y: 0.0788, z: -0.92282665}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b9a0f1fdd994bbf47af4ef0b28ab39aa, type: 2}
+  - {fileID: 2100000, guid: a78eece9d10f0df4fad00e95730822e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,7 +87,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172274389392578}
-  m_Mesh: {fileID: 4300000, guid: 844e044356f71478780c0c4ad4e9e860, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 05a21eeca3f26e84c9fa7f168bfdffcf, type: 3}
 --- !u!54 &54590723002632528
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -129,22 +129,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 231
-    i1: 137
-    i2: 113
-    i3: 79
-    i4: 223
-    i5: 39
-    i6: 146
-    i7: 132
-    i8: 11
-    i9: 191
-    i10: 88
-    i11: 106
-    i12: 150
-    i13: 104
-    i14: 108
-    i15: 168
+    i0: 202
+    i1: 77
+    i2: 150
+    i3: 48
+    i4: 239
+    i5: 248
+    i6: 29
+    i7: 180
+    i8: 152
+    i9: 187
+    i10: 215
+    i11: 101
+    i12: 127
+    i13: 147
+    i14: 44
+    i15: 18
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114604079796466586
@@ -179,12 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a79413a51d701f43a71e82b36afcc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: LightAmmo
+  itemName: Heavy Ammo
   itemTexture: {fileID: 21300000, guid: 65253e6f9e4281045b5209de7e0162c4, type: 3}
   width: 1
   height: 1
   obj: {fileID: 0}
   equipable: 0
-  itemDescription: Ammo for light weapons
-  itemType: LightAmmo
-  ammoText: {fileID: 0}
+  itemDescription: Ammo for heavy weapons
+  itemType: HeavyAmmo
+  amount: 15

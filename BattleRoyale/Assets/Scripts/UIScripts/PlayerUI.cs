@@ -42,6 +42,7 @@ public class PlayerUI : MonoBehaviour {
     GameObject MapCanvas;
     public bool started;
     private float GameStartTimer;
+    public InventoryScriptLITE invScript { get { return inventoryScriptLITE; } }
 
     public Player player { get; protected set; }
     private PlayerController controller;

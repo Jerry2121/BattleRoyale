@@ -152,7 +152,7 @@ public class GameManager : NetworkBehaviour {
 
         }
         
-        if(gameTimer >= -420)
+        if(gameTimer >= 0)
         {
             secondsUntilDrop -= Time.deltaTime;
 

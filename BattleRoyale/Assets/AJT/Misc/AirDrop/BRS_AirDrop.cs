@@ -43,7 +43,7 @@ public class BRS_AirDrop : MonoBehaviour
 		DropLight.gameObject.SetActive (true);
 		Smoke.gameObject.SetActive (true);
 		AirDropRB.drag = 0;
-		AirDropRB.mass = 5000;
+		AirDropRB.mass = 7000;
 		Destroy (GroundDetection);
 		Destroy (Canopy);
 	}
