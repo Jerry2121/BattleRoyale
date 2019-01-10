@@ -15,7 +15,7 @@ public class DamageIndicators : MonoBehaviour {
 	void FixedUpdate () {
 		if(image.color.a > 0)
         {
-            Debug.Log(image.name + " is showing.");
+            // Debug.Log(image.name + " color is " + image.color);
             Color a = image.color;
             a.a -= 1;
             image.color = a;
