@@ -23,7 +23,15 @@ public class DamageIndicators : MonoBehaviour {
     public void Show()
     {
         Color a = image.color;
-        a.a += 64;
+
+        if (gameObject.name == "HitMarker")
+        {
+            a.a += 255;
+        }
+        else
+        {
+            a.a += 64;
+        }
         image.color = a;
 
     }

@@ -129,15 +129,12 @@ public class PlayerShoot : NetworkBehaviour {
             if(hit.collider.tag == PLAYER_TAG)
             {
                 CmdPlayerShot(hit.collider.name, currentWeapon.damage, transform.name);
+                // Show Hitmarker
+                GetComponent<Player>().PlayerUI.GetComponent<damageUI>().ShowHitMarker();
+                // play sound?
             }
             //we hit something, call OnHit method on server
             CmdOnHit(hit.point, hit.normal);
-
-            // play sound?
-            
-            //Sets the Hitmarkers alpha value to the samples alpha value
-            GetComponent<Player>().PlayerUI.GetComponent<damageUI>().hitMarker.color = new Color(255, 255, 255, 255);
-
         }
 
         if (currentWeapon.currentAmmo <= 0)

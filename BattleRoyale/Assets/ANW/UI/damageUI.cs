@@ -49,6 +49,11 @@ public class damageUI : MonoBehaviour {
     }
     */
 
+    public void ShowHitMarker()
+    {
+        hitMarker.GetComponent<DamageIndicators>().Show();
+    }
+
     public void FindDamageSourceDirection(float angle)
     {
         if (angle <= 22 && angle >= -22)
