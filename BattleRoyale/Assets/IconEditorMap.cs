@@ -13,13 +13,13 @@ public class IconEditorMap : MonoBehaviour {
     void Start () {
         PlayerUI = GetComponentInParent<Player>().PlayerUI;
         PlayerIcon = this.gameObject;
-	}
+        tempIcon = PlayerIcon.transform.localScale;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (PlayerUI.GetComponent<PlayerUI>().isMapOpen)
         {
-            tempIcon = PlayerIcon.transform.localScale;
             PlayerIcon.transform.localScale = new Vector3(5, 5, 5);
         }
         else if (!PlayerUI.GetComponent<PlayerUI>().isMapOpen)
