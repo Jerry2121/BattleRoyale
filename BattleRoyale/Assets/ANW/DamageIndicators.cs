@@ -12,8 +12,9 @@ public class DamageIndicators : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(image.color.a, 0, 2f));
+	void Update () {
+        // image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(image.color.a, 0, 2f));
+        
 		/*if(image.color.a > 0)
         {
             Debug.Log(image.name + " color is " + image.color);
@@ -36,5 +37,6 @@ public class DamageIndicators : MonoBehaviour {
         }
         image.color = a;
 
+        image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(image.color.a, 0, 2f));
     }
 }
