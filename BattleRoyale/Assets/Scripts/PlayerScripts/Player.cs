@@ -50,7 +50,10 @@ public class Player : NetworkBehaviour {
     GameObject SpectCameraPrefab;
     [SerializeField]
     public GameObject PlayerUI;
+    [SerializeField]
+    GameObject PlayerIcon;
 
+    private Vector3 tempIcon;
     public int kills;
     public int deaths;
 
@@ -98,7 +101,15 @@ public class Player : NetworkBehaviour {
             return;
         RaycastHit hit;
         Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
-
+        if (PlayerUI.GetComponent<PlayerUI>().isMapOpen)
+        {
+            tempIcon = PlayerIcon.transform.localScale;
+            PlayerIcon.transform.localScale = new Vector3(5,5,5);
+        }
+        else if(!PlayerUI.GetComponent<PlayerUI>().isMapOpen)
+        {
+            PlayerIcon.transform.localScale = tempIcon;
+        }
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, weaponItemMask) && !PauseMenu.isOn)
         {
             Debug.Log("Player -- Update: Hit a weapon item");
