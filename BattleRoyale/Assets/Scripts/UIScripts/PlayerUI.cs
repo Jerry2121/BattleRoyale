@@ -40,6 +40,9 @@ public class PlayerUI : MonoBehaviour {
     GameObject GameStartButtonText;
     [SerializeField]
     GameObject MapCanvas;
+    [SerializeField]
+    GameObject HUD;
+    public bool isMapOpen = false;
     public bool started;
     private float GameStartTimer;
     public InventoryScriptLITE invScript { get { return inventoryScriptLITE; } }
@@ -51,6 +54,7 @@ public class PlayerUI : MonoBehaviour {
     void Start()
     {
         MapCanvas = GameObject.FindGameObjectWithTag("Map");
+        isMapOpen = false;
         started = false;
         PauseMenu.isOn = false;
         compass.Player = player.transform;
@@ -70,7 +74,7 @@ public class PlayerUI : MonoBehaviour {
         GameStartTimer = GameManager.instance.gameTimer;
         SetFuelAmount(controller.thrusterFuelAmount);
         SetHealthAmount(player.GetHealthPercentage());
-        if(weaponManager.GetCurrentWeapon() != null)
+        if (weaponManager.GetCurrentWeapon() != null)
             SetAmmoAmount(weaponManager.GetCurrentWeapon().currentAmmo);
         else
             SetAmmoAmount(0);
@@ -88,7 +92,7 @@ public class PlayerUI : MonoBehaviour {
         {
             scoreboard.SetActive(false);
         }
-        if(GameStartTimer <= 0 && GameManager.GetAllPlayers().Length > 1)
+        if (GameStartTimer <= 0 && GameManager.GetAllPlayers().Length > 1)
         {
             GameStartingText.text = "Game Starting In: " + Mathf.RoundToInt(GameStartTimer) * -1;
         }
@@ -97,7 +101,7 @@ public class PlayerUI : MonoBehaviour {
             GameStartingText.text = "";
             started = true;
         }
-        if(GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
+        if (GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
         {
             GameStartingText.text = "Not Enough Players. Need 1 More Player.";
         }
@@ -112,6 +116,15 @@ public class PlayerUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.M))
         {
             MapCanvas.transform.GetComponentInChildren<Canvas>().enabled = !MapCanvas.transform.GetComponentInChildren<Canvas>().enabled;
+            HUD.SetActive(!HUD.activeSelf);
+        }
+        if (MapCanvas.transform.GetComponentInChildren<Canvas>().enabled == true)
+        {
+            isMapOpen = true;
+        }
+        else
+        {
+            isMapOpen = false;
         }
         if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {

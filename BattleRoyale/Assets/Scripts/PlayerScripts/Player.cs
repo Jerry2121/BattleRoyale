@@ -98,7 +98,6 @@ public class Player : NetworkBehaviour {
             return;
         RaycastHit hit;
         Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
-
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, weaponItemMask) && !PauseMenu.isOn)
         {
             Debug.Log("Player -- Update: Hit a weapon item");
@@ -221,7 +220,8 @@ public class Player : NetworkBehaviour {
             //find player with _sourceID and get their position
             Vector3 damageSourcePosition = GameManager.GetPlayer(_sourceID).transform.position;
             Vector3 damageSourceRe = new Vector3(damageSourcePosition.x, 0, damageSourcePosition.z);
-            Vector3 damageDirection = camTran - damageSourceRe;
+            Vector3 damageDirection = transform.position - damageSourceRe;
+            damageDirection.y = 0;
             Vector3 damageAxis = new Vector3(0, 1, 0);
             float angle = Vector3.SignedAngle(damageDirection, camTran, damageAxis);
             Debug.Log("Angle = " + angle);
