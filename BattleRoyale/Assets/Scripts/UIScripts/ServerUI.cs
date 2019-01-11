@@ -13,6 +13,8 @@ public class ServerUI : NetworkBehaviour {
 
     [SerializeField]
     GameObject spectCamPrefab;
+    [SerializeField]
+    GameObject sceneCam;
     GameObject spectCam;
 
     // Use this for initialization

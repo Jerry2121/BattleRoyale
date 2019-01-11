@@ -41,7 +41,7 @@ public class WeaponItemSpawner : MonoBehaviour {
         {
             if (GameManager.instance == null)
             {
-                Debug.LogError("WeaponItemSpawner -- Update: GameManager instance is Null!");
+                Debug.LogWarning("WeaponItemSpawner -- Update: GameManager instance is Null!");
                 return;
             }
             GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();
