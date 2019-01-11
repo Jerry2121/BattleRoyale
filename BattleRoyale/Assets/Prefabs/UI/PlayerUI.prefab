@@ -5509,7 +5509,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 17.43
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -10532,6 +10532,7 @@ MonoBehaviour:
   GameStartButtonText: {fileID: 1172706721542622}
   MapCanvas: {fileID: 0}
   HUD: {fileID: 1548299448981390}
+  isMapOpen: 0
   started: 0
 --- !u!114 &114342532621063470
 MonoBehaviour:
@@ -16219,6 +16220,10 @@ MonoBehaviour:
   player: {fileID: 0}
   itemPrompt: {fileID: 1248198468847216}
   healingItemsAmountText: {fileID: 114350399519347822}
+  healingItemsAmount: 0
+  lightAmmoAmount: 0
+  mediumAmmoAmount: 0
+  heavyAmmoAmount: 0
 --- !u!114 &114736683333416974
 MonoBehaviour:
   m_ObjectHideFlags: 1
