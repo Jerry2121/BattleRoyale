@@ -42,7 +42,10 @@ public class PlayerUI : MonoBehaviour {
     GameObject MapCanvas;
     [SerializeField]
     GameObject HUD;
+    [SerializeField]
+    GameObject OutOfAmmoText;
     public bool isMapOpen = false;
+    private float flashtimer;
     public bool started;
     private float GameStartTimer;
     public InventoryScriptLITE invScript { get { return inventoryScriptLITE; } }
@@ -112,6 +115,20 @@ public class PlayerUI : MonoBehaviour {
         else
         {
             GameStartButtonText.SetActive(false);
+        }
+        if (ammoText.text == "0")
+        {
+            flashtimer += Time.deltaTime;
+            if (flashtimer >= 1)
+            {
+                OutOfAmmoText.SetActive(false);
+                flashtimer = 0;
+            }
+            
+        }
+        else
+        {
+            OutOfAmmoText.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
