@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        thrusterFuelAmount = 1f;
+        thrusterFuelAmount = 2f;
         motor = GetComponent<PlayerMotor>();
         joint = GetComponent<ConfigurableJoint>();
         animator = GetComponent<Animator>();
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour {
         if (GameManager.instance.inStartPeriod)
         {
             if(weaponManager.primaryWeapon == null && weaponManager.secondaryWeapon == null)
-                thrusterFuelAmount = 1f;
+                thrusterFuelAmount = 2f;
         }
 
 
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour {
             SetJointSettings(jointSpring);
         }
 
-        thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
+        thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 2f);
 
         //Apply thruster force
         motor.ApplyThruster(thrusterForceVector);
