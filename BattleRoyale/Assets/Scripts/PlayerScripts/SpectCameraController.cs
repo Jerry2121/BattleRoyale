@@ -18,6 +18,9 @@ public class SpectCameraController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Utility.WaitForSeconds(0.5f);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()

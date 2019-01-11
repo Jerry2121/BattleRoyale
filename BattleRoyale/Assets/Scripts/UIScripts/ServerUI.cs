@@ -13,8 +13,6 @@ public class ServerUI : NetworkBehaviour {
 
     [SerializeField]
     GameObject spectCamPrefab;
-    [SerializeField]
-    GameObject sceneCam;
     GameObject spectCam;
 
     // Use this for initialization
@@ -28,6 +26,8 @@ public class ServerUI : NetworkBehaviour {
             gameObject.SetActive(false);
             return;
         }
+        while (GameManager.instance == null)
+            Utility.WaitForSeconds(0.1f);
         GameManager.instance.SetSceneCameraActiveState(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -38,9 +38,10 @@ public class ServerUI : NetworkBehaviour {
         if (NetworkDiscoveryScript.IsServerOnly == false)
             return;
 
-        if(Cursor.lockState == CursorLockMode.Locked && spectCam.activeSelf == false)
+        if(Cursor.lockState == CursorLockMode.Locked && spectCam == null || Cursor.lockState == CursorLockMode.Locked && spectCam.activeSelf == false)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
