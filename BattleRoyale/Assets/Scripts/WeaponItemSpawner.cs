@@ -7,16 +7,6 @@ public class WeaponItemSpawner : MonoBehaviour {
     [Header("AmmoSpawners")]
     public GameObject AmmoSpawner1;
     public GameObject AmmoSpawner2;
-    [Header("Weapon Bools")]
-    public bool canspawnItem;
-    public bool ran;
-    public bool Weapon1;
-    public bool Weapon2;
-    public bool Weapon3;
-    public bool Weapon4;
-    public bool Weapon5;
-    public bool Weapon6;
-    private int d1;
     private WeaponType weaponType;
 
     NetworkManager networkManager;
@@ -24,36 +14,23 @@ public class WeaponItemSpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        canspawnItem = true;
-        ran = false;
-
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
-    }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (ran)
-            Destroy(this.gameObject, 10f);
-
-        if (canspawnItem && networkDiscoveryScript.isServer && ran == false)
+        if (networkDiscoveryScript.isServer)
         {
-            if (GameManager.instance == null)
+            while (GameManager.instance == null)
             {
                 Debug.LogWarning("WeaponItemSpawner -- Update: GameManager instance is Null!");
-                return;
+                Utility.WaitForEndOfFrame();
             }
             GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();
 
             if (gameManagerScript.DisableItemSpawning)
                 return;
 
-            d1 = Random.Range(0, gameManagerScript.weapons.Length - 1);
-
-            Utility.InstantiateOverNetwork(gameManagerScript.weapons[d1], transform.position, Quaternion.identity);
-            weaponType = gameManagerScript.weapons[d1].GetComponent<WeaponItem>().weapon.weaponType;
-            ran = true;
+            GameObject weaponSpawned = Utility.InstantiateOverNetwork(gameManagerScript.weapons[Random.Range(0, gameManagerScript.weapons.Length - 1)], transform.position, Quaternion.identity);
+            weaponType = weaponSpawned.GetComponent<WeaponItem>().weapon.weaponType;
 
             #region OldCode
             /*if (d1 == 1 && canspawnItem && !ran)
@@ -138,20 +115,26 @@ public class WeaponItemSpawner : MonoBehaviour {
             {
                 Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
                 Utility.InstantiateOverNetwork(gameManagerScript.lightAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
-                canspawnItem = false;
             }
             else if (weaponType == WeaponType.Medium)
             {
                 Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
                 Utility.InstantiateOverNetwork(gameManagerScript.mediumAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
-                canspawnItem = false;
             }
             else if (weaponType == WeaponType.Heavy)
             {
                 Utility.InstantiateOverNetwork(gameManagerScript.heavyAmmo, AmmoSpawner1.transform.position, Quaternion.identity);
                 Utility.InstantiateOverNetwork(gameManagerScript.heavyAmmo, AmmoSpawner2.transform.position, Quaternion.identity);
-                canspawnItem = false;
+            }
+            else
+            {
+                throw new System.Exception("The weapon type is unaccounted for, or is null!");
             }
         }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+
     }
 }
