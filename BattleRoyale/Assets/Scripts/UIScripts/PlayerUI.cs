@@ -116,7 +116,7 @@ public class PlayerUI : MonoBehaviour {
         {
             GameStartButtonText.SetActive(false);
         }
-        if (ammoText.text == "0")
+        if (ammoText.text == "0" && weaponManager.GetCurrentWeapon() != null)
         {
             flashtimer += Time.deltaTime;
             if (flashtimer >= 1)
