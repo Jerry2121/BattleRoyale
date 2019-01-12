@@ -218,4 +218,8 @@ public class LoginMenu : MonoBehaviour {
 
         loginParent.gameObject.SetActive(true);
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
