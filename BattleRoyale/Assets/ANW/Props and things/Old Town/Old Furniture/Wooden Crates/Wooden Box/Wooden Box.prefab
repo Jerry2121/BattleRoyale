@@ -37,8 +37,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4483140427784202}
-  - component: {fileID: 54907249525835476}
-  - component: {fileID: 65467395911441092}
+  - component: {fileID: 64277176268607142}
+  - component: {fileID: 54931522282540846}
+  - component: {fileID: 114457587184066796}
+  - component: {fileID: 114681524845308032}
   m_Layer: 0
   m_Name: Wooden Box
   m_TagString: Untagged
@@ -66,8 +68,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486384970568384}
   m_LocalRotation: {x: -0, y: -0.000000014901159, z: -0, w: 1}
-  m_LocalPosition: {x: -10.3203125, y: -102.26367, z: -24.82402}
-  m_LocalScale: {x: 2.620796, y: 2.620796, z: 2.620796}
+  m_LocalPosition: {x: -35.939453, y: -104.671875, z: -52.98503}
+  m_LocalScale: {x: 2.585363, y: 2.585363, z: 2.585363}
   m_Children:
   - {fileID: 4306250338437552}
   m_Father: {fileID: 0}
@@ -115,7 +117,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1026738824921504}
   m_Mesh: {fileID: 4300002, guid: 213c99d8fa69e914d872205c88b73f20, type: 3}
---- !u!54 &54907249525835476
+--- !u!54 &54931522282540846
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +132,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64277176268607142
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486384970568384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!64 &64789671140199618
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -144,15 +160,56 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 213c99d8fa69e914d872205c88b73f20, type: 3}
---- !u!65 &65467395911441092
-BoxCollider:
+--- !u!114 &114457587184066796
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486384970568384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.80858636, y: 0.7929364, z: 0.7972275}
-  m_Center: {x: 0.001120318, y: 0.006707261, z: 0.0063161734}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114681524845308032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486384970568384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 82
+    i1: 136
+    i2: 101
+    i3: 231
+    i4: 138
+    i5: 213
+    i6: 105
+    i7: 20
+    i8: 9
+    i9: 49
+    i10: 108
+    i11: 16
+    i12: 31
+    i13: 246
+    i14: 2
+    i15: 183
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
