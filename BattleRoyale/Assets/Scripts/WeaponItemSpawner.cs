@@ -21,7 +21,6 @@ public class WeaponItemSpawner : MonoBehaviour {
         {
             while (GameManager.instance == null)
             {
-                Debug.LogWarning("WeaponItemSpawner -- Update: GameManager instance is Null!");
                 Utility.WaitForEndOfFrame();
             }
             GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();

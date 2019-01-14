@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/AW/AW.unity
     guid: 36b50187f4aa96c4f86a082967c3d5a7
+  - enabled: 0
+    path: Assets/AW/Test.unity
+    guid: 77b7f71845c66fa48a643aaf9ddaa9bf
   m_configObjects: {}

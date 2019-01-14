@@ -254,6 +254,10 @@ public class WeaponManager : NetworkBehaviour {
         {
             anim.SetTrigger("Reload");
         }
+        else
+        {
+            Debug.LogError("WeaponManager -- RpcOnReload: Anim is null!", currentGraphics.gameObject);
+        }
     }
 
     [Command]

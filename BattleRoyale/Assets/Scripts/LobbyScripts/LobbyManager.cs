@@ -140,7 +140,7 @@ public class LobbyManager : MonoBehaviour {
     public IEnumerator WaitForCreateLAN()
     {
         Debug.Log("WaitForCreateLAN");
-        int countdown = 10;
+        int countdown = 15;
         while (countdown > 0)
         {
             if (createLANStatusText != null)

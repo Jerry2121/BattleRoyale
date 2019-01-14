@@ -303,14 +303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmmoSpawner1: {fileID: 1670364089}
   AmmoSpawner2: {fileID: 1431559565}
-  canspawnItem: 0
-  ran: 0
-  Weapon1: 0
-  Weapon2: 0
-  Weapon3: 0
-  Weapon4: 0
-  Weapon5: 0
-  Weapon6: 0
 --- !u!4 &53376947
 Transform:
   m_ObjectHideFlags: 0
@@ -2672,14 +2664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmmoSpawner1: {fileID: 730873176}
   AmmoSpawner2: {fileID: 769729461}
-  canspawnItem: 0
-  ran: 0
-  Weapon1: 0
-  Weapon2: 0
-  Weapon3: 0
-  Weapon4: 0
-  Weapon5: 0
-  Weapon6: 0
 --- !u!4 &395419441
 Transform:
   m_ObjectHideFlags: 0
@@ -4327,14 +4311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmmoSpawner1: {fileID: 309667024}
   AmmoSpawner2: {fileID: 1493251528}
-  canspawnItem: 0
-  ran: 0
-  Weapon1: 0
-  Weapon2: 0
-  Weapon3: 0
-  Weapon4: 0
-  Weapon5: 0
-  Weapon6: 0
 --- !u!4 &702696636
 Transform:
   m_ObjectHideFlags: 0
@@ -9749,14 +9725,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmmoSpawner1: {fileID: 1450560691}
   AmmoSpawner2: {fileID: 1923986904}
-  canspawnItem: 0
-  ran: 0
-  Weapon1: 0
-  Weapon2: 0
-  Weapon3: 0
-  Weapon4: 0
-  Weapon5: 0
-  Weapon6: 0
 --- !u!4 &1776170797
 Transform:
   m_ObjectHideFlags: 0
@@ -11533,14 +11501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmmoSpawner1: {fileID: 2076585006}
   AmmoSpawner2: {fileID: 1692026392}
-  canspawnItem: 0
-  ran: 0
-  Weapon1: 0
-  Weapon2: 0
-  Weapon3: 0
-  Weapon4: 0
-  Weapon5: 0
-  Weapon6: 0
 --- !u!4 &2082816474
 Transform:
   m_ObjectHideFlags: 0
