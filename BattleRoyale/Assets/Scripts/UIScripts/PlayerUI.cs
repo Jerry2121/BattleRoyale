@@ -149,16 +149,15 @@ public class PlayerUI : MonoBehaviour {
             GameStartButtonText.SetActive(false);
             GameManager.instance.gameTimer = -5;
         }
-        else if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (PauseMenu.isOn == false)
             {
-                TogglePauseMenu();
-                pauseMenu.GetComponent<PauseMenu>().ShowInventory();
+
             }
             else
             {
-                pauseMenu.GetComponent<PauseMenu>().ShowInventory();
+
             }
         }
 
@@ -194,7 +193,6 @@ public class PlayerUI : MonoBehaviour {
     public void TogglePauseMenu()
     {
         PauseMenu pauseMenuScript = pauseMenu.GetComponent<PauseMenu>();
-        pauseMenuScript.inventoryPanel.position = pauseMenuScript.panelHiddenPosition;
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         PauseMenu.isOn = pauseMenu.activeSelf;
     }

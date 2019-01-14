@@ -11,17 +11,9 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField]
     GameObject Resume;
     [SerializeField]
-    GameObject Inventory;
-    [SerializeField]
     GameObject Options;
     [SerializeField]
     GameObject Disconnect;
-    [SerializeField]
-
-    public RectTransform inventoryPanel;
-
-    public Vector3 panelHiddenPosition = new Vector3(0, -9999, 0);
-
 
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
@@ -30,54 +22,33 @@ public class PauseMenu : MonoBehaviour {
 	void Start () {
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
-        inventoryPanel.transform.localPosition = panelHiddenPosition;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(isOn == false)
-        {
-            inventoryPanel.localPosition = panelHiddenPosition;
-
-        }
     }
 
     public void ShowResume()
     {
         Resume.SetActive(true);
-        Inventory.SetActive(false);
         Options.SetActive(false);
         Disconnect.SetActive(false);
-        inventoryPanel.localPosition = panelHiddenPosition;
-
     }
 
     public void ShowInventory()
     {
         Resume.SetActive(false);
-        Inventory.SetActive(true);
         Options.SetActive(false);
-        Disconnect.SetActive(false);
-        inventoryPanel.localPosition = Vector3.zero;
-    }
+        Disconnect.SetActive(false);    }
 
     public void ShowOptions()
     {
         Resume.SetActive(false);
-        Inventory.SetActive(false);
         Options.SetActive(true);
         Disconnect.SetActive(false);
-        inventoryPanel.localPosition = panelHiddenPosition;
     }
 
     public void ShowDisconnect()
     {
         Resume.SetActive(false);
-        Inventory.SetActive(false);
         Options.SetActive(false);
         Disconnect.SetActive(true);
-        inventoryPanel.localPosition = panelHiddenPosition;
     }
 
     public void LeaveRoom()
