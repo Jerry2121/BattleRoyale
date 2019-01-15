@@ -1530,11 +1530,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_OnlineScene
-      value: MainGame
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ad23221d7600b94bb826db71b7e165d, type: 2}
   m_IsPrefabAsset: 0
@@ -23334,26 +23329,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1708591317}
   m_CullTransparentMesh: 0
---- !u!1 &1721547169 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1422587437927002, guid: 3ad23221d7600b94bb826db71b7e165d,
-    type: 2}
-  m_PrefabInternal: {fileID: 257394998}
---- !u!114 &1721547170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1721547169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1180575928, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HostMigration: 1
-  m_ShowGUI: 1
-  m_OffsetX: 10
-  m_OffsetY: 300
 --- !u!1 &1728626696
 GameObject:
   m_ObjectHideFlags: 0

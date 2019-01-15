@@ -18,6 +18,8 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
 	// Use this for initialization
 	void Start () {
         networkManager = GetComponent<NetworkManager>();
+        //networkManager.maxConnections = 100;
+        Debug.Log("networkManager.maxConnections = " + networkManager.maxConnections);
         IsServerOnly = false;
         Initialize();
     }

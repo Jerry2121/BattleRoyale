@@ -55,10 +55,16 @@ public class LobbyManager : MonoBehaviour {
         hostGameScript = networkManager.GetComponent<HostGame>();
 
         ChangeToLAN();
+
+#if  DEVELOPMENT_BUILD == false && UNITY_EDITOR == false
+        LANOnly = false;
+#endif
+
         if (LANOnly)
         {
             OnlineButton.SetActive(false);
         }
+
     }
 
 
