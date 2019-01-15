@@ -158,10 +158,10 @@ public class LobbyManager : MonoBehaviour {
         //We failed to create a game, likely because a local game is already running on the network
         if (createLANStatusText != null)
             createLANStatusText.text = "Failed to create a local game. Make sure there are no other local games running on the network";
-        //networkDiscoveryScript.StopBroadcast();
+        networkDiscoveryScript.StopBroadcast();
         yield return new WaitForSeconds(1f);
-        //NetworkDiscoveryScript.IsInLAN = false;
-        //networkDiscoveryScript.Initialize();
+        NetworkDiscoveryScript.IsInLAN = false;
+        networkDiscoveryScript.Initialize();
 
     }
 
