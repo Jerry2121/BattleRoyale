@@ -55,7 +55,8 @@ public class PlayerUI : MonoBehaviour {
     GameObject InventoryDropCanvas;
 
     
-    private bool InInventory = false;
+    public static bool InInventory = false;
+
     public bool isMapOpen = false;
     private float flashtimer;
     public bool started;
@@ -104,17 +105,14 @@ public class PlayerUI : MonoBehaviour {
         }
         if (InInventory)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             InventoryCanvas.SetBool("Inventory", true);
         }
-        else if (!InInventory)
+        else if (!InInventory && PauseMenu.isOn == false)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             InventoryCanvas.SetBool("Inventory", false);
             InventoryDropCanvas.SetActive(false);
         }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
@@ -168,10 +166,10 @@ public class PlayerUI : MonoBehaviour {
             MapCanvas.transform.GetComponentInChildren<Canvas>().enabled = !MapCanvas.transform.GetComponentInChildren<Canvas>().enabled;
             HUD.SetActive(!HUD.activeSelf);
         }
-        if (MapCanvas.transform.GetComponentInChildren<Canvas>().enabled == true)
+        /*if (MapCanvas.transform.GetComponentInChildren<Canvas>().enabled == true)
         {
             isMapOpen = true;
-        }
+        }*/
         else
         {
             isMapOpen = false;

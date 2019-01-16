@@ -58,7 +58,6 @@ public class WeaponManager : NetworkBehaviour {
     [Client]
     public void SwitchWeaponLocal(PlayerWeapon _weapon)
     {
-        Debug.Log("Switch");
         if (isLocalPlayer == false)
         {
             if (Debug.isDebugBuild)

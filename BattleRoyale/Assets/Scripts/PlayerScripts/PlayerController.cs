@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
 
-        if (PauseMenu.isOn)
+        if (PauseMenu.isOn || PlayerUI.InInventory)
         {
             if (Cursor.lockState != CursorLockMode.None)
             {
