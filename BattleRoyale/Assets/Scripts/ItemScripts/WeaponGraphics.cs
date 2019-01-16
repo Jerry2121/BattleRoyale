@@ -8,4 +8,9 @@ public class WeaponGraphics : MonoBehaviour {
     public GameObject impactEffectPrefab;
     public Vector3 rotationOffset;
 
+    private void OnDestroy()
+    {
+        Debug.Log("This was destroyed", this);
+    }
+
 }

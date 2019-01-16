@@ -58,6 +58,7 @@ public class WeaponManager : NetworkBehaviour {
     [Client]
     public void SwitchWeaponLocal(PlayerWeapon _weapon)
     {
+        Debug.Log("Switch");
         if (isLocalPlayer == false)
         {
             if (Debug.isDebugBuild)
@@ -205,13 +206,16 @@ public class WeaponManager : NetworkBehaviour {
             return;
         }
 
-        int ammoRecieved = inventoryPanelLITE.GetAmmo(ammoType, (currentWeapon.maxAmmo - currentWeapon.currentAmmo));
+        //Debug, Remove later
+        int ammoRecieved = 999;
+
+        /*int ammoRecieved = inventoryPanelLITE.GetAmmo(ammoType, (currentWeapon.maxAmmo - currentWeapon.currentAmmo));
 
         if(ammoRecieved <= 0)
         {
             Debug.Log("No ammo found of type " + ammoType);
             return;
-        }
+        }*/
 
         if (Debug.isDebugBuild)
             Debug.Log("Reloading");
@@ -235,7 +239,7 @@ public class WeaponManager : NetworkBehaviour {
             yield break;
         }
 
-        currentWeapon.currentAmmo += _ammoRecieved;
+        currentWeapon.currentAmmo += currentWeapon.maxAmmo - currentWeapon.currentAmmo;//_ammoRecieved;
 
         isReloading = false;
     }
