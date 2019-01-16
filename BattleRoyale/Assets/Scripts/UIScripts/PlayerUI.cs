@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using TMPro;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerUI : MonoBehaviour {
 
@@ -44,6 +45,17 @@ public class PlayerUI : MonoBehaviour {
     GameObject HUD;
     [SerializeField]
     GameObject OutOfAmmoText;
+    [SerializeField]
+    Slider InputSlider;
+    [SerializeField]
+    TextMeshProUGUI InputFieldText;
+    [SerializeField]
+    Animator InventoryCanvas;
+    [SerializeField]
+    GameObject InventoryDropCanvas;
+
+    
+    private bool InInventory = false;
     public bool isMapOpen = false;
     private float flashtimer;
     public bool started;
@@ -82,6 +94,27 @@ public class PlayerUI : MonoBehaviour {
         else
             SetAmmoAmount(0);
 
+        if (Input.GetKeyDown(KeyCode.I) && !InInventory)
+        {
+            InInventory = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I) && InInventory)
+        {
+            InInventory = false;
+        }
+        if (InInventory)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            InventoryCanvas.SetBool("Inventory", true);
+        }
+        else if (!InInventory)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            InventoryCanvas.SetBool("Inventory", false);
+            InventoryDropCanvas.SetActive(false);
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
@@ -149,17 +182,6 @@ public class PlayerUI : MonoBehaviour {
             GameStartButtonText.SetActive(false);
             GameManager.instance.gameTimer = -5;
         }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (PauseMenu.isOn == false)
-            {
-
-            }
-            else
-            {
-
-            }
-        }
 
         if (GameManager.IsGameOver())
         {
@@ -197,6 +219,24 @@ public class PlayerUI : MonoBehaviour {
         PauseMenu.isOn = pauseMenu.activeSelf;
     }
 
+    public void DropItemSliderUpdate()
+    {
+        InputFieldText.text = "" + InputSlider.value;
+    }
+    public void InventoryDropButton()
+    {
+        Debug.Log("I got into InventoryDropButton Which Turns on the Drop Canvas");
+        InventoryDropCanvas.SetActive(true);
 
-
+    }
+    public void InventoryDropButtonExit()
+    {
+        Debug.Log("I Got Into the InventoryDropButtonExit which turns of the Drop Canvas");
+        InventoryDropCanvas.SetActive(false);
+    }
+    public void InventoryDropCanvasDropButton()
+    {
+        Debug.Log("Dropped " + InputFieldText);
+        InventoryDropCanvas.SetActive(false);
+    }
 }
