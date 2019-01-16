@@ -78,6 +78,7 @@ public class Pause : MonoBehaviour
     }
     public void InventoryButton()
     {
+        Debug.Log("inventory");
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(true);
         OptionsButtonSelected.SetActive(false);
@@ -85,6 +86,7 @@ public class Pause : MonoBehaviour
     }
     public void OptionsButton()
     {
+        Debug.Log("options");
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(false);
         OptionsButtonSelected.SetActive(true);
@@ -92,6 +94,7 @@ public class Pause : MonoBehaviour
     }
     public void DisconnectButton()
     {
+        Debug.Log("dc");
         ResumeButtonSelected.SetActive(false);
         InventoryButtonSelected.SetActive(false);
         OptionsButtonSelected.SetActive(false);
