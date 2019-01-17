@@ -1530,6 +1530,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
+        type: 2}
+      propertyPath: m_OnlineScene
+      value: MainGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
+        type: 2}
+      propertyPath: m_CustomConfig
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
+        type: 2}
+      propertyPath: m_MaxConnections
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ad23221d7600b94bb826db71b7e165d, type: 2}
   m_IsPrefabAsset: 0
