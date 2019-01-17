@@ -19,10 +19,10 @@ public class WeaponItemSpawner : MonoBehaviour {
 
         if (networkDiscoveryScript.isServer)
         {
-            while (GameManager.instance == null)
-            {
-                Utility.WaitForSeconds(0.5f);
-            }
+            Utility.WaitForSeconds(5f);
+            if (GameManager.instance == null)
+                Utility.WaitForSeconds(5f);
+
             GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();
 
             if (gameManagerScript.DisableItemSpawning)
