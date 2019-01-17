@@ -22,6 +22,8 @@ public class WeaponItemSpawner : MonoBehaviour {
             Utility.WaitForSeconds(5f);
             if (GameManager.instance == null)
                 Utility.WaitForSeconds(5f);
+            if (GameManager.instance == null)
+                Utility.WaitForSeconds(5f);
 
             GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();
 
