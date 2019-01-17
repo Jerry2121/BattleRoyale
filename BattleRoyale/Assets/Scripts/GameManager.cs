@@ -51,8 +51,8 @@ public class GameManager : NetworkBehaviour {
                 Debug.LogWarning("GameManager -- Awake: There is more than one GameManager in the scene. Only one will be set to GameManager.instance.");
             return;
         }
-        Debug.Log("GameManager instance set");
         instance = this;
+        Debug.Log("GameManager instance set");
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
         StartTimer();

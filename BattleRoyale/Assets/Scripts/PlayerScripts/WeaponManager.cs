@@ -219,6 +219,12 @@ public class WeaponManager : NetworkBehaviour {
         if (Debug.isDebugBuild)
             Debug.Log("Reloading");
 
+        if(ammoRecieved > currentWeapon.maxAmmo - currentWeapon.currentAmmo)
+        {
+            Debug.LogError("WeaponManager -- Reload: Recieved more ammo than needed! Setting ammoRecieved to the max needed amount");
+            ammoRecieved = currentWeapon.maxAmmo - currentWeapon.currentAmmo;
+        }
+
         StartCoroutine(Reload_Coroutine(ammoRecieved));
     }
 
@@ -238,7 +244,7 @@ public class WeaponManager : NetworkBehaviour {
             yield break;
         }
 
-        currentWeapon.currentAmmo += currentWeapon.maxAmmo - currentWeapon.currentAmmo;//_ammoRecieved;
+        currentWeapon.currentAmmo += _ammoRecieved;
 
         isReloading = false;
     }

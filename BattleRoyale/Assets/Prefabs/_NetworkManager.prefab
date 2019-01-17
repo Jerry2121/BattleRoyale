@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  showGUI: 0
+  showGUI: 1
   offsetX: 0
   offsetY: 0
 --- !u!114 &114275933389818622
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: MainMenu
-  m_OnlineScene: MainGame
+  m_OnlineScene: AW
   m_SpawnPrefabs:
   - {fileID: 1172274389392578, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
   - {fileID: 1424222808341810, guid: 8165472cbc9098040bca00a43584c653, type: 2}
@@ -179,9 +179,9 @@ MonoBehaviour:
   m_BroadcastInterval: 1000
   m_UseNetworkManager: 1
   m_BroadcastData: NetworkManager:localhost:6666
-  m_ShowGUI: 0
+  m_ShowGUI: 1
   m_OffsetX: 0
-  m_OffsetY: 0
+  m_OffsetY: 110
   lobbyManager: {fileID: 0}
 --- !u!114 &114900953358196440
 MonoBehaviour:
