@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
         motor.RotateCamera(_cameraRotationX);
 
         //if in start period, and you have no weapon, dont run out of fuel
-        if (GameManager.instance.inStartPeriod)
+        if (GameManager.Instance.inStartPeriod)
         {
             if(weaponManager.primaryWeapon == null && weaponManager.secondaryWeapon == null)
                 thrusterFuelAmount = 1f;

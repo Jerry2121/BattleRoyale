@@ -105,7 +105,7 @@ public class PlayerSetup : NetworkBehaviour {
         Destroy(playerUIInstance);
 
         if(isLocalPlayer)
-            GameManager.instance.SetSceneCameraActiveState(true);
+            GameManager.Instance.SetSceneCameraActiveState(true);
 
         GameManager.UnregisterPlayer(transform.name);
 

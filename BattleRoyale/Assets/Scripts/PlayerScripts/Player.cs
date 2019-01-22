@@ -63,7 +63,7 @@ public class Player : NetworkBehaviour {
         if (isLocalPlayer)
         {
             //Disable the scene camera for the new/respawning player
-            GameManager.instance.SetSceneCameraActiveState(false);
+            GameManager.Instance.SetSceneCameraActiveState(false);
             PlayerUI = GetComponent<PlayerSetup>().playerUIInstance;
             GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
         }
@@ -144,7 +144,7 @@ public class Player : NetworkBehaviour {
         {
             CmdTakeDamage(9999, "Dev");
         }
-        if (inBounds == false && GameManager.instance.inStartPeriod == false)
+        if (inBounds == false && GameManager.Instance.inStartPeriod == false)
         {
             zoneDamageTimer -= Time.deltaTime;
             if (zoneDamageTimer <= 0f)
@@ -255,7 +255,7 @@ public class Player : NetworkBehaviour {
         if (sourcePlayer != null)
         {
             sourcePlayer.kills++;
-            GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
+            GameManager.Instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
         }
 
         deaths++;
@@ -281,19 +281,19 @@ public class Player : NetworkBehaviour {
         //Turn scene camera on for the dieing player
         if (isLocalPlayer)
         {
-            GameManager.instance.SetSceneCameraActiveState(true);
+            GameManager.Instance.SetSceneCameraActiveState(true);
             GetComponent<PlayerSetup>().playerUIInstance.SetActive(false);
         }
 
         if (Debug.isDebugBuild)
             Debug.Log(transform.name + " is dead");
 
-        if(GameManager.instance == null)
+        if(GameManager.Instance == null)
         {
             Debug.LogError("Player -- Die: There is no instance of the GameManager!");
             return;
         }
-        if(GameManager.instance.matchSettings.canRespawn)
+        if(GameManager.Instance.matchSettings.canRespawn)
             StartCoroutine(Respawn());
         else
         {
@@ -313,7 +313,7 @@ public class Player : NetworkBehaviour {
 
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTime);
+        yield return new WaitForSeconds(GameManager.Instance.matchSettings.respawnTime);
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
@@ -360,7 +360,7 @@ public class Player : NetworkBehaviour {
     private void OnTriggerStay(Collider other)
     {
         Utility.WaitForEndOfFrame();
-        if (other.gameObject.tag == "Lobby" && GameManager.instance.inStartPeriod == false)
+        if (other.gameObject.tag == "Lobby" && GameManager.Instance.inStartPeriod == false)
         {
             
             if (isLocalPlayer)
