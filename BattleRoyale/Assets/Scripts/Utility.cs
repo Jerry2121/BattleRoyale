@@ -97,6 +97,7 @@ public class Utility {
     /// <returns></returns>
     public static IEnumerator WaitForSeconds(float secondsToWait)
     {
+        Debug.Log("Waiting " + secondsToWait + " seconds");
         yield return new WaitForSeconds(secondsToWait);
     }
 

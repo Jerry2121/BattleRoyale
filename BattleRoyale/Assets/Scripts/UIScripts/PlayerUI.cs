@@ -87,7 +87,7 @@ public class PlayerUI : MonoBehaviour {
     {
         killsText.text = "Kills: " + player.kills;
         aliveText.text = "Alive: " + GameManager.GetAllPlayers().Length;
-        GameStartTimer = GameManager.instance.gameTimer;
+        GameStartTimer = GameManager.Instance.gameTimer;
         SetFuelAmount(controller.thrusterFuelAmount);
         SetHealthAmount(player.GetHealthPercentage());
         if (weaponManager.GetCurrentWeapon() != null)
@@ -135,7 +135,7 @@ public class PlayerUI : MonoBehaviour {
             GameStartingText.text = "";
             started = true;
         }
-        if (GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.instance.inStartPeriod)
+        if (GameManager.GetAllPlayers().Length <= 1 && GameStartTimer == -120 && GameManager.Instance.inStartPeriod)
         {
             GameStartingText.text = "Not Enough Players. Need 1 More Player.";
         }
@@ -174,11 +174,11 @@ public class PlayerUI : MonoBehaviour {
         {
             isMapOpen = false;
         }
-        if (Input.GetKeyDown(KeyCode.P) && GameManager.instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
+        if (Input.GetKeyDown(KeyCode.P) && GameManager.Instance.inStartPeriod && GameManager.GetAllPlayers().Length > 1 && NetworkManager.singleton.GetComponent<NetworkDiscoveryScript>().isServer && !started)
         {
             started = true;
             GameStartButtonText.SetActive(false);
-            GameManager.instance.gameTimer = -5;
+            GameManager.Instance.gameTimer = -5;
         }
 
         if (GameManager.IsGameOver())

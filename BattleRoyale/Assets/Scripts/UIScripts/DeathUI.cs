@@ -14,10 +14,10 @@ public class DeathUI : MonoBehaviour {
         if (NetworkDiscoveryScript.IsServerOnly)
             gameObject.SetActive(false);
 
-        while (GameManager.instance == null)
+        while (GameManager.Instance == null)
             Utility.WaitForEndOfFrame();
 
-        if (GameManager.instance.matchSettings.canRespawn)
+        if (GameManager.Instance.matchSettings.canRespawn)
             deathUIMap.SetActive(false);
 	}
 	

@@ -26,9 +26,9 @@ public class ServerUI : NetworkBehaviour {
             gameObject.SetActive(false);
             return;
         }
-        while (GameManager.instance == null)
+        while (GameManager.Instance == null)
             Utility.WaitForSeconds(0.1f);
-        GameManager.instance.SetSceneCameraActiveState(true);
+        GameManager.Instance.SetSceneCameraActiveState(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -67,19 +67,19 @@ public class ServerUI : NetworkBehaviour {
         if (spectCam == null)
         {
             spectCam = Instantiate(spectCamPrefab, Vector3.zero, Quaternion.identity);
-            GameManager.instance.SetSceneCameraActiveState(false);
+            GameManager.Instance.SetSceneCameraActiveState(false);
             return;
         }
 
         if (spectCam.activeSelf == false)
         {
             spectCam.SetActive(true);
-            GameManager.instance.SetSceneCameraActiveState(false);
+            GameManager.Instance.SetSceneCameraActiveState(false);
         }
         else
         {
             spectCam.SetActive(false);
-            GameManager.instance.SetSceneCameraActiveState(true);
+            GameManager.Instance.SetSceneCameraActiveState(true);
         }
 
 

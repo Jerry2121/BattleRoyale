@@ -63,7 +63,7 @@ public class ChangeCircle : NetworkBehaviour
         }
 
 
-		if(GameManager.instance.zoneShrinking)
+		if(GameManager.Instance.zoneShrinking)
 		{
 			XRadius = Mathf.Lerp(XRadius, ShrinkCircle(XRadius)[0], Time.deltaTime * 0.01f);
 			circle.Draw(Segments, XRadius, XRadius);
@@ -76,8 +76,8 @@ public class ChangeCircle : NetworkBehaviour
 
         if (XRadius <= 0)
         {
-            GameManager.instance.zoneShrinking = false;
-            GameManager.instance.zoneShrunk = false;
+            GameManager.Instance.zoneShrinking = false;
+            GameManager.Instance.zoneShrunk = false;
         }
         /*if (OutsideOfCircle)
         {
