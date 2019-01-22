@@ -11432,22 +11432,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114437785463382638, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
+    - target: {fileID: 114564573003073430, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114437785463382638, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
+    - target: {fileID: 114564573003073430, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114564573003073430, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
+    - target: {fileID: 114605889162856168, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114564573003073430, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
+    - target: {fileID: 114605889162856168, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -11462,14 +11462,15 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 223775761672165496, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
+    - target: {fileID: 114437785463382638, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
         type: 2}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+      propertyPath: m_havePropertiesChanged
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1365174054002464, guid: 2fae1d0f5e37b3b4fb3404c94680ac05, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 114437785463382638, guid: 2fae1d0f5e37b3b4fb3404c94680ac05,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fae1d0f5e37b3b4fb3404c94680ac05, type: 2}

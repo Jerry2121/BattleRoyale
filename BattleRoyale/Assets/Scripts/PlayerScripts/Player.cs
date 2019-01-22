@@ -359,7 +359,6 @@ public class Player : NetworkBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        Utility.WaitForEndOfFrame();
         if (other.gameObject.tag == "Lobby" && GameManager.Instance.inStartPeriod == false)
         {
             

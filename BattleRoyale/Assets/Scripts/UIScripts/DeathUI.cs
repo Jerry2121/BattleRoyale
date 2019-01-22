@@ -14,9 +14,6 @@ public class DeathUI : MonoBehaviour {
         if (NetworkDiscoveryScript.IsServerOnly)
             gameObject.SetActive(false);
 
-        while (GameManager.Instance == null)
-            Utility.WaitForEndOfFrame();
-
         if (GameManager.Instance.matchSettings.canRespawn)
             deathUIMap.SetActive(false);
 	}

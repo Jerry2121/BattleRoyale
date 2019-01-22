@@ -81,24 +81,4 @@ public class Utility {
         return GO;
     }
 
-    /// <summary>
-    /// Waits for the end of frame before continuing
-    /// </summary>
-    /// <returns></returns>
-    public static IEnumerator WaitForEndOfFrame()
-    {
-        yield return new WaitForEndOfFrame();
-    }
-
-    /// <summary>
-    /// Waits for a specified number of seconds before continuing
-    /// </summary>
-    /// <param name="secondsToWait"></param>
-    /// <returns></returns>
-    public static IEnumerator WaitForSeconds(float secondsToWait)
-    {
-        Debug.Log("Waiting " + secondsToWait + " seconds");
-        yield return new WaitForSeconds(secondsToWait);
-    }
-
 }

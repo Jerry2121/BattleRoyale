@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -10,6 +12,9 @@ public class ServerUI : NetworkBehaviour {
 
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
+
+    [SerializeField]
+    TextMeshProUGUI gameTimer;
 
     [SerializeField]
     GameObject spectCamPrefab;
@@ -26,11 +31,19 @@ public class ServerUI : NetworkBehaviour {
             gameObject.SetActive(false);
             return;
         }
-        while (GameManager.Instance == null)
-            Utility.WaitForSeconds(0.1f);
-        GameManager.Instance.SetSceneCameraActiveState(true);
+        StartCoroutine(ActivateCamera());
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    IEnumerator ActivateCamera()
+    {
+        Debug.Log("ServerUI activate cam");
+        yield return new WaitForSeconds(0.5f);
+        if (GameManager.Instance == null)
+            yield return new WaitForSeconds(5f);
+        GameManager.Instance.SetSceneCameraActiveState(true);
     }
 	
 	// Update is called once per frame
@@ -52,6 +65,16 @@ public class ServerUI : NetworkBehaviour {
         {
             ToggleSpectatorCam();
         }
+
+        if(GameManager.Instance != null)
+        {
+            float seconds = GameManager.Instance.gameTimer;
+            TimeSpan time = TimeSpan.FromSeconds(seconds);
+
+            gameTimer.text = (time.ToString(@"hh\:mm\:ss"));
+        }
+
+
 	}
 
     public void StopServer()
@@ -66,7 +89,9 @@ public class ServerUI : NetworkBehaviour {
     {
         if (spectCam == null)
         {
-            spectCam = Instantiate(spectCamPrefab, Vector3.zero, Quaternion.identity);
+            spectCam = Instantiate(spectCamPrefab, new Vector3(0f, 200f, 0f), Quaternion.identity);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             GameManager.Instance.SetSceneCameraActiveState(false);
             return;
         }
@@ -74,11 +99,15 @@ public class ServerUI : NetworkBehaviour {
         if (spectCam.activeSelf == false)
         {
             spectCam.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             GameManager.Instance.SetSceneCameraActiveState(false);
         }
         else
         {
             spectCam.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             GameManager.Instance.SetSceneCameraActiveState(true);
         }
 

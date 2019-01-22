@@ -8,6 +8,8 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
 
     public static bool IsInLAN;
     public static bool IsServerOnly;
+    [SerializeField]
+    private int maxConnections = 100;
 
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
@@ -18,7 +20,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
 	// Use this for initialization
 	void Start () {
         networkManager = GetComponent<NetworkManager>();
-        networkManager.maxConnections = 100;
+        networkManager.maxConnections = maxConnections;
         Debug.Log("networkManager.maxConnections = " + networkManager.maxConnections);
         IsServerOnly = false;
         Initialize();
@@ -45,7 +47,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
     public void CreateLANGameAsHost()
     {
         Debug.Log("NetworkDiscovery:CreateLANGameAsHost");
-        networkManager.StartHost();
+        networkManager.StartHost(networkManager.connectionConfig, maxConnections);
         StartAsServer();
         IsInLAN = true;
         StartCoroutine(lobbyManager.WaitForCreateLAN());
@@ -53,7 +55,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
     }
     public void CreateLANGameAsServer()
     {
-        networkManager.StartServer();
+        networkManager.StartServer(networkManager.connectionConfig, maxConnections);
         StartAsServer();
         IsInLAN = true;
         IsServerOnly = true;

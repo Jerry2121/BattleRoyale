@@ -205,7 +205,7 @@ public class WeaponManager : NetworkBehaviour {
         }
 
         //Debug, Remove later
-
+        int ammoNeeded = currentWeapon.maxAmmo - currentWeapon.currentAmmo;
         int ammoRecieved = 0;
 
         if (ammoType == "HeavyAmmo")
@@ -225,23 +225,21 @@ public class WeaponManager : NetworkBehaviour {
                 weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = 0;
             }
         }
+
         if (ammoType == "MediumAmmo")
         {
-            int tempAmmo;
-            int maxAmmo;
-            maxAmmo = currentWeapon.maxAmmo;
-            if (maxAmmo < weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount + currentWeapon.currentAmmo)
+            if(weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount > ammoNeeded)
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount + currentWeapon.currentAmmo - maxAmmo;
-                tempAmmo = weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount - maxAmmo;
-                ammoRecieved = maxAmmo;
+                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount -= ammoNeeded;
+                currentWeapon.currentAmmo += ammoNeeded;
             }
             else
             {
-                ammoRecieved = weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount + currentWeapon.currentAmmo;
                 weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = 0;
+                currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount;
             }
         }
+
         if (ammoType == "LightAmmo")
         {
             int tempAmmo;

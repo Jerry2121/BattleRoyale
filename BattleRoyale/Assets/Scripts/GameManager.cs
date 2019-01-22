@@ -86,6 +86,8 @@ public class GameManager : NetworkBehaviour {
 
     public void SetSceneCameraActiveState(bool isActive)
     {
+        Debug.LogFormat("Setting scene camera to {0}", isActive);
+
         if(sceneCamera == null)
         {
             if(Debug.isDebugBuild)
