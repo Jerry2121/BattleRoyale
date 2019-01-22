@@ -10,9 +10,7 @@ public class Killfeed : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        while (GameManager.instance == null)
-            Utility.WaitForEndOfFrame();
-        GameManager.instance.onPlayerKilledCallback += OnKill;
+        GameManager.Instance.onPlayerKilledCallback += OnKill;
     }
 
     public void OnKill(string _player, string _source)

@@ -11,7 +11,7 @@ public class TurnOnWhenLoaded : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!GameManager.instance.inStartPeriod)
+		if (!GameManager.Instance.inStartPeriod)
         {
             GameUI.gameObject.SetActive(true);
         }

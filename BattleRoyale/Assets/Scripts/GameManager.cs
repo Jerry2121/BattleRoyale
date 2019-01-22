@@ -6,7 +6,13 @@ using UnityEngine.Networking;
 
 public class GameManager : NetworkBehaviour {
 
-    public static GameManager instance;
+    #region SingletonPattern
+    private static readonly System.Lazy<GameManager> lazy = new System.Lazy<GameManager>(() => new GameManager());
+
+    public static GameManager Instance { get { return lazy.Value; } }
+
+    private GameManager() { }
+    #endregion
 
     public static NetworkManager networkManager;
     public static NetworkDiscoveryScript networkDiscoveryScript;
@@ -45,13 +51,13 @@ public class GameManager : NetworkBehaviour {
 
     private void Awake()
     {
-        if(instance != null)
+        if(Instance != null)
         {
             if (Debug.isDebugBuild)
                 Debug.LogWarning("GameManager -- Awake: There is more than one GameManager in the scene. Only one will be set to GameManager.instance.");
             return;
         }
-        instance = this;
+        //instance = this;
         Debug.Log("GameManager instance set");
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
@@ -191,7 +197,7 @@ public class GameManager : NetworkBehaviour {
 
     public static bool IsGameOver()
     {
-        if (players.Count > 1 || instance.inStartPeriod)
+        if (players.Count > 1 || Instance.inStartPeriod)
             return false;
         else
             return true;

@@ -11,21 +11,27 @@ public class WeaponItemSpawner : MonoBehaviour {
 
     NetworkManager networkManager;
     NetworkDiscoveryScript networkDiscoveryScript;
-
+    bool run = false;
+    
     // Use this for initialization
     void Start () {
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
-
+        
         if (networkDiscoveryScript.isServer)
         {
-            Utility.WaitForSeconds(5f);
-            if (GameManager.instance == null)
-                Utility.WaitForSeconds(5f);
-            if (GameManager.instance == null)
-                Utility.WaitForSeconds(5f);
+            /*WaitForInstance();
+            while(run == false)
+            {
+                Debug.Log("waiting");
+            }*/
 
-            GameManagerScript gameManagerScript = GameManager.instance.GetComponent<GameManagerScript>();
+            /*if (GameManager.Instance == null)
+            {
+                throw new System.Exception("The GameManager instance is not set");
+            }*/
+
+            GameManagerScript gameManagerScript = GameManager.Instance.GetComponent<GameManagerScript>();
 
             if (gameManagerScript.DisableItemSpawning)
                 return;
@@ -134,8 +140,14 @@ public class WeaponItemSpawner : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-
+	IEnumerator WaitForInstance()
+    {
+        Debug.Log("Wait");
+        yield return new WaitForSeconds(5);
+        if (GameManager.Instance == null)
+            WaitForInstance();
+        else
+            run = true;
     }
+
 }
