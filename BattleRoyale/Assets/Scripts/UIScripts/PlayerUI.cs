@@ -54,7 +54,41 @@ public class PlayerUI : MonoBehaviour {
     [SerializeField]
     GameObject InventoryDropCanvas;
 
-    
+
+
+    [Header("Inventory Items And Components")]
+    //manages all the inventory based interactions
+    public KeyCode inventoryKey = KeyCode.I;
+    public KeyCode useKey = KeyCode.E;
+    public KeyCode healKey = KeyCode.Q;
+
+    //this is for UI stuff and tracking how much ammo you have.
+    public int lightAmmoAmount;
+    public int mediumAmmoAmount;
+    public int heavyAmmoAmount;
+    public int healingItemsAmount;
+
+    //Manages all the UI updates
+    [SerializeField]
+    TextMeshProUGUI HeavyAmmoText;
+    [SerializeField]
+    TextMeshProUGUI RifleAmmoText;
+    [SerializeField]
+    TextMeshProUGUI PistolAmmoText;
+    [SerializeField]
+    TextMeshProUGUI BandagesText;
+    [SerializeField]
+    TextMeshProUGUI healingItemsAmountText;
+
+    public GameObject itemPrompt;
+
+    public float rayLength = 2;
+    private Transform lookingAt;
+    [Tooltip("The layermask used when it comes to raycasting for items.")]
+    public LayerMask layerMask;
+    private float timer;
+
+
     public static bool InInventory = false;
 
     public bool isMapOpen = false;
@@ -95,6 +129,71 @@ public class PlayerUI : MonoBehaviour {
         else
             SetAmmoAmount(0);
 
+        if (Input.GetKeyDown(healKey))
+        {
+                if (player.GetComponent<Player>().GetHealthPercentage() < 1.0f)
+                {
+                    player.GetComponent<Player>().CmdHeal(20);
+                    healingItemsAmount--;
+                    healingItemsAmountText.text = "(" + healingItemsAmount + ")";
+                }
+        }
+        RaycastHit hit;
+        Vector3 fwd = Camera.main.transform.TransformDirection(Vector3.forward);
+
+
+        if (Physics.Raycast(player.transform.position, fwd, out hit, rayLength, layerMask) && !PauseMenu.isOn)
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            itemPrompt.SetActive(true);
+            if (hit.transform != lookingAt)
+            {
+                if (lookingAt != null)
+                {
+                    lookingAt.SendMessage("LookAway", SendMessageOptions.DontRequireReceiver);
+                    lookingAt = null;
+                }
+                hit.transform.SendMessage("LookAt", SendMessageOptions.DontRequireReceiver);
+                lookingAt = hit.transform;
+            }
+            if (Input.GetKeyUp(useKey))
+            {
+                itemScriptLITE temp = hit.transform.GetComponent<itemScriptLITE>();
+
+
+                if (temp.itemType == "Healing")
+                {
+                    if (temp.amount > 1)
+                        healingItemsAmount += temp.amount;
+                    else
+                        healingItemsAmount++;
+                    healingItemsAmountText.text = "(" + healingItemsAmount + ")";
+                }
+
+                if (temp.itemType == "LightAmmo")
+                    if (temp.amount > 1)
+                        lightAmmoAmount += temp.amount;
+                    else
+                        lightAmmoAmount++;
+                else if (temp.itemType == "MediumAmmo")
+                    if (temp.amount > 1)
+                        mediumAmmoAmount += temp.amount;
+                    else
+                        mediumAmmoAmount++;
+                else if (temp.itemType == "HeavyAmmo")
+                    if (temp.amount > 1)
+                        heavyAmmoAmount += temp.amount;
+                    else
+                        heavyAmmoAmount++;
+
+
+                //}
+                //hit.transform.SendMessage ("Interacted", transform, SendMessageOptions.DontRequireReceiver);
+                //hit.transform.SendMessage ("Execute", SendMessageOptions.DontRequireReceiver);
+            }
+        }
+
+
         if (Input.GetKeyDown(KeyCode.I) && !InInventory)
         {
             InInventory = true;
@@ -106,6 +205,10 @@ public class PlayerUI : MonoBehaviour {
         if (InInventory)
         {
             InventoryCanvas.SetBool("Inventory", true);
+            HeavyAmmoText.text = "(" + 0 + ")";
+            RifleAmmoText.text = "(" + 0 + ")";
+            PistolAmmoText.text = "(" + 0 + ")";
+            BandagesText.text = "" + healingItemsAmountText.text;
         }
         else if (!InInventory && PauseMenu.isOn == false)
         {

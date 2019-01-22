@@ -2183,7 +2183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1396281222334428
 GameObject:
   m_ObjectHideFlags: 1
@@ -11331,6 +11331,23 @@ MonoBehaviour:
   InputFieldText: {fileID: 114119223534480384}
   InventoryCanvas: {fileID: 95680685397014020}
   InventoryDropCanvas: {fileID: 1207865618161054}
+  inventoryKey: 105
+  useKey: 101
+  healKey: 113
+  lightAmmoAmount: 0
+  mediumAmmoAmount: 0
+  heavyAmmoAmount: 0
+  healingItemsAmount: 0
+  HeavyAmmoText: {fileID: 114867832653361696}
+  RifleAmmoText: {fileID: 114607251669405622}
+  PistolAmmoText: {fileID: 114622205876296808}
+  BandagesText: {fileID: 114622440771299106}
+  healingItemsAmountText: {fileID: 114350399519347822}
+  itemPrompt: {fileID: 1248198468847216}
+  rayLength: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   isMapOpen: 0
   started: 0
 --- !u!114 &114342532621063470
