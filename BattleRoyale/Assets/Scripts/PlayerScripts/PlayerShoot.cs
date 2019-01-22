@@ -34,6 +34,67 @@ public class PlayerShoot : NetworkBehaviour {
 
         if (PauseMenu.isOn)
             return;
+
+        //We're aiming
+        if (Input.GetButton("Fire2"))
+        {
+            if (currentWeapon == null)
+            {
+                if (cam.fieldOfView <= 60)
+                {
+                    cam.fieldOfView = 60;
+                }
+
+                else
+                    cam.fieldOfView -= 5;
+            }
+
+            else if (currentWeapon.name == "Pistol")
+            {
+                if (cam.fieldOfView <= 55)
+                {
+                    cam.fieldOfView = 55;
+                }
+
+                else
+                    cam.fieldOfView -= 4;
+            }
+
+            else if (currentWeapon.name == "Automatic")
+            {
+                if (cam.fieldOfView <= 45)
+                {
+                    cam.fieldOfView = 45;
+                }
+
+                else
+                    cam.fieldOfView -= 3;
+            }
+
+            else if (currentWeapon.name == "Heavy")
+            {
+                if (cam.fieldOfView <= 45)
+                {
+                    cam.fieldOfView = 45;
+                }
+
+                else
+                    cam.fieldOfView -= 2;
+            }
+        }
+
+        //We're not aiming anymore
+        else
+        {
+            if (cam.fieldOfView >= 70)
+            {
+                cam.fieldOfView = 70;
+            }
+
+            else
+                cam.fieldOfView += 3;
+        }
+
         if (currentWeapon == null)
             return;
 
@@ -155,5 +216,4 @@ public class PlayerShoot : NetworkBehaviour {
 
         player.RpcTakeDamage(_damage, _sourceID);
     }
-
 }

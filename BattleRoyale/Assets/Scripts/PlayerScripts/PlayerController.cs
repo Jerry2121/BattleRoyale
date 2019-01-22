@@ -95,18 +95,43 @@ public class PlayerController : MonoBehaviour {
         //Calculate rotation as a 3D vector for turning
         float _yRot = Input.GetAxisRaw("Mouse X");
 
-        Vector3 _rotation = new Vector3(0f, _yRot, 0f) * PlayerPrefs.GetFloat("XSensitivity");
+        //If we are holding down the button for aiming
+        if (Input.GetButton("Fire2"))
+        {
+            Vector3 _rotation = new Vector3(0f, _yRot, 0f) * (PlayerPrefs.GetFloat("XSensitivity") / 4);
 
-        //Apply rotation
-        motor.Rotate(_rotation);
+            //Apply rotation
+            motor.Rotate(_rotation);
+        }
+
+        //If we are not holding down the button for aiming
+        else
+        {
+            Vector3 _rotation = new Vector3(0f, _yRot, 0f) * PlayerPrefs.GetFloat("XSensitivity");
+
+            //Apply rotation
+            motor.Rotate(_rotation);
+        }
 
         //Calculate camera rotation as a 3D vector for loking up or down
         float _xRot = Input.GetAxisRaw("Mouse Y");
 
-        float _cameraRotationX = _xRot * PlayerPrefs.GetFloat("YSensitivity");
+        //If we are holding down the button for aiming
+        if (Input.GetButton("Fire2"))
+        {
+            float _cameraRotationX = _xRot * (PlayerPrefs.GetFloat("YSensitivity") / 4);
 
-        //Apply camera rotation
-        motor.RotateCamera(_cameraRotationX);
+            //Apply camera rotation
+            motor.RotateCamera(_cameraRotationX);
+        }
+        //If we are not holding down the button for aiming
+        else
+        {
+            float _cameraRotationX = _xRot * PlayerPrefs.GetFloat("YSensitivity");
+
+            //Apply camera rotation
+            motor.RotateCamera(_cameraRotationX);
+        }
 
         //if in start period, and you have no weapon, dont run out of fuel
         if (GameManager.instance.inStartPeriod)
