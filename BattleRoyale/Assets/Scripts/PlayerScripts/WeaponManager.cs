@@ -185,7 +185,6 @@ public class WeaponManager : NetworkBehaviour {
         if(isReloading)
             return;
 
-        InventoryScriptLITE inventoryPanelLITE = GameManager.GetLocalPlayer().PlayerUI.GetComponent<PlayerUI>().invScript;
         string ammoType;
         if(currentWeapon.weaponType == WeaponType.Light)
         {
@@ -206,7 +205,61 @@ public class WeaponManager : NetworkBehaviour {
         }
 
         //Debug, Remove later
-        int ammoRecieved = 999;
+
+        int ammoRecieved = 0;
+
+        if (ammoType == "HeavyAmmo")
+        {
+            int tempAmmo;
+            int maxAmmo;
+            maxAmmo = currentWeapon.maxAmmo;
+            if (maxAmmo < weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount + currentWeapon.currentAmmo)
+            {
+                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount + currentWeapon.currentAmmo - maxAmmo;
+                tempAmmo = weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount - maxAmmo;
+                ammoRecieved = maxAmmo;
+            }
+            else
+            {
+                ammoRecieved = weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount + currentWeapon.currentAmmo;
+                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = 0;
+            }
+        }
+        if (ammoType == "MediumAmmo")
+        {
+            int tempAmmo;
+            int maxAmmo;
+            maxAmmo = currentWeapon.maxAmmo;
+            if (maxAmmo < weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount + currentWeapon.currentAmmo)
+            {
+                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount + currentWeapon.currentAmmo - maxAmmo;
+                tempAmmo = weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount - maxAmmo;
+                ammoRecieved = maxAmmo;
+            }
+            else
+            {
+                ammoRecieved = weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount + currentWeapon.currentAmmo;
+                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = 0;
+            }
+        }
+        if (ammoType == "LightAmmo")
+        {
+            int tempAmmo;
+            int maxAmmo;
+            maxAmmo = currentWeapon.maxAmmo;
+            if (maxAmmo < weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount + currentWeapon.currentAmmo)
+            {
+                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount + currentWeapon.currentAmmo - maxAmmo;
+                tempAmmo = weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount - maxAmmo;
+                ammoRecieved = maxAmmo;
+            }
+            else
+            {
+                ammoRecieved = weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount + currentWeapon.currentAmmo;
+                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = 0;
+            }
+        }
+        
 
         /*int ammoRecieved = inventoryPanelLITE.GetAmmo(ammoType, (currentWeapon.maxAmmo - currentWeapon.currentAmmo));
 
