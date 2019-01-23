@@ -210,19 +210,15 @@ public class WeaponManager : NetworkBehaviour {
 
         if (ammoType == "HeavyAmmo")
         {
-            int tempAmmo;
-            int maxAmmo;
-            maxAmmo = currentWeapon.maxAmmo;
-            if (maxAmmo < weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount + currentWeapon.currentAmmo)
+            if (weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount > ammoNeeded)
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount + currentWeapon.currentAmmo - maxAmmo;
-                tempAmmo = weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount - maxAmmo;
-                ammoRecieved = maxAmmo;
+                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount -= ammoNeeded;
+                currentWeapon.currentAmmo += ammoNeeded;
             }
             else
             {
-                ammoRecieved = weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount + currentWeapon.currentAmmo;
                 weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = 0;
+                currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount;
             }
         }
 
@@ -242,19 +238,15 @@ public class WeaponManager : NetworkBehaviour {
 
         if (ammoType == "LightAmmo")
         {
-            int tempAmmo;
-            int maxAmmo;
-            maxAmmo = currentWeapon.maxAmmo;
-            if (maxAmmo < weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount + currentWeapon.currentAmmo)
+            if (weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount > ammoNeeded)
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount + currentWeapon.currentAmmo - maxAmmo;
-                tempAmmo = weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount - maxAmmo;
-                ammoRecieved = maxAmmo;
+                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount -= ammoNeeded;
+                currentWeapon.currentAmmo += ammoNeeded;
             }
             else
             {
-                ammoRecieved = weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount + currentWeapon.currentAmmo;
                 weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = 0;
+                currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount;
             }
         }
         
@@ -275,7 +267,8 @@ public class WeaponManager : NetworkBehaviour {
             Debug.LogError("WeaponManager -- Reload: Recieved more ammo than needed! Setting ammoRecieved to the max needed amount");
             ammoRecieved = currentWeapon.maxAmmo - currentWeapon.currentAmmo;
         }
-
+        if (ammoRecieved == 0)
+            return;
         StartCoroutine(Reload_Coroutine(ammoRecieved));
     }
 
