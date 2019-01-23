@@ -19,7 +19,7 @@ public class WeaponItemSpawner : MonoBehaviour {
         
         if (networkDiscoveryScript.isServer)
         {
-            WaitForInstance();
+            StartCoroutine(WaitForInstance());
         }
     }
 	
