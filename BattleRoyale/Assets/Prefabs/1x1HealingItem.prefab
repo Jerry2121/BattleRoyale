@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 65041846294034518}
   - component: {fileID: 23995736907591312}
   - component: {fileID: 54590723002632528}
-  - component: {fileID: 114933466218641268}
   - component: {fileID: 114436995637615982}
   - component: {fileID: 114604079796466586}
+  - component: {fileID: 114675243988710208}
   m_Layer: 11
   m_Name: 1x1HealingItem
   m_TagString: Untagged
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 5
   m_InterpolateMovement: 1
---- !u!114 &114933466218641268
+--- !u!114 &114675243988710208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,15 +176,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1172274389392578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a79413a51d701f43a71e82b36afcc11, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aae20be6783e9141b5f0c49cf7cf029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Medkit
-  itemTexture: {fileID: 21300000, guid: 65253e6f9e4281045b5209de7e0162c4, type: 3}
-  width: 1
-  height: 1
   obj: {fileID: 0}
   equipable: 0
-  itemDescription: Press Q to heal 20 health
   itemType: Healing
-  amount: 0
+  amount: 3

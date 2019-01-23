@@ -15,7 +15,7 @@ public class PlayerUI : MonoBehaviour {
     RectTransform healthBarFill;
 
     [SerializeField]
-    Text ammoText;
+    TextMeshProUGUI ammoText;
 
     [SerializeField]
     private GameObject pauseMenu;
@@ -92,7 +92,6 @@ public class PlayerUI : MonoBehaviour {
     public static bool InInventory = false;
 
     public bool isMapOpen = false;
-    private float flashtimer;
     public bool started;
     private float GameStartTimer;
     public InventoryScriptLITE invScript { get { return inventoryScriptLITE; } }
@@ -158,7 +157,7 @@ public class PlayerUI : MonoBehaviour {
             }
             if (Input.GetKeyUp(useKey))
             {
-                itemScriptLITE temp = hit.transform.GetComponent<itemScriptLITE>();
+                PickableItem temp = hit.transform.GetComponent<PickableItem>();
 
 
                 if (temp.itemType == "Healing")
@@ -190,7 +189,13 @@ public class PlayerUI : MonoBehaviour {
                 //}
                 //hit.transform.SendMessage ("Interacted", transform, SendMessageOptions.DontRequireReceiver);
                 //hit.transform.SendMessage ("Execute", SendMessageOptions.DontRequireReceiver);
+                Destroy(hit.transform.gameObject);
+                itemPrompt.SetActive(false);
             }
+        }
+        else
+        {
+            itemPrompt.SetActive(false);
         }
 
 
@@ -205,9 +210,9 @@ public class PlayerUI : MonoBehaviour {
         if (InInventory)
         {
             InventoryCanvas.SetBool("Inventory", true);
-            HeavyAmmoText.text = "(" + 0 + ")";
-            RifleAmmoText.text = "(" + 0 + ")";
-            PistolAmmoText.text = "(" + 0 + ")";
+            HeavyAmmoText.text = "(" + heavyAmmoAmount + ")";
+            RifleAmmoText.text = "(" + mediumAmmoAmount + ")";
+            PistolAmmoText.text = "(" + lightAmmoAmount + ")";
             BandagesText.text = "" + healingItemsAmountText.text;
         }
         else if (!InInventory && PauseMenu.isOn == false)
@@ -250,15 +255,24 @@ public class PlayerUI : MonoBehaviour {
         {
             GameStartButtonText.SetActive(false);
         }
-        if (ammoText.text == "0" && weaponManager.GetCurrentWeapon() != null)
+        if (weaponManager.GetCurrentWeapon() == null)
         {
-            flashtimer += Time.deltaTime;
-            if (flashtimer >= 1)
+            ammoText.text = "N/A";
+        }
+        if (weaponManager.GetCurrentWeapon() != null && ammoText.text == "0 / 0")
+        {
+            if (weaponManager.GetCurrentWeapon().weaponType == WeaponType.Light && lightAmmoAmount == 0)
             {
-                OutOfAmmoText.SetActive(false);
-                flashtimer = 0;
+                OutOfAmmoText.SetActive(true);
             }
-            
+            if (weaponManager.GetCurrentWeapon().weaponType == WeaponType.Medium && mediumAmmoAmount == 0)
+            {
+                OutOfAmmoText.SetActive(true);
+            }
+            if (weaponManager.GetCurrentWeapon().weaponType == WeaponType.Heavy && heavyAmmoAmount == 0)
+            {
+                OutOfAmmoText.SetActive(true);
+            }
         }
         else
         {
@@ -303,7 +317,18 @@ public class PlayerUI : MonoBehaviour {
 
     void SetAmmoAmount(int _amount)
     {
-        ammoText.text = _amount.ToString();
+        if (weaponManager.GetCurrentWeapon() != null && weaponManager.GetCurrentWeapon().weaponType == WeaponType.Light)
+        {
+            ammoText.text = (_amount.ToString() + " / " + lightAmmoAmount);
+        }
+        if (weaponManager.GetCurrentWeapon() != null && weaponManager.GetCurrentWeapon().weaponType == WeaponType.Medium)
+        {
+            ammoText.text = (_amount.ToString() + " / " + mediumAmmoAmount);
+        }
+        if (weaponManager.GetCurrentWeapon() != null && weaponManager.GetCurrentWeapon().weaponType == WeaponType.Heavy)
+        {
+            ammoText.text = (_amount.ToString() + " / " + heavyAmmoAmount);
+        }
     }
 
     public void SetPlayer(Player _player)
@@ -326,7 +351,6 @@ public class PlayerUI : MonoBehaviour {
     }
     public void InventoryDropButton()
     {
-        Debug.Log("I got into InventoryDropButton Which Turns on the Drop Canvas");
         InventoryDropCanvas.SetActive(true);
 
     }

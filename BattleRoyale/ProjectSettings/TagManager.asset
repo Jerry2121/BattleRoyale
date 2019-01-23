@@ -15,6 +15,10 @@ TagManager:
   - _GameManager
   - Lobby
   - Map
+  - Bandage
+  - Light
+  - Medium
+  - Heavy
   layers:
   - Default
   - TransparentFX
