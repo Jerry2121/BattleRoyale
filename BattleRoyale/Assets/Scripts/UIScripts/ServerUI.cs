@@ -66,14 +66,17 @@ public class ServerUI : NetworkBehaviour {
             ToggleSpectatorCam();
         }
 
-        if(GameManager.Instance != null)
+        try
         {
             float seconds = GameManager.Instance.gameTimer;
             TimeSpan time = TimeSpan.FromSeconds(seconds);
 
-            gameTimer.text = (time.ToString(@"hh\:mm\:ss"));
+            gameTimer.text = (time.ToString(@"mm\:ss"));
         }
-
+        catch (NullReferenceException ex)
+        {
+            //Do nothing, this is expected to happen
+        }
 
 	}
 

@@ -51,6 +51,8 @@ public class GameManager : NetworkBehaviour {
 
     float airdroptimer = 20;
     float secondsUntilDrop;
+    
+    private int playersAmount;
 
     public bool zoneShrinking;
     public bool zoneShrunk;
@@ -100,12 +102,20 @@ public class GameManager : NetworkBehaviour {
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.LogError("players.count = " + players.Count + " playerarray.Length = " + GetAllPlayers().Length);
+        }
+
         if (networkDiscoveryScript.isServer && GetAllPlayers().Length <= 1 && inStartPeriod)
         {
+            Debug.LogError("GM--Update first");
             gameTimer = -120;
         }
         else if (networkDiscoveryScript.isServer && GetAllPlayers().Length > 1)
         {
+            Debug.LogError("GM--Update second");
             gameTimer += Time.deltaTime;
         }
 
@@ -224,6 +234,7 @@ public class GameManager : NetworkBehaviour {
 
     public static void RegisterPlayer(string _netID, Player _player)
     {
+        Instance.playersAmount++;
         string playerID = PLAYER_ID_PREFIX + _netID;
         players.Add(playerID, _player);
         _player.transform.name = playerID;
@@ -231,6 +242,7 @@ public class GameManager : NetworkBehaviour {
 
     public static void UnregisterPlayer(string _playerID)
     {
+        Instance.playersAmount--;
         players.Remove(_playerID);
     }
 

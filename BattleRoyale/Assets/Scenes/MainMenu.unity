@@ -1498,11 +1498,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_Channels.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4203858535197980, guid: 3ad23221d7600b94bb826db71b7e165d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1534,41 +1529,6 @@ Prefab:
     - target: {fileID: 4203858535197980, guid: 3ad23221d7600b94bb826db71b7e165d, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_OnlineScene
-      value: JT2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_CustomConfig
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_MaxConnections
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_Channels.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_UseSimulator
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114796615982619856, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_UseNetworkManager
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
-        type: 2}
-      propertyPath: m_Channels.Array.data[2]
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ad23221d7600b94bb826db71b7e165d, type: 2}

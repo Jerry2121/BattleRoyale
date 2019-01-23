@@ -50,6 +50,8 @@ public class Player : NetworkBehaviour {
     GameObject SpectCameraPrefab;
     [SerializeField]
     public GameObject PlayerUI;
+    [HideInInspector]
+    public bool isTheLocalPlayerScript;
 
     public int kills;
     public int deaths;
@@ -62,6 +64,7 @@ public class Player : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
+            isTheLocalPlayerScript = true;
             //Disable the scene camera for the new/respawning player
             GameManager.Instance.SetSceneCameraActiveState(false);
             PlayerUI = GetComponent<PlayerSetup>().playerUIInstance;
