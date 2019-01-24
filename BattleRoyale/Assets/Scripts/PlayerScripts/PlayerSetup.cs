@@ -87,6 +87,19 @@ public class PlayerSetup : NetworkBehaviour {
         GameManager.RegisterPlayer(netID, player);
     }
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+
+        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Player player = GetComponent<Player>();
+
+        if (Debug.isDebugBuild)
+            Debug.Log("PlayerSetup -- OnStartServer");
+
+        GameManager.RegisterPlayer(netID, player);
+    }
+
     void AssignRemoteLayer()
     {
         gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
