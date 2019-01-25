@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -129,25 +130,7 @@ public class GameManager : NetworkBehaviour {
         }
         if (!inStartPeriod && !playersSpawned)
         {
-            if (networkDiscoveryScript.isServer)
-            {
-                Player[] ply = GetAllPlayers();
-                for (int i = 0; i < ply.Length; i++)
-                {
-                    int chance = Random.Range(0, MapSpawns.Length);
-                    if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
-                    {
-                        RpcMovePlayer(ply[i].GetComponent<NetworkIdentity>().netId, MapSpawns[chance].transform.position.x, MapSpawns[chance].transform.position.y, MapSpawns[chance].transform.position.z);
-                        ply[i].transform.position = MapSpawns[chance].transform.position;
-                        MapSpawns[chance].GetComponent<MapSpawn>().Occupied = true;
-                    }
-                    else
-                    {
-                        i--;
-                    }
-                    playersSpawned = true;
-                }
-            }
+            SpawnPlayersOnMap();
         }
         if (zoneShrunk)
             return;
@@ -192,6 +175,34 @@ public class GameManager : NetworkBehaviour {
             }
         }
 
+    }
+
+#if UNITY_EDITOR
+    [MenuItem("BattleRoyale/SpawnPlayersOnMap")]
+    public static void SpawnPlayers() { Instance.SpawnPlayersOnMap(); }
+#endif
+
+    void SpawnPlayersOnMap()
+    {
+        if (networkDiscoveryScript.isServer)
+        {
+            Player[] ply = GetAllPlayers();
+            for (int i = 0; i < ply.Length; i++)
+            {
+                int chance = Random.Range(0, MapSpawns.Length);
+                if (MapSpawns[chance].GetComponent<MapSpawn>().Occupied == false)
+                {
+                    RpcMovePlayer(ply[i].GetComponent<NetworkIdentity>().netId, MapSpawns[chance].transform.position.x, MapSpawns[chance].transform.position.y, MapSpawns[chance].transform.position.z);
+                    ply[i].transform.position = MapSpawns[chance].transform.position;
+                    MapSpawns[chance].GetComponent<MapSpawn>().Occupied = true;
+                }
+                else
+                {
+                    i--;
+                }
+                playersSpawned = true;
+            }
+        }
     }
 
     [ClientRpc]

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114796615982619856}
   - component: {fileID: 114275933389818622}
   - component: {fileID: 114900953358196440}
-  - component: {fileID: 114824468653825272}
+  - component: {fileID: 114539374178857380}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422587437927002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -72,6 +72,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: 20
+--- !u!114 &114539374178857380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422587437927002}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de0f8f97c886a741b43d80d0a7dbc88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114725753732208818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,17 +196,6 @@ MonoBehaviour:
   m_OffsetY: 110
   maxConnections: 20
   lobbyManager: {fileID: 0}
---- !u!114 &114824468653825272
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1422587437927002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114900953358196440
 MonoBehaviour:
   m_ObjectHideFlags: 1

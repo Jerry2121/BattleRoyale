@@ -37,7 +37,7 @@ public class WeaponItemSpawner : MonoBehaviour {
         if (gameManagerScript.DisableItemSpawning)
             yield break;
 
-        GameObject weaponSpawned = Utility.InstantiateOverNetwork(gameManagerScript.weapons[Random.Range(0, gameManagerScript.weapons.Length - 1)], transform.position, Quaternion.identity);
+        GameObject weaponSpawned = Utility.InstantiateOverNetwork(gameManagerScript.weapons[Random.Range(0, gameManagerScript.weapons.Length)], transform.position, Quaternion.identity);
         weaponType = weaponSpawned.GetComponent<WeaponItem>().weapon.weaponType;
 
         #region OldCode

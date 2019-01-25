@@ -89,6 +89,10 @@ public class PlayerSetup : NetworkBehaviour {
 
     public override void OnStartServer()
     {
+        //If we are the host OnStartClient and OnStartServer are oth called, which causes errors, so we'll only run the code in OnStartClient
+        if (NetworkDiscoveryScript.IsServerOnly == false)
+            return;
+
         base.OnStartServer();
 
         string netID = GetComponent<NetworkIdentity>().netId.ToString();
