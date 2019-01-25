@@ -207,7 +207,7 @@ public class WeaponManager : NetworkBehaviour {
         //Debug, Remove later
         int ammoNeeded = currentWeapon.maxAmmo - currentWeapon.currentAmmo;
         int ammoRecieved = 0;
-
+        
         if (ammoType == "HeavyAmmo")
         {
             if (weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount > ammoNeeded)
@@ -217,8 +217,8 @@ public class WeaponManager : NetworkBehaviour {
             }
             else
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = 0;
                 currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount;
+                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = 0;
             }
         }
 
@@ -226,13 +226,13 @@ public class WeaponManager : NetworkBehaviour {
         {
             if(weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount > ammoNeeded)
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount -= ammoNeeded;
                 currentWeapon.currentAmmo += ammoNeeded;
+                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount -= ammoNeeded;
             }
             else
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = 0;
                 currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount;
+                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = 0;
             }
         }
 
@@ -245,10 +245,11 @@ public class WeaponManager : NetworkBehaviour {
             }
             else
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = 0;
                 currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount;
+                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = 0;
             }
         }
+        
         
 
         /*int ammoRecieved = inventoryPanelLITE.GetAmmo(ammoType, (currentWeapon.maxAmmo - currentWeapon.currentAmmo));

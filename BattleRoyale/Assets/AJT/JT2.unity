@@ -2625,7 +2625,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593243137350940, guid: 5b7b1faf9881b314dbd17a4eede4d8ce, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114933466218641268, guid: 5b7b1faf9881b314dbd17a4eede4d8ce,
         type: 2}
@@ -5796,36 +5796,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593243137350940, guid: ca4d9630eff81db498bbd7657f932c12, type: 2}
       propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114473890129208346, guid: ca4d9630eff81db498bbd7657f932c12,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1172274389392578, guid: ca4d9630eff81db498bbd7657f932c12, type: 2}
-      propertyPath: m_TagString
-      value: Heavy
+    - target: {fileID: 114473890129208346, guid: ca4d9630eff81db498bbd7657f932c12,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114933466218641268, guid: ca4d9630eff81db498bbd7657f932c12, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca4d9630eff81db498bbd7657f932c12, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &964681915 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1172274389392578, guid: ca4d9630eff81db498bbd7657f932c12,
-    type: 2}
-  m_PrefabInternal: {fileID: 964681914}
---- !u!114 &964681916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 964681915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aae20be6783e9141b5f0c49cf7cf029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  equipable: 0
-  itemType: HeavyAmmo
-  amount: 30
 --- !u!1001 &979755638
 Prefab:
   m_ObjectHideFlags: 0
@@ -6090,11 +6075,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593243137350940, guid: e789714fdf2792840bbf586a96686ca8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1172274389392578, guid: e789714fdf2792840bbf586a96686ca8, type: 2}
       propertyPath: m_TagString
       value: Bandage
+      objectReference: {fileID: 0}
+    - target: {fileID: 114810529667938544, guid: e789714fdf2792840bbf586a96686ca8,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114810529667938544, guid: e789714fdf2792840bbf586a96686ca8,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114933466218641268, guid: e789714fdf2792840bbf586a96686ca8, type: 2}
@@ -6120,6 +6115,7 @@ MonoBehaviour:
   equipable: 0
   itemType: Healing
   amount: 3
+  AmountText: {fileID: 0}
 --- !u!1001 &1064335297
 Prefab:
   m_ObjectHideFlags: 0
@@ -6793,11 +6789,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593243137350940, guid: e789714fdf2792840bbf586a96686ca8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1172274389392578, guid: e789714fdf2792840bbf586a96686ca8, type: 2}
       propertyPath: m_Name
       value: 1x1HealingItemTest 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114810529667938544, guid: e789714fdf2792840bbf586a96686ca8,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114810529667938544, guid: e789714fdf2792840bbf586a96686ca8,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e789714fdf2792840bbf586a96686ca8, type: 2}
@@ -6841,34 +6847,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1172274389392578, guid: 3224a9153f0d8504898a07972aea2ae5, type: 2}
-      propertyPath: m_TagString
-      value: Medium
+    - target: {fileID: 114329750437736332, guid: 3224a9153f0d8504898a07972aea2ae5,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114933466218641268, guid: 3224a9153f0d8504898a07972aea2ae5, type: 2}
+    - target: {fileID: 114329750437736332, guid: 3224a9153f0d8504898a07972aea2ae5,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3224a9153f0d8504898a07972aea2ae5, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1193100085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1172274389392578, guid: 3224a9153f0d8504898a07972aea2ae5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1193100084}
---- !u!114 &1193100086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1193100085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aae20be6783e9141b5f0c49cf7cf029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  equipable: 0
-  itemType: MediumAmmo
-  amount: 30
 --- !u!1001 &1198157352
 Prefab:
   m_ObjectHideFlags: 0
@@ -7814,36 +7805,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593243137350940, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1172274389392578, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
-      propertyPath: m_TagString
-      value: Light
+    - target: {fileID: 114864313301469984, guid: 9d976509d110f9545b7d89bccffeb180,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114933466218641268, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
+    - target: {fileID: 114864313301469984, guid: 9d976509d110f9545b7d89bccffeb180,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1333427281 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1172274389392578, guid: 9d976509d110f9545b7d89bccffeb180,
-    type: 2}
-  m_PrefabInternal: {fileID: 1333427280}
---- !u!114 &1333427282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1333427281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aae20be6783e9141b5f0c49cf7cf029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  equipable: 0
-  itemType: LightAmmo
-  amount: 30
 --- !u!1001 &1343423863
 Prefab:
   m_ObjectHideFlags: 0

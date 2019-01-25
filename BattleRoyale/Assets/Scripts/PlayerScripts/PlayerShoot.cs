@@ -108,18 +108,18 @@ public class PlayerShoot : NetworkBehaviour {
         }
         if (currentWeapon.fireRate <= 0)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && PlayerUI.InInventory == false)
             {
                 Shoot();
             }
         }
         else
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && PlayerUI.InInventory == false)
             {
                 InvokeRepeating("Shoot", 0f, 1f/currentWeapon.fireRate);
             }
-            else if (Input.GetButtonUp("Fire1"))
+            else if (Input.GetButtonUp("Fire1") && PlayerUI.InInventory == false)
             {
                 CancelInvoke("Shoot");
             }

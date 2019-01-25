@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PickableItem : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PickableItem : MonoBehaviour
     public bool equipable = false;
     public string itemType;
     public int amount;
+    public TextMeshProUGUI AmountText;
     // Use this for initialization
     void Start()
     {
@@ -17,6 +19,7 @@ public class PickableItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AmountText.text = "" + amount;
         obj = gameObject;
     }
 }

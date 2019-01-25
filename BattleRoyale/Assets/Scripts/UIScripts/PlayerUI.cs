@@ -53,6 +53,34 @@ public class PlayerUI : MonoBehaviour {
     Animator InventoryCanvas;
     [SerializeField]
     GameObject InventoryDropCanvas;
+    [SerializeField]
+    Slider DropCanvasSlider;
+    [SerializeField]
+    GameObject HeavyAmmo;
+    [SerializeField]
+    GameObject MediumAmmo;
+    [SerializeField]
+    GameObject LightAmmo;
+    [SerializeField]
+    GameObject Bandages;
+    [SerializeField]
+    GameObject HeavyDropButton;
+    [SerializeField]
+    GameObject MediumDropButton;
+    [SerializeField]
+    GameObject LightDropButton;
+    [SerializeField]
+    GameObject BandagesDropButton;
+    [SerializeField]
+    TextMeshProUGUI ItemText;
+    [SerializeField]
+    GameObject HeavyButton;
+    [SerializeField]
+    GameObject MediumButton;
+    [SerializeField]
+    GameObject LightButton;
+    [SerializeField]
+    GameObject BandagesButton;
 
 
 
@@ -157,7 +185,8 @@ public class PlayerUI : MonoBehaviour {
             }
             if (Input.GetKeyUp(useKey))
             {
-                PickableItem temp = hit.transform.GetComponent<PickableItem>();
+                
+                 PickableItem temp = hit.transform.GetComponent<PickableItem>();
 
 
                 if (temp.itemType == "Healing")
@@ -198,6 +227,63 @@ public class PlayerUI : MonoBehaviour {
             itemPrompt.SetActive(false);
         }
 
+        //HEAVY AMMO CHECKING IF NEGATIVE OR NOT THEN SETTING TO 0 IF ITS NEGATIVE ALONG WITH TURNING OFF THE BUTTON IF THE VALUE IS 0 OTHERWISE TURNING IT ON.
+        if (heavyAmmoAmount < 0)
+        {
+            heavyAmmoAmount = 0;
+        }
+        else if (heavyAmmoAmount == 0)
+        {
+            HeavyDropButton.SetActive(false);
+        }
+        else
+        {
+            HeavyDropButton.SetActive(true);
+        }
+
+        //MEDIUM AMMO CHECKING IF NEGATIVE OR NOT THEN SETTING TO 0 IF ITS NEGATIVE ALONG WITH TURNING OFF THE BUTTON IF THE VALUE IS 0 OTHERWISE TURNING IT ON.
+        if (mediumAmmoAmount < 0)
+        {
+            mediumAmmoAmount = 0;
+        }
+        else if (mediumAmmoAmount == 0)
+        {
+            MediumDropButton.SetActive(false);
+        }
+        else
+        {
+            MediumDropButton.SetActive(true);
+        }
+
+        //LIGHT AMMO CHECKING IF NEGATIVE OR NOT THEN SETTING TO 0 IF ITS NEGATIVE ALONG WITH TURNING OFF THE BUTTON IF THE VALUE IS 0 OTHERWISE TURNING IT ON.
+        if (lightAmmoAmount < 0)
+        {
+            lightAmmoAmount = 0;
+            LightDropButton.SetActive(false);
+        }
+        else if (lightAmmoAmount == 0)
+        {
+            LightDropButton.SetActive(false);
+        }
+        else
+        {
+            LightDropButton.SetActive(true);
+        }
+
+        //BANDAGES CHECKING IF NEGATIVE OR NOT THEN SETTING TO 0 IF ITS NEGATIVE ALONG WITH TURNING OFF THE BUTTON IF THE VALUE IS 0 OTHERWISE TURNING IT ON.
+        if (healingItemsAmount < 0)
+        {
+            healingItemsAmount = 0;
+            BandagesDropButton.SetActive(false);
+        }
+        else if (healingItemsAmount == 0)
+        {
+            BandagesDropButton.SetActive(false);
+        }
+        else
+        {
+            BandagesDropButton.SetActive(true);
+        }
 
         if (Input.GetKeyDown(KeyCode.I) && !InInventory)
         {
@@ -259,7 +345,7 @@ public class PlayerUI : MonoBehaviour {
         {
             ammoText.text = "N/A";
         }
-        if (weaponManager.GetCurrentWeapon() != null && ammoText.text == "0 / 0")
+        if (weaponManager.GetCurrentWeapon() != null && weaponManager.GetCurrentWeapon().currentAmmo == 0)
         {
             if (weaponManager.GetCurrentWeapon().weaponType == WeaponType.Light && lightAmmoAmount == 0)
             {
@@ -349,19 +435,139 @@ public class PlayerUI : MonoBehaviour {
     {
         InputFieldText.text = "" + InputSlider.value;
     }
-    public void InventoryDropButton()
+    public void InventoryHeavyDropButton()
     {
         InventoryDropCanvas.SetActive(true);
-
+        HeavyButton.SetActive(true);
+        MediumButton.SetActive(false);
+        LightButton.SetActive(false);
+        BandagesButton.SetActive(false);
+        ItemText.text = "Heavy Ammo";
+        float total = heavyAmmoAmount;
+        DropCanvasSlider.maxValue = total;
+        DropCanvasSlider.value = 1.0f;
+    }
+    public void InventoryMediumDropButton()
+    {
+        InventoryDropCanvas.SetActive(true);
+        HeavyButton.SetActive(false);
+        MediumButton.SetActive(true);
+        LightButton.SetActive(false);
+        BandagesButton.SetActive(false);
+        ItemText.text = "Medium Ammo";
+        float total = mediumAmmoAmount;
+        DropCanvasSlider.maxValue = total;
+        DropCanvasSlider.value = 1.0f;
+    }
+    public void InventoryLightDropButton()
+    {
+        InventoryDropCanvas.SetActive(true);
+        HeavyButton.SetActive(false);
+        MediumButton.SetActive(false);
+        LightButton.SetActive(true);
+        BandagesButton.SetActive(false);
+        ItemText.text = "Light Ammo";
+        float total = lightAmmoAmount;
+        DropCanvasSlider.maxValue = total;
+        DropCanvasSlider.value = 1.0f;
+    }
+    public void InventoryBandagesDropButton()
+    {
+        InventoryDropCanvas.SetActive(true);
+        HeavyButton.SetActive(false);
+        MediumButton.SetActive(false);
+        LightButton.SetActive(false);
+        BandagesButton.SetActive(true);
+        ItemText.text = "Bandages";
+        float total = healingItemsAmount;
+        DropCanvasSlider.value = 1.0f;
     }
     public void InventoryDropButtonExit()
     {
-        Debug.Log("I Got Into the InventoryDropButtonExit which turns of the Drop Canvas");
         InventoryDropCanvas.SetActive(false);
     }
-    public void InventoryDropCanvasDropButton()
+    public void InventoryHeavyDropCanvasDropButton()
     {
-        Debug.Log("Dropped " + InputFieldText);
+        int amountToDrop;
+        amountToDrop = Mathf.RoundToInt(DropCanvasSlider.value);
+        float TempDropAmount = 0;
+        int DropAmount = (int)TempDropAmount;
+        GameObject ammo = Utility.InstantiateOverNetwork(HeavyAmmo, player.transform.position, player.transform.rotation);
+        if (heavyAmmoAmount - amountToDrop < 0)
+        {
+            int DropEverything = heavyAmmoAmount;
+            ammo.GetComponent<PickableItem>().amount = DropEverything;
+            return;
+        }
+        else if (heavyAmmoAmount - amountToDrop >= 0)
+        {
+            DropAmount = heavyAmmoAmount - amountToDrop;
+        }
+        int TotalDropAmount = DropAmount;
+        ammo.GetComponent<PickableItem>().amount = DropAmount;
+        InventoryDropCanvas.SetActive(false);
+    }
+    public void InventoryMediumDropCanvasDropButton()
+    {
+        int amountToDrop;
+        amountToDrop = Mathf.RoundToInt(DropCanvasSlider.value);
+        float TempDropAmount = 0;
+        int DropAmount = (int) TempDropAmount;
+        GameObject ammo = Utility.InstantiateOverNetwork(MediumAmmo, player.transform.position, player.transform.rotation);
+        if (mediumAmmoAmount - amountToDrop < 0)
+        {
+            int DropEverything = mediumAmmoAmount;
+            ammo.GetComponent<PickableItem>().amount = DropEverything;
+            return;
+        }
+        else if (mediumAmmoAmount - amountToDrop >= 0)
+        {
+            DropAmount = mediumAmmoAmount - amountToDrop;
+        }
+        int TotalDropAmount = DropAmount;
+        ammo.GetComponent<PickableItem>().amount = DropAmount;
+        InventoryDropCanvas.SetActive(false);
+    }
+    public void InventoryLightDropCanvasDropButton()
+    {
+        int amountToDrop;
+        amountToDrop = Mathf.RoundToInt(DropCanvasSlider.value);
+        float TempDropAmount = 0;
+        int DropAmount = (int)TempDropAmount;
+        GameObject ammo = Utility.InstantiateOverNetwork(LightAmmo, player.transform.position, player.transform.rotation);
+        if (lightAmmoAmount - amountToDrop < 0)
+        {
+            int DropEverything = lightAmmoAmount;
+            ammo.GetComponent<PickableItem>().amount = DropEverything;
+            return;
+        }
+        else if (lightAmmoAmount - amountToDrop >= 0)
+        {
+            DropAmount = lightAmmoAmount - amountToDrop;
+        }
+        int TotalDropAmount = DropAmount;
+        ammo.GetComponent<PickableItem>().amount = DropAmount;
+        InventoryDropCanvas.SetActive(false);
+    }
+    public void InventoryBandagesDropCanvasDropButton()
+    {
+        int amountToDrop;
+        amountToDrop = Mathf.RoundToInt(DropCanvasSlider.value);
+        float TempDropAmount = 0;
+        int DropAmount = (int)TempDropAmount;
+        GameObject ammo = Utility.InstantiateOverNetwork(Bandages, player.transform.position, player.transform.rotation);
+        if (healingItemsAmount - amountToDrop < 0)
+        {
+            int DropEverything = healingItemsAmount;
+            ammo.GetComponent<PickableItem>().amount = DropEverything;
+            return;
+        }
+        else if (healingItemsAmount - amountToDrop >= 0)
+        {
+            DropAmount = healingItemsAmount - amountToDrop;
+        }
+        int TotalDropAmount = DropAmount;
+        ammo.GetComponent<PickableItem>().amount = DropAmount;
         InventoryDropCanvas.SetActive(false);
     }
 }
