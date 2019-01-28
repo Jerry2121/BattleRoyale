@@ -37,8 +37,7 @@ public class IconEditorMap : MonoBehaviour {
 
         Player player = GetComponentInParent<Player>();
 
-        isTheLocalPlayer = player.isTheLocalPlayerScript;
-
+        isTheLocalPlayer = player.isTheLocalPlayer;
         if (isTheLocalPlayer == false)
             yield break;
 

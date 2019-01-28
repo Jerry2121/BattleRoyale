@@ -7,13 +7,13 @@ public class GameManagerScript : MonoBehaviour {
     public bool DisableItemSpawning;
     [Header("Weapons")]
     public GameObject[] weapons;
-
+    /*
     public GameObject Weapon1;
     public GameObject Weapon2;
     public GameObject Weapon3;
     public GameObject Weapon4;
     public GameObject Weapon5;
-    public GameObject Weapon6;
+    public GameObject Weapon6;*/
     [Header("Ammo")]
     public GameObject lightAmmo;
     public GameObject mediumAmmo;
