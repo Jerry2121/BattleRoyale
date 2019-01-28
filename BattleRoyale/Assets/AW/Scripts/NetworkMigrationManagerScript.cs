@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
 using UnityEngine.Networking.NetworkSystem;
 
 public class NetworkMigrationManagerScript : NetworkMigrationManager {
 
     [SerializeField]
     Canvas networkMigrationCanvas;
+    NetworkManager networkManager = NetworkManager.singleton;
+    NetworkDiscoveryScript networkDiscoveryScript;
 
     private void Awake()
     {
@@ -21,7 +24,21 @@ public class NetworkMigrationManagerScript : NetworkMigrationManager {
         bool findNewHost = FindNewHost(out newHostInfo, out youAreNewHost);
         if(findNewHost)
             ToggleCanvas();
-
+    }
+    public void LeaveGame()
+    {
+        if (NetworkDiscoveryScript.IsInLAN)
+        {
+            networkManager.StopHost();
+            NetworkDiscoveryScript.IsInLAN = false;
+            networkDiscoveryScript.StopBroadcast();
+        }
+        else
+        {
+            MatchInfo matchInfo = networkManager.matchInfo;
+            networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+            networkManager.StopHost();
+        }
     }
 
     protected override void OnClientDisconnectedFromHost(NetworkConnection conn, out SceneChangeOption sceneChange)

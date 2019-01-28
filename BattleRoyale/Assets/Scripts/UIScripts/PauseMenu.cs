@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour {
         Disconnect.SetActive(true);
     }
 
-    public void LeaveRoom()
+    public void LeaveGame()
     {
         if (NetworkDiscoveryScript.IsInLAN)
         {

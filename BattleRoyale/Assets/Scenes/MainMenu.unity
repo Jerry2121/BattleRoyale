@@ -607,7 +607,7 @@ MonoBehaviour:
   m_ShowGUI: 1
   m_OffsetX: 10
   m_OffsetY: 300
-  networkMigrationCanvas: {fileID: 0}
+  networkMigrationCanvas: {fileID: 1755412317}
 --- !u!4 &81094745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4203858535197980, guid: 3ad23221d7600b94bb826db71b7e165d,
