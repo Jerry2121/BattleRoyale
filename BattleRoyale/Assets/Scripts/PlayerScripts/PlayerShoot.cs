@@ -12,6 +12,7 @@ public class PlayerShoot : NetworkBehaviour {
     private Camera cam;
     [SerializeField]
     private LayerMask mask;
+    private bool isShooting;
 
     private PlayerWeapon currentWeapon;
     private WeaponManager weaponManager;
@@ -81,6 +82,16 @@ public class PlayerShoot : NetworkBehaviour {
                 else
                     cam.fieldOfView -= 2;
             }
+            else
+            {
+                if (cam.fieldOfView <= 45)
+                {
+                    cam.fieldOfView = 45;
+                }
+
+                else
+                    cam.fieldOfView -= 2;
+            }
         }
 
         //We're not aiming anymore
@@ -115,13 +126,14 @@ public class PlayerShoot : NetworkBehaviour {
         }
         else
         {
-            if (Input.GetButtonDown("Fire1") && PlayerUI.InInventory == false)
+            if (Input.GetButtonDown("Fire1") && PlayerUI.InInventory == false && IsInvoking("Shoot") == false)
             {
+                isShooting = true;
                 InvokeRepeating("Shoot", 0f, 1f/currentWeapon.fireRate);
             }
             else if (Input.GetButtonUp("Fire1") && PlayerUI.InInventory == false)
             {
-                CancelInvoke("Shoot");
+                isShooting = false;
             }
         }
 	}
@@ -169,8 +181,10 @@ public class PlayerShoot : NetworkBehaviour {
         if (isLocalPlayer == false || weaponManager.isReloading == true)
             return;
 
+        if (isShooting == false)
+            CancelInvoke("Shoot");
 
-        if(currentWeapon.currentAmmo <= 0)
+        if (currentWeapon.currentAmmo <= 0)
         {
             weaponManager.Reload();
             return;
