@@ -11,7 +11,6 @@ public class NetworkMigrationManagerScript : NetworkMigrationManager {
 
     private void Awake()
     {
-        Initialize(NetworkManager.singleton.client, NetworkManager.singleton.matchInfo);
         networkMigrationCanvas.enabled = false;
     }
 
@@ -21,19 +20,32 @@ public class NetworkMigrationManagerScript : NetworkMigrationManager {
         bool youAreNewHost;
         bool findNewHost = FindNewHost(out newHostInfo, out youAreNewHost);
         if(findNewHost)
-            networkMigrationCanvas.enabled = false;
+            ToggleCanvas();
 
     }
 
     protected override void OnClientDisconnectedFromHost(NetworkConnection conn, out SceneChangeOption sceneChange)
     {
-        networkMigrationCanvas.enabled = true;
+        ToggleCanvas();
         sceneChange = SceneChangeOption.StayInOnlineScene;
     }
 
     public override bool FindNewHost(out PeerInfoMessage newHostInfo, out bool youAreNewHost)
     {
         return base.FindNewHost(out newHostInfo, out youAreNewHost);
+    }
+    
+    private void ToggleCanvas()
+    {
+        if (networkMigrationCanvas.enabled)
+        {
+            networkMigrationCanvas.enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        networkMigrationCanvas.enabled = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 }
