@@ -493,6 +493,7 @@ public class PlayerUI : MonoBehaviour {
         float TempDropAmount = 0;
         int DropAmount = (int)TempDropAmount;
         GameObject ammo = Utility.InstantiateOverNetwork(HeavyAmmo, player.transform.position, player.transform.rotation);
+        ammo.GetComponent<Rigidbody>().velocity = player.transform.TransformDirection(Vector3.forward * 2);
         if (heavyAmmoAmount - amountToDrop < 0)
         {
             int DropEverything = heavyAmmoAmount;
@@ -501,11 +502,12 @@ public class PlayerUI : MonoBehaviour {
         }
         else if (heavyAmmoAmount - amountToDrop >= 0)
         {
-            DropAmount = heavyAmmoAmount - amountToDrop;
+            DropAmount = amountToDrop;
         }
-        int TotalDropAmount = DropAmount;
+        heavyAmmoAmount = heavyAmmoAmount - DropAmount;
         ammo.GetComponent<PickableItem>().amount = DropAmount;
         InventoryDropCanvas.SetActive(false);
+        InInventory = false;
     }
     public void InventoryMediumDropCanvasDropButton()
     {
@@ -514,6 +516,7 @@ public class PlayerUI : MonoBehaviour {
         float TempDropAmount = 0;
         int DropAmount = (int) TempDropAmount;
         GameObject ammo = Utility.InstantiateOverNetwork(MediumAmmo, player.transform.position, player.transform.rotation);
+        ammo.GetComponent<Rigidbody>().velocity = player.transform.TransformDirection(Vector3.forward * 2);
         if (mediumAmmoAmount - amountToDrop < 0)
         {
             int DropEverything = mediumAmmoAmount;
@@ -522,11 +525,12 @@ public class PlayerUI : MonoBehaviour {
         }
         else if (mediumAmmoAmount - amountToDrop >= 0)
         {
-            DropAmount = mediumAmmoAmount - amountToDrop;
+            DropAmount = amountToDrop;
         }
-        int TotalDropAmount = DropAmount;
+        mediumAmmoAmount = mediumAmmoAmount - DropAmount;
         ammo.GetComponent<PickableItem>().amount = DropAmount;
         InventoryDropCanvas.SetActive(false);
+        InInventory = false;
     }
     public void InventoryLightDropCanvasDropButton()
     {
@@ -535,6 +539,7 @@ public class PlayerUI : MonoBehaviour {
         float TempDropAmount = 0;
         int DropAmount = (int)TempDropAmount;
         GameObject ammo = Utility.InstantiateOverNetwork(LightAmmo, player.transform.position, player.transform.rotation);
+        ammo.GetComponent<Rigidbody>().velocity = player.transform.TransformDirection(Vector3.forward * 2);
         if (lightAmmoAmount - amountToDrop < 0)
         {
             int DropEverything = lightAmmoAmount;
@@ -543,11 +548,12 @@ public class PlayerUI : MonoBehaviour {
         }
         else if (lightAmmoAmount - amountToDrop >= 0)
         {
-            DropAmount = lightAmmoAmount - amountToDrop;
+           DropAmount = amountToDrop;
         }
-        int TotalDropAmount = DropAmount;
+        lightAmmoAmount = lightAmmoAmount - DropAmount;
         ammo.GetComponent<PickableItem>().amount = DropAmount;
         InventoryDropCanvas.SetActive(false);
+        InInventory = false;
     }
     public void InventoryBandagesDropCanvasDropButton()
     {
@@ -556,6 +562,7 @@ public class PlayerUI : MonoBehaviour {
         float TempDropAmount = 0;
         int DropAmount = (int)TempDropAmount;
         GameObject ammo = Utility.InstantiateOverNetwork(Bandages, player.transform.position, player.transform.rotation);
+        ammo.GetComponent<Rigidbody>().velocity = player.transform.TransformDirection(Vector3.forward * 2);
         if (healingItemsAmount - amountToDrop < 0)
         {
             int DropEverything = healingItemsAmount;
@@ -564,10 +571,11 @@ public class PlayerUI : MonoBehaviour {
         }
         else if (healingItemsAmount - amountToDrop >= 0)
         {
-            DropAmount = healingItemsAmount - amountToDrop;
+            DropAmount = amountToDrop;
         }
-        int TotalDropAmount = DropAmount;
+        healingItemsAmount = healingItemsAmount - DropAmount;
         ammo.GetComponent<PickableItem>().amount = DropAmount;
         InventoryDropCanvas.SetActive(false);
+        InInventory = false;
     }
 }
