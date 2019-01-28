@@ -31,6 +31,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
         StartAsClient();
         IsInLAN = true;
         StartCoroutine(lobbyManager.WaitForJoinLAN());
+        //NetworkManager.singleton.GetComponent<NetworkMigrationManagerScript>().Initialize(NetworkManager.singleton.client, NetworkManager.singleton.matchInfo);
     }
 
     public override void OnReceivedBroadcast(string fromAddress, string data)
@@ -51,6 +52,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
         StartAsServer();
         IsInLAN = true;
         StartCoroutine(lobbyManager.WaitForCreateLAN());
+        //NetworkManager.singleton.GetComponent<NetworkMigrationManagerScript>().Initialize(NetworkManager.singleton.client, NetworkManager.singleton.matchInfo);
         Debug.Log("After Coroutine");
     }
     public void CreateLANGameAsServer()
@@ -60,6 +62,7 @@ public class NetworkDiscoveryScript : NetworkDiscovery {
         IsInLAN = true;
         IsServerOnly = true;
         StartCoroutine(lobbyManager.WaitForCreateLAN());
+        //NetworkManager.singleton.GetComponent<NetworkMigrationManagerScript>().Initialize(NetworkManager.singleton.client, NetworkManager.singleton.matchInfo);
     }
 
 }
