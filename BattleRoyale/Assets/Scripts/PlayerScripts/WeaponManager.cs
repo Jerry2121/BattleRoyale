@@ -204,49 +204,50 @@ public class WeaponManager : NetworkBehaviour {
             return;
         }
 
-        //Debug, Remove later
+        PlayerUI playerUI = weaponSwitchingUI.GetComponent<PlayerUI>();
+
         int ammoNeeded = currentWeapon.maxAmmo - currentWeapon.currentAmmo;
         int ammoRecieved = 0;
         
         if (ammoType == "HeavyAmmo")
         {
-            if (weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount > ammoNeeded)
+            if (playerUI.heavyAmmoAmount > ammoNeeded)
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount -= ammoNeeded;
-                currentWeapon.currentAmmo += ammoNeeded;
+                playerUI.heavyAmmoAmount -= ammoNeeded;
+                ammoRecieved = currentWeapon.currentAmmo + ammoNeeded;
             }
             else
             {
-                currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount;
-                weaponSwitchingUI.GetComponent<PlayerUI>().heavyAmmoAmount = 0;
+                ammoRecieved = currentWeapon.currentAmmo + playerUI.heavyAmmoAmount;
+                playerUI.heavyAmmoAmount = 0;
             }
         }
 
         if (ammoType == "MediumAmmo")
         {
-            if(weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount > ammoNeeded)
+            if(playerUI.mediumAmmoAmount > ammoNeeded)
             {
-                currentWeapon.currentAmmo += ammoNeeded;
-                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount -= ammoNeeded;
+                ammoRecieved = currentWeapon.currentAmmo + ammoNeeded;
+                playerUI.mediumAmmoAmount -= ammoNeeded;
             }
             else
             {
-                currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount;
-                weaponSwitchingUI.GetComponent<PlayerUI>().mediumAmmoAmount = 0;
+                ammoRecieved = currentWeapon.currentAmmo + playerUI.mediumAmmoAmount;
+                playerUI.mediumAmmoAmount = 0;
             }
         }
 
         if (ammoType == "LightAmmo")
         {
-            if (weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount > ammoNeeded)
+            if (playerUI.lightAmmoAmount > ammoNeeded)
             {
-                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount -= ammoNeeded;
-                currentWeapon.currentAmmo += ammoNeeded;
+                playerUI.lightAmmoAmount -= ammoNeeded;
+                ammoRecieved = currentWeapon.currentAmmo + ammoNeeded;
             }
             else
             {
-                currentWeapon.currentAmmo += weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount;
-                weaponSwitchingUI.GetComponent<PlayerUI>().lightAmmoAmount = 0;
+                ammoRecieved = currentWeapon.currentAmmo + playerUI.lightAmmoAmount;
+                playerUI.lightAmmoAmount = 0;
             }
         }
         
