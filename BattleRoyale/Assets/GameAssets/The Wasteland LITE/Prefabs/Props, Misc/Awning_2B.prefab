@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3348334}
   - component: {fileID: 2319682}
   - component: {fileID: 6433612}
-  - component: {fileID: 20599546}
   m_Layer: 0
   m_Name: Awning_2B
   m_TagString: Untagged
@@ -88,23 +87,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: 2c3290785503e9a4c9fcaea48512a16d, type: 3}
---- !u!205 &20599546
-LODGroup:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163860}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.026175976, y: -1.5040627, z: -0.017783165}
-  m_Size: 5.0630136
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LODs:
-  - screenRelativeHeight: 0.048844412
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2319682}
-  m_Enabled: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

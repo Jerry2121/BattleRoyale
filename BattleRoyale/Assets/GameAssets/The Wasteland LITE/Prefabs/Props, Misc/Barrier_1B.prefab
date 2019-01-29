@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3381110}
   - component: {fileID: 2308372}
   - component: {fileID: 6456732}
-  - component: {fileID: 20573418}
   m_Layer: 0
   m_Name: Barrier_1B
   m_TagString: Untagged
@@ -88,23 +87,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: 76ef9d89e75c95041baebe14553ac1f8, type: 3}
---- !u!205 &20573418
-LODGroup:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143406}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.2952057, y: 0.177006, z: -0.0006504059}
-  m_Size: 5.0262914
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LODs:
-  - screenRelativeHeight: 0.048844412
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2308372}
-  m_Enabled: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

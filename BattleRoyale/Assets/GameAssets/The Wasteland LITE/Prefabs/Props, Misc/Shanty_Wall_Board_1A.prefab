@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3392110}
   - component: {fileID: 2316926}
   - component: {fileID: 6400550}
-  - component: {fileID: 20591040}
   m_Layer: 0
   m_Name: Shanty_Wall_Board_1A
   m_TagString: Untagged
@@ -88,23 +87,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: 4a4d717ab812272408c46bceb9cbb6af, type: 3}
---- !u!205 &20591040
-LODGroup:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174478}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.000000029802322, y: -0.0050159693, z: 0}
-  m_Size: 3.534935
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LODs:
-  - screenRelativeHeight: 0.05162001
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2316926}
-  m_Enabled: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
