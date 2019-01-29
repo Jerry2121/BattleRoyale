@@ -164,7 +164,7 @@ MonoBehaviour:
     name: Heavy
     damage: 20
     range: 200
-    fireRate: 1
+    fireRate: 1.5
     reloadTime: 2
     weaponType: 2
     maxAmmo: 15

@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 114885349636366104}
   - component: {fileID: 114582072038991078}
   - component: {fileID: 114914012948450954}
+  - component: {fileID: 114916814098439308}
   m_Layer: 0
   m_Name: _GameManager
-  m_TagString: Untagged
+  m_TagString: _GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +60,7 @@ MonoBehaviour:
   - {fileID: 1412712437146986, guid: 40f7a95f904993543ba1cf2c5fabe77b, type: 2}
   - {fileID: 1090122114562840, guid: c59193b29f0273845b578696adf570c8, type: 2}
   - {fileID: 1412712437146986, guid: cf6d63f0ed7a3f94b953b5397e2ac542, type: 2}
+  - {fileID: 1412712437146986, guid: 0261d762f9e2a044d9bbc5ad163f4512, type: 2}
   lightAmmo: {fileID: 1172274389392578, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
   mediumAmmo: {fileID: 1172274389392578, guid: 3224a9153f0d8504898a07972aea2ae5, type: 2}
   heavyAmmo: {fileID: 1172274389392578, guid: ca4d9630eff81db498bbd7657f932c12, type: 2}
@@ -74,12 +76,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matchSettings:
-    startTime: 60
+    startTime: 120
     respawnTime: 3
     canRespawn: 0
   timeBetweenZoneShrinking: 120
-  inStartPeriod: 0
-  gameTimer: 0
+  inStartPeriod: 1
+  gameTimer: -5
   zoneTimer: 0
   zoneWallPrefab: {fileID: 1759811002696946, guid: afd2003d7fc115041bdd0a7f47ab82a3,
     type: 2}
@@ -87,8 +89,53 @@ MonoBehaviour:
   sceneCamera: {fileID: 0}
   airDropPrefab: {fileID: 1615992600299588, guid: 3aa4aa3abe3f43b47bff4c2b120f5a72,
     type: 2}
-  airDropSpawnPoints: []
-  MapSpawns: []
+  airDropSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MapSpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   zoneShrinking: 1
   zoneShrunk: 0
 --- !u!114 &114914012948450954
@@ -123,3 +170,15 @@ MonoBehaviour:
     i15: 242
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114916814098439308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130956345023270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad1af7d305a3e442ad1458614839b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameUI: {fileID: 0}

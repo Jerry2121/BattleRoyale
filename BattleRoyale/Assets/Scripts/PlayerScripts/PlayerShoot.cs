@@ -11,8 +11,17 @@ public class PlayerShoot : NetworkBehaviour {
     [SerializeField]
     private Camera cam;
     [SerializeField]
+    Camera weaponCam;
+    [SerializeField]
+    float scopedFOV = 15f;
+    [SerializeField]
     private LayerMask mask;
+    [SerializeField]
+    Canvas sniperScopeOverlayCanvasPrefab;
+    Canvas sniperScopeOverlayCanvas;
+
     private bool isShooting;
+    private float camNormalFOV;
 
     private PlayerWeapon currentWeapon;
     private WeaponManager weaponManager;
@@ -27,6 +36,11 @@ public class PlayerShoot : NetworkBehaviour {
         }
 
         weaponManager = GetComponent<WeaponManager>();
+
+        sniperScopeOverlayCanvas = Instantiate(sniperScopeOverlayCanvasPrefab);
+        sniperScopeOverlayCanvas.enabled = false;
+
+        camNormalFOV = cam.fieldOfView;
 	}
 	
 	// Update is called once per frame
@@ -82,6 +96,13 @@ public class PlayerShoot : NetworkBehaviour {
                 else
                     cam.fieldOfView -= 2;
             }
+            else if (currentWeapon.name == "Sniper") //For the sniper we need to scope
+            {
+                Animator anim = weaponManager.GetCurrentGraphics().GetComponent<Animator>();
+                StartCoroutine(OnScoped(true));
+                anim.SetBool("Scoped", true);
+
+            }
             else
             {
                 if (cam.fieldOfView <= 45)
@@ -97,7 +118,14 @@ public class PlayerShoot : NetworkBehaviour {
         //We're not aiming anymore
         else
         {
-            if (cam.fieldOfView >= 70)
+            if (currentWeapon.name == "Sniper")
+            {
+                Animator anim = weaponManager.GetCurrentGraphics().GetComponent<Animator>();
+                StartCoroutine(OnScoped(false));
+                anim.SetBool("Scoped", false);
+            }
+
+            else if (cam.fieldOfView >= 70)
             {
                 cam.fieldOfView = 70;
             }
@@ -182,7 +210,10 @@ public class PlayerShoot : NetworkBehaviour {
             return;
 
         if (isShooting == false)
+        {
             CancelInvoke("Shoot");
+            return;
+        }
 
         if (currentWeapon.currentAmmo <= 0)
         {
@@ -230,4 +261,18 @@ public class PlayerShoot : NetworkBehaviour {
 
         player.RpcTakeDamage(_damage, _sourceID);
     }
+
+    IEnumerator OnScoped(bool scoped)
+    {
+        yield return new WaitForSeconds(0.15f);
+        sniperScopeOverlayCanvas.enabled = scoped;
+        weaponCam.enabled = !scoped;
+        if (scoped)
+            cam.fieldOfView = scopedFOV;
+        else
+            cam.fieldOfView = camNormalFOV;
+    }
+
 }
+
+

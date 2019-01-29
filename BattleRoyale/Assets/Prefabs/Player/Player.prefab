@@ -863,6 +863,7 @@ MonoBehaviour:
   SpectCameraPrefab: {fileID: 1970254996055792, guid: 1ac97498edcd93646a5a91e23f34c6b4,
     type: 2}
   PlayerUI: {fileID: 0}
+  isTheLocalPlayer: 0
   kills: 0
   deaths: 0
 --- !u!114 &114176612750664552
@@ -1336,9 +1337,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 20300667992484702}
+  weaponCam: {fileID: 20325547738294802}
   mask:
     serializedVersion: 2
     m_Bits: 1179959
+  sniperScopeOverlayCanvasPrefab: {fileID: 223731079683128560, guid: 7dfb4cada2c36e0478a387f78f4468c2,
+    type: 2}
 --- !u!114 &114697765524883102
 MonoBehaviour:
   m_ObjectHideFlags: 1
