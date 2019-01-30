@@ -201,7 +201,7 @@ public class WeaponManager : NetworkBehaviour {
         else
         {
             Debug.LogError("WeaponType not found");
-            return;
+            throw new System.Exception("WeaponManager -- Reload: Weapon type not accounted for!");
         }
 
         PlayerUI playerUI = weaponSwitchingUI.GetComponent<PlayerUI>();
@@ -342,9 +342,10 @@ public class WeaponManager : NetworkBehaviour {
             weapon = secondaryWeapon;
         else
         {
-            if (Debug.isDebugBuild)
-                Debug.LogError("WeaponManager -- SwitchWeaponRemote: There is no weapon corresponding to the number " + _weaponNum, this);
-            return;
+            throw new System.Exception("WeaponManager-- SwitchWeaponRemote: There is no weapon corresponding to the number " + _weaponNum);
+            //if (Debug.isDebugBuild)
+            //    Debug.LogError("WeaponManager -- SwitchWeaponRemote: There is no weapon corresponding to the number " + _weaponNum, this);
+            //return;
         }
 
         if (currentWeaponGameObject != null)
@@ -366,6 +367,7 @@ public class WeaponManager : NetworkBehaviour {
         if (currentGraphics == null)
         {
             Debug.LogError("WeaponManager -- EquipWeaponRemote: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!", this);
+            throw new System.Exception("WeaponManager -- EquipWeaponRemote: There is no WeaponGraphics on the " + weaponIns.name + " weapon object!");
         }
         else
         {

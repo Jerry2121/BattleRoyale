@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - key: TestNews
-    value: <b>The dev news</b> \\n awesome game created by tri-tech!
+    value: <b>The dev news</b> <br> awesome battle royal game created by Aaron!
     type: string

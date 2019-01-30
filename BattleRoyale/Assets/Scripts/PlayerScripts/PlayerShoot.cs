@@ -28,11 +28,10 @@ public class PlayerShoot : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(cam == null)
+        if (cam == null)
         {
-            if (Debug.isDebugBuild)
-                Debug.LogError("PlayerShoot -- Start: No camera referenced");
             this.enabled = false;
+            throw new System.Exception("PlayerShoot -- Start: No camera referenced");
         }
 
         weaponManager = GetComponent<WeaponManager>();
@@ -179,8 +178,9 @@ public class PlayerShoot : NetworkBehaviour {
     {
         if(weaponManager.GetCurrentGraphics() == null)
         {
-            Debug.LogError("PlayerShoot -- RpcDoShootEffect: CurrentGraphics is null!");
-            return;
+            throw new System.Exception("PlayerShoot -- RpcDoShootEffect: CurrentGraphics is null!");
+            //Debug.LogError("PlayerShoot -- RpcDoShootEffect: CurrentGraphics is null!");
+            //return;
         }
         weaponManager.GetCurrentGraphics().muzzleFlash.Play();
     }

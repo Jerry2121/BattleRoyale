@@ -220,7 +220,7 @@ public class GameManager : NetworkBehaviour {
         {
             if(airDropSpawnPoints.Length < 1)
             {
-                Debug.LogError("GameManager -- SpawnAirdrop: There are no Airdrop Spawnpoints");
+                throw new System.Exception("GameManager -- SpawnAirdrop: There are no Airdrop Spawnpoints");
             }
             Utility.InstantiateOverNetwork(airDropPrefab, airDropSpawnPoints[Random.Range(0, airDropSpawnPoints.Length)].position, Quaternion.identity);
         }
