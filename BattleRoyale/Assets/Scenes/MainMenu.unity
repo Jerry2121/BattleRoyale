@@ -26031,7 +26031,7 @@ Prefab:
     - target: {fileID: 114725753732208818, guid: 3ad23221d7600b94bb826db71b7e165d,
         type: 2}
       propertyPath: m_OnlineScene
-      value: MainGame
+      value: JT2
       objectReference: {fileID: 0}
     - target: {fileID: 1422587437927002, guid: 3ad23221d7600b94bb826db71b7e165d, type: 2}
       propertyPath: m_IsActive
