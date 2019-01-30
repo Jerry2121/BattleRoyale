@@ -106,7 +106,7 @@ public class GameManager : NetworkBehaviour {
 
         if (Input.GetKeyDown(KeyCode.P) && Debug.isDebugBuild)
         {
-            Debug.LogError("players.count = " + players.Count + " playerarray.Length = " + GetAllPlayers().Length);
+            Debug.Log("players.count = " + players.Count + " playerarray.Length = " + GetAllPlayers().Length);
         }
 
         if (networkDiscoveryScript.isServer && GetAllPlayers().Length <= 1 && inStartPeriod)
