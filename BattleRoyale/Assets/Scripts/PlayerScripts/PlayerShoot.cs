@@ -26,6 +26,10 @@ public class PlayerShoot : NetworkBehaviour {
     private PlayerWeapon currentWeapon;
     private WeaponManager weaponManager;
 
+    public int meleeDamage;
+    public float meleeRange;
+    public float meleeCooldown;
+
 	// Use this for initialization
 	void Start () {
         if (cam == null)
@@ -144,11 +148,26 @@ public class PlayerShoot : NetworkBehaviour {
                 return;
             }
         }
+
+        if (meleeCooldown > 0)
+        {
+            meleeCooldown -= Time.deltaTime;
+        }
+
         if (currentWeapon.fireRate <= 0)
         {
             if (Input.GetButtonDown("Fire1") && PlayerUI.InInventory == false)
             {
                 Shoot();
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Z) && PlayerUI.InInventory == false)
+            {
+                if (meleeCooldown <= 0)
+                {
+                    MeleeAttack();
+                    meleeCooldown += 2;
+                }
             }
         }
         else
@@ -158,7 +177,7 @@ public class PlayerShoot : NetworkBehaviour {
                 isShooting = true;
                 InvokeRepeating("Shoot", 0f, 1f/currentWeapon.fireRate);
             }
-            else if (Input.GetButtonUp("Fire1") && PlayerUI.InInventory == false)
+            else if (Input.GetButtonUp("Fire1") && PlayerUI.InInventory == false && IsInvoking("Shoot") == false)
             {
                 isShooting = false;
             }
@@ -201,6 +220,29 @@ public class PlayerShoot : NetworkBehaviour {
         //Utility.DespawnAfterSeconds(hitEffect, 2f);
         //SimplePool.Despawn(hitEffect);
         StartCoroutine(Utility.DespawnAfterSeconds(hitEffect, 2f));
+    }
+
+    [Client] // called on the local client
+    void MeleeAttack()
+    {
+        if (isLocalPlayer == false || weaponManager.isReloading == true)
+            return;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, meleeRange, mask))
+        {
+            //We hit something
+            if (hit.collider.tag == PLAYER_TAG)
+            {
+                CmdPlayerShot(hit.collider.name, meleeDamage, transform.name);
+                // Show Hitmarker
+                GetComponent<Player>().PlayerUI.GetComponent<damageUI>().ShowHitMarker();
+                // play sound?
+            }
+            //we hit something, call OnHit method on server
+            CmdOnHit(hit.point, hit.normal);
+        }
     }
 
     [Client] //called on the local client
