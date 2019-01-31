@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class AirDropItemSpawn : NetworkBehaviour {
-
-    [SerializeField]
+public class AirDropItemSpawn : NetworkBehaviour
+{
+    //[SerializeField]
     GameObject[] weapons;
-    [SerializeField]
+    //[SerializeField]
     GameObject[] items;
     [SerializeField]
     Transform[] itemWeaponSpawnPoints;
@@ -23,6 +23,8 @@ public class AirDropItemSpawn : NetworkBehaviour {
 
     void Start()
     {
+        weapons = GameManager.Instance.gameManagerScript.weapons;
+        items = GameManager.Instance.gameManagerScript.items;
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
     }
@@ -36,30 +38,27 @@ public class AirDropItemSpawn : NetworkBehaviour {
 
     void SpawnWeapons()
     {
-        for (int i = 0; i < weaponsToSpawn; i++)
+        if (networkDiscoveryScript.isServer)
         {
-            int chance = Random.Range(0, weapons.Length);
-
-            if (networkDiscoveryScript.isServer)
+            for (int i = 0; i < weaponsToSpawn; i++)
             {
+                int chance = Random.Range(0, weapons.Length);
+
                 Utility.InstantiateOverNetwork(weapons[chance], itemWeaponSpawnPoints[Random.Range(0, itemWeaponSpawnPoints.Length)].position, Quaternion.identity);
             }
-
         }
-
     }
 
     void SpawnItems()
     {
-        for (int i = 0; i < itemsToSpawn; i++)
+        if (networkDiscoveryScript.isServer)
         {
-            int chance = Random.Range(0, items.Length);
-
-            if (networkDiscoveryScript.isServer)
+            for (int i = 0; i < itemsToSpawn; i++)
             {
+                int chance = Random.Range(0, items.Length);
+
                 Utility.InstantiateOverNetwork(items[chance], itemWeaponSpawnPoints[Random.Range(0, itemWeaponSpawnPoints.Length)].position, Quaternion.identity);
             }
-
         }
     }
 

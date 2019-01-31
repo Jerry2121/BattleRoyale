@@ -32,7 +32,7 @@ public class WeaponItemSpawner : MonoBehaviour {
         if (GameManager.Instance == null)
             throw new System.NullReferenceException("GameManager.Instance is null");
 
-        GameManagerScript gameManagerScript = GameManager.Instance.GetComponent<GameManagerScript>();
+        GameManagerScript gameManagerScript = GameManager.Instance.gameManagerScript;
 
         if (gameManagerScript.DisableItemSpawning)
             yield break;

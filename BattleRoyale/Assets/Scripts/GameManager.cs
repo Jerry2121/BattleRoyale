@@ -30,6 +30,7 @@ public class GameManager : NetworkBehaviour {
     public static NetworkDiscoveryScript networkDiscoveryScript;
 
     public MatchSettings matchSettings;
+    public GameManagerScript gameManagerScript { get; private set; }
 
     public int timeBetweenZoneShrinking = 120;
     public bool inStartPeriod = true;
@@ -75,6 +76,9 @@ public class GameManager : NetworkBehaviour {
         Debug.Log("GameManager instance set");
         networkManager = NetworkManager.singleton;
         networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
+        gameManagerScript = GetComponent<GameManagerScript>();
+        if (gameManagerScript == null)
+            throw new System.Exception("GameManagerScript was not found!");
         StartTimer();
         zoneShrinking = true;
         zoneTimer = 0;
@@ -162,7 +166,7 @@ public class GameManager : NetworkBehaviour {
 
         }
         
-        if(gameTimer >= 0)
+        if(gameTimer > 0)
         {
             secondsUntilDrop -= Time.deltaTime;
 
