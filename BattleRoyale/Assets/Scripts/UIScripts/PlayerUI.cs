@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
 using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -81,6 +82,12 @@ public class PlayerUI : MonoBehaviour {
     GameObject LightButton;
     [SerializeField]
     GameObject BandagesButton;
+    [SerializeField]
+    GameObject Options;
+    [SerializeField]
+    Animator Disconnect;
+    private NetworkManager networkManager;
+    private NetworkDiscoveryScript networkDiscoveryScript;
 
 
 
@@ -141,7 +148,9 @@ public class PlayerUI : MonoBehaviour {
         inventoryScriptLITE.player = player.transform;
         if (pauseMenu.activeSelf == true)
             TogglePauseMenu();
-        
+        networkManager = NetworkManager.singleton;
+        networkDiscoveryScript = networkManager.GetComponent<NetworkDiscoveryScript>();
+
     }
 
     void Update()
@@ -310,7 +319,6 @@ public class PlayerUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
-            pauseMenu.GetComponent<PauseMenu>().ShowResume();
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -369,10 +377,10 @@ public class PlayerUI : MonoBehaviour {
             MapCanvas.transform.GetComponentInChildren<Canvas>().enabled = !MapCanvas.transform.GetComponentInChildren<Canvas>().enabled;
             HUD.SetActive(!HUD.activeSelf);
         }
-        /*if (MapCanvas.transform.GetComponentInChildren<Canvas>().enabled == true)
+        if (MapCanvas.transform.GetComponentInChildren<Canvas>().enabled == true)
         {
             isMapOpen = true;
-        }*/
+        }
         else
         {
             isMapOpen = false;
@@ -577,5 +585,32 @@ public class PlayerUI : MonoBehaviour {
         ammo.GetComponent<PickableItem>().amount = DropAmount;
         InventoryDropCanvas.SetActive(false);
         InInventory = false;
+    }
+    public void ShowOptions()
+    {
+        Options.SetActive(!Options.activeSelf);
+    }
+    public void ShowDisconnect()
+    {
+        Disconnect.SetTrigger("DisconnectAppear");
+    }
+    public void HideDisconnect()
+    {
+        Disconnect.SetTrigger("DisconnectDisappear");
+    }
+    public void LeaveGame()
+    {
+        if (NetworkDiscoveryScript.IsInLAN)
+        {
+            networkManager.StopHost();
+            NetworkDiscoveryScript.IsInLAN = false;
+            networkDiscoveryScript.StopBroadcast();
+        }
+        else
+        {
+            MatchInfo matchInfo = networkManager.matchInfo;
+            networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+            networkManager.StopHost();
+        }
     }
 }
