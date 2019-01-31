@@ -53,6 +53,9 @@ public class PlayerShoot : NetworkBehaviour {
         if (PauseMenu.isOn)
             return;
 
+        if (currentWeapon == null)
+            return;
+
         //We're aiming
         if (Input.GetButton("Fire2"))
         {
@@ -137,8 +140,6 @@ public class PlayerShoot : NetworkBehaviour {
                 cam.fieldOfView += 3;
         }
 
-        if (currentWeapon == null)
-            return;
 
         if (currentWeapon.currentAmmo < currentWeapon.maxAmmo)
         {
