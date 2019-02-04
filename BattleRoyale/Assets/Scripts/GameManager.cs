@@ -182,6 +182,13 @@ public class GameManager : NetworkBehaviour {
 #if UNITY_EDITOR
     [MenuItem("BattleRoyale/SpawnPlayersOnMap")]
     public static void SpawnPlayers() { Instance.SpawnPlayersOnMap(); }
+
+    [MenuItem("BattleRoyale/AddNullPlayers")]
+    public static void AddNullPlayers()
+    {
+        players.Add(("null" + players.Count), null);
+        Instance.playersAmount++;
+    }
 #endif
 
     void SpawnPlayersOnMap()
