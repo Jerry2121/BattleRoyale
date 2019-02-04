@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnOnWhenLoaded : MonoBehaviour {
-    public GameObject GameUI;
+    /*public GameObject GameUI;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,5 +15,5 @@ public class TurnOnWhenLoaded : MonoBehaviour {
         {
             GameUI.gameObject.SetActive(true);
         }
-	}
+	}*/
 }

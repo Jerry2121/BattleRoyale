@@ -27,6 +27,8 @@ public class LobbyManager : MonoBehaviour {
     TextMeshProUGUI statusLANText;
     [SerializeField]
     TextMeshProUGUI createLANStatusText;
+    [SerializeField]
+    GameObject newsButton;
 
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
@@ -72,11 +74,13 @@ public class LobbyManager : MonoBehaviour {
     {
         MainMainMenuCanvas.SetActive(false);
         LobbyUICanvas.SetActive(true);
+        newsButton.SetActive(false);
     }
     public void GoToMainMenu()
     {
         MainMainMenuCanvas.SetActive(true);
         LobbyUICanvas.SetActive(false);
+        newsButton.SetActive(true);
     }
 
     public void ChangeToLAN()

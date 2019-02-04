@@ -5,11 +5,11 @@ using UnityEngine;
 public class MenuNews : MonoBehaviour {
 
     [SerializeField]
-    GameObject newsText;
+    GameObject newsGameObject;
 
     public void ShowNews()
     {
-        newsText.SetActive(!newsText.activeSelf);
+        newsGameObject.SetActive(!newsGameObject.activeSelf);
     }
 
 }

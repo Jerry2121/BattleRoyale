@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114275933389818622}
   - component: {fileID: 114900953358196440}
   - component: {fileID: 114162566456496718}
-  - component: {fileID: 114365956856868542}
+  - component: {fileID: 114891937934338454}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  manager: {fileID: 114725753732208818}
   showGUI: 0
   offsetX: 0
   offsetY: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422587437927002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1f5afc777217044685af476fa2a0b9c, type: 3}
   m_Name: 
@@ -220,17 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: 20
---- !u!114 &114365956856868542
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1422587437927002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114461726989865904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,7 +334,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: MainMenu
-  m_OnlineScene: MainGame
+  m_OnlineScene: AW
   m_SpawnPrefabs:
   - {fileID: 1172274389392578, guid: 9d976509d110f9545b7d89bccffeb180, type: 2}
   - {fileID: 1424222808341810, guid: 8165472cbc9098040bca00a43584c653, type: 2}
@@ -404,7 +393,7 @@ MonoBehaviour:
   m_PacketLossPercentage: 0
   m_MaxBufferedPackets: 16
   m_AllowFragmentation: 1
-  m_MatchHost: Null
+  m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 0
   matchName: default
   matchSize: 20
@@ -505,11 +494,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -546,6 +535,17 @@ MonoBehaviour:
   m_OffsetY: 110
   maxConnections: 20
   lobbyManager: {fileID: 0}
+--- !u!114 &114891937934338454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422587437927002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114900953358196440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -588,7 +588,7 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1112805476623384}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
