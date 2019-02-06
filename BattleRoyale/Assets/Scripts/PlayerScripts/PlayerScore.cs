@@ -27,6 +27,10 @@ public class PlayerScore : MonoBehaviour {
             SyncNow();
     }
 
+    /// <summary>
+    /// Syncs the players kills and deaths every 5 seconds
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SyncScoreLoop()
     {
         while (true)
@@ -61,8 +65,9 @@ public class PlayerScore : MonoBehaviour {
 
         lastKills = player.kills;
         lastDeaths = player.deaths;
+        int isDev = Utility.DataToIntValue(_data, UserAccountManager.IsDevDataSymbol);
 
-        string newData = Utility.ValuesToData(newKills, newDeaths);
+        string newData = Utility.ValuesToData(newKills, newDeaths, isDev);
         Debug.Log("Syncing: " + newData);
 
         UserAccountManager.instance.SendData(newData);

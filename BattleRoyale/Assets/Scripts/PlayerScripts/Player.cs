@@ -13,6 +13,8 @@ public class Player : NetworkBehaviour {
     private int currentHealth;
     [SyncVar]
     public string username = "Loading...";
+    [SyncVar]
+    public bool isDev = false;
 
     [HideInInspector]
     public GameObject outsideOfZoneImage;

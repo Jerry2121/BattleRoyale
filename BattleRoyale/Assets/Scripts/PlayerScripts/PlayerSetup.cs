@@ -56,21 +56,26 @@ public class PlayerSetup : NetworkBehaviour {
             GetComponent<Player>().SetupPlayer();
 
             string username = "Loading...";
+            bool isDev = false;
             if (UserAccountManager.IsLoggedIn)
+            {
                 username = UserAccountManager.PlayerUsername;
+                isDev = UserAccountManager.PlayerIsDev;
+            }
             else username = transform.name;
 
-            CmdSetUsername(transform.name, username);
+            CmdSetUsername(transform.name, username, isDev);
         }
 	}
 
     [Command]
-    void CmdSetUsername(string _playerID, string _username)
+    void CmdSetUsername(string _playerID, string _username, bool _isDev)
     {
         Player player = GameManager.GetPlayer(_playerID);
         if(player != null)
         {
             player.username = _username;
+            player.isDev = _isDev;
         }
     }
 

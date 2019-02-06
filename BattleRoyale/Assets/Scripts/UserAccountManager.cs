@@ -12,6 +12,8 @@ public class UserAccountManager : MonoBehaviour {
     public static string PlayerUsername { get; protected set; }
     private static string PlayerPassword = "";
 
+    public static bool PlayerIsDev { get; protected set; }
+
     public static bool IsLoggedIn { get; protected set; }
 
     public string loggedInSceneName = "MainMenu";
@@ -19,6 +21,7 @@ public class UserAccountManager : MonoBehaviour {
 
     public static string KillCountDataSymbol = "[KILLS]";
     public static string DeathCountDataSymbol = "[DEATHS]";
+    public static string IsDevDataSymbol = "[IS_DEV]";
 
     public delegate void OnDataReceivedCallback(string _data);
 
@@ -44,6 +47,7 @@ public class UserAccountManager : MonoBehaviour {
     {
         PlayerUsername = "";
         PlayerPassword = "";
+        PlayerIsDev = false;
         IsLoggedIn = false;
 
         if (Debug.isDebugBuild)
@@ -57,6 +61,8 @@ public class UserAccountManager : MonoBehaviour {
         PlayerPassword = _password;
 
         IsLoggedIn = true;
+
+        RetrieveData(CheckIfDev);
 
         if (Debug.isDebugBuild)
             Debug.Log("User " + PlayerUsername + " has logged in");
@@ -129,5 +135,42 @@ public class UserAccountManager : MonoBehaviour {
             StartCoroutine(GetData(_onDataReceivedCallback));
         }
     }
+
+    void CheckIfDev(string _data)
+    {
+        int isDev = Utility.DataToIntValue(_data, IsDevDataSymbol);
+        if (isDev == 1)
+            PlayerIsDev = true;
+        else
+            PlayerIsDev = false;
+    }
+
+#if UNITY_EDITOR
+    [UnityEditor.MenuItem("BattleRoyale/SetDevAccount")]
+    public static void SetDev() { if (IsLoggedIn) instance.RetrieveData(SetDevCallback); }
+
+    public static void SetDevCallback(string _data)
+    {
+        string newData = null;
+
+        int kills = Utility.DataToIntValue(_data, KillCountDataSymbol);
+        int deaths = Utility.DataToIntValue(_data, DeathCountDataSymbol);
+        int isDev = 1;
+        PlayerIsDev = true;
+
+        newData = Utility.ValuesToData(kills, deaths, isDev);
+        Debug.Log("Syncing: " + newData);
+
+       instance.SendData(newData);
+    }
+
+    [UnityEditor.MenuItem("BattleRoyale/CheckAccountData")]
+    public static void CheckData() { if (IsLoggedIn) instance.RetrieveData(CheckDataCallback); }
+
+    public static void CheckDataCallback(string _data)
+    {
+        Debug.LogFormat("Account Data: {0}", _data);
+    }
+#endif
 
 }

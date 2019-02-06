@@ -62,9 +62,9 @@ public class Utility {
         return 0;
     }
 
-    public static string ValuesToData (int kills, int deaths)
+    public static string ValuesToData (int kills, int deaths, int isDev)
     {
-        return UserAccountManager.KillCountDataSymbol + kills + "/" + UserAccountManager.DeathCountDataSymbol + deaths + "/";
+        return UserAccountManager.KillCountDataSymbol + kills + "/" + UserAccountManager.DeathCountDataSymbol + deaths + "/" + UserAccountManager.IsDevDataSymbol + isDev + "/";
     }
 
     /// <summary>

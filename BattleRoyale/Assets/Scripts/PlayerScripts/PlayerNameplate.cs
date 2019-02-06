@@ -22,7 +22,7 @@ public class PlayerNameplate : MonoBehaviour {
         if (player.username != "Loading..." && usernameText.text != player.username)
             usernameText.text = player.username;
         healthBarFill.localScale = new Vector3(player.GetHealthPercentage(), 1f, 1f);
-        if (player.username == "Jerry2121" || player.username == "Aaron" || player.username == "Nathan")
+        if (player.isDev)
         {
             DevText.SetActive(true);
         }
