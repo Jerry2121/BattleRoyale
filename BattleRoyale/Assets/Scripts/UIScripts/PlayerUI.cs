@@ -434,6 +434,7 @@ public class PlayerUI : MonoBehaviour {
 
     public void TogglePauseMenu()
     {
+        //pauseMenu.GetComponent<Canvas>().enabled = !pauseMenu.GetComponent<Canvas>().enabled;
         PauseMenu pauseMenuScript = pauseMenu.GetComponent<PauseMenu>();
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         PauseMenu.isOn = pauseMenu.activeSelf;
