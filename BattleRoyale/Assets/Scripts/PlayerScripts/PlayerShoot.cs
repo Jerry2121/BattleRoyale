@@ -178,7 +178,7 @@ public class PlayerShoot : NetworkBehaviour {
                 isShooting = true;
                 InvokeRepeating("Shoot", 0f, 1f/currentWeapon.fireRate);
             }
-            else if (Input.GetButtonUp("Fire1") && PlayerUI.InInventory == false && IsInvoking("Shoot") == false)
+            else if (Input.GetButtonUp("Fire1") && PlayerUI.InInventory == false/* && IsInvoking("Shoot") == false*/)
             {
                 isShooting = false;
             }
@@ -249,7 +249,7 @@ public class PlayerShoot : NetworkBehaviour {
     [Client] //called on the local client
     void Shoot()
     {
-        if (isLocalPlayer == false || weaponManager.isReloading == true)
+        if (isLocalPlayer == false || weaponManager.isReloading == true || PlayerUI.InInventory)
             return;
 
         if (isShooting == false)
