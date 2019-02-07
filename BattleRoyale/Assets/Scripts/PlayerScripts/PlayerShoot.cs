@@ -202,6 +202,7 @@ public class PlayerShoot : NetworkBehaviour {
             //Debug.LogError("PlayerShoot -- RpcDoShootEffect: CurrentGraphics is null!");
             //return;
         }
+        weaponManager.GetCurrentGraphics().GetComponent<AudioSource>().Play();
         weaponManager.GetCurrentGraphics().muzzleFlash.Play();
     }
 

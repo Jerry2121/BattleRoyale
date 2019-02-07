@@ -4647,7 +4647,6 @@ MonoBehaviour:
   m_ShowGUI: 0
   m_OffsetX: 0
   m_OffsetY: 110
-  maxConnections: 20
   lobbyManager: {fileID: 0}
 --- !u!114 &754709049
 MonoBehaviour:
@@ -12683,6 +12682,10 @@ Prefab:
     - target: {fileID: 224373313706112930, guid: 054cea5c915fe5a439f1b6a5cd68a826,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314417243172160, guid: 054cea5c915fe5a439f1b6a5cd68a826, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
