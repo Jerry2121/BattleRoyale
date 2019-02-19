@@ -74,8 +74,7 @@ public class PlayerController : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-
+        
         //Calculate movement velocity as 3D vector
         float _xMove = Input.GetAxis("Horizontal");
         float _zMove = Input.GetAxis("Vertical");
