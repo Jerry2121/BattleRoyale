@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: RemoteSettingsDataStore
   m_EditorClassIdentifier: 
   rsKeyList:
-  - key: TestNews
-    value: <b>The dev news</b> <br> awesome battle royal game created by Aaron!
+  - key: News
+    value: 1) Tri-Tech Battle Royale released
     type: string

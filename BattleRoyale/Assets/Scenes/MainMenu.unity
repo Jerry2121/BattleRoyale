@@ -11309,10 +11309,10 @@ RectTransform:
   m_Father: {fileID: 118463576}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -567, y: -284}
-  m_SizeDelta: {x: 276.5, y: 134.3}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 392, y: -784}
+  m_SizeDelta: {x: 276.5, y: 134.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &345208468
 MonoBehaviour:
@@ -18529,7 +18529,7 @@ MonoBehaviour:
     m_Fields:
     - m_Target: {fileID: 948288697}
       m_FieldPath: text
-      m_RSKeyName: TestNews
+      m_RSKeyName: News
       m_Type: string
 --- !u!1 &1340500250
 GameObject:
@@ -18768,10 +18768,10 @@ RectTransform:
   m_Father: {fileID: 118463576}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181.1, y: -284}
-  m_SizeDelta: {x: 276.5, y: 134.3}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1140.1, y: -784}
+  m_SizeDelta: {x: 276.5, y: 134.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393629676
 MonoBehaviour:
@@ -24908,7 +24908,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1002803418011606, guid: 94036ffa5aaeba74ab1ec1de11107aa3, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1058477708201956, guid: 94036ffa5aaeba74ab1ec1de11107aa3, type: 2}
       propertyPath: m_IsActive
@@ -27821,9 +27821,9 @@ RectTransform:
   m_Father: {fileID: 118463576}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128, y: 365}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1087, y: -45}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2109329607

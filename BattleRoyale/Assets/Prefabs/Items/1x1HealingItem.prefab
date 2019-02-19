@@ -26,9 +26,10 @@ GameObject:
   - component: {fileID: 114436995637615982}
   - component: {fileID: 114604079796466586}
   - component: {fileID: 114675243988710208}
+  - component: {fileID: 114669014485054052}
   m_Layer: 11
   m_Name: 1x1HealingItem
-  m_TagString: Untagged
+  m_TagString: Bandage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172274389392578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.42252, y: 82.145, z: -8.018276}
+  m_LocalPosition: {x: 53.41886, y: 82.053, z: 4.027624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224354924105658618}
@@ -241,6 +242,22 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 5
   m_InterpolateMovement: 1
+--- !u!114 &114669014485054052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172274389392578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aae20be6783e9141b5f0c49cf7cf029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  equipable: 0
+  itemType: Healing
+  amount: 3
+  AmountText: {fileID: 0}
 --- !u!114 &114675243988710208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,7 +421,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202046812811926}
   m_LocalRotation: {x: 0.7071059, y: -0.0000043329296, z: -0.00000019785026, w: 0.7071077}
-  m_LocalPosition: {x: 0, y: 0, z: 12.040176}
+  m_LocalPosition: {x: 0, y: 0, z: 0.002}
   m_LocalScale: {x: 0.30000007, y: 0.29999995, z: 0.30000007}
   m_Children:
   - {fileID: 224659200486693590}
@@ -413,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -270, y: 540, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9983635, y: -0.037895203}
+  m_AnchoredPosition: {x: -0.003, y: 0.047}
   m_SizeDelta: {x: 0.8744, y: 0.4662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224659200486693590

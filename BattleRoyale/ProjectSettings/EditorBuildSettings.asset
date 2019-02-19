@@ -14,16 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGame.unity
     guid: 73dbc5561d027ef4e98a5b83f29b8553
-  - enabled: 1
-    path: Assets/AJT/JT2.unity
-    guid: 616869bbffc35264ba64dd8a082c10f8
   - enabled: 0
     path: Assets/AW/AW.unity
     guid: 36b50187f4aa96c4f86a082967c3d5a7
   - enabled: 0
     path: Assets/AW/Test.unity
     guid: 77b7f71845c66fa48a643aaf9ddaa9bf
-  - enabled: 1
-    path: Assets/AJT/JT2.unity
-    guid: 616869bbffc35264ba64dd8a082c10f8
   m_configObjects: {}
