@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114436995637615982}
   - component: {fileID: 114604079796466586}
   - component: {fileID: 114675243988710208}
-  - component: {fileID: 114669014485054052}
   m_Layer: 11
   m_Name: 1x1HealingItem
   m_TagString: Bandage
@@ -242,22 +241,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 5
   m_InterpolateMovement: 1
---- !u!114 &114669014485054052
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1172274389392578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aae20be6783e9141b5f0c49cf7cf029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  equipable: 0
-  itemType: Healing
-  amount: 3
-  AmountText: {fileID: 0}
 --- !u!114 &114675243988710208
 MonoBehaviour:
   m_ObjectHideFlags: 1
