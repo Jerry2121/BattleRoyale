@@ -48,6 +48,17 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        //Set target position for spring
+        //This will allow it to float over non ground objects
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, 100f, environmentMask))
+        {
+            joint.targetPosition = new Vector3(0f, -hit.point.y, 0f);
+        }
+        else
+        {
+            joint.targetPosition = new Vector3(0f, 100f, 0f);
+        }
 
         if (PauseMenu.isOn || PlayerUI.InInventory)
         {
@@ -64,17 +75,6 @@ public class PlayerController : MonoBehaviour {
             Cursor.visible = false;
         }
 
-        //Set target position for spring
-        //This will allow it to float over non ground objects
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, 100f, environmentMask))
-        {
-            joint.targetPosition = new Vector3(0f, -hit.point.y, 0f);
-        }
-        else
-        {
-            joint.targetPosition = new Vector3(0f, 100f, 0f);
-        }
 
         //Calculate movement velocity as 3D vector
         float _xMove = Input.GetAxis("Horizontal");
