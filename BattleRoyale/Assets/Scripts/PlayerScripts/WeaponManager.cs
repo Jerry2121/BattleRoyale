@@ -214,7 +214,7 @@ public class WeaponManager : NetworkBehaviour {
             if (playerUI.heavyAmmoAmount > ammoNeeded)
             {
                 playerUI.heavyAmmoAmount -= ammoNeeded;
-                ammoRecieved = currentWeapon.currentAmmo + ammoNeeded;
+                ammoRecieved = ammoNeeded;
             }
             else
             {
@@ -227,7 +227,7 @@ public class WeaponManager : NetworkBehaviour {
         {
             if(playerUI.mediumAmmoAmount > ammoNeeded)
             {
-                ammoRecieved = currentWeapon.currentAmmo + ammoNeeded;
+                ammoRecieved = ammoNeeded;
                 playerUI.mediumAmmoAmount -= ammoNeeded;
             }
             else
@@ -242,7 +242,7 @@ public class WeaponManager : NetworkBehaviour {
             if (playerUI.lightAmmoAmount > ammoNeeded)
             {
                 playerUI.lightAmmoAmount -= ammoNeeded;
-                ammoRecieved = currentWeapon.currentAmmo + ammoNeeded;
+                ammoRecieved = ammoNeeded;
             }
             else
             {
