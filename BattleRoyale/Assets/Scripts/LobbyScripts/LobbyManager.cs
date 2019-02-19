@@ -16,6 +16,8 @@ public class LobbyManager : MonoBehaviour {
     GameObject LobbyUICanvas;
     [SerializeField]
     GameObject MainMainMenuCanvas;
+    [SerializeField]
+    GameObject CreditsCanvas;
 
     [SerializeField]
     GameObject OnlineUI;
@@ -29,6 +31,8 @@ public class LobbyManager : MonoBehaviour {
     TextMeshProUGUI createLANStatusText;
     [SerializeField]
     GameObject newsButton;
+    [SerializeField]
+    GameObject creditsButton;
 
     private NetworkManager networkManager;
     private NetworkDiscoveryScript networkDiscoveryScript;
@@ -81,6 +85,15 @@ public class LobbyManager : MonoBehaviour {
         MainMainMenuCanvas.SetActive(true);
         LobbyUICanvas.SetActive(false);
         newsButton.SetActive(true);
+        CreditsCanvas.SetActive(false);
+    }
+
+    public void GoToCredits()
+    {
+        MainMainMenuCanvas.SetActive(false);
+        LobbyUICanvas.SetActive(false);
+        newsButton.SetActive(false);
+        CreditsCanvas.SetActive(true);
     }
 
     public void ChangeToLAN()

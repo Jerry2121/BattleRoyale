@@ -11,6 +11,6 @@ public class VersionText : MonoBehaviour {
 	void Start () {
         versionText = GetComponent<TextMeshProUGUI>();
         if(versionText != null)
-            versionText.text = Application.version;
+            versionText.text = "v" + Application.version;
 	}
 }
