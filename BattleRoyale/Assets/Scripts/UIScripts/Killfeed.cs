@@ -10,7 +10,7 @@ public class Killfeed : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        GameManager.Instance.onPlayerKilledCallback += OnKill;
+        StartCoroutine(WaitForInstance());
     }
 
     public void OnKill(string _player, string _source)
@@ -23,5 +23,16 @@ public class Killfeed : MonoBehaviour {
         go.GetComponent<KillfeedItem>().SetUp(_player, _source);
 
         Destroy(go, 4f);
+    }
+
+    IEnumerator WaitForInstance()
+    {
+        yield return new WaitForSeconds(5);
+        if (GameManager.Instance == null)
+            yield return new WaitForSeconds(5);
+        if (GameManager.Instance == null)
+            throw new System.NullReferenceException("GameManager.Instance is null");
+
+        GameManager.Instance.onPlayerKilledCallback += OnKill;
     }
 }
